@@ -65,6 +65,14 @@
           <input type="radio"  id="category_8" class="hidden" />
           <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
         </div>
+        <div id="mierka-radio">
+          <div ></div>
+            <input class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
+            <input class="mierka-input" type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm
+            <input class="mierka-input" type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm
+            <input class="mierka-input" type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm
+            <input class="mierka-input" type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()"> Vyp.
+        </div>
       </div>
       <div class="left-menu">
         <div class="left-menu-item">
@@ -99,14 +107,6 @@
             <a id="B17" class="Button btn btn-default" ng-click = "OznacitVsetky()">Označiť všetky</a>
             <a id="B18" class="Button btn btn-default" ng-click = "ZmenitNaObvodove()">Zmeniť na obvodové</a>
             <a id="B19" class="Button btn btn-default" ng-click = "ZmenitNaVnutorne()">Zmeniť na vnútorné</a>
-
-             <form action="">
-      <input type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto<br>
-      <input type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm<br>
-      <input type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm<br>
-      <input type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm<br>
-      <input type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()"> Vyp.<br>
-      </form>
           </div> 
         </div>
       </div>
@@ -133,12 +133,12 @@
         <a id="BDW9" class="Button btn-my radio-dw" ng-click = "DeleteDW(); set_dw('dwcategory_5');setMenu(0);"></a>
       </div>
       <div class="left-menu">
-        <div id="MenuItemWindow" style="position:relative;left:5px; top:160px;pointer-events: auto; "  >
+        <div id="MenuItemWindow" style="left:5px;pointer-events: auto; "  >
           <div ng-repeat = "window in menuData.okna.child" class = "btn-group" >
             <a class = "WindowButton " ng-click = "ChooseWindow(window.asset);" style="background:url({{window.image}}); background-size:100%"></a>
           </div>
         </div>
-        <div id="MenuItemDoor" style="position:relative;left:5px; top:160px; "  >
+        <div id="MenuItemDoor" style="left:5px;">
           <div ng-repeat = "door in menuData.dvere.child" class = "btn-group" >
             <a class = "DoorButton " ng-click = "ChooseDoor(door.asset); "style="background:url({{door.image}}); background-size:100%"></a>
           </div>
@@ -192,13 +192,13 @@
                 </div>
             </div>
           </div>
+          </div>
+          <div id="ProductBox" style = "pointer-events: auto;">
+            <div  ng-repeat="prod in productsToShow" class = "btn-group">
+                <a class = "WindowButton" ng-click = "PridatNabytok(prod)"style="background-image:url({{prod.image}}); background-size:100%;"></a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div id="ProductBox" style = "pointer-events: auto;">
-        <div  ng-repeat="prod in productsToShow" class = "btn-group">
-            <a class = "WindowButton" ng-click = "PridatNabytok(prod)"style="background-image:url({{prod.image}}); background-size:100%;"></a>
-        </div>
-      </div>
   </div>
 
   <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">

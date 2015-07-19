@@ -1,5 +1,13 @@
 @font-face { font-family: Roboto-Regular; src: url('roboto/Roboto-Regular.ttf'); }
 
+input[type="radio"] + label {
+	background: url('img/radio_button_inactive.png');
+}
+
+input[type="radio"]:checked{
+	background: url('img/radio_button_active.png');
+}
+
 #header{
 	position: absolute;
 	top: 0px;
@@ -46,6 +54,16 @@
 	position: relative;
 	pointer-events: auto;
 	z-index: 999;
+}
+
+.podorys-section #podoris-toolbar #mierka-radio{
+	position: relative;
+	width: 300px;
+	float: right;
+}
+
+.podorys-section #podoris-toolbar #mierka-radio input{
+	display: inline-block;
 }
 
 .podorys-section .left-menu{
@@ -174,6 +192,7 @@
 	float: left;
 	pointer-events: auto;
 	position: relative;
+	top: -100px;
 }
 .dw-section #MenuItemDoor{
 	background-color: #FFF;
@@ -186,23 +205,16 @@
 	float: left;
 	pointer-events: auto;
 	position: relative;
+	top: -200px;
 }
 
-/*
-.dw-section #MainDW{
-	position: absolute;
-	height: 13%;
-	width: 100%;
-	background-color: #FFFFFF;
-}
-*/
 /* ------------INTERIER------------*/
 
 .interier-section{
 	position: relative;
 	top: 80px;
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	pointer-events: none;
 	z-index: 999;
 }
@@ -210,13 +222,13 @@
 .interier-section #ProductBox{
 	z-index: 998;
 	position: absolute;
-	height: 800px;
+	top: 37px;
+	height: 730px;
 	width: 600px;
 	margin-left: -605px;
-	-webkit-transition: left .5s ease-out; /* For Safari 3.1 to 6.0 */
-	transition: left .5s ease-out;
-	background-color: #FFFFFF;
-	border: 1px solid #7ca616;
+	transition: left 0.5s ease-out 0s;
+	background-color: #FFF;
+	border: 1px solid #7CA616;
 	border-radius: 5px;
 	overflow: auto;
 	float: left;
@@ -278,9 +290,8 @@
 	position: absolute;
 	float: left;
 	height: 100%;
-	width: 43%;
+	width: 35%;
 	margin-left: 43%;
-	margin-top: -10px;
 	pointer-events: auto;
 }
 #ButtonContainer3{

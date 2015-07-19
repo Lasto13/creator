@@ -11,11 +11,12 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   
   $scope.activateMenu = function(n){
     $scope.activeMenu = {};
+    console.log(n);
     switch(n){
       case 1: $scope.activeMenu.first = true; break;
       case 2: $scope.activeMenu.second = true; break;
       case 3: $scope.activeMenu.third = true; break;
-      case 3: $scope.activeMenu.fourth = true; break;
+      case 4: $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
     console.log($scope.activeMenu);

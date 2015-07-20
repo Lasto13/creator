@@ -401,19 +401,69 @@ font-family: Roboto-Regular;
 .fps-section {
 	z-index: 999;
 	position: absolute;
-	/*bottom: 10px;*/
-	background-color: #FFFFFF;
 	width: 100%;
-	/*height: 100px;*/
+	bottom: 0px;
+	height: 100%;
+	pointer-events: none;
 }
 
 .fps-section .round-menu{
+	position: absolute;
+	width: 180px;
+	height: 180px;
+	top: 9px;
+	left: 19px;
+}
 
+.fps-section .round-menu .del{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: transparent url("img/fps_gui/del.png") repeat scroll 0% 0% / 100% auto;
+	float: left;
+}
+
+.fps-section .round-menu .change-mat{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: url("img/fps_gui/chmat.png") repeat scroll 0% 0% / 100% auto;
+	left: 90px;
+	top: 2px;
+}
+
+.fps-section .round-menu .close{
+	position: relative;
+	width: 30px;
+	background: transparent url("img/fps_gui/x.png") repeat scroll 0% 0% / 100% auto;
+	left: -80px;
+	height: 30px;
+	top: -10px;
+}
+
+.fps-section .round-menu .add{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: transparent url("img/fps_gui/add_obj.png") repeat scroll 0% 0% / 100% auto;
+	left: 0px;
+	top: 9px;
+	float: left;
+}
+
+.fps-section .round-menu .change-obj{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: transparent url("img/fps_gui/chobj.png") repeat scroll 0% 0% / 100% auto;
+	left: 91px;
+	top: 9px;
 }
 
 .fps-section .temp{
 	position: absolute;
-	bottom: 10px;
+	bottom: 0px;
+	background-color: #ffffff;
 }
 
 #ButtonContainer{

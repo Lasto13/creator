@@ -792,15 +792,14 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     //if (value === oldValue) { return; }
     var d = document.getElementById('ProductBox');
     if (!!value) {
-     d.style.left = "600px"; 
+     d.style.left = "250px";
     } else {
-      d.style.left = "5px"
+      d.style.left = "-600px"
     }
   });
 
   $scope.setMenu = function(){
-    console.log("Lasto je kokot");
-      $scope.isProductBoxDisplayed =true;
+      $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
     }
 
   $scope.CenterInterier = function(){

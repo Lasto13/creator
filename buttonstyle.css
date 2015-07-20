@@ -1,11 +1,16 @@
 @font-face { font-family: Roboto-Regular; src: url('roboto/Roboto-Regular.ttf'); }
 
-input[type="radio"] + label {
+
+input[type="radio"] {
 	background: url('img/radio_button_inactive.png');
 }
 
 input[type="radio"]:checked{
 	background: url('img/radio_button_active.png');
+}
+
+input[type="radio"]:checked + span {
+	background: url('img/radio_button_active.png');	
 }
 
 #header{
@@ -220,20 +225,27 @@ input[type="radio"]:checked{
 }
 
 .interier-section #ProductBox{
-	z-index: 998;
 	position: absolute;
-	top: 37px;
 	height: 730px;
-	width: 600px;
-	margin-left: -605px;
-	transition: left 0.5s ease-out 0s;
+	width: 800px;
+	transition: left 0.5s ease-out 0.1s;
 	background-color: #FFF;
 	border: 1px solid #7CA616;
 	border-radius: 5px;
 	overflow: auto;
 	float: left;
 	pointer-events: auto;
+	z-index: -1;
 }
+
+.interier-section #ProductBox .btn-group{
+	width: 50%;
+}
+
+.interier-section #ProductBox .btn-group .interier-item{
+	width: 20%;
+}
+
 .interier-section #interier-toolbar{
 	position: relative;
 	background-color: #FFF;
@@ -263,10 +275,20 @@ input[type="radio"]:checked{
 .interier-section .left-menu #InterierMenu{
 	top: 150px;
 	height: 100%;
-	width: 195px;
+	width: 230px;
 	background-color: #FFF;
 	color: #7CA616;
-	margin-left: 40px;
+	padding-left: 40px;
+}
+
+.interier-section .left-menu .WindowButton{
+	display: inline-block;
+	vertical-align: left;
+	width: 100px;
+	height: 100px;
+	margin-left: 2px;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
 }
 
 .fps-section {
@@ -322,7 +344,6 @@ input[type="radio"]:checked{
 	margin-top: 70px;
 	pointer-events: auto;
 }
-
 
 #ProjektMenuContainer{
 	float: right;
@@ -416,13 +437,7 @@ input[type="radio"]:checked{
     margin-left: -2px;
   } 
 
-.WindowButton{
-	display: inline-block;
-	vertical-align: left;
-	width: 100px;
-	height: 100px;
-	margin-left: 2px;
-}
+
 .DoorButton{
 	display: inline-block;
 	vertical-align: left;

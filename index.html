@@ -65,13 +65,17 @@
           <input type="radio"  id="category_8" class="hidden" />
           <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
         </div>
-        <div id="mierka-radio">
-          <div ></div>
-            <input class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
-            <input class="mierka-input" type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm
-            <input class="mierka-input" type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm
-            <input class="mierka-input" type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm
-            <input class="mierka-input" type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()"> Vyp.
+        <div id="mierka-radio" class="form-inline">
+          <div class="radio-btn">
+            <input type="radio" ng-model="selectedObjectType" value="object">
+            <span ng-click="selectedObjectType = 'object'"></span>
+            <label>Object</label>
+          </div>
+          <input class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
+          <input class="mierka-input" type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm
+          <input class="mierka-input" type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm
+          <input class="mierka-input" type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm
+          <input class="mierka-input" type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()"> Vyp.
         </div>
       </div>
       <div class="left-menu">
@@ -120,6 +124,7 @@
     <div ng-show="activeMenu.second" class="dw-section" ng-controller="dwCtrl">
       
       <div id="dw-toolbar">
+
         <input type="radio"  id="dwcategory_1" class="hidden" />
         <a id="BDW5" class="Button btn-my2 radio-dw" ng-click = "NoOpDW(); set_dw('dwcategory_1'); setMenu(0);"></a>
 
@@ -161,9 +166,19 @@
       </div>
       
       <div class="left-menu">
+        <div id="ProductBox" style = "pointer-events: auto;">
+            <div  ng-repeat="prod in productsToShow" class ="btn-group">
+              <div class="col-md-6">
+                <a class = "WindowButton" ng-click = "PridatNabytok(prod)"style="background-image:url({{prod.image}});"></a>
+              </div>
+              <div class="col-md-6">
+                <p> {{prod.description}}</p>
+              </div>
+            </div>
+          </div>
         <div id="InterierMenu">
           <div>
-            <span style="position:relative; ">
+            <span>
             <p>VÝROBCA:<button style="margin-left: 80px;" ng-click= "setMenu();">-></button></p></span>
           </div>
           <div class="form-group"style="position:relative; ">
@@ -173,11 +188,11 @@
                   </select>
           </div>  
           <div>
-            <span style="position:relative;">
+            <span>
               <p>TYP IZBY:</p>
             </span>
           </div>  
-          <div class="form-group" style="position:relative; ">
+          <div class="form-group">
             <select class="form-control input-sm" 
                 ng-model="TypIzby"
                 ng-options="element.uidisplayname for element in menuData.elements"
@@ -193,11 +208,7 @@
             </div>
           </div>
           </div>
-          <div id="ProductBox" style = "pointer-events: auto;">
-            <div  ng-repeat="prod in productsToShow" class = "btn-group">
-                <a class = "WindowButton" ng-click = "PridatNabytok(prod)"style="background-image:url({{prod.image}}); background-size:100%;"></a>
-            </div>
-          </div>
+          
         </div>
   </div>
 

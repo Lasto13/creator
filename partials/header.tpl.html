@@ -1,4 +1,5 @@
 <div id="enli-header">
+
   <div id="BackgroundEnli">
       <p id="EnliLogo"></p>
     </div>
@@ -14,25 +15,7 @@
     <a id="B26" class="Button btn btn-default" ng-click = "SetSave();"></a>
     <a id="B27" class="Button btn btn-default" ng-click = "Nastavenia(); SetSettings();"></a>
 
-    <div id="Settings" >
-  <p>
-  Kvalita grafiky
-  </p>
-  <form >
-    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)"> Nízka<br>
-    <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> Stredná<br>
-    <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> Vysoká<br>
-  </form>
-  <p><br>Vyhladzovanie hrán</p>
-      <form >
-        <input type="radio" name="Hrany" value="Vypnute" ng-click = "HranySet(0)"> Vypnuté<br>
-        <input type="radio" name="Hrany" value="2x" ng-click = "HranySet(2)"> 2X<br>
-        <input type="radio" name="Hrany" value="3x" checked="checked" ng-click = "HranySet(1)"> 4X<br>
-      </form>
-        <p><br>Rozmery</p>
-      <input id = "RozmeryZapnute"type="radio" name="Rozmery" value="Zapnuté" checked="checked" ng-click = "RozmerySet(1)"> Zapnuté<br>
-      <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> Vypnuté<br>
-    </div>
+  
   </div>
 
   <div id="ButtonContainer2">
@@ -58,4 +41,27 @@
       <a class = "btn btn-default" ng-click="OtvoritProjekt(Loads.data);">{{Loads.name}}</a>
     </div>
   </div>
+    
+</div>
+
+<div>
+  <div id="Settings" >
+  <p>
+  Kvalita grafiky
+  </p>
+  <form >
+    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)"> Nízka<br>
+    <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> Stredná<br>
+    <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> Vysoká<br>
+  </form>
+  <p><br>Vyhladzovanie hrán</p>
+      <form >
+        <input type="radio" name="Hrany" value="Vypnute" ng-click = "HranySet(0)"> Vypnuté<br>
+        <input type="radio" name="Hrany" value="2x" ng-click = "HranySet(2)"> 2X<br>
+        <input type="radio" name="Hrany" value="3x" checked="checked" ng-click = "HranySet(1)"> 4X<br>
+      </form>
+        <p><br>Rozmery</p>
+      <input id = "RozmeryZapnute"type="radio" name="Rozmery" value="Zapnuté" checked="checked" ng-click = "RozmerySet(1)"> Zapnuté<br>
+      <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> Vypnuté<br>
+    </div>
 </div>

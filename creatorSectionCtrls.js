@@ -93,11 +93,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   $scope.SetSettings = function(){
   if(prepinacSet == 0){
-    $('#Settings').css({ right: 315 + 'px' });
+    $('#Settings').css({ top: 110 + 'px' });
     prepinacSet = 1;
     }
   else if(prepinacSet == 1){
-    $('#Settings').css({ right: -300 + 'px' });
+    $('#Settings').css({ top: -470 + 'px' });
     prepinacSet = 0;
     }
   }

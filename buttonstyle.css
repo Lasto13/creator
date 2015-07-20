@@ -33,6 +33,8 @@ input[type="radio"]:checked + span {
 	overflow: hidden;
 	pointer-events: none;
 	height: inherit;
+	position: relative;
+	z-index: 1;
 }
 
 #header #enli-header #BackgroundEnli{
@@ -41,6 +43,22 @@ input[type="radio"]:checked + span {
 	background-color: #7CA616;
 	overflow: hidden;
 	z-index: 2;
+}
+#header #Settings{
+	position:absolute; 
+	z-index: -1;
+	background-color: #FFFFFF;
+	height: 550px;
+	width: 415px;
+	float: right;
+	/*float: left;*/
+	border: 1px solid #7ca616;
+	border-radius: 5px;
+	pointer-events:auto;
+	-webkit-transition: top .5s ease-out; /* For Safari 3.1 to 6.0 */
+	transition: top .5s ease-out;
+	right: 0px;
+	top: -470px;
 }
 
 .podorys-section{
@@ -386,20 +404,6 @@ input[type="radio"]:checked + span {
 	margin-left: 38%;
 }
 
-#Settings{
-	pointer-events: auto;
-	position: relative;
-	width: 300px;
-	height: 420px;
-	background-color: #FFFFFF;
-	float: right;
-	margin-top: 15px;
-	margin-right: -300px;
-		border: 1px solid #7ca616;
-	border-radius: 5px;
-	-webkit-transition: right .5s ease-out; /* For Safari 3.1 to 6.0 */
-	transition: right .5s ease-out;
-}
 #SaveProject{
 	display: block;
 	pointer-events: auto;

@@ -26,19 +26,36 @@ input[type="radio"]:checked + span {
 }
 
 #header #EnliLogo{
-	margin-left: 47%;
-	background: url("Buttons/enli_big_png.png")no-repeat;
-	background-size: 100%;
+	position: relative;
+	margin-left: 16%;
+	background-size: 100% auto;
 	height: 70px;
 	width: 150px;
+	top: 8% !important;
 }
 
 #header #enli-header{
-	overflow: hidden;
+	background-color: #7ca616;
 	pointer-events: none;
 	height: inherit;
 	position: relative;
 	z-index: 1;
+}
+
+#header #ProjektMenuContainer{
+	float: right;
+	position: relative;
+	height: inherit;
+	z-index: 1000;
+}
+
+#header #SekciaContainer{
+	position: relative;
+	float: left;
+	height: 100%;
+	z-index: 1000;
+	vertical-align: middle;
+	padding: 4px;
 }
 
 #header #enli-header #BackgroundEnli{
@@ -405,23 +422,7 @@ input[type="radio"]:checked + span {
 	pointer-events: auto;
 }
 
-#ProjektMenuContainer{
-	float: right;
-	position: relative;
-	top: -80px;
-	height: inherit;
-	z-index: 1000;
-}
 
-#SekciaContainer{
-	position: relative;
-	top: -80px;
-	float: left;
-	height: 100%;
-	z-index: 1000;
-	vertical-align: middle;
-	padding: 4px;
-}
 #PodorysMenu{
 	position: relative;
 	height: 100px;

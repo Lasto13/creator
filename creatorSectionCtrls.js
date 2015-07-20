@@ -104,11 +104,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   $scope.SetSave = function(){
     if(prepinacSave == 0){
-    $('#SaveProject').css({ top: 315 + 'px' });
+    $('#SaveProject').css({ top: 110 + 'px' });
     prepinacSave = 1;
   }
   else if(prepinacSave == 1){
-    $('#SaveProject').css({ top: -300 + 'px' });
+    $('#SaveProject').css({ top: -50 + 'px' });
     prepinacSave = 0;
     }
   }

@@ -31,16 +31,7 @@
     <a id="B15" class="Button btn-my" ng-click = "FPS()"></a>
   </div>  
   
-  <div id="SaveProject" style="pointer-events: auto;">Uložiť ako<br>
-    <input  type="text" value="MySave1" name="usrname" style="pointer-events: auto"> 
-    <button class="btn btn-default" ng-click = "UlozitProjekt();">Ulozit</button>
-  </div>
 
-  <div id="LoadProject" style="pointer-events: auto;"><br>
-    <div ng-repeat = "Loads in LoadSave.savePlace.parts" class = "btn-group" >
-      <a class = "btn btn-default" ng-click="OtvoritProjekt(Loads.data);">{{Loads.name}}</a>
-    </div>
-  </div>
     
 </div>
 
@@ -50,7 +41,7 @@
   Kvalita grafiky
   </p>
   <form >
-    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)"> Nízka<br>
+    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)" > <label style="font-family: Roboto-Regular;">Nízka </label><br>
     <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> Stredná<br>
     <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> Vysoká<br>
   </form>
@@ -65,3 +56,15 @@
       <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> Vypnuté<br>
     </div>
 </div>
+
+  <div id="SaveProject" style="pointer-events: auto;">Uložiť ako<br>
+    <input  type="text" value="MySave1" name="usrname" style="pointer-events: auto"> 
+    <button class="btn btn-default" ng-click = "UlozitProjekt();">Ulozit</button>
+  </div>
+
+
+  <div id="LoadProject" style="pointer-events: auto;"><br>
+    <div ng-repeat = "Loads in LoadSave.savePlace.parts" class = "btn-group" >
+      <a class = "btn btn-default" ng-click="OtvoritProjekt(Loads.data);">{{Loads.name}}</a>
+    </div>
+  </div>

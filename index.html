@@ -168,11 +168,14 @@
       <div class="left-menu">
         <div id="ProductBox" style = "pointer-events: auto;">
             <div  ng-repeat="prod in productsToShow" class ="btn-group">
-              <div class="col-md-6">
-                <a class = "WindowButton" ng-click = "PridatNabytok(prod)"style="background-image:url({{prod.image}});"></a>
+              <div class="prod-image-cont">
+                <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
               </div>
-              <div class="col-md-6">
+              <div class="prod-info">
+                <h3>{{prod.uidisplayname}}</h3>
                 <p> {{prod.description}}</p>
+                <button class="enli-btn btn" ng-click="PridatNabytok(prod)">Vložiť</button>
+                <a ng-click="">Detail výrobku</a>
               </div>
             </div>
           </div>

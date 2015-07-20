@@ -91,9 +91,16 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   var prepinacLoad = 0;
   $scope.isSettingOpened = false;
 
+
+
+
   $scope.SetSettings = function(){
   if(prepinacSet == 0){
     $('#Settings').css({ top: 110 + 'px' });
+     $('#SaveProject').css({ top: -50 + 'px' });
+      $('#LoadProject').css({ top: -300 + 'px' });
+      prepinacSave = 0;
+      prepinacLoad = 0;
     prepinacSet = 1;
     }
   else if(prepinacSet == 1){
@@ -105,7 +112,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   $scope.SetSave = function(){
     if(prepinacSave == 0){
     $('#SaveProject').css({ top: 110 + 'px' });
+    $('#Settings').css({ top: -470 + 'px' });
+    $('#LoadProject').css({ top: -300 + 'px' });
     prepinacSave = 1;
+    prepinacLoad = 0;
+    prepinacSet = 0;
   }
   else if(prepinacSave == 1){
     $('#SaveProject').css({ top: -50 + 'px' });
@@ -115,8 +126,12 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   $scope.SetLoad = function(){
     if(prepinacLoad == 0){
-    $('#LoadProject').css({ top: 315 + 'px' });
+    $('#LoadProject').css({ top: 110 + 'px' });
+    $('#Settings').css({ top: -470 + 'px' });
+    $('#SaveProject').css({ top: -50 + 'px' });
     prepinacLoad = 1;
+    prepinacSet = 0;
+    prepinacSave = 0;
   }
   else if(prepinacLoad == 1){
     $('#LoadProject').css({ top: -300 + 'px' });

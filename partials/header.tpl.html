@@ -40,30 +40,35 @@
   Kvalita grafiky
   </p>
   <form >
-    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)" > <label style="font-family: Roboto-Regular;">Nízka </label><br>
-    <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> Stredná<br>
-    <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> Vysoká<br>
+    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)" > <label>Nízka </label><br>
+    <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> <label>Stredná </label><br>
+    <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> <label>Vysoká </label>
   </form>
-  <p><br>Vyhladzovanie hrán</p>
+  <p>Vyhladzovanie hrán</p>
       <form >
-        <input type="radio" name="Hrany" value="Vypnute" ng-click = "HranySet(0)"> Vypnuté<br>
-        <input type="radio" name="Hrany" value="2x" ng-click = "HranySet(2)"> 2X<br>
-        <input type="radio" name="Hrany" value="3x" checked="checked" ng-click = "HranySet(1)"> 4X<br>
+        <input type="radio" name="Hrany" value="Vypnute" ng-click = "HranySet(0)"> <label>Vypnuté </label><br>
+        <input type="radio" name="Hrany" value="2x" ng-click = "HranySet(2)"> <label>2X </label><br>
+        <input type="radio" name="Hrany" value="3x" checked="checked" ng-click = "HranySet(1)"> <label>4X </label>
       </form>
-        <p><br>Rozmery</p>
-      <input id = "RozmeryZapnute"type="radio" name="Rozmery" value="Zapnuté" checked="checked" ng-click = "RozmerySet(1)"> Zapnuté<br>
-      <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> Vypnuté<br>
+        <p>Rozmery</p>
+        <form >
+      <input id = "RozmeryZapnute"type="radio" name="Rozmery" value="Zapnuté" checked="checked" ng-click = "RozmerySet(1)"> <label>Zapnuté </label><br>
+      <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> <label>Vypnuté </label><br>
+      </form>
     </div>
 </div>
 
-  <div id="SaveProject" style="pointer-events: auto;">Uložiť ako<br>
+  <div id="SaveProject" style="pointer-events: auto;"><p>Uložiť ako</p>
     <input  type="text" value="MySave1" name="usrname" style="pointer-events: auto"> 
-    <button class="btn btn-default" ng-click = "UlozitProjekt();">Ulozit</button>
+    <button class="btn btn-default" ng-click = "UlozitProjekt();">Uložiť</button>
   </div>
 
 
   <div id="LoadProject" style="pointer-events: auto;"><br>
     <div ng-repeat = "Loads in LoadSave.savePlace.parts" class = "btn-group" >
-      <a class = "btn btn-default" ng-click="OtvoritProjekt(Loads.data);">{{Loads.name}}</a>
+    <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;">
+      </div>
+      <p >{{Loads.name}}</p>
+      <a class = "btn btn-default" ng-click="OtvoritProjekt(Loads.data);" style="left:35px;">Načítať</a>
     </div>
   </div>

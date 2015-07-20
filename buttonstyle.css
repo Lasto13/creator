@@ -78,10 +78,32 @@ input[type="radio"]:checked + span {
 	pointer-events:auto;
 	-webkit-transition: top .5s ease-out; /* For Safari 3.1 to 6.0 */
 	transition: top .5s ease-out;
-	right: 0px;
+	right: 20px;
 	top: -470px;
 }
-
+#Settings label{
+	font-family: Roboto-Regular;
+}
+#Settings p{
+	font-family: Roboto-Regular;
+	color: #7CA616;
+	font-size: 1.2em;
+	margin-left:2px;
+}
+#Settings form{
+	margin-left:25px;
+}
+#SaveProject p{
+font-family: Roboto-Regular;
+	color: #7CA616;
+	font-size: 1.2em;
+	margin-left:2px;
+}
+#LoadProject p{
+	left:5px; 
+	font-family:Roboto-Regular; 
+	color:#7CA616;
+}
 .podorys-section{
 	position: absolute;
 	top: 80px;
@@ -186,6 +208,14 @@ input[type="radio"]:checked + span {
 #B9{
 	background-image: url("Buttons/13.png");
 	background-size: 100%;
+}
+
+#loadcontent{
+	position: relative;
+	width: 50%;
+	height: 100%;
+	float: left;
+
 }
 
 /* -------- DW SECTION ---------------*/
@@ -447,6 +477,14 @@ input[type="radio"]:checked + span {
 	top: 0;
 	z-index: 1;
 }
+#LoadProject .btn-group{
+	width: 100%;
+	height: 20%;
+	border-bottom: solid 1px;
+	border-right: solid 2px;
+	border-color: #7ca616;
+
+}
 
 #PodorysMenu2{
 	position: relative;
@@ -474,7 +512,8 @@ input[type="radio"]:checked + span {
 	top: -470px;
 }
 #header #LoadProject{
-	display: block;
+	display: inline-block;
+	overflow: auto;
 	position:absolute; 
 	z-index: -1;
 	background-color: #FFFFFF;

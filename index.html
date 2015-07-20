@@ -34,7 +34,7 @@
       <canvas id="canvas" oncontextmenu="event.preventDefault()" ></canvas>
     </div>
     
-    <div id = "header" ng-include="'partials/header.tpl.html'"></div>
+    <div id = "header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
     <!--
     <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
     -->
@@ -185,10 +185,10 @@
             <p>VÝROBCA:<button style="margin-left: 80px;" ng-click= "setMenu();">-></button></p></span>
           </div>
           <div class="form-group"style="position:relative; ">
-                  <select class="form-control input-sm" 
-                      ng-model="vyrobca"
-                      ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
-                  </select>
+            <select class="form-control input-sm" 
+                ng-model="vyrobca"
+                ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
+            </select>
           </div>  
           <div>
             <span>
@@ -216,7 +216,12 @@
   </div>
 
   <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
-    <button id="odstranit" class="Button btn-my" ng-click = "OdstranitObjekt()">Odstranit</button>
+    <div class="round-menu">
+
+    </div>
+
+    <div class="temp">
+      <button id="odstranit" class="Button btn-my" ng-click = "OdstranitObjekt()">Odstranit</button>
       <button id="pridat" class="Button btn-my" ng-click = "PridaObjekt()">PridatObjekt</button>
       <button id="zmenaMat" class="Button btn-my" ng-click = "ZmenitMaterial()">ZmenitMaterial</button>
       <button id="zmenaObj" class="Button btn-my" ng-click = "ZmenitObjekt()">ZmenitObjekt</button>
@@ -228,6 +233,7 @@
       <button id="mousectrl" class="Button btn-my" ng-click = "mouse_controll()">mouse_controll</button>
       <button id="WASD" class="Button btn-my" ng-click = "mouseWASD_controll()">mouseWASD</button>
       <button id="editor" class="Button btn-my" ng-click = "editor()">editor</button>
+    </div>
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->

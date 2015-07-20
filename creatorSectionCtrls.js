@@ -158,6 +158,8 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     SendMessage("UndoRedo","Redo");
   }
   $scope.FPS = function(){
+    console.log("FPS ???");
+    $scope.activateMenu(4);
     SendMessage("EventSystem","FpsPosition");
   }
   $scope.Kvalita = function(value){
@@ -365,16 +367,6 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
   }
   
   SetWallTypeButtonActive = function(IsInteractable){
-  }
-  
-  $scope.D2D = function(){
-    SendMessage("CanvasEditor","SetView2D");
-  }
-  $scope.D3D = function(){
-    SendMessage("CanvasEditor","SetView3D");
-  }
-  $scope.FPS = function(){
-    SendMessage("");
   }
 
   $scope.ZmenaVysky = function(){

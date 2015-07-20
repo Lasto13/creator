@@ -371,10 +371,19 @@ input[type="radio"]:checked + span {
 .fps-section {
 	z-index: 999;
 	position: absolute;
-	top: 80px;
+	/*bottom: 10px;*/
 	background-color: #FFFFFF;
 	width: 100%;
-	height: 100px;
+	/*height: 100px;*/
+}
+
+.fps-section .round-menu{
+
+}
+
+.fps-section .temp{
+	position: absolute;
+	bottom: 10px;
 }
 
 #ButtonContainer{
@@ -488,8 +497,7 @@ input[type="radio"]:checked + span {
     height: 50px;
 
     margin-left: -2px;
-  } 
-
+} 
 
 .DoorButton{
 	display: inline-block;

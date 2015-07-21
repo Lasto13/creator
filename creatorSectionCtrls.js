@@ -152,12 +152,12 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   setActiveSection = function(n){
     $scope.activeMenu = {};
-    console.log(n);
+    console.log("vola ma ? ");
     switch(n){
-      case 0: $scope.activeMenu.first = true; break;
-      case 2: $scope.activeMenu.second = true; break;
-      case 5: $scope.activeMenu.third = true; break;
-      case 6: $scope.activeMenu.fourth = true; break;
+      case "0": $scope.activeMenu.first = true; break;
+      case "2": $scope.activeMenu.second = true; break;
+      case "5": $scope.activeMenu.third = true; break;
+      case "6": $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
     console.log($scope.activeMenu);

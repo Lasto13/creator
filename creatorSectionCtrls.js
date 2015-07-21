@@ -618,9 +618,9 @@ app.controller('dwCtrl',['$scope','menuJson', function($scope, menuJson){
     //if (value === oldValue) { return; }
     var d = document.getElementById('MenuItemDoor');
     if (!!value) {
-      d.style.left = "-640px"; 
+      d.style.left = "-320px"; 
     } else {
-      d.style.left = "300px"
+      d.style.left = "5px"
     }
   });
 

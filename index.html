@@ -176,7 +176,7 @@
                 <h3>{{prod.uidisplayname}}</h3>
                 <p> {{prod.description}}</p>
                 <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
-                <a ng-click="toggleProdMenu();">Detail výrobku</a>
+                <a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>
               </div>
             </div>
           </div>
@@ -234,15 +234,17 @@
       </div>
     </div>
 
-    <div class="rigth-menu">
+    <div class="right-menu">
       <div class="input-menu">
         <input class="fps-input" type="radio" name="input">
         <img src="img/fps_gui/km.png">
         <input class="fps-input" type="radio" name="input">
         <img src="img/fps_gui/mouse.png">
       </div>
-      <div class="2d-3d">
-        <img src="img/fps_gui/">
+      <div class="d23">
+        <h3>2D</h3>
+        <div class="switch"></div>
+        <h3>3D</h3>
       </div>
     </div>
 
@@ -260,6 +262,11 @@
       <button id="WASD" class="Button btn-my" ng-click = "mouseWASD_controll()">mouseWASD</button>
       <button id="editor" class="Button btn-my" ng-click = "editor()">editor</button>
     </div>
+  </div>
+
+  <div class="errMsg">
+    <h1>TU BUDU ERRORY !!!</h1>
+    <h2>IBA ZEBY NE</h2>
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->

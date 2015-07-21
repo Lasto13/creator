@@ -14,14 +14,9 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   var myStorage;
   $scope.activeMenu = {};
   $scope.activeMenu.first = true;
-  
-  function call(){
-    console.log("call");
-  }
 
   $scope.activateMenu = function(n){
     $scope.activeMenu = {};
-    console.log(n);
     switch(n){
       case 1: $scope.activeMenu.first = true; break;
       case 2: $scope.activeMenu.second = true; break;
@@ -29,7 +24,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
       case 4: $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
-    console.log($scope.activeMenu);
   }
 
   function calculateMaxHeight(){
@@ -152,7 +146,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   setActiveSection = function(n){
     $scope.activeMenu = {};
-    console.log("vola ma ? ");
     switch(n){
       case "0": $scope.activeMenu.first = true; break;
       case "2": $scope.activeMenu.second = true; break;
@@ -160,7 +153,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
       case "6": $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
-    console.log($scope.activeMenu);
   }
 
 
@@ -743,6 +735,10 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     SendMessage("GUI INTERIOR","AddObjectFromWeb", JSON.stringify(value));
   }
 
+  $scope.showProdDetails = function(value){
+    SendMessage("GUI INTERIOR","ShowDetailPanelFromWeb", JSON.stringify(value));
+  }
+
   $scope.ShowAllPosible = function(element){
     $scope.SelectedProducts = $scope.menuData.element.products;
   }
@@ -857,12 +853,13 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
   });
 
   $scope.toggleProdMenu = function(){
-      $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
-    }
+    $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+  }
 
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
   }
+
 }])
 
 app.controller('FPSCtrl',['$scope', function($scope){

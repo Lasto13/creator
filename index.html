@@ -115,8 +115,8 @@
         </div>
       </div>
       <div id="MaterialChooser">
-        <div ng-repeat="materials in mats" class = "btn-group">
-          <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div>
+        <div class="material-item" ng-repeat="materials in mats" class="btn-group" style="background:url({{materials.Path}}); background-size:100%">
+          <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
         </div>
       </div>
     </div>

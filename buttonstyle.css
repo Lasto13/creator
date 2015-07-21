@@ -187,7 +187,11 @@ font-family: Roboto-Regular;
 }
 
 .podorys-section #MaterialChooser .material-item{
-
+	position: relative;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin: 1px;
 }
 
 #B0{

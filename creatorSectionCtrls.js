@@ -850,11 +850,11 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
       d.style.left = "-600px"
     }
   });
-/*
-  $scope.setMenu = function(){
+
+  $scope.toggleProdMenu = function(){
       $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
     }
-*/
+
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
   }

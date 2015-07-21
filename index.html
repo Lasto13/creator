@@ -175,15 +175,15 @@
               <div class="prod-info">
                 <h3>{{prod.uidisplayname}}</h3>
                 <p> {{prod.description}}</p>
-                <button class="enli-btn btn" ng-click="PridatNabytok(prod)">Vložiť</button>
-                <a ng-click="">Detail výrobku</a>
+                <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
+                <a ng-click="toggleProdMenu();">Detail výrobku</a>
               </div>
             </div>
           </div>
         <div id="InterierMenu">
           <div>
             <span>
-            <p>VÝROBCA:<button style="margin-left: 80px;" ng-click= "setMenu();">-></button></p></span>
+            <p>VÝROBCA:<button style="margin-left: 80px;" ng-click= "toggleProdMenu();">-></button></p></span>
           </div>
           <div class="form-group"style="position:relative; ">
             <select class="form-control input-sm" 

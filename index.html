@@ -67,11 +67,11 @@
         </div>
         <div id="mierka-radio" class="form-inline">
           <div class="radio-btn">
-            <input type="radio" ng-model="selectedObjectType" value="object">
+            <input id="radiomore0" type="radio" ng-model="selectedObjectType" value="object">
             <span ng-click="selectedObjectType = 'object'"></span>
             <label>Object</label>
           </div>
-          <input class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
+          <input id="radiomore" class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
           <input class="mierka-input" type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm
           <input class="mierka-input" type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm
           <input class="mierka-input" type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm
@@ -230,6 +230,18 @@
       </div>
       <div class="change-obj">
         <a class="change-obj-btn"></a>
+      </div>
+    </div>
+
+    <div class="rigth-menu">
+      <div class="input-menu">
+        <input class="fps-input" type="radio" name="input">
+        <img src="img/fps_gui/km.png">
+        <input class="fps-input" type="radio" name="input">
+        <img src="img/fps_gui/mouse.png">
+      </div>
+      <div class="2d-3d">
+        <img src="img/fps_gui/">
       </div>
     </div>
 

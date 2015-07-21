@@ -91,9 +91,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   var prepinacLoad = 0;
   $scope.isSettingOpened = false;
 
-
-
-
   $scope.SetSettings = function(){
   if(prepinacSet == 0){
     $('#Settings').css({ top: 110 + 'px' });
@@ -143,6 +140,18 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   $scope.selectedTemplate.path = "partials/podorys.tpl.html";
 
+  setActiveSection = function(n){
+    $scope.activeMenu = {};
+    console.log(n);
+    switch(n){
+      case 0: $scope.activeMenu.first = true; break;
+      case 2: $scope.activeMenu.second = true; break;
+      case 5: $scope.activeMenu.third = true; break;
+      case 6: $scope.activeMenu.fourth = true; break;
+      default: $scope.activeMenu = {};
+    }
+    console.log($scope.activeMenu);
+  }
 
   $scope.Podorys = function(){
     SendMessage("CanvasEditor","changeArea",0);
@@ -177,6 +186,14 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     $scope.activateMenu(4);
     SendMessage("EventSystem","FpsPosition");
   }
+  
+  showUIforFps = function(){
+    console.log("zobraz UI pre panaka");
+    var fpsText = document.createElement("div");
+    fpsText.id = "fpsText";
+    document.appendChild(fpsText);
+  }
+
   $scope.Kvalita = function(value){
     SendMessage("Settings","setLevel",value);
   }
@@ -223,7 +240,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     console.log("Ukladanie skoncilo zle");
   }
 
-    loadingFinished =function(value){
+  loadingFinished =function(value){
   }
 
   $scope.OtvoritProjekt = function(jsonstring){
@@ -764,7 +781,6 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     }
   });
 
-
   $scope.ClickedTypeType = function (tab) {
     console.log($scope.activeTT);
     tab.toggled = !tab.toggled;
@@ -778,7 +794,7 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     console.log($scope.activeTT);
 
     /*
-    $scope.activeTypeTypeTabs.push(tab);  
+    $scope.activeTypeTypeTabs.push(tab);
     for (var i = 0; i < $scope.activeTypeTypeTabs.length; i++){
       if ($scope.activeTypeTypeTabs[i].uidisplayname == tab.uidisplayname)
       {
@@ -817,7 +833,6 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
 app.controller('FPSCtrl',['$scope', function($scope){
 
   setOkInfo = function(string){
- 
 
 }
 

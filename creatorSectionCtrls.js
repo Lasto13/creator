@@ -4,9 +4,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   
   console.logError = console.log;
 
-  $scope.$on("newProjectEvent", function(event,data) {
-    console.log("new ??");
-  });
+  $scope.bridge={
+    changeSection : function(){
+      $scope.activateMenu(1);
+    }
+  }
 
   var prepinacSave = 0;
   var myStorage;
@@ -232,15 +234,22 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     $('#SaveProject').css({ top: -50 + 'px' });
     $('#LoadProject').css({ top: -300 + 'px' });
   var projectModal= $modal.open({
-    //backdrop: 'static',
-    keyboard: false,
-    templateUrl: 'partials/newProject.html',
-    controller: 'NewProjectCtrl',
-    transclude:true
-
+      //backdrop: 'static',
+      keyboard: false,
+      templateUrl: 'partials/newProject.html',
+      controller: 'NewProjectCtrl',
+      transclude:true,
+      resolve:{
+        bridge: function(){
+          return $scope.bridge;
+        }
+      }
     });
+    //projectModal.result;
     //windowClass: 'detailWindow'
   }
+
+
 
 
   $scope.CleanProject =function(){
@@ -264,7 +273,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   }
 }]) 
 
-app.controller('NewProjectCtrl',['$scope', '$modalInstance', function($scope, $modalInstance){
+app.controller('NewProjectCtrl',['$scope', '$modalInstance', 'bridge', function($scope, $modalInstance, bridge){
 
   $scope.cancel = function () {
     console.log("Malo by to vypnut");
@@ -280,8 +289,9 @@ app.controller('NewProjectCtrl',['$scope', '$modalInstance', function($scope, $m
       $("a.radio-picture").addClass('btn-my');
       $("#B0").removeClass('btn-my');
       $("#B0").addClass('btn-my2');
-      console.log($scope);
-      $scope.$broadcast('newProjectEvent', 'data');
+      //console.log($scope);
+      //$scope.$broadcast('newProjectEvent', 'data');
+      bridge.changeSection();
   }
 }])
 

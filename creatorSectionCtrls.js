@@ -163,6 +163,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     console.log($scope.activeMenu);
   }
 
+
+  getErrorText = function(string){
+      console.log("Toto mi posiela david " + string);
+  }
+
   $scope.Podorys = function(){
     SendMessage("CanvasEditor","changeArea",0);
   }

@@ -4,11 +4,19 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   
   console.logError = console.log;
 
+  $scope.$on("newProjectEvent", function(event,data) {
+    console.log("new ??");
+  });
+
   var prepinacSave = 0;
   var myStorage;
   $scope.activeMenu = {};
   $scope.activeMenu.first = true;
   
+  function call(){
+    console.log("call");
+  }
+
   $scope.activateMenu = function(n){
     $scope.activeMenu = {};
     console.log(n);
@@ -220,7 +228,9 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   }
 
   $scope.NovyProjekt = function(){
-  
+  $('#Settings').css({ top: -470 + 'px' });
+    $('#SaveProject').css({ top: -50 + 'px' });
+    $('#LoadProject').css({ top: -300 + 'px' });
   var projectModal= $modal.open({
     //backdrop: 'static',
     keyboard: false,
@@ -230,6 +240,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
     });
     //windowClass: 'detailWindow'
+  }
+
+
+  $scope.CleanProject =function(){
+    SendMessage("NewProject","NewProject");
   }
 
   savingFinished = function(value){
@@ -250,15 +265,23 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 }]) 
 
 app.controller('NewProjectCtrl',['$scope', '$modalInstance', function($scope, $modalInstance){
+
   $scope.cancel = function () {
     console.log("Malo by to vypnut");
     $modalInstance.dismiss('cancel');
   }
 
   $scope.ok = function () {
-    console.log("ok");
     $modalInstance.close(SendMessage("NewProject","NewProject"));
     SendMessage("NewProject","NewProject");
+    SendMessage("CanvasEditor","changeArea",0);
+    SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+    $("a.radio-picture").removeClass('btn-my2');
+      $("a.radio-picture").addClass('btn-my');
+      $("#B0").removeClass('btn-my');
+      $("#B0").addClass('btn-my2');
+      console.log($scope);
+      $scope.$broadcast('newProjectEvent', 'data');
   }
 }])
 
@@ -914,7 +937,7 @@ document.getElementById('colorChooser').style.visibility = 'hidden';
     SendMessage("FpsManager","rotation");
   }
 
-  $scope.ok = function(){
+  $scope.okTrigger = function(){
     SendMessage("FpsManager","okTrigger");
   }
   $scope.colorChooser = function(){

@@ -43,7 +43,7 @@ input[type="radio"]:checked + span {
 
 #header #EnliLogo{
 	position: relative;
-	margin-left: 16%;
+	margin-left: 22%;
 	background-size: 100% auto;
 	height: 70px;
 	width: 150px;
@@ -63,6 +63,8 @@ input[type="radio"]:checked + span {
 	position: relative;
 	height: inherit;
 	z-index: 1000;
+	top:4px;
+	right: 4px;
 }
 
 #header #SekciaContainer{
@@ -584,7 +586,28 @@ font-family: Roboto-Regular;
 	margin-top: 70px;
 	pointer-events: auto;
 }
-
+.template .modal-dialog .modal-content{
+	width: 450px;
+	height: 150px;
+	margin-left: auto ;
+  margin-right: auto ;
+}
+.template .modal-dialog .modal-content p{
+font-family: Roboto-Regular;
+	color: #7CA616;
+	font-size: 2.5em;
+	margin-left:56px;
+}
+.template .modal-dialog .modal-content .enli-btn {
+	color: white;
+	background-image: url('img/button_bg.png');
+	background-repeat: repeat-x;
+	background-position: left top;
+	width: 30%;
+	height: 26%;
+margin-left: 58px;
+margin-top: 20px;
+}
 
 #PodorysMenu{
 	position: relative;
@@ -633,7 +656,7 @@ font-family: Roboto-Regular;
 	-webkit-transition: top .5s ease-out; /* For Safari 3.1 to 6.0 */
 	transition: top .5s ease-out;
 	right: 20px;
-	top: -470px;
+	top: -70px;
 }
 #header #LoadProject{
 	display: inline-block;
@@ -650,7 +673,7 @@ font-family: Roboto-Regular;
 	pointer-events:auto;
 	-webkit-transition: top .5s ease-out; /* For Safari 3.1 to 6.0 */
 	transition: top .5s ease-out;
-	right: 0px;
+	right: 20px;
 	top: -470px;
 }
 .Button {
@@ -1079,4 +1102,83 @@ a.radio-view{
 }
 .accordion__tab-content {
     
+}
+
+.button {
+	display: inline-block;
+	position: relative;
+	color: #888;
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+	text-decoration: none;
+	text-align: center;
+	padding: 8px 12px;
+	font-size: 12px;
+	font-weight: 700;
+	font-family: helvetica, arial, sans-serif;
+	border-radius: 4px;
+	border: 1px solid #bcbcbc;
+
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+}
+
+.button:hover {
+	color: #555;
+}
+
+.button.next {
+	border-right: none;
+}
+
+.button.next:after {
+	content: '';
+	position: absolute;
+	height: 48%;
+	width: 15px;
+	border-right: 1px solid #bcbcbc;
+
+	background-image: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: -o-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	right: -5px;
+	bottom: 1px;
+
+	-webkit-transform: skew(-35deg, 0);
+	-moz-transform: skew(-35deg, 0);
+	-o-transform: skew(-35deg, 0);
+	-ms-transform: skew(-35deg, 0);
+	transform: skew(-35deg, 0);
+
+	-webkit-box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
+	box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
+}
+
+.button.next:before {
+	content: '';
+	position: absolute;
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: -moz-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	height: 50%;
+	width: 15px;
+	border-right: 1px solid #bcbcbc;
+	top: 1px;
+	right: -5px;
+
+	-webkit-transform: skew(35deg, 0);
+	-moz-transform: skew(35deg, 0);
+	-o-transform: skew(35deg, 0);
+	-ms-transform: skew(35deg, 0);
+	transform: skew(35deg, 0);
 }

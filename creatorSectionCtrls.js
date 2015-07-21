@@ -614,18 +614,15 @@ app.controller('dwCtrl',['$scope','menuJson', function($scope, menuJson){
       }
   });
 
-
-
   $scope.$watch('isDoorDropdownDisplayed', function(value, oldValue){
     //if (value === oldValue) { return; }
     var d = document.getElementById('MenuItemDoor');
     if (!!value) {
       d.style.left = "-640px"; 
     } else {
-      d.style.left = "-315px"
+      d.style.left = "300px"
     }
   });
-
 
   $scope.D2DDW = function(){
     SendMessage("CanvasEditor","SetView2D");
@@ -853,11 +850,11 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
       d.style.left = "-600px"
     }
   });
-
+/*
   $scope.setMenu = function(){
       $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
     }
-
+*/
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
   }

@@ -186,6 +186,10 @@ font-family: Roboto-Regular;
 	transition: left .5s ease-out;
 }
 
+.podorys-section #MaterialChooser .material-item{
+
+}
+
 #B0{
 	background-image: url("Buttons/1.png");
 	background-size: 100%;
@@ -285,6 +289,14 @@ font-family: Roboto-Regular;
 	pointer-events: auto;
 	position: relative;
 	top: -100px;
+	pointer-events:auto;
+	left:5px;
+}
+
+.dw-section #MenuItemWindow .window-item{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
 }
 .dw-section #MenuItemDoor{
 	background-color: #FFF;
@@ -298,6 +310,14 @@ font-family: Roboto-Regular;
 	pointer-events: auto;
 	position: relative;
 	top: -200px;
+	pointer-events:auto;
+	left:5px;
+}
+
+.dw-section #MenuItemDoor .door-item{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
 }
 
 /* ------------INTERIER------------*/

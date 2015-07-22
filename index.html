@@ -218,34 +218,49 @@
 
   <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
     <div class="round-menu">
-      <div class="del">
+      <div class="del" ng-click="destroyObject()">
       </div>
-      <div class="change-mat">
-        <a class="change-btn"></a>
+      <div class="change-mat" ng-click="changeMat(); toggleFpsMats();">
       </div>
-      <div class="close">
-        <a class="close-btn"></a>
+      <div class="close" ng-click="closeRoundMenu()">
       </div>
-      <div class="add">
-        <a class="add-btn"></a>
+      <div class="add" ng-click="addObj(); toggleFpsProds();" >
       </div>
-      <div class="change-obj">
-        <a class="change-obj-btn"></a>
+      <div class="change-obj" ng-click="changeObj() toggleFpsProds();">
+      </div>
+    </div>
+
+    <div class="btn-menu">
+      <div id="objectManipulation">
+        <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
+        <button id="objRot" ng-click="move(); activeR();" class="fps-btn2 btn">ROTACIA</button>
+        <button class="fps-btn-round btn">OK</button>
+      </div>
+      <div id="colorCh">
+        <button class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
       </div>
     </div>
 
     <div class="right-menu">
       <div class="input-menu">
-        <input class="fps-input" type="radio" name="input">
+        <input id="wasd" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
         <img src="img/fps_gui/km.png">
-        <input class="fps-input" type="radio" name="input">
+        <input id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
         <img src="img/fps_gui/mouse.png">
       </div>
-      <div class="d23">
+      <div class="d23" ng-click="editor()">
         <h3>2D</h3>
         <div class="switch"></div>
         <h3>3D</h3>
       </div>
+    </div>
+
+    <div id="fpsMaterials" style="right: -250px">
+
+    </div>
+
+    <div id="fpsProducts" style="right: -250px">
+
     </div>
 
     <div class="temp">

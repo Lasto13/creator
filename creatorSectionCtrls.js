@@ -155,6 +155,11 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
       case "6": $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
+
+    if(!$scope.$$phase){
+        $scope.$apply();
+      }
+
     console.log($scope.activeMenu);
   }
 
@@ -162,11 +167,15 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
       $scope.message = "iny message";
       $scope.message = string;
       console.log($scope.message);
-      $scope.$apply();
+      /*
+      if(!$scope.$$phase){
+        $scope.$apply();
+      }
+      */
       $('#errMsg').css('opacity', 1);
       $timeout(function(){
         $('#errMsg').css('opacity', 0);
-      }, 5000);
+      }, 3000);
   }
 
   $scope.Podorys = function(){
@@ -888,103 +897,151 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
 }])
 
 app.controller('FPSCtrl',['$scope', function($scope){
-  setOkInfo = function(string){
-}
 
-setGuiInfo = function(string){
-  console.log("Tomasov string " + string);
-      var info = string;
-      if(info.charAt(0) == "0"){
-        document.getElementById('odstranit').style.visibility = 'hidden';
-      }
-      else {
-        document.getElementById('odstranit').style.visibility = 'visible';
-      }
-      if(info.charAt(1) == "0"){
-document.getElementById('zmenaMat').style.visibility = 'hidden';
-      }
-      else{
-  document.getElementById('zmenaMat').style.visibility = 'visible';
-      }
-      if(info.charAt(2) == "0"){
-document.getElementById('zmenaObj').style.visibility = 'hidden';
-      }
-      else{
-  document.getElementById('zmenaObj').style.visibility = 'visible';
-      }
-      if(info.charAt(3) == "0"){
-document.getElementById('pridat').style.visibility = 'hidden';
-      }
-      else{
-  document.getElementById('pridat').style.visibility = 'visible';
-      }
-       if(info.charAt(4) == "0"){
-document.getElementById('X').style.visibility = 'hidden';
-      }
-      else{
-          document.getElementById('X').style.visibility = 'visible';
-      }
-       if(info.charAt(5) == "0"){
-document.getElementById('pohyb').style.visibility = 'hidden';
-document.getElementById('rotacia').style.visibility = 'hidden';
-      }
-      else{
-          document.getElementById('pohyb').style.visibility = 'visible';
-          document.getElementById('rotacia').style.visibility = 'visible';
-      }
-       if(info.charAt(6) == "0"){
-document.getElementById('colorChooser').style.visibility = 'hidden';
-      }
-      else{
-          document.getElementById('colorChooser').style.visibility = 'visible';
-      }
+  $("#wasd").click();
+
+  $scope.toggleFpsMats = function(){
+    $scope.isFpsMats = !$scope.isFpsMats;
   }
 
+  $scope.toggleFpsProds = function(){
+    $scope.isFpsProds = !$scope.isFpsProds;
+  }  
 
-  $scope.OdstranitObjekt = function(){
+  $scope.$watch('isFpsMats', function(value, oldValue){
+    //if (value === oldValue) { return; }
+    var d = document.getElementById('fpsMaterials');
+    console.log(d);
+    if (!!value) {
+     d.style.right = "0px";
+    } else {
+      d.style.right = "-250px"
+    }
+  });
+
+  $scope.$watch('isFpsProds', function(value, oldValue){
+    //if (value === oldValue) { return; }
+    console.log("prodsssss");
+    var e = document.getElementById('fpsProducts');
+    console.log(e);
+    if (!!value) {
+     e.style.right = "0px";
+    } else {
+      e.style.right = "-250px"
+    }
+  });
+
+  setOkInfo = function(string){
+  }
+
+  setGuiInfo = function(string){
+    console.log("Tomasov string " + string);
+    var info = string;
+    if(info.charAt(0) == "0"){
+      document.getElementById('odstranit').style.visibility = 'hidden';
+    }
+    else {
+      document.getElementById('odstranit').style.visibility = 'visible';
+    }
+    if(info.charAt(1) == "0"){
+      document.getElementById('zmenaMat').style.visibility = 'hidden';
+    }
+    else{
+      document.getElementById('zmenaMat').style.visibility = 'visible';
+    }
+    if(info.charAt(2) == "0"){
+      document.getElementById('zmenaObj').style.visibility = 'hidden';
+    }
+    else{
+      document.getElementById('zmenaObj').style.visibility = 'visible';
+    }
+    if(info.charAt(3) == "0"){
+      document.getElementById('pridat').style.visibility = 'hidden';
+    }
+    else{
+      document.getElementById('pridat').style.visibility = 'visible';
+    }
+     if(info.charAt(4) == "0"){
+      document.getElementById('X').style.visibility = 'hidden';
+    }
+    else{
+        document.getElementById('X').style.visibility = 'visible';
+    }
+     if(info.charAt(5) == "0"){
+      document.getElementById('pohyb').style.visibility = 'hidden';
+      document.getElementById('rotacia').style.visibility = 'hidden';
+    }
+    else{
+        document.getElementById('pohyb').style.visibility = 'visible';
+        document.getElementById('rotacia').style.visibility = 'visible';
+    }
+     if(info.charAt(6) == "0"){
+      document.getElementById('colorChooser').style.visibility = 'hidden';
+    }
+    else{
+      document.getElementById('colorChooser').style.visibility = 'visible';
+    }
+  }
+
+  $scope.destroyObject = function(){
     SendMessage("FpsManager","Odstranit");
   }
-
-  $scope.PridaObjekt = function(){
-    SendMessage("FpsManager","pridatObjekt");
-  }
-
-  $scope.ZmenitMaterial = function(){
+  
+  $scope.changeMat = function(){
     SendMessage("FpsManager","zmenitMaterial");
   }
 
-  $scope.ZmenitObjekt = function(){
-    SendMessage("FpsManager","zmenitObjekt");
-  }
-
-  $scope.X = function(){
+  $scope.closeRoundMenu = function(){
     SendMessage("FpsManager","X");
   }
 
-  $scope.pohyb = function(){
+  $scope.addObj = function(){
+    SendMessage("FpsManager","pridatObjekt");
+  }
+
+  $scope.changeObj = function(){
+    SendMessage("FpsManager","zmenitObjekt");
+  }
+  //---------
+  $scope.move = function(){
     SendMessage("FpsManager","move");
   }
 
-  $scope.rotacia = function(){
+  $scope.rotave = function(){
     SendMessage("FpsManager","rotation");
   }
 
   $scope.okTrigger = function(){
     SendMessage("FpsManager","okTrigger");
   }
+
   $scope.colorChooser = function(){
     SendMessage("FpsManager","colorChooser");
   }
-  $scope.mouse_controll = function(){
-    SendMessage("FpsManager","mouse_controll");
-  }
+
   $scope.mouseWASD_controll = function(){
     SendMessage("FpsManager","mouseWASD_controll");
   }
+
+  $scope.mouse_controll = function(){
+    SendMessage("FpsManager","mouse_controll");
+  }
+  
   $scope.editor = function(){
     SendMessage("FpsManager","goToEditor");
   }
 
+  $scope.activeM = function(){
+    console.log("activeM");
+    $("#objMove").addClass("selected"); 
+    $("#objRot").removeClass("selected");
+  }
+
+  $scope.activeR = function(){
+    console.log("activeR");
+    $("#objRot").addClass("selected"); 
+    $("#objMove").removeClass("selected");
+  }
 
 }])
 

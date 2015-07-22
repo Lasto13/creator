@@ -24,11 +24,11 @@ a {
 	border: 1px solid #7CA616;
 	border-radius: 10px;
 	pointer-events: none;
-
 	opacity: 0;
-	transition: opacity 2.25s ease-in-out;
-	-moz-transition: opacity 2.25s ease-in-out;
-	-webkit-transition: opacity 2.25s ease-in-out;
+
+	transition: opacity 1.5s ease-in-out;
+	-moz-transition: opacity .5s ease-in-out;
+	-webkit-transition: opacity 1.5s ease-in-out;
 }
 
 #errMsg span{
@@ -117,10 +117,12 @@ input[type="radio"]:checked + span {
 	border: 1px solid #7ca616;
 	border-radius: 5px;
 	pointer-events:auto;
-	-webkit-transition: top .5s ease-out; /* For Safari 3.1 to 6.0 */
-	transition: top .5s ease-out;
 	right: 20px;
 	top: -470px;
+
+	transition: top 0.5s ease-out 0s;
+	-moz-transition: top 0.5s ease-in-out;
+	-webkit-transition: top 0.5s ease-in-out;
 }
 #Settings label{
 	font-family: Roboto-Regular;
@@ -205,8 +207,10 @@ font-family: Roboto-Regular;
 	border: 1px solid #7ca616;
 	border-radius: 5px;
 	pointer-events:auto;
-	-webkit-transition: left .5s ease-out; /* For Safari 3.1 to 6.0 */
-	transition: left .5s ease-out;
+	
+	transition: left 0.5s ease-out 0s;
+	-moz-transition: left 0.5s ease-in-out;
+	-webkit-transition: left 0.5s ease-in-out;
 }
 
 .podorys-section #MaterialChooser .material-item{
@@ -310,7 +314,6 @@ font-family: Roboto-Regular;
 	width: 320px;
 	border: 1px solid #7CA616;
 	border-radius: 5px;
-	transition: left 0.5s ease-out 0s;
 	overflow: auto;
 	float: left;
 	pointer-events: auto;
@@ -318,6 +321,10 @@ font-family: Roboto-Regular;
 	top: -100px;
 	pointer-events:auto;
 	left:5px;
+
+	transition: left 0.5s ease-out 0s;
+	-moz-transition: left 0.5s ease-in-out;
+	-webkit-transition: left 0.5s ease-in-out;
 }
 
 .dw-section #MenuItemWindow .window-item{
@@ -331,7 +338,6 @@ font-family: Roboto-Regular;
 	width: 320px;
 	border: 1px solid #7CA616;
 	border-radius: 5px;
-	transition: left 0.5s ease-out 0s;
 	overflow: auto;
 	float: left;
 	pointer-events: auto;
@@ -339,6 +345,10 @@ font-family: Roboto-Regular;
 	top: -500px;
 	pointer-events:auto;
 	left:5px;
+
+	transition: left 0.5s ease-out 0s;
+	-moz-transition: left 0.5s ease-in-out;
+	-webkit-transition: left 0.5s ease-in-out;
 }
 
 .dw-section #MenuItemDoor .door-item{
@@ -362,7 +372,7 @@ font-family: Roboto-Regular;
 	position: absolute;
 	height: 730px;
 	width: 800px;
-	transition: left 0.5s ease-out 0.1s;
+	
 	background-color: #FFF;
 	border: 1px solid #7CA616;
 	border-radius: 5px;
@@ -370,6 +380,10 @@ font-family: Roboto-Regular;
 	float: left;
 	pointer-events: auto;
 	z-index: -1;
+
+	transition: left 0.5s ease-out 0.1s;
+	-moz-transition: left 0.5s ease-in-out;
+	-webkit-transition: left 0.5s ease-in-out;
 }
 
 .interier-section #ProductBox .enli-btn {
@@ -493,10 +507,6 @@ font-family: Roboto-Regular;
 	background: transparent url("img/fps_gui/del_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
-.del:hover{
-	background: transparent url("img/fps_gui/del_hover.png") repeat scroll 0% 0% / 100% auto;
-}
-
 .fps-section .round-menu .change-mat{
 	position: relative;
 	width: 80px;
@@ -554,17 +564,76 @@ font-family: Roboto-Regular;
 	background: transparent url("img/fps_gui/chobj_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
+.fps-section .btn-menu {
+	position: absolute;
+	width: 204px;
+	margin-left: auto;
+	left: 19px;
+	top: 200px;
+	pointer-events: auto;
+}
+
+.fps-section .btn-menu #objectManipulation{
+	position: relative;
+	left: -13px;
+	margin-bottom: 12px;
+}
+
+.fps-section .btn-menu #objectManipulation .selected{
+	border: 2px solid;
+}
+
+.fps-section .btn-menu #objectManipulation .fps-btn2 {
+	color: #7CA616;
+	position: relative;
+	width: 100px;
+	height: 34px;
+}
+
+.fps-section .btn-menu #objectManipulation .fps-btn2:hover{
+	background: #DCDCDC;
+}
+
+.fps-section .btn-menu #objectManipulation .fps-btn-round {
+	position: relative;
+	left: 38%;
+	margin: 7px;
+	color: rgb(124, 166, 22);
+	border-radius: 35px;
+	width: 35px;
+	height: 35px;
+}
+
+.fps-section .btn-menu #objectManipulation .fps-btn-round:hover{
+	background: #DCDCDC;
+}
+
+.fps-section .btn-menu #colorCh .fps-btn {
+	color: #7CA616;
+	position: relative;
+	width: 147px;
+	height: 35px;
+	margin-left: 14px;
+}
+
+.fps-section .btn-menu #colorCh .fps-btn:hover {
+	background: #DCDCDC;
+}
+
 .fps-section .right-menu{
 	position: relative;
 	float: right;
-	width: 420px;
-	height: 50px;
+	width: 413px;
+	height: 42px;
 	pointer-events:auto;
+	margin-top: 2px;
+	margin-right: 4px;
 }
 
 .fps-section .right-menu .input-menu{
 	float: left;
-	width: 55%;
+	width: 59%;
+	height: 100%;
 	position: relative;
 	height: 50px;
 	background-color: #d3d3d3;
@@ -577,11 +646,12 @@ font-family: Roboto-Regular;
 
 .fps-section .right-menu .d23{
 	position: relative;
-	width: 35%;
+	width: 38%;
+	height: 100%;
 	float: right;
 	height: 50px;
 	background-color: #D3D3D3;
-	padding: 3px;
+	padding-left: 20px;
 }
 
 .fps-section .right-menu .d23 h3{
@@ -592,6 +662,7 @@ font-family: Roboto-Regular;
 
 .fps-section .right-menu .d23 .switch{
 	background: url("img/fps_gui/2d3d.png");
+	background-size: 100%;
     position: relative;
     width: 20px;
     height: 20px;
@@ -599,7 +670,34 @@ font-family: Roboto-Regular;
     margin-top: 12px;
 }
 
+.fps-section #fpsMaterials{
+	background-color: #d3d3d3;
+	position: absolute;
+	width: 250px;
+	/*right: -250px;*/
+	bottom: 0px;
+	height: 85%;
+
+	transition: right 1.5s ease-in-out;
+	-moz-transition: right .5s ease-in-out;
+	-webkit-transition: right 1.5s ease-in-out;
+}
+
+.fps-section #fpsProducts{
+	background-color: #7ca616;
+	position: absolute;
+	width: 250px;
+	/*right: -250px;*/
+	bottom: 0px;
+	height: 85%;
+
+	transition: right 1.5s ease-in-out;
+	-moz-transition: right .5s ease-in-out;
+	-webkit-transition: right 1.5s ease-in-out;
+}
+
 .fps-section .temp{
+	display: none;
 	pointer-events:auto;
 	position: absolute;
 	bottom: 0px;

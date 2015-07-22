@@ -14,9 +14,14 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   var myStorage;
   $scope.activeMenu = {};
   $scope.activeMenu.first = true;
+  
+  function call(){
+    console.log("call");
+  }
 
   $scope.activateMenu = function(n){
     $scope.activeMenu = {};
+    console.log(n);
     switch(n){
       case 1: $scope.activeMenu.first = true; break;
       case 2: $scope.activeMenu.second = true; break;
@@ -24,6 +29,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
       case 4: $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
+    console.log($scope.activeMenu);
   }
 
   function calculateMaxHeight(){
@@ -85,10 +91,10 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   $(document).keydown(function(e)
   {
     console.log("asdfasdfasdfasdfasdf")
-      if(prepinacSave == 1){
-         // $('#canvas').blur();
-      // return false;
-     }
+      
+          $('#canvasHolder').blur();
+       return false;
+     
   });
 
   var prepinacSet = 0;
@@ -146,13 +152,15 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
 
   setActiveSection = function(n){
     $scope.activeMenu = {};
+    console.log(n);
     switch(n){
-      case "0": $scope.activeMenu.first = true; break;
-      case "2": $scope.activeMenu.second = true; break;
-      case "5": $scope.activeMenu.third = true; break;
-      case "6": $scope.activeMenu.fourth = true; break;
+      case 0: $scope.activeMenu.first = true; break;
+      case 2: $scope.activeMenu.second = true; break;
+      case 5: $scope.activeMenu.third = true; break;
+      case 6: $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
+    console.log($scope.activeMenu);
   }
 
 
@@ -210,8 +218,14 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   $scope.RozmerySet = function(value){
     SendMessage("Settings","ShowTextFromWeb",value);
   }
-  $scope.UlozitProjekt = function(value){
-    SendMessage("Save Game Manager","SaveFromWeb","Mysave1");
+  $scope.UlozitProjekt = function(){
+    $('#canvasHolder').blur();
+        var saveModal = $modal.open({
+      keyboard: false,
+      templateUrl:'partials/saveProject.html',
+      controller: 'SaveProjectCtrl',
+      transclude: true
+    });
   }
 
   setShowRozmery = function(show){
@@ -289,6 +303,19 @@ app.controller('NewProjectCtrl',['$scope', '$modalInstance', 'bridge', function(
       //console.log($scope);
       //$scope.$broadcast('newProjectEvent', 'data');
       bridge.changeSection();
+  }
+}])
+
+app.controller('SaveProjectCtrl',['$scope', '$modalInstance',  function($scope, $modalInstance){
+
+  $scope.cancel = function () {
+    console.log("Malo by to vypnut");
+    $modalInstance.dismiss('cancel');
+  }
+
+  $scope.potvrdit = function () {
+    $modalInstance.close(SendMessage("NewProject","NewProject"));
+    
   }
 }])
 
@@ -735,10 +762,6 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     SendMessage("GUI INTERIOR","AddObjectFromWeb", JSON.stringify(value));
   }
 
-  $scope.showProdDetails = function(value){
-    SendMessage("GUI INTERIOR","ShowDetailPanelFromWeb", JSON.stringify(value));
-  }
-
   $scope.ShowAllPosible = function(element){
     $scope.SelectedProducts = $scope.menuData.element.products;
   }
@@ -851,15 +874,14 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
       d.style.left = "-600px"
     }
   });
-
-  $scope.toggleProdMenu = function(){
-    $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
-  }
-
+/*
+  $scope.setMenu = function(){
+      $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+    }
+*/
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
   }
-
 }])
 
 app.controller('FPSCtrl',['$scope', function($scope){

@@ -13,7 +13,7 @@ a {
 	background-color: #d3d3d3;
 }
 
-.errMsg{
+#errMsg{
 	position: absolute;
 	bottom: 50px;
 	left: 40%;
@@ -23,6 +23,17 @@ a {
 	background-color: #d3d3d3;
 	border: 1px solid #7CA616;
 	border-radius: 10px;
+	pointer-events: none;
+
+	opacity: 0;
+	transition: opacity 2.25s ease-in-out;
+	-moz-transition: opacity 2.25s ease-in-out;
+	-webkit-transition: opacity 2.25s ease-in-out;
+}
+
+#errMsg span{
+	display: inline-block;
+	vertical-align: middle;
 }
 
 #radiomore0 {

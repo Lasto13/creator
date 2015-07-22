@@ -1,6 +1,6 @@
 //'use strict';
 
-app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$rootScope', function($scope, $modal, $compile,$http,$window, $rootScope){
+app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$timeout', function($scope, $modal, $compile,$http,$window,$timeout){
   
   console.logError = console.log;
 
@@ -64,7 +64,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
       myStorage = $window.localStorage;
       myStorage.setItem('token', JSON.stringify(data.token.value));
       myStorage.setItem('user', JSON.stringify(data.user));
-      console.log('Token was stored' + myStorage);
       getSave();
     } else {
       console.log('Storage is not suported');
@@ -82,7 +81,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     });
     promise.success(function(data,status,headers,conf) {
       console.log(data,status,headers,conf);
-      console.log("Toto su data" + data);
       $scope.LoadSave = data;
     return data;
     });
@@ -90,11 +88,8 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
   //Neviem preco to nefunguje ale nejako takto by sa malo robit obmedzenie pre radio buttony pomocou sipiek 
   $(document).keydown(function(e)
   {
-    console.log("asdfasdfasdfasdfasdf")
-      
-          $('#canvasHolder').blur();
-       return false;
-     
+    $('#canvasHolder').blur();
+  return false;
   });
 
   var prepinacSet = 0;
@@ -154,18 +149,24 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     $scope.activeMenu = {};
     console.log(n);
     switch(n){
-      case 0: $scope.activeMenu.first = true; break;
-      case 2: $scope.activeMenu.second = true; break;
-      case 5: $scope.activeMenu.third = true; break;
-      case 6: $scope.activeMenu.fourth = true; break;
+      case "0": $scope.activeMenu.first = true; break;
+      case "2": $scope.activeMenu.second = true; break;
+      case "5": $scope.activeMenu.third = true; break;
+      case "6": $scope.activeMenu.fourth = true; break;
       default: $scope.activeMenu = {};
     }
     console.log($scope.activeMenu);
   }
 
-
   getErrorText = function(string){
-      console.log("Toto mi posiela david " + string);
+      $scope.message = "iny message";
+      $scope.message = string;
+      console.log($scope.message);
+      $scope.$apply();
+      $('#errMsg').css('opacity', 1);
+      $timeout(function(){
+        $('#errMsg').css('opacity', 0);
+      }, 5000);
   }
 
   $scope.Podorys = function(){
@@ -197,16 +198,15 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$roo
     SendMessage("UndoRedo","Redo");
   }
   $scope.FPS = function(){
-    console.log("FPS ???");
-    $scope.activateMenu(4);
+    //$scope.activateMenu(4);
     SendMessage("EventSystem","FpsPosition");
   }
   
   showUIforFps = function(){
     console.log("zobraz UI pre panaka");
-    var fpsText = document.createElement("div");
-    fpsText.id = "fpsText";
-    document.appendChild(fpsText);
+    //var fpsText = document.createElement("div");
+    //fpsText.id = "fpsText";
+    //document.appendChild(fpsText);
   }
 
   $scope.Kvalita = function(value){
@@ -325,7 +325,6 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
 
   matJson.get().then(function(data) {
     $scope.mats = data;
-    console.log($scope.mats);
   });
 
   var hodnotaB15 = 0;
@@ -762,6 +761,10 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     SendMessage("GUI INTERIOR","AddObjectFromWeb", JSON.stringify(value));
   }
 
+  $scope.showProdDetails = function(value){
+    SendMessage("GUI INTERIOR","ShowDetailPanelFromWeb", JSON.stringify(value));
+  }
+
   $scope.ShowAllPosible = function(element){
     $scope.SelectedProducts = $scope.menuData.element.products;
   }
@@ -827,7 +830,6 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
   }
 
   $scope.$watchCollection('activeTT', function(newTT, oldTT) {
-    console.log("col" + $scope.activeTT);
     $scope.productsToShow = [];
     for (var i = 0 ; i < $scope.activeTT.length; i++){
       $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products);
@@ -874,20 +876,19 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
       d.style.left = "-600px"
     }
   });
-/*
-  $scope.setMenu = function(){
+
+
+  $scope.toggleProdMenu = function(){
       $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
     }
-*/
+
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
   }
 }])
 
 app.controller('FPSCtrl',['$scope', function($scope){
-
   setOkInfo = function(string){
-
 }
 
 setGuiInfo = function(string){

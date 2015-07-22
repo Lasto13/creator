@@ -18,8 +18,6 @@ var app = angular.module('app',[
 .factory('menuJson', ['$http', function($http){
     return {
       get: function(){
-      console.log("bla");
-    
       return $http({
         method: "GET",
         url:'jsonik.json',
@@ -37,8 +35,6 @@ var app = angular.module('app',[
 .factory('matJson', ['$http', function($http){
     return {
       get: function(){
-        console.log("bla");
-      
         return $http({
           method: "GET",
           url:'WallMaterialImages/InfoJson.json',

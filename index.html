@@ -167,7 +167,7 @@
       </div>
       
       <div class="left-menu">
-        <div id="ProductBox" style = "pointer-events: auto;">
+        <div id="ProductBox" style="pointer-events: auto;">
             <div  ng-repeat="prod in productsToShow" class ="btn-group">
               <div class="prod-image-cont">
                 <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
@@ -264,9 +264,10 @@
     </div>
   </div>
 
-  <div class="errMsg">
-    <h1>TU BUDU ERRORY !!!</h1>
-    <h2>IBA ZEBY NE</h2>
+  <div id="errMsg">
+    <span>
+      <p>{{message}}</p>
+    </span>
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->

@@ -4,6 +4,11 @@ a {
 	color: #7ca616;
 }
 
+#sp{
+	position: relative;
+	z-index: 100000;
+}
+
 #fpsText{
 	position: absolute;
 	top: 40%;
@@ -35,7 +40,7 @@ a {
 	display: inline-block;
 	vertical-align: middle;
 }
-
+/*
 #radiomore0 {
 	background: url('img/radio_button_inactive.png');
 }
@@ -55,7 +60,7 @@ input[type="radio"]:checked{
 input[type="radio"]:checked + span {
 	background: url('img/radio_button_active.png');	
 }
-
+*/
 #header{
 	position: absolute;
 	top: 0px;
@@ -124,6 +129,135 @@ input[type="radio"]:checked + span {
 	-moz-transition: top 0.5s ease-in-out;
 	-webkit-transition: top 0.5s ease-in-out;
 }
+
+#header .button.first{
+	display: inline-block;
+	position: relative;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 18px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: helvetica, arial, sans-serif;
+	border-radius: 4px;
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	width: 168px;
+	height: 80px;
+	top: -4px;
+}
+#header .button.second{
+	display: inline-block;
+	position: relative;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 25px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: helvetica, arial, sans-serif;
+	border-radius: 4px;
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	width: 189px;
+	height: 80px;
+	top: -4px;
+	left: 6px;
+}
+#header .button.third{
+	display: inline-block;
+	position: relative;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 18px;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: helvetica, arial, sans-serif;
+	border-radius: 4px;
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+	width: 148px;
+	height: 80px;
+	top: -4px;
+	left: 24px;
+}
+
+#header .button:hover {
+	color:white;
+	text-decoration: none;
+	cursor: pointer; cursor: hand;
+}
+#header .button:focus {
+  outline: none;
+}
+#header .button.next {
+	border-right: none;
+}
+
+#header .button.next:after {
+	content: '';
+	position: absolute;
+	height: 40px;
+	width: 27px;
+	right: -13px;
+	bottom: 1px;
+	border-right: 1px solid #FEFEFE;
+
+	background-image: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
+	background-image: -o-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	background-image: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
+	
+
+	-webkit-transform: skew(-35deg, 0);
+	-moz-transform: skew(-35deg, 0);
+	-o-transform: skew(-35deg, 0);
+	-ms-transform: skew(-35deg, 0);
+	transform: skew(-35deg, 0);
+
+	-webkit-box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
+	box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
+
+}
+
+#header .button.next:before {
+	content: '';
+	position: absolute;
+
+	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 0%, rgb(124, 166, 22) 0%, rgb(124, 166, 22) -16%);
+	background-image: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	background-image: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
+	height: 40px;
+	width: 27px;
+	top: 0px;
+	right: -13px;
+	border-right: 1px solid #FEFEFE;
+
+	-webkit-transform: skew(35deg, 0);
+	-moz-transform: skew(35deg, 0);
+	-o-transform: skew(35deg, 0);
+	-ms-transform: skew(35deg, 0);
+	transform: skew(35deg, 0);
+
+}
+
 #Settings label{
 	font-family: Roboto-Regular;
 }
@@ -167,13 +301,34 @@ font-family: Roboto-Regular;
 
 .podorys-section #podoris-toolbar #mierka-radio{
 	position: relative;
-	width: 300px;
+	width: 320px;
 	float: right;
+	top: 55px;
+	left: -24px;
 }
-
+/*
 .podorys-section #podoris-toolbar #mierka-radio input{
 	display: inline-block;
 }
+*/
+.podorys-section #podoris-toolbar #mierka-radio input[type="radio"] {
+    display:none; 
+}
+
+.podorys-section #podoris-toolbar #mierka-radio label {
+    display:inline-block;
+    background: url('img/radio_button_inactive.png');
+    width: 21px;
+	height: 21px;
+	margin-bottom: -5px;
+	margin-left: 4px;
+}
+
+.podorys-section #podoris-toolbar #mierka-radio input[type="radio"]:checked + label { 
+    background-color:#7ca616;
+    background: url('img/radio_button_active.png');
+}
+
 
 .podorys-section .left-menu{
 	z-index: 1000;
@@ -194,7 +349,27 @@ font-family: Roboto-Regular;
 	width: 100%; 
 	position:relative;
 	left:40px;
+	margin-bottom: 10px; 
 }
+
+.podorys-section .left-menu-item input[type="radio"] {
+    display:none; 
+}
+
+.podorys-section .left-menu-item label {
+    display:inline-block;
+    background: url('img/radio_button_inactive.png');
+    width: 21px;
+	height: 21px;
+	margin-bottom: -4px;
+}
+
+.podorys-section .left-menu-item input[type="radio"]:checked + label { 
+    background-color:#7ca616;
+    background: url('img/radio_button_active.png');
+}
+
+
 .podorys-section #MaterialChooser{
 	position:relative; 
 	z-index: 999;
@@ -484,6 +659,7 @@ font-family: Roboto-Regular;
 	bottom: 0px;
 	height: 100%;
 	pointer-events: none;
+	overflow: hidden;
 }
 
 .fps-section .round-menu{
@@ -495,72 +671,74 @@ font-family: Roboto-Regular;
 	left: 19px;
 }
 
-.fps-section .round-menu .del{
+.fps-section .round-menu #del{
 	position: relative;
 	width: 80px;
 	height: 80px;
 	background: transparent url("img/fps_gui/del.png") repeat scroll 0% 0% / 100% auto;
 	float: left;
+	left: 4px;
+	visibility: hidden;
 }
 
-.fps-section .round-menu .del:hover{
+.fps-section .round-menu #del:hover{
 	background: transparent url("img/fps_gui/del_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
-.fps-section .round-menu .change-mat{
+.fps-section .round-menu #change-mat{
 	position: relative;
 	width: 80px;
 	height: 80px;
-	background: url("img/fps_gui/chmat.png") repeat scroll 0% 0% / 100% auto;
+	background: transparent url("img/fps_gui/chmat.png") repeat scroll 0% 0% / 100% auto;
 	left: 90px;
-	top: 2px;
+	top: 0px;
+	visibility: hidden;
 }
 
-.fps-section .round-menu .change-mat:hover{
+.fps-section .round-menu #change-mat:hover{
 	background: url("img/fps_gui/chmat_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
-.change-mat:hover{
-	background: url("img/fps_gui/chmat_hover.png") repeat scroll 0% 0% / 100% auto;
-}
-
-.fps-section .round-menu .close{
-	position: relative;
+.fps-section .round-menu #close{
+	position: absolute;
 	width: 30px;
 	background: transparent url("img/fps_gui/x.png") repeat scroll 0% 0% / 100% auto;
-	left: -80px;
+	left: 72px;
 	height: 30px;
-	top: -10px;
+	top: 69px;
+	visibility: hidden;
 }
 
-.fps-section .round-menu .close:hover{
+.fps-section .round-menu #close:hover{
 	background: transparent url("img/fps_gui/x_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
-.fps-section .round-menu .add{
+.fps-section .round-menu #add{
 	position: relative;
 	width: 80px;
 	height: 80px;
 	background: transparent url("img/fps_gui/add_obj.png") repeat scroll 0% 0% / 100% auto;
-	left: 0px;
-	top: 9px;
+	left: 3px;
+	top: 7px;
 	float: left;
+	visibility: hidden;
 }
 
-.fps-section .round-menu .add:hover{
+.fps-section .round-menu #add:hover{
 	background: transparent url("img/fps_gui/add_obj_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
-.fps-section .round-menu .change-obj{
+.fps-section .round-menu #change-obj{
 	position: relative;
 	width: 80px;
 	height: 80px;
 	background: transparent url("img/fps_gui/chobj.png") repeat scroll 0% 0% / 100% auto;
-	left: 91px;
-	top: 9px;
+	left: 90px;
+	top: 8px;
+	visibility: hidden;
 }
 
-.fps-section .round-menu .change-obj:hover{
+.fps-section .round-menu #change-obj:hover{
 	background: transparent url("img/fps_gui/chobj_hover.png") repeat scroll 0% 0% / 100% auto;
 }
 
@@ -577,6 +755,7 @@ font-family: Roboto-Regular;
 	position: relative;
 	left: -13px;
 	margin-bottom: 12px;
+	pointer-events: auto;
 }
 
 .fps-section .btn-menu #objectManipulation .selected{
@@ -606,6 +785,22 @@ font-family: Roboto-Regular;
 
 .fps-section .btn-menu #objectManipulation .fps-btn-round:hover{
 	background: #DCDCDC;
+}
+
+.fps-section .btn-menu #colorCh{
+	visibility: hidden;
+}
+
+.fps-section .btn-menu #objectManipulation #objMove{
+	visibility: hidden;
+}
+
+.fps-section .btn-menu #objectManipulation #ok{
+	visibility: hidden;
+}
+
+.fps-section .btn-menu #objectManipulation #objRot{
+	visibility: hidden;
 }
 
 .fps-section .btn-menu #colorCh .fps-btn {
@@ -1233,7 +1428,6 @@ a.radio-view{
 	
 }
 
-
 .hidden {
     left: -10000px;
     position: absolute;
@@ -1266,133 +1460,5 @@ a.radio-view{
     
 }
 
-.button.first{
-	display: inline-block;
-	position: relative;
-	color: white;
-	text-decoration: none;
-	text-align: center;
-	padding: 5px 18px;
-	font-size: 16px;
-	font-weight: 700;
-	font-family: helvetica, arial, sans-serif;
-	border-radius: 4px;
 
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
-	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	width: 168px;
-height: 80px;
-top: -4px;
 
-}
-.button.second{
-	display: inline-block;
-	position: relative;
-	color: white;
-	text-decoration: none;
-	text-align: center;
-	padding: 5px 25px;
-	font-size: 16px;
-	font-weight: 700;
-	font-family: helvetica, arial, sans-serif;
-	border-radius: 4px;
-
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
-	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	width: 189px;
-height: 80px;
-top: -4px;
-left: 6px;
-}
-.button.third{
-	display: inline-block;
-	position: relative;
-	color: white;
-	text-decoration: none;
-	text-align: center;
-	padding: 5px 18px;
-	font-size: 16px;
-	font-weight: 700;
-	font-family: helvetica, arial, sans-serif;
-	border-radius: 4px;
-
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
-	background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
-	width: 148px;
-height: 80px;
-top: -4px;
-left: 24px;
-
-}
-
-.button:hover {
-	
-	color:white;
-	text-decoration: none;
-	cursor: pointer; cursor: hand;
-}
-.button:focus {
-  outline: none;
-}
-.button.next {
-	border-right: none;
-}
-
-.button.next:after {
-	content: '';
-	position: absolute;
-	height: 40px;
-width: 27px;
-right: -13px;
-bottom: 1px;
-	border-right: 1px solid #FEFEFE;
-
-	background-image: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
-	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 56%, rgb(124, 166, 22) 149%, rgb(124, 166, 22) 72%);
-	background-image: -o-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
-	background-image: -ms-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
-	background-image: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);
-	
-
-	-webkit-transform: skew(-35deg, 0);
-	-moz-transform: skew(-35deg, 0);
-	-o-transform: skew(-35deg, 0);
-	-ms-transform: skew(-35deg, 0);
-	transform: skew(-35deg, 0);
-
-	-webkit-box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
-	box-shadow: 2px 1px 2px rgba(100,100,100,0.1);
-
-}
-
-.button.next:before {
-	content: '';
-	position: absolute;
-
-	background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
-	background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 0%, rgb(124, 166, 22) 0%, rgb(124, 166, 22) -16%);
-	background-image: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
-	background-image: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
-	background-image: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);
-	height: 40px;
-width: 27px;
-top: 0px;
-right: -13px;
-border-right: 1px solid #FEFEFE;
-
-	-webkit-transform: skew(35deg, 0);
-	-moz-transform: skew(35deg, 0);
-	-o-transform: skew(35deg, 0);
-	-ms-transform: skew(35deg, 0);
-	transform: skew(35deg, 0);
-
-}

@@ -27,7 +27,7 @@
         "child": [            
             {
                 "nazov": "okno_plastove_Drevo",
-                "asset": "http://localhost/roz2/Bundles/window1.unity3d",
+                "asset": "http://localhost/creator/Bundles/window1.unity3d",
                 "image": "http://85.159.111.72/katre/pictures/okno_plast.png"
             },
             {
@@ -150,7 +150,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Konferenčný stolík Rea3V",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",     
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -204,7 +204,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Konferenčný stolík Lasto1",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -258,7 +258,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Konferenčný stolík Stevo1",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",     
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -320,7 +320,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Sedacie súpravy 11",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",     
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -374,7 +374,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Sedacie súpravy 21",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",       
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -428,7 +428,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Sedacie súpravy 31",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",   
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",
@@ -614,7 +614,7 @@
                                 {
                                     "category": 5,                                                                 
                                     "uidisplayname": "Konferenčný stolík Rea3V",                                                
-                                    "path": "http://85.159.111.72/stefan/stolik_konferencny_rea_3v.unity3d",       
+                                    "path": "http://localhost/creator/Bundles/stolik_konferencny_rea_3v.unity3d",    
                                     "image": "http://85.159.111.72/StolikRea3V.png",                         
                                     "description": "Extra vysoký konferenčný stolík do obývačky v REA prevedeniach",   
                                     "descriptionfordetail": "Extra vysoký konferenčný stolík REA 3v je určený do každej obývačky, ale svoje využitie nájde určite aj v spálni alebo hosťovskej izbe. Pod vrchnou doskou stolíka sa nachádza odkladacia polička, napríklad na časopisy. Konferenčný stolík je vyrábaný vo všetkých REA dezénoch: biela, dub bardolíno, wenge, buk, orech rockpile a dub canyon.",

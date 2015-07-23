@@ -2,6 +2,8 @@
 
 app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$timeout', function($scope, $modal, $compile,$http,$window,$timeout){
   
+  
+
   console.logError = console.log;
 
   $scope.bridge={
@@ -14,10 +16,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
   var myStorage;
   $scope.activeMenu = {};
   $scope.activeMenu.first = true;
-  
-  function call(){
-    console.log("call");
-  }
 
   $scope.activateMenu = function(n){
     $scope.activeMenu = {};
@@ -86,12 +84,13 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     });
   };
   //Neviem preco to nefunguje ale nejako takto by sa malo robit obmedzenie pre radio buttony pomocou sipiek 
+  /*
   $(document).keydown(function(e)
   {
     $('#canvasHolder').blur();
   return false;
   });
-
+  */
   var prepinacSet = 0;
   var prepinacLoad = 0;
   $scope.isSettingOpened = false;
@@ -228,8 +227,12 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     SendMessage("Settings","ShowTextFromWeb",value);
   }
   $scope.UlozitProjekt = function(){
-    $('#canvasHolder').blur();
-        var saveModal = $modal.open({
+    $('#sp').focus();
+    console.log(Module);
+    Module.keyboardListeningElement = document.getElementById('sp');
+    console.log(Module);
+    //console.log(document.activeElement);
+      var saveModal = $modal.open({
       keyboard: false,
       templateUrl:'partials/saveProject.html',
       controller: 'SaveProjectCtrl',
@@ -389,10 +392,10 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
   
   $("input:radio[name=category]").click(function(){
     var $id = $(this).val();
-    
+    /*
       $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
       $("#results").html(data);
-    });
+    });*/
   });
   $scope.set_radio = function($inputid) {
     $("input#" + $inputid).click(); 
@@ -467,6 +470,7 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
   }
 
   $scope.ZmenaVysky = function(){
+    console.log(vyskaSteny);
     SendMessage("Plane0","ChangeFloorScale", vyskaSteny);
   }
 
@@ -911,7 +915,6 @@ app.controller('FPSCtrl',['$scope', function($scope){
   $scope.$watch('isFpsMats', function(value, oldValue){
     //if (value === oldValue) { return; }
     var d = document.getElementById('fpsMaterials');
-    console.log(d);
     if (!!value) {
      d.style.right = "0px";
     } else {
@@ -921,9 +924,7 @@ app.controller('FPSCtrl',['$scope', function($scope){
 
   $scope.$watch('isFpsProds', function(value, oldValue){
     //if (value === oldValue) { return; }
-    console.log("prodsssss");
     var e = document.getElementById('fpsProducts');
-    console.log(e);
     if (!!value) {
      e.style.right = "0px";
     } else {
@@ -931,55 +932,57 @@ app.controller('FPSCtrl',['$scope', function($scope){
     }
   });
 
-  setOkInfo = function(string){
+  setOkTrigger = function(string){
+    console.log("okstring" + string);
   }
 
   setGuiInfo = function(string){
     console.log("Tomasov string " + string);
+    
     var info = string;
     if(info.charAt(0) == "0"){
-      document.getElementById('odstranit').style.visibility = 'hidden';
+      document.getElementById('del').style.visibility = 'hidden';
     }
     else {
-      document.getElementById('odstranit').style.visibility = 'visible';
+      document.getElementById('del').style.visibility = 'visible';
     }
     if(info.charAt(1) == "0"){
-      document.getElementById('zmenaMat').style.visibility = 'hidden';
+      document.getElementById('change-mat').style.visibility = 'hidden';
     }
     else{
-      document.getElementById('zmenaMat').style.visibility = 'visible';
+      document.getElementById('change-mat').style.visibility = 'visible';
     }
     if(info.charAt(2) == "0"){
-      document.getElementById('zmenaObj').style.visibility = 'hidden';
+      document.getElementById('change-obj').style.visibility = 'hidden';
     }
     else{
-      document.getElementById('zmenaObj').style.visibility = 'visible';
+      document.getElementById('change-obj').style.visibility = 'visible';
     }
     if(info.charAt(3) == "0"){
-      document.getElementById('pridat').style.visibility = 'hidden';
+      document.getElementById('add').style.visibility = 'hidden';
     }
     else{
-      document.getElementById('pridat').style.visibility = 'visible';
+      document.getElementById('add').style.visibility = 'visible';
     }
      if(info.charAt(4) == "0"){
-      document.getElementById('X').style.visibility = 'hidden';
+      document.getElementById('close').style.visibility = 'hidden';
     }
     else{
-        document.getElementById('X').style.visibility = 'visible';
+        document.getElementById('close').style.visibility = 'visible';
     }
      if(info.charAt(5) == "0"){
-      document.getElementById('pohyb').style.visibility = 'hidden';
-      document.getElementById('rotacia').style.visibility = 'hidden';
+      document.getElementById('objMove').style.visibility = 'hidden';
+      document.getElementById('objRot').style.visibility = 'hidden';
     }
     else{
-        document.getElementById('pohyb').style.visibility = 'visible';
-        document.getElementById('rotacia').style.visibility = 'visible';
+        document.getElementById('objMove').style.visibility = 'visible';
+        document.getElementById('objRot').style.visibility = 'visible';
     }
      if(info.charAt(6) == "0"){
-      document.getElementById('colorChooser').style.visibility = 'hidden';
+      document.getElementById('colorCh').style.visibility = 'hidden';
     }
     else{
-      document.getElementById('colorChooser').style.visibility = 'visible';
+      document.getElementById('colorCh').style.visibility = 'visible';
     }
   }
 
@@ -992,6 +995,17 @@ app.controller('FPSCtrl',['$scope', function($scope){
   }
 
   $scope.closeRoundMenu = function(){
+    document.getElementById('change-mat').style.visibility = 'hidden';
+    document.getElementById('close').style.visibility = 'hidden';
+    document.getElementById('add').style.visibility = 'hidden';
+    document.getElementById('change-obj').style.visibility = 'hidden';
+    document.getElementById("objMove").style.visibility = 'hidden';
+    document.getElementById("objRot").style.visibility = 'hidden';
+    document.getElementById("ok").style.visibility = 'hidden';
+    document.getElementById("objRot").style.visibility = 'hidden';
+    document.getElementById("colorCh").style.visibility = 'hidden';
+
+    console.log("roundclose");
     SendMessage("FpsManager","X");
   }
 
@@ -1007,7 +1021,7 @@ app.controller('FPSCtrl',['$scope', function($scope){
     SendMessage("FpsManager","move");
   }
 
-  $scope.rotave = function(){
+  $scope.rotate = function(){
     SendMessage("FpsManager","rotation");
   }
 

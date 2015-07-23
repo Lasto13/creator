@@ -66,16 +66,17 @@
           <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
         </div>
         <div id="mierka-radio" class="form-inline">
-          <div class="radio-btn">
-            <input id="radiomore0" type="radio" ng-model="selectedObjectType" value="object">
-            <span ng-click="selectedObjectType = 'object'"></span>
-            <label>Object</label>
-          </div>
-          <input id="radiomore" class="mierka-input" type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> Auto
-          <input class="mierka-input" type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()"> 10cm
-          <input class="mierka-input" type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()"> 50cm
-          <input class="mierka-input" type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()"> 100cm
-          <input class="mierka-input" type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()"> Vyp.
+          
+          <input class="mierka-input" id='radio1' type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> 
+          <label for="radio1"></label>Auto
+          <input class="mierka-input" id='radio2' type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()">
+          <label for="radio2"></label>10cm
+          <input class="mierka-input" id='radio3' type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()">
+          <label for="radio3"></label> 50cm
+          <input class="mierka-input" id='radio4' type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()">
+          <label for="radio4"></label> 100cm
+          <input class="mierka-input" id='radio5' type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()">
+          <label for="radio5"></label> Vyp.
         </div>
       </div>
       <div class="left-menu">
@@ -85,10 +86,10 @@
           </span>
         </div>
         <div class="left-menu-item">
-          <form action="">
-          <input type="radio" name="Type" value="Obvod" ng-click = "Obvodova()"> Obvodová<br>
-          <input type="radio" name="Type" value="Vnutro" checked="checked" ng-click = "Vnutorna()"> Vnútorná
-          </form>
+          <input type="radio" id="radio10" name="Type" value="Obvod" ng-click = "Obvodova()">
+          <label for="radio10"></label> Obvodová<br>
+          <input type="radio" id="radio11" name="Type" value="Vnutro" checked="checked" ng-click = "Vnutorna()">
+          <label for="radio11"></label> Vnútorná
         </div>
         <div class="left-menu-item">
           <div>
@@ -96,9 +97,9 @@
             <p>VÝŠKA STIEN:</p>
             </span>
           </div>
-          <div>
+          <div ng-click = "ZmenaVysky();">
             <p>
-            <input id="spinner" name="spinner" min = "2.4" max = "3.0" value="2.4" ng-click = "ZmenaVysky();"class="spinner" style="pointer-events: none;">
+            <input id="spinner" name="spinner" min = "2.4" max = "3.0" value="2.4" class="spinner" style="pointer-events: none;">
             </p>
           </div>
         </div>
@@ -218,15 +219,15 @@
 
   <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
     <div class="round-menu">
-      <div class="del" ng-click="destroyObject()">
+      <div id="del" ng-click="destroyObject()">
       </div>
-      <div class="change-mat" ng-click="changeMat(); toggleFpsMats();">
+      <div id="change-mat" ng-click="changeMat(); toggleFpsMats();">
       </div>
-      <div class="close" ng-click="closeRoundMenu()">
+      <div id="close" ng-click="closeRoundMenu()">
       </div>
-      <div class="add" ng-click="addObj(); toggleFpsProds();" >
+      <div id="add" ng-click="addObj(); toggleFpsProds();" >
       </div>
-      <div class="change-obj" ng-click="changeObj() toggleFpsProds();">
+      <div id="change-obj" ng-click="changeObj(); toggleFpsProds();">
       </div>
     </div>
 
@@ -234,7 +235,7 @@
       <div id="objectManipulation">
         <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
         <button id="objRot" ng-click="move(); activeR();" class="fps-btn2 btn">ROTACIA</button>
-        <button class="fps-btn-round btn">OK</button>
+        <button id="ok" class="fps-btn-round btn">OK</button>
       </div>
       <div id="colorCh">
         <button class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
@@ -287,6 +288,12 @@
 
   <!--  DIRECTIVE  div rozalia></div-->
   <script type='text/javascript'>
+  /*
+  $(document).on('click',function(){
+    console.log(document.activeElement);
+    console.log(Module);
+  })
+*/
     $(function() {
       $( "#slider" ).slider();
     });
@@ -331,7 +338,6 @@
       SendMessage("CameraObject","setBrowser",browseris);
     });
 
-   
   </script>
   <script type="text/javascript">
     window.addEventListener('keydown', function (e) {
@@ -347,6 +353,8 @@
   <script type='text/javascript'>
     // Connect to canvas
     var Module = {
+    doNotCaptureKeyboard: true,
+    //keyboardListeningElement: document.getElementById('spa'),
     TOTAL_MEMORY: 838860800,
     filePackagePrefixURL: "Release/",
     memoryInitializerPrefixURL: "Release/",

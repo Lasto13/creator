@@ -543,6 +543,15 @@ font-family: Roboto-Regular;
 	z-index: 999;
 }
 
+.interier-section #sipka{
+	background-image: url("Buttons/sipky.png");
+	background-size: 100%;
+	position: relative;
+	width: 50px;
+	height: 28px;
+	float: right;
+}
+
 .interier-section #ProductBox{
 	position: absolute;
 	height: 730px;
@@ -750,30 +759,30 @@ font-family: Roboto-Regular;
 	top: 200px;
 	pointer-events: auto;
 }
-
+/*
 .fps-section .btn-menu #objectManipulation{
 	position: relative;
 	left: -13px;
 	margin-bottom: 12px;
 	pointer-events: auto;
 }
-
-.fps-section .btn-menu #objectManipulation .selected{
+*/
+.fps-section .btn-menu .selected{
 	border: 2px solid;
 }
 
-.fps-section .btn-menu #objectManipulation .fps-btn2 {
+.fps-section .btn-menu .fps-btn2 {
 	color: #7CA616;
 	position: relative;
 	width: 100px;
 	height: 34px;
 }
 
-.fps-section .btn-menu #objectManipulation .fps-btn2:hover{
+.fps-section .btn-menu .fps-btn2:hover{
 	background: #DCDCDC;
 }
 
-.fps-section .btn-menu #objectManipulation .fps-btn-round {
+.fps-section .btn-menu .fps-btn-round {
 	position: relative;
 	left: 38%;
 	margin: 7px;
@@ -783,7 +792,7 @@ font-family: Roboto-Regular;
 	height: 35px;
 }
 
-.fps-section .btn-menu #objectManipulation .fps-btn-round:hover{
+.fps-section .btn-menu .fps-btn-round:hover{
 	background: #DCDCDC;
 }
 
@@ -791,19 +800,19 @@ font-family: Roboto-Regular;
 	visibility: hidden;
 }
 
-.fps-section .btn-menu #objectManipulation #objMove{
+.fps-section .btn-menu #objMove{
 	visibility: hidden;
 }
 
-.fps-section .btn-menu #objectManipulation #ok{
+.fps-section .btn-menu #ok{
 	visibility: hidden;
 }
 
-.fps-section .btn-menu #objectManipulation #objRot{
+.fps-section .btn-menu #objRot{
 	visibility: hidden;
 }
 
-.fps-section .btn-menu #colorCh .fps-btn {
+.fps-section .btn-menu .fps-btn {
 	color: #7CA616;
 	position: relative;
 	width: 147px;
@@ -811,7 +820,7 @@ font-family: Roboto-Regular;
 	margin-left: 14px;
 }
 
-.fps-section .btn-menu #colorCh .fps-btn:hover {
+.fps-section .btn-menu .fps-btn:hover {
 	background: #DCDCDC;
 }
 
@@ -1358,7 +1367,7 @@ margin-top: 20px;
 	margin-left: 2%;
 }
 #BI6{
-	background-image: url("Buttons/1.png");
+	background-image: url("Buttons/rot.png");
 	background-size: 100%;
 	margin-top: 20px;
 }

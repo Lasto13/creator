@@ -157,13 +157,13 @@
       <div id="interier-toolbar" >
         <div id="buttons">
             <input type="radio"  id="icategory_1" class="hidden" />
-            <a id="BI5" class="Button btn-my2 radio-i" ng-click = "NoOpInterier(); set_i('icategory_1')"></a>
+            <a id="BI5" class="Button btn-my2 radio-i" ng-click = "intDefAction(); set_i('icategory_1')"></a>
 
             <input type="radio"  id="icategory_2" class="hidden" />
-            <a id="BI6" class="Button btn-my radio-i" ng-click = "Rotate(); set_i('dwcategory_2')"></a>
+            <a id="BI6" class="Button btn-my radio-i" ng-click = "intRotAction(); set_i('dwcategory_2')"></a>
 
             <input type="radio"  id="icategory_3" class="hidden" />
-            <a id="BI7" class="Button btn-my radio-i" ng-click = "Delete(); set_i('icategory_3')"></a>
+            <a id="BI7" class="Button btn-my radio-i" ng-click = "intDelAction(); set_i('icategory_3')"></a>
         </div>
       </div>
       
@@ -182,16 +182,21 @@
             </div>
           </div>
         <div id="InterierMenu">
-          <div>
-            <span>
-            <p>VÝROBCA:<button style="margin-left: 80px;" ng-click= "toggleProdMenu();">-></button></p></span>
+          <div> 
+            <div id="sipka" ng-click="toggleProdMenu()"> </div>
+            <p>VÝROBCA:</p>
           </div>
+          <div>
+            <h4 style="color: #000000">Drevona</h4>
+          </div>
+          <!--
           <div class="form-group"style="position:relative; ">
-            <select class="form-control input-sm" 
+            <select class="form-control input-sm"
                 ng-model="vyrobca"
                 ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
             </select>
-          </div>  
+          </div>
+          -->
           <div>
             <span>
               <p>TYP IZBY:</p>
@@ -232,14 +237,10 @@
     </div>
 
     <div class="btn-menu">
-      <div id="objectManipulation">
-        <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
-        <button id="objRot" ng-click="move(); activeR();" class="fps-btn2 btn">ROTACIA</button>
-        <button id="ok" class="fps-btn-round btn">OK</button>
-      </div>
-      <div id="colorCh">
-        <button class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
-      </div>
+      <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
+      <button id="objRot" ng-click="move(); activeR();" class="fps-btn2 btn">ROTACIA</button>
+      <button id="ok" class="fps-btn-round btn">OK</button>
+      <button id="colorCh" class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
     </div>
 
     <div class="right-menu">
@@ -355,6 +356,7 @@
     var Module = {
     doNotCaptureKeyboard: true,
     //keyboardListeningElement: document.getElementById('spa'),
+    //WebGLInput.captureAllKeyboardInput = false,
     TOTAL_MEMORY: 838860800,
     filePackagePrefixURL: "Release/",
     memoryInitializerPrefixURL: "Release/",

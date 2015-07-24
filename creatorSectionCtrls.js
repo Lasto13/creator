@@ -217,6 +217,24 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     //document.appendChild(fpsText);
   }
 
+  var setInputValue = function(){
+    var inpt = document.getElementById('sp'),
+      _k = '',
+      _kk = '';
+
+      inpt.addEventListener('keyup', function(e){
+      if(e.keyCode === 8 && _kk.length > 0) {
+      _kk = _kk.substring(0, _kk.length - 1);
+      this.value = _kk;
+      }
+      else {
+      _k = e.key;
+      _kk = _kk + _k;
+      this.value = _kk;
+      }
+    }, false);
+  }
+
   $scope.Kvalita = function(value){
     SendMessage("Settings","setLevel",value);
   }
@@ -227,10 +245,13 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     SendMessage("Settings","ShowTextFromWeb",value);
   }
   $scope.UlozitProjekt = function(){
+    setInputValue();
+    /*
     $('#sp').focus();
     console.log(Module);
     Module.keyboardListeningElement = document.getElementById('sp');
     console.log(Module);
+    */
     //console.log(document.activeElement);
       var saveModal = $modal.open({
       keyboard: false,
@@ -242,7 +263,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
 
   setShowRozmery = function(show){
     if(show === "0"){
-      console.log("Volame ta ?");
       $('#RozmeryVypnute').prop('checked',true);
       $scope.RozmerySet(0);
     }
@@ -253,10 +273,10 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
   }
 
   $scope.NovyProjekt = function(){
-  $('#Settings').css({ top: -470 + 'px' });
+    $('#Settings').css({ top: -470 + 'px' });
     $('#SaveProject').css({ top: -50 + 'px' });
     $('#LoadProject').css({ top: -300 + 'px' });
-  var projectModal= $modal.open({
+    var projectModal= $modal.open({
       //backdrop: 'static',
       keyboard: false,
       templateUrl: 'partials/newProject.html',
@@ -782,7 +802,21 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     $scope.SelectedProducts = $scope.menuData.element.products;
   }
 
+  $scope.intDefAction = function(){
+    SendMessage("FunctionsManager","SetFunctionActive","G03_DefaultAction");
+  }
+
+  $scope.intRotAction = function(){
+    SendMessage("FunctionsManager","SetFunctionActive","G03_Rotate");
+    console.log("asdasd");
+  }
+
+  $scope.intDelAction = function(){
+    SendMessage("FunctionsManager","SetFunctionActive","G03_Delete");
+  }
+
   setDefaultFunctionInterier = function(){
+    $("#B15").click();
   }
 
   $scope.example1data = [ {id: 1, label: "Obyvacka"}, {id: 2, label: "Kuchyna"}, {id: 3, label: "Spalna"}];
@@ -812,33 +846,43 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     
   // function to 'open' a tab
   $scope.openTab = function (tab) {
+    console.log(tab);
+    
 
   // check if tab is already open
   if ($scope.isOpenTab(tab.uidisplayname)) {
-    var productindex = [];
-    for (var i = 0; i < tab.child.length; i++){
-      var index = $scope.activeTT.indexOf(tab.child[i]);
-      $scope.activeTT.splice(index,1);
-      console.log($scope.activeTT);
-    }
+    
+    if (!tab.child[0].hasOwnProperty("parentid"))
+
+      for (var i = 0; i < tab.child.length; i++){
+        if (!tab.child[i].hasOwnProperty("parentid")){
+        var index = $scope.activeTT.indexOf(tab.child[i]);
+        $scope.activeTT.splice(index,1);
+        console.log($scope.activeTT);
+        }
+      }
       //if it is, remove it from the activeTabs array
       $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
       tab.toggled = !tab.toggled;
+      //$scope.activeTT = [];
     } else {
       // if it's not, add it!
-      console.log("chil" + tab.child.length);
-        for (var i=0; i < tab.child.length; ++i){
-          if (tab.child[0].hasOwnProperty("parentid")){
-            $scope.activeTT.push(tab.child[i]);
-            console.log($scope.activeTT);
-          }
-          else {
-            console.log(tab.child[i]);
-            $scope.activeTT.push(tab.child[i]);
-          }
+      for (var i=0; i < tab.child.length; ++i){
+        if (tab.child[0].hasOwnProperty("parentid") && tab.wasOpened !== true){
+          //console.log($scope.activeTT.indexOf(tab.child[i]));
+          $scope.activeTT.push(tab.child[i]);
+          //tab.child[i].toggled = false;
+          console.log($scope.activeTT);
+          console.log(tab.child[i]);
         }
+        else if (!tab.child[0].hasOwnProperty("parentid")) {
+          //console.log(tab.child[i]);
+          $scope.activeTT.push(tab.child[i]);
+        }
+      }
       $scope.activeTabs.push(tab.uidisplayname);
       tab.toggled = !tab.toggled;
+      tab.wasOpened = true;
     }
   }
 
@@ -846,7 +890,7 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     $scope.productsToShow = [];
     for (var i = 0 ; i < $scope.activeTT.length; i++){
       $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products);
-      console.log($scope.productsToShow);
+      //console.log($scope.productsToShow);
     }
   });
 
@@ -890,10 +934,20 @@ app.controller('interierCtrl',['$scope','menuJson', function($scope, menuJson){
     }
   });
 
+  var sipRot;
 
   $scope.toggleProdMenu = function(){
-      $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+    $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+    console.log($scope.isProductBoxDisplayed);
+    if (sipRot == true){
+      document.getElementById('sipka').style.transform = 'rotate(0deg)';
+      sipRot = false
     }
+    else{
+      document.getElementById('sipka').style.transform = 'rotate(180deg)';
+      sipRot=true;
+    }
+  }
 
   $scope.CenterInterier = function(){
     SendMessage("Main Camera", "ResetPosition");
@@ -994,7 +1048,7 @@ app.controller('FPSCtrl',['$scope', function($scope){
     SendMessage("FpsManager","zmenitMaterial");
   }
 
-  $scope.closeRoundMenu = function(){
+  var hideAll = function(){
     document.getElementById('change-mat').style.visibility = 'hidden';
     document.getElementById('close').style.visibility = 'hidden';
     document.getElementById('add').style.visibility = 'hidden';
@@ -1004,8 +1058,11 @@ app.controller('FPSCtrl',['$scope', function($scope){
     document.getElementById("ok").style.visibility = 'hidden';
     document.getElementById("objRot").style.visibility = 'hidden';
     document.getElementById("colorCh").style.visibility = 'hidden';
+  }
 
-    console.log("roundclose");
+  $scope.closeRoundMenu = function(){
+    hideAll();
+
     SendMessage("FpsManager","X");
   }
 

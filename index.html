@@ -30,6 +30,14 @@
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
 
+    <div id="splash-sc">
+      <div id="loader"></div>
+      <div class="loader-count"></div>
+      <div class="talk-to">
+        <p></p>
+      </div>
+    </div>
+
     <div  id = "canvasHolder">
       <canvas id="canvas" oncontextmenu="event.preventDefault()" ></canvas>
     </div>
@@ -246,8 +254,10 @@
     <div class="right-menu">
       <div class="input-menu">
         <input id="wasd" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
+        <label for="wasd"></label>
         <img src="img/fps_gui/km.png">
         <input id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
+        <label for="lc"></label>
         <img src="img/fps_gui/mouse.png">
       </div>
       <div class="d23" ng-click="editor()">
@@ -288,13 +298,32 @@
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->
+
   <script type='text/javascript'>
-  /*
-  $(document).on('click',function(){
-    console.log(document.activeElement);
-    console.log(Module);
-  })
-*/
+
+  $(document).load(function () {
+      console.log('asdfasfgsdg');
+      document.getElementById('B13').addEventListener('click',function(e){
+      console.log(e);
+    });
+  });
+      
+  var clientWidth = window.innerWidth, 
+      clientHeight = window.innerHeight,
+      leftP = clientWidth/2 - 10,
+      topP = clientHeight/2 - 10; 
+      leftT = clientWidth/2 - 200,
+      topT = clientHeight/2 +80; 
+      console.log(window.clientWidth);
+  var perc = document.getElementById("splash-sc").children[1],
+      text = document.getElementById("splash-sc").children[2];
+
+      perc.style.left = leftP + 'px';
+      text.style.left = leftT + 'px';
+
+      perc.style.top = topP +'px';
+      text.style.top = topT +'px';
+
     $(function() {
       $( "#slider" ).slider();
     });

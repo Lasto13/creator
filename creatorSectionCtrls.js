@@ -2,8 +2,6 @@
 
 app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$timeout', function($scope, $modal, $compile,$http,$window,$timeout){
   
-  
-
   console.logError = console.log;
 
   $scope.bridge={
@@ -177,23 +175,46 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
       }, 3000);
   }
 
+  $("input:radio[name=view]").click(function(){
+    var $id = $(this).val();
+    /*$.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
+      $("#results").html(data);
+    });*/
+  });
+
+  $("#B13").click(function(e){
+
+    console.log(e);
+    var $id = $(this).attr('id');
+    $("a.radio-view").removeClass('btn-my2');
+    $("a.radio-view").addClass('btn-my');
+    $("a#" + $id).addClass('btn-my2');    
+  });
+
+  $scope.set_view = function($inputid) {
+    $("input#" + $inputid).click();
+  }
+
   $scope.Podorys = function(){
     SendMessage("CanvasEditor","changeArea",0);
+    $('#B0').click();
   }
   $scope.DW = function(){
-    console.log("zmena na DW");
     SendMessage("CanvasEditor","changeArea",2);
+    $('#BDW5').click();
   }
   $scope.Interier = function(){
     SendMessage("CanvasEditor","changeArea",5);
   }
 
   $scope.D2D = function(){
-    console.log("Klikol som");
     SendMessage("CanvasEditor","SetView2D");
   }
   $scope.D3D = function(){
     SendMessage("CanvasEditor","SetView3D");
+    if ($scope.activeMenu.first == true){
+      $('#B0').click();
+    }
   }
   $scope.Center = function(){
     SendMessage("Main Camera","ResetPosition");
@@ -421,6 +442,7 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
     $("input#" + $inputid).click(); 
   }
   $("a.radio-picture").click(function(){
+    console.log("dpc ");
     var $id = $(this).attr('id');
     $("a.radio-picture").removeClass('btn-my2');
     $("a.radio-picture").addClass('btn-my');
@@ -435,7 +457,7 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
     });
     
   });
-  
+  /*
   $("a.radio-view").click(function(){
     var $id = $(this).attr('id');
     $("a.radio-view").removeClass('btn-my2');
@@ -444,9 +466,10 @@ app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
   });
 
   $scope.set_view = function($inputid) {
+    console.log($inputid);
     $("input#" + $inputid).click();
   }
-
+  */
   $scope.NoOp = function(){
     SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
   }  

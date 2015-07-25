@@ -4,6 +4,28 @@ a {
 	color: #7ca616;
 }
 
+#splash-sc{
+	width: 100%;
+	height: 100%;
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+	position: absolute;
+	z-index: 1001;
+}
+
+.loader-count{
+	font-family: Roboto-Regular;
+	position: absolute;
+	text-align: center;
+	z-index: 1002;
+}
+
+.talk-to{
+	width: 400px;
+	height: 50;
+	position: absolute;
+	text-align: center;
+}
+
 #sp{
 	position: relative;
 	z-index: 100000;
@@ -454,12 +476,13 @@ font-family: Roboto-Regular;
 	/*height: 100%;*/
 	width: 100%;
 	top: 80px;
+	pointer-events: none;
 }
 
 .dw-section #dw-toolbar{
 	position: relative;
 	float: left;
-	height: 97px;
+	height: 100px;
 	width: 100%;
 	pointer-events: auto;
 	background-color: #FFF;
@@ -550,6 +573,10 @@ font-family: Roboto-Regular;
 	width: 50px;
 	height: 28px;
 	float: right;
+
+	transition: all 0.5s ease-out 0s;
+	-moz-transition: all 0.5s ease-in-out;
+	-webkit-transition: all 0.5s ease-in-out;
 }
 
 .interier-section #ProductBox{
@@ -846,6 +873,22 @@ font-family: Roboto-Regular;
 
 .fps-section .right-menu .input-menu input{
 	margin-left: 20px;
+	display:none; 
+}
+
+.fps-section .right-menu .input-menu label {
+    display:inline-block;
+    background: url('img/radio_button_inactive.png');
+    width: 21px;
+	height: 21px;
+	margin-bottom: -4px;
+	margin-left: 22px;
+}
+
+.fps-section .right-menu .input-menu input[type="radio"]:checked + label { 
+    background-color:#7ca616;
+    background: url('img/radio_button_active.png');
+    margin-left: 19px;
 }
 
 .fps-section .right-menu .d23{

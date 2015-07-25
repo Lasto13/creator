@@ -284,7 +284,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
       templateUrl:'partials/saveProject.html',
       controller: 'SaveProjectCtrl',
       transclude: true
-    }); 
+    });
     */
   }
 

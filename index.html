@@ -309,38 +309,25 @@
   <!--  DIRECTIVE  div rozalia></div-->
 
   <script type='text/javascript'>
-  //Testovaci Koment
-  window.addEventListener('load', function (e) {
-    document.getElementById('B13').addEventListener('click', function (e) {
-      console.log(e.target.className);
-      $(e.target).removeClass('btn-my2');
-      $(e.target).addClass('btn-my');
-      $(e.target).addClass('btn-my2');
+      window.addEventListener('load', function (e) {
+          document.getElementById('B13').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B12').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B24').addEventListener('click', function () { console.log("Funkcia novy projekt"); });
+          document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); });
+          document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); });
+          document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); });
 
-      $('#B12').removeClass('btn-my2');
-      $('#B12').addClass('btn-my');
+          document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; }, false);
 
-    }, false);
+          document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
+          
+          function btnClassRplc(a) {
+              var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
 
-    document.getElementById('B12').addEventListener('click', function (e) {
-      console.log(e.target.className);
-      $(e.target).removeClass('btn-my2');
-      $(e.target).addClass('btn-my');
-      $(e.target).addClass('btn-my2');
-
-      $('#B13').removeClass('btn-my2');
-      $('#B13').addClass('btn-my');
-    }, false);
-
-    document.getElementById('sp-holder').addEventListener('click', function (e) {
-      this.style.display = "none";
-    }, false);
-
-    document.getElementById('sp-content').addEventListener('click', function (e) {
-      e.stopPropagation();
-    }, false);
-
-  }, false);
+              for (var i = 0, iL = _pRa.length; i < iL; i++) _pRa[i].className = 'Button btn-my';
+              a.target.className = 'Button btn-my radio-view btn-my2';
+          }
+      }, false);
       
   var clientWidth = window.innerWidth, 
       clientHeight = window.innerHeight,
@@ -364,19 +351,6 @@
   </script>
   
   <script type='text/javascript'>
-    $( "#B24" ).click(function() {
-      console.log("Funkcia novy projekt");
-    });
-    $( "#B25" ).click(function() {
-      console.log("nacitat projekt");
-    });
-    $( "#B26" ).click(function() {
-      console.log("Ulozit projekt");
-    });
-    $( "#B27" ).click(function() {
-      console.log("Nastavenia");
-    });
-
     lastoPlugin.showDeleteCursor();
     //$("#cursor").click(lastoPlugin.showNormalCursor());
 

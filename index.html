@@ -211,11 +211,7 @@
             </span>
           </div>  
           <div class="form-group">
-            <select class="form-control input-sm" 
-                ng-model="TypIzby"
-                ng-options="element.uidisplayname for element in menuData.elements"
-                ng-change = "changedValue(TypIzby)">
-            </select>
+            <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
           </div>   
           <div>
             <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
@@ -312,15 +308,14 @@
       window.addEventListener('load', function (e) {
           document.getElementById('B13').addEventListener('click', btnClassRplc, false);
           document.getElementById('B12').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B24').addEventListener('click', function () { console.log("Funkcia novy projekt"); });
-          document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); });
-          document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); });
-          document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); });
-
+          document.getElementById('B24').addEventListener('click', function () { console.log("Funkcia novy projekt"); }, false);
+          document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); }, false);
+          document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); }, false);
+          document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); }, false);
+          //document.getElementById('lot').addEventListener('click', function () { var _brw = getBrowser(); SendMessage("CameraObject", "setBrowser", browseris); }, false);
           document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; }, false);
-
           document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
-          
+
           function btnClassRplc(a) {
               var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
 
@@ -328,16 +323,17 @@
               a.target.className = 'Button btn-my radio-view btn-my2';
           }
       }, false);
-      
-  var clientWidth = window.innerWidth, 
-      clientHeight = window.innerHeight,
-      leftP = clientWidth/2 - 10,
-      topP = clientHeight/2 - 10; 
-      leftT = clientWidth/2 - 200,
-      topT = clientHeight/2 +80; 
-      console.log(window.clientWidth);
-  var perc = document.getElementById("splash-sc").children[1],
-      text = document.getElementById("splash-sc").children[2];
+
+      window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
+
+      var clientWidth = window.innerWidth,
+          clientHeight = window.innerHeight,
+          leftP = clientWidth / 2 - 10,
+          topP = clientHeight / 2 - 10,
+          leftT = clientWidth / 2 - 200,
+          topT = clientHeight / 2 + 80,
+          perc = document.getElementById("splash-sc").children[1],
+          text = document.getElementById("splash-sc").children[2];
 
       perc.style.left = leftP + 'px';
       text.style.left = leftT + 'px';
@@ -345,12 +341,8 @@
       perc.style.top = topP +'px';
       text.style.top = topT +'px';
 
-    $(function() {
-      $( "#slider" ).slider();
-    });
-  </script>
+    $( "#slider" ).slider();
   
-  <script type='text/javascript'>
     lastoPlugin.showDeleteCursor();
     //$("#cursor").click(lastoPlugin.showNormalCursor());
 
@@ -365,27 +357,10 @@
         return browser;
     }
 
-    function closeLoader () {
+    /*function closeLoader () {
       var width = $(document).width();
       document.getElementById('loading-box').style.display = "none";
-    }
-
-    $("#lot").click(function(){
-      var browseris = getBrowser();
-      console.log(browseris);
-      SendMessage("CameraObject","setBrowser",browseris);
-    });
-
-  </script>
-  <script type="text/javascript">
-    window.addEventListener('keydown', function (e) {
-      if (e.keyCode === 8) {
-      if (e.target === document.body) {
-          e.preventDefault();
-        }
-      }
-    }, true);
-
+    }*/
   </script>
   
   <script type='text/javascript'>
@@ -394,36 +369,29 @@
     doNotCaptureKeyboard: true,
     //keyboardListeningElement: document.getElementById('spa'),
     //WebGLInput.captureAllKeyboardInput = false,
-    TOTAL_MEMORY: 838860800,
+    
+    TOTAL_MEMORY: 285212672, //838860800
     filePackagePrefixURL: "Release/",
     memoryInitializerPrefixURL: "Release/",
     preRun: [],
     postRun: [],
     print: (function() {
-      return function(text) {
-        console.log (text);
-      };
+      return function(text) { console.log (text); };
     })(),
-    printErr: function(text) {
-      console.error (text);
-    },
+    printErr: function(text) { console.error (text); },
     canvas: document.getElementById('canvas'),
     progress: null,
     setStatus: function(text) {
-      if (this.progress == null) 
-      {
-        if (typeof UnityProgress != 'function')
-          return;
+      if (this.progress == null) {
+        if (typeof UnityProgress != 'function') return;
         this.progress = new UnityProgress (canvas);
       }
       if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
       if (text === Module.setStatus.text) return;
       this.progress.SetMessage (text);
       var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-      if (m)
-        this.progress.SetProgress (parseInt(m[2])/parseInt(m[4]));
-      if (text === "") 
-        this.progress.Clear()
+      if (m) this.progress.SetProgress (parseInt(m[2])/parseInt(m[4]));
+      if (text === "") this.progress.Clear()
     },
     totalDependencies: 0,
     monitorRunDependencies: function(left) {
@@ -433,14 +401,7 @@
   };
   Module.setStatus('Downloading (0.0/1)');
 
-  Module.canvas.requestPointerLock = Module.canvas.requestPointerLock ||
-  Module.canvas.mozRequestPointerLock ||
-  Module.canvas.webkitRequestPointerLock;
-                            /*
-  Module.canvas.onclick = function(){
-    Module.canvas.requestPointerLock();
-  }
-  */
+  Module.canvas.requestPointerLock = Module.canvas.requestPointerLock || Module.canvas.mozRequestPointerLock || Module.canvas.webkitRequestPointerLock;
   </script>
 
   <script src="Release/UnityConfig.js"></script>
@@ -484,8 +445,6 @@
     };
     codeXHR.send(null);
   }
-  </script>
-
   </script>
   </body>
 </html>

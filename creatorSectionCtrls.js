@@ -71,7 +71,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
 
     var promise = $http({
       method : 'GET',
-      url : 'http://dev.enli.sk/api/places/'+placeID+'/save', 
+      url : 'http://dev.enli.sk/api/places/'+placeID+'/save',
       //transformRequest: angular.identity,
       headers : { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token'))}
     });
@@ -213,7 +213,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
   $scope.D3D = function(){
     SendMessage("CanvasEditor","SetView3D");
     if ($scope.activeMenu.first == true){
-      $('#B0').click();
+      //$('#B0').click();
     }
   }
   $scope.Center = function(){
@@ -238,6 +238,16 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     //document.appendChild(fpsText);
   }
 
+  $scope.Kvalita = function(value){
+    SendMessage("Settings","setLevel",value);
+  }
+  $scope.HranySet = function(value){
+    SendMessage("Settings","setAA",value);
+  }
+  $scope.RozmerySet = function(value){
+    SendMessage("Settings","ShowTextFromWeb",value);
+  }
+
   var setInputValue = function(){
     var inpt = document.getElementById('sp'),
       _k = '',
@@ -248,7 +258,7 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
       _kk = _kk.substring(0, _kk.length - 1);
       this.value = _kk;
       }
-      else {
+      else if (e.keyCode !== 27 || e.keyCode !== 17 || e.keyCode !== 9 || e.keyCode !== 18 || e.keyCode !== 37 || e.keyCode !== 38 || e.keyCode !== 39 || e.keyCode !== 40){
       _k = e.key;
       _kk = _kk + _k;
       this.value = _kk;
@@ -256,16 +266,10 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     }, false);
   }
 
-  $scope.Kvalita = function(value){
-    SendMessage("Settings","setLevel",value);
-  }
-  $scope.HranySet = function(value){
-    SendMessage("Settings","setAA",value);
-  }
-  $scope.RozmerySet = function(value){
-    SendMessage("Settings","ShowTextFromWeb",value);
-  }
   $scope.UlozitProjekt = function(){
+    
+    document.getElementById('sp-holder').style.display = "block";
+
     setInputValue();
     /*
     $('#sp').focus();
@@ -274,12 +278,29 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     console.log(Module);
     */
     //console.log(document.activeElement);
+    /*
       var saveModal = $modal.open({
       keyboard: false,
       templateUrl:'partials/saveProject.html',
       controller: 'SaveProjectCtrl',
       transclude: true
-    });
+    }); 
+    */
+  }
+
+  $scope.cancel = function () {
+    console.log("Malo by to vypnut");
+    document.getElementById('sp-holder').style.display = "none";
+    
+    document.getElementById('sp').value = "";
+  }
+
+  $scope.potvrdit = function () {
+    var saveName = document.getElementById('sp').value;
+    SendMessage("Save Game Manager","SaveFromWeb",saveName);
+    document.getElementById('sp-holder').style.display = "none";
+
+    document.getElementById('sp').value = "";
   }
 
   setShowRozmery = function(show){
@@ -312,9 +333,6 @@ app.controller('mainCtrl',['$scope','$modal','$compile','$http','$window','$time
     //projectModal.result;
     //windowClass: 'detailWindow'
   }
-
-
-
 
   $scope.CleanProject =function(){
     SendMessage("NewProject","NewProject");
@@ -368,8 +386,8 @@ app.controller('SaveProjectCtrl',['$scope', '$modalInstance',  function($scope, 
 
   $scope.potvrdit = function () {
     $modalInstance.close(SendMessage("NewProject","NewProject"));
-    
   }
+
 }])
 
 app.controller('podorysCtrl',['$scope','matJson', function($scope, matJson){
@@ -1065,6 +1083,7 @@ app.controller('FPSCtrl',['$scope', function($scope){
 
   $scope.destroyObject = function(){
     SendMessage("FpsManager","Odstranit");
+    hideAll();
   }
   
   $scope.changeMat = function(){
@@ -1085,7 +1104,6 @@ app.controller('FPSCtrl',['$scope', function($scope){
 
   $scope.closeRoundMenu = function(){
     hideAll();
-
     SendMessage("FpsManager","X");
   }
 

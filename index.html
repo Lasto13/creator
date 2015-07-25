@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="jquery-ui.css">
     <link rel="stylesheet" href="buttonstyle.css" />
 
-    <!-- VENDOR KO KO TKO-->
+    <!-- VENDOR -->
     <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="jquery-ui.js"></script>
     <script type="text/javascript" src="plugin.jslib"></script>
@@ -234,13 +234,13 @@
     <div class="round-menu">
       <div id="del" ng-click="destroyObject()">
       </div>
-      <div id="change-mat" ng-click="changeMat(); toggleFpsMats();">
+      <div id="change-mat" ng-click="changeMat()">
       </div>
       <div id="close" ng-click="closeRoundMenu()">
       </div>
-      <div id="add" ng-click="addObj(); toggleFpsProds();" >
+      <div id="add" ng-click="addObj();">
       </div>
-      <div id="change-obj" ng-click="changeObj(); toggleFpsProds();">
+      <div id="change-obj" ng-click="changeObj();">
       </div>
     </div>
 
@@ -297,16 +297,50 @@
     </span>
   </div>
 
+  <div id="sp-holder">
+    <div id="sp-content">
+      <h4>Uložiť projekt ?</h4>
+      <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
+      <button class="btn enli-btn" ng-click="potvrdit()">Áno</button>
+      <button class="btn enli-btn" ng-click="cancel()">Nie</button>
+    </div>
+  </div>
+
   <!--  DIRECTIVE  div rozalia></div-->
 
   <script type='text/javascript'>
 
-  $(document).load(function () {
-      console.log('asdfasfgsdg');
-      document.getElementById('B13').addEventListener('click',function(e){
-      console.log(e);
-    });
-  });
+  window.addEventListener('load', function (e) {
+    document.getElementById('B13').addEventListener('click', function (e) {
+      console.log(e.target.className);
+      $(e.target).removeClass('btn-my2');
+      $(e.target).addClass('btn-my');
+      $(e.target).addClass('btn-my2');
+
+      $('#B12').removeClass('btn-my2');
+      $('#B12').addClass('btn-my');
+
+    }, false);
+
+    document.getElementById('B12').addEventListener('click', function (e) {
+      console.log(e.target.className);
+      $(e.target).removeClass('btn-my2');
+      $(e.target).addClass('btn-my');
+      $(e.target).addClass('btn-my2');
+
+      $('#B13').removeClass('btn-my2');
+      $('#B13').addClass('btn-my');
+    }, false);
+
+    document.getElementById('sp-holder').addEventListener('click', function (e) {
+      this.style.display = "none";
+    }, false);
+
+    document.getElementById('sp-content').addEventListener('click', function (e) {
+      e.stopPropagation();
+    }, false);
+
+  }, false);
       
   var clientWidth = window.innerWidth, 
       clientHeight = window.innerHeight,

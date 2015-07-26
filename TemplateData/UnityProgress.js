@@ -48,8 +48,5 @@ function UnityProgress (dom) {
                 a.target.className = 'Button btn-my radio-view btn-my2';
             }
         }, 1);
-        window.addEventListener('load', function (e) {
-            
-        }, false);
     }
 }

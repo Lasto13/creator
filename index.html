@@ -26,7 +26,7 @@
     <div  id = "canvasHolder">
       <canvas id="canvas" oncontextmenu="event.preventDefault()" ></canvas>
     </div>
-    
+
     <div id='wrapper'>
       <div id = "header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
       <!--
@@ -235,7 +235,7 @@
 
       <div class="right-menu">
         <div class="input-menu">
-          <input id="wasd" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
+          <input id="wasd" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
           <img src="img/fps_gui/km.png">
           <input id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">

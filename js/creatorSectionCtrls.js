@@ -2,6 +2,8 @@
 app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', '$timeout', function ($scope, $modal, $compile, $http, $window, $timeout) {
     console.logError = console.log;
 
+    console.log(isFps);
+
     $scope.bridge = {
         changeSection: function () { $scope.activateMenu(1); }
     };
@@ -15,13 +17,13 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         $scope.activeMenu = {};
         console.log(n);
         switch (n) {
-            case 1: $scope.activeMenu.first = true; break;
-            case 2: $scope.activeMenu.second = true; break;
-            case 3: $scope.activeMenu.third = true; break;
-            case 4: $scope.activeMenu.fourth = true; break;
+            case 1: $scope.activeMenu.first = true; chMin(); break;
+            case 2: $scope.activeMenu.second = true; chMin(); break;
+            case 3: $scope.activeMenu.third = true; chMin(); break;
+            case 4: $scope.activeMenu.fourth = true; chFull(); break;
             default: $scope.activeMenu = {};
         }
-        console.log($scope.activeMenu);
+        isFps = $scope.activeMenu;
     }
     /*
     calculateMaxHeight();
@@ -136,6 +138,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
             case "6": $scope.activeMenu.fourth = true; chFull(); break;
             default: $scope.activeMenu = {};
         }
+        isFps = $scope.activeMenu;
 
         if (!$scope.$$phase) $scope.$apply();
         console.log($scope.activeMenu);
@@ -331,14 +334,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
 
     $scope.OtvoritProjekt = function (jsonstring) {
         SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
-        console.log(jsonstring);
     }
 }]);
 
 app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function ($scope, $modalInstance, bridge) {
 
     $scope.cancel = function () {
-        console.log("Malo by to vypnut");
         $modalInstance.dismiss('cancel');
     }
 

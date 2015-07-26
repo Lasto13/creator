@@ -2,6 +2,8 @@ browserDimensions();
 window.addEventListener('resize', browserDimensions, false);
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 
+var isFps = false;
+
 function browserDimensions() {
     var clientWidth = window.innerWidth,
         clientHeight = window.innerHeight,
@@ -22,8 +24,17 @@ function browserDimensions() {
         c_width = clientWidth - 250,
         c_height = clientHeight - 180;
 
-    canvasH.style.width = c_width +'px';
-    canvasH.style.height = c_height +'px';
+    if (isFps){
+        canvasH.style.width = clientWidth + 'px';
+        canvasH.style.height = clientHeight +'px'; 
+        canvasH.style.left = 0 +'px';
+        canvasH.style.top = 0 +'px';
+    } else {
+        canvasH.style.width = c_width +'px';
+        canvasH.style.height = c_height +'px'; 
+        canvasH.style.left = 250 +'px';
+        canvasH.style.top = 180 +'px';
+    }
 }
 
 lastoPlugin.showDeleteCursor();

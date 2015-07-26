@@ -168,7 +168,7 @@
             <a id="BI5" class="Button btn-my2 radio-i" ng-click = "intDefAction(); set_i('icategory_1')"></a>
 
             <input type="radio"  id="icategory_2" class="hidden" />
-            <a id="BI6" class="Button btn-my radio-i" ng-click = "intRotAction(); set_i('dwcategory_2')"></a>
+            <a id="BI6" class="Button btn-my radio-i" ng-click = "intRotAction(); set_i('icategory_2')"></a>
 
             <input type="radio"  id="icategory_3" class="hidden" />
             <a id="BI7" class="Button btn-my radio-i" ng-click = "intDelAction(); set_i('icategory_3')"></a>
@@ -306,12 +306,23 @@
 
   <script type='text/javascript'>
       window.addEventListener('load', function (e) {
+          document.getElementById('B0').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B1').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B2').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B3').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B4').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B5').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B8').addEventListener('click', btnClassRplc, false);
+          document.getElementById('B9').addEventListener('click', btnClassRplc, false);
           document.getElementById('B13').addEventListener('click', btnClassRplc, false);
           document.getElementById('B12').addEventListener('click', btnClassRplc, false);
           document.getElementById('B24').addEventListener('click', function () { console.log("Funkcia novy projekt"); }, false);
           document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); }, false);
           document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); }, false);
           document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); }, false);
+          //Chlapi zatial nechapem zmysel tejto funkcie, ale prepisal som ju sem
+          //document.querySelector('input:radio[name=view]').addEventListener('click', function (e) { var _id = this.value; }, false);
+          //\\
           //document.getElementById('lot').addEventListener('click', function () { var _brw = getBrowser(); SendMessage("CameraObject", "setBrowser", browseris); }, false);
           document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; }, false);
           document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);

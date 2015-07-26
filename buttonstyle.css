@@ -2,6 +2,13 @@
 
 a { color: #7ca616; }
 
+#wrapper{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+
 #splash-sc{
 	width: 100%;
 	height: 100%;
@@ -326,7 +333,7 @@ input[type="radio"]:checked + span {
 	margin-left:25px;
 }
 #SaveProject p{
-font-family: Roboto;
+	font-family: Roboto;
 	color: #7CA616;
 	font-size: 1.2em;
 	margin-left:2px;
@@ -336,12 +343,15 @@ font-family: Roboto;
 	font-family:Roboto; 
 	color:#7CA616;
 }
+
+/* --------- PODORYS SECTION ---------*/
+
 .podorys-section{
 	position: absolute;
 	top: 80px;
 	z-index: 999;
 	width: 100%;
-	/*height: 100%;*/
+	height: 100%;
 	pointer-events:none;
 }
 
@@ -401,7 +411,7 @@ font-family: Roboto;
 	font-weight: bold;
 }
 .podorys-section .left-menu-item{
-	width: 100%; 
+	width: 84%;
 	position:relative;
 	left:40px;
 	margin-bottom: 10px; 
@@ -506,7 +516,7 @@ font-family: Roboto;
 .dw-section {
 	position: absolute;
 	z-index: 999;
-	/*height: 100%;*/
+	height: 100%;
 	width: 100%;
 	top: 80px;
 	pointer-events: none;
@@ -594,7 +604,7 @@ font-family: Roboto;
 	position: relative;
 	top: 80px;
 	width: 100%;
-	/*height: 100%;*/
+	height: 100%;
 	pointer-events: none;
 	z-index: 999;
 }

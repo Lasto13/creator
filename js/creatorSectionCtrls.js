@@ -26,10 +26,13 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
 
     calculateMaxHeight();
     function calculateMaxHeight() {
+        console.log("volam <");
         _vwpHeight = window.innerHeight;
         var _clss = document.getElementsByClassName('left-menu')[0];
         height = _vwpHeight - 180;
-        for (var i = 0; i < _clss.length; i++) _clss[i].style.height = height + 'px';
+        console.log(_clss);
+        _clss.style.height = height + 'px';
+        for (var i = 0; i < _clss.length; i++) {_clss[i].style.height = height + 'px';}
     }
 
     login();
@@ -854,6 +857,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
                     //tab.child[i].toggled = false;
                     console.log($scope.activeTT);
                     console.log(tab.child[i]);
+
                 }
                 else if (!tab.child[0].hasOwnProperty("parentid")) {
                     //console.log(tab.child[i]);
@@ -870,8 +874,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
             $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products);
-            //console.log($scope.productsToShow);
         }
+        if ($scope.productsToShow.length > 0) {$scope.isProductBoxDisplayed = true} else {$scope.isProductBoxDisplayed = false};
     });
 
     $scope.ClickedTypeType = function (tab) {
@@ -915,7 +919,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     $scope.toggleProdMenu = function () {
         $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
-        console.log($scope.isProductBoxDisplayed);
         if (sipRot == true) {
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
             sipRot = false
@@ -934,8 +937,9 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     //$("#wasd").click();
-    if(typeof SendMessage === 'function') SendMessage("FpsManager", "mouseWASD_controll");
+    //if(typeof SendMessage === 'function') SendMessage("FpsManager", "mouseWASD_controll");
     //\\
+    /*
     $scope.toggleFpsMats = function () {
         $scope.isFpsMats = !$scope.isFpsMats;
     };
@@ -957,7 +961,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         if (!!value) e.style.right = "0px";
         else e.style.right = "-250px";
     });
-
+    */
     setOkTrigger = function (string) {
         console.log("okstring" + string);
     };

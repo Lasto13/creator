@@ -27,252 +27,252 @@
     <div  id = "canvasHolder">
       <canvas id="canvas" oncontextmenu="event.preventDefault()" ></canvas>
     </div>
-    
-    <div id = "header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
-    <!--
-    <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
-    -->
-    <div ng-show="activeMenu.first" class="podorys-section" ng-controller="podorysCtrl">
-      <div id="podoris-toolbar">
-        <div id="ButtonContainer">
-          <input type="radio"  id="category_1" class="hidden" />
-          <a id="B0" class="Button btn-my radio-picture" ng-click = "NoOp(); set_radio('category_1')"></a>
+    <div id='wrapper'>
+      <div id = "header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
+      <!--
+      <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
+      -->
+      <div ng-show="activeMenu.first" class="podorys-section" ng-controller="podorysCtrl">
+        <div id="podoris-toolbar">
+          <div id="ButtonContainer">
+            <input type="radio"  id="category_1" class="hidden" />
+            <a id="B0" class="Button btn-my radio-picture" ng-click = "NoOp(); set_radio('category_1')"></a>
 
-          <input type="radio"  id="category_2" class="hidden" />
-          <a id="B1" class="Button btn-my radio-picture" ng-click = "SingleWall(); set_radio('category_2')"></a>
+            <input type="radio"  id="category_2" class="hidden" />
+            <a id="B1" class="Button btn-my radio-picture" ng-click = "SingleWall(); set_radio('category_2')"></a>
 
-          <input type="radio"  id="category_3" class="hidden" />
-          <a id="B2" class="Button btn-my radio-picture" ng-click = "CurveWall(); set_radio('category_3')"></a>
+            <input type="radio"  id="category_3" class="hidden" />
+            <a id="B2" class="Button btn-my radio-picture" ng-click = "CurveWall(); set_radio('category_3')"></a>
 
-          <input type="radio"  id="category_4" class="hidden" />
-          <a id="B3" class="Button btn-my radio-picture" ng-click = "FourWall(); set_radio('category_4')"></a>
+            <input type="radio"  id="category_4" class="hidden" />
+            <a id="B3" class="Button btn-my radio-picture" ng-click = "FourWall(); set_radio('category_4')"></a>
 
-          <input type="radio"  id="category_5" class="hidden" />
-          <a id="B4" class="Button btn-my radio-picture" ng-click = "Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
+            <input type="radio"  id="category_5" class="hidden" />
+            <a id="B4" class="Button btn-my radio-picture" ng-click = "Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
 
-          <input type="radio"  id="category_6" class="hidden" />
-          <a id="B5" class="Button btn-my radio-picture" ng-click = "AddControlPoint(); set_radio('category_6')"></a>
+            <input type="radio"  id="category_6" class="hidden" />
+            <a id="B5" class="Button btn-my radio-picture" ng-click = "AddControlPoint(); set_radio('category_6')"></a>
 
-          <input type="radio"  id="category_7" class="hidden" />
-          <a id="B8" class="Button btn-my radio-picture" ng-click = "PosunSteny(); set_radio('category_7')"></a>
+            <input type="radio"  id="category_7" class="hidden" />
+            <a id="B8" class="Button btn-my radio-picture" ng-click = "PosunSteny(); set_radio('category_7')"></a>
 
-          <input type="radio"  id="category_8" class="hidden" />
-          <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
+            <input type="radio"  id="category_8" class="hidden" />
+            <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
+          </div>
+          <div id="mierka-radio" class="form-inline">
+            
+            <input class="mierka-input" id='radio1' type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> 
+            <label for="radio1"></label>Auto
+            <input class="mierka-input" id='radio2' type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()">
+            <label for="radio2"></label>10cm
+            <input class="mierka-input" id='radio3' type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()">
+            <label for="radio3"></label> 50cm
+            <input class="mierka-input" id='radio4' type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()">
+            <label for="radio4"></label> 100cm
+            <input class="mierka-input" id='radio5' type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()">
+            <label for="radio5"></label> Vyp.
+          </div>
         </div>
-        <div id="mierka-radio" class="form-inline">
-          
-          <input class="mierka-input" id='radio1' type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> 
-          <label for="radio1"></label>Auto
-          <input class="mierka-input" id='radio2' type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()">
-          <label for="radio2"></label>10cm
-          <input class="mierka-input" id='radio3' type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()">
-          <label for="radio3"></label> 50cm
-          <input class="mierka-input" id='radio4' type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()">
-          <label for="radio4"></label> 100cm
-          <input class="mierka-input" id='radio5' type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()">
-          <label for="radio5"></label> Vyp.
-        </div>
-      </div>
-      <div class="left-menu">
-        <div class="left-menu-item">
-          <span style="position:relative; ">
-          <p>TYP STENY:</p>
-          </span>
-        </div>
-        <div class="left-menu-item">
-          <input type="radio" id="radio10" name="Type" value="Obvod" ng-click = "Obvodova()">
-          <label for="radio10"></label> Obvodová<br>
-          <input type="radio" id="radio11" name="Type" value="Vnutro" checked="checked" ng-click = "Vnutorna()">
-          <label for="radio11"></label> Vnútorná
-        </div>
-        <div class="left-menu-item">
-          <div>
+        <div class="left-menu">
+          <div class="left-menu-item">
             <span style="position:relative; ">
-            <p>VÝŠKA STIEN:</p>
+            <p>TYP STENY:</p>
             </span>
           </div>
-          <div ng-click = "ZmenaVysky();">
-            <p>
-            <input id="spinner" name="spinner" min = "2.4" max = "3.0" value="2.4" class="spinner" style="pointer-events: none;">
-            </p>
+          <div class="left-menu-item">
+            <input type="radio" id="radio10" name="Type" value="Obvod" ng-click = "Obvodova()">
+            <label for="radio10"></label> Obvodová<br>
+            <input type="radio" id="radio11" name="Type" value="Vnutro" checked="checked" ng-click = "Vnutorna()">
+            <label for="radio11"></label> Vnútorná
+          </div>
+          <div class="left-menu-item">
+            <div>
+              <span style="position:relative; ">
+              <p>VÝŠKA STIEN:</p>
+              </span>
+            </div>
+            <div ng-click = "ZmenaVysky();">
+              <p>
+              <input id="spinner" name="spinner" min = "2.4" max = "3.0" value="2.4" class="spinner" style="pointer-events: none;">
+              </p>
+            </div>
+          </div>
+          <div class="left-menu-item">
+            <div>
+              <span style="position:relative; "><p>ZMEŇ TYP STENY:</p></span>
+            </div>
+            <div id="ButtonContainer3">
+              <a id="B16" class="Button btn btn-default" ng-click = "Oznacit()">Označiť</a>
+              <a id="B17" class="Button btn btn-default" ng-click = "OznacitVsetky()">Označiť všetky</a>
+              <a id="B18" class="Button btn btn-default" ng-click = "ZmenitNaObvodove()">Zmeniť na obvodové</a>
+              <a id="B19" class="Button btn btn-default" ng-click = "ZmenitNaVnutorne()">Zmeniť na vnútorné</a>
+            </div> 
           </div>
         </div>
-        <div class="left-menu-item">
-          <div>
-            <span style="position:relative; "><p>ZMEŇ TYP STENY:</p></span>
+        <div id="MaterialChooser">
+          <div class="material-item" ng-repeat="materials in mats" class="btn-group" style="background:url({{materials.Path}}); background-size:100%">
+            <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
           </div>
-          <div id="ButtonContainer3">
-            <a id="B16" class="Button btn btn-default" ng-click = "Oznacit()">Označiť</a>
-            <a id="B17" class="Button btn btn-default" ng-click = "OznacitVsetky()">Označiť všetky</a>
-            <a id="B18" class="Button btn btn-default" ng-click = "ZmenitNaObvodove()">Zmeniť na obvodové</a>
-            <a id="B19" class="Button btn btn-default" ng-click = "ZmenitNaVnutorne()">Zmeniť na vnútorné</a>
-          </div> 
         </div>
       </div>
-      <div id="MaterialChooser">
-        <div class="material-item" ng-repeat="materials in mats" class="btn-group" style="background:url({{materials.Path}}); background-size:100%">
-          <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
-        </div>
-      </div>
-    </div>
 
-    <div ng-show="activeMenu.second" class="dw-section" ng-controller="dwCtrl">
-      
-      <div id="dw-toolbar">
-
-        <input type="radio"  id="dwcategory_1" class="hidden" />
-        <a id="BDW5" class="Button btn-my2 radio-dw" ng-click = "NoOpDW(); set_dw('dwcategory_1'); setMenu(0);"></a>
-
-        <input type="radio"  id="dwcategory_2" class="hidden" />
-        <a id="BDW6" class="Button btn-my radio-dw" ng-click = "AddWindow();set_dw('dwcategory_2'); setMenu(1);"></a>
-
-        <input type="radio"  id="dwcategory_3" class="hidden" />
-        <a id="BDW7" class="Button btn-my radio-dw" ng-click = "AddDoor();set_dw('dwcategory_3'); setMenu(2);"></a>
+      <div ng-show="activeMenu.second" class="dw-section" ng-controller="dwCtrl">
         
-        <input type="radio"  id="dwcategory_5" class="hidden" />
-        <a id="BDW9" class="Button btn-my radio-dw" ng-click = "DeleteDW(); set_dw('dwcategory_5');setMenu(0);"></a>
-      </div>
-      <div class="left-menu">
-        <div id="MenuItemWindow">
-          <div class="window-item" ng-click = "ChooseWindow(window.asset);"  ng-repeat = "window in menuData.okna.child" class="btn-group" style="background:url({{window.image}}); background-size: 100%;">
-            <!-- <div class="window-item" style="background:url({{window.image}})"> </div>
-            <a class="WindowButton" ng-click = "ChooseWindow(window.asset);" style="background:url({{window.image}}); background-size:100%"></a>-->
-          </div>
-        </div>
-        <div id="MenuItemDoor" style="left:5px;">
-          <div class="door-item" ng-click = "ChooseDoor(door.asset);" ng-repeat="door in menuData.dvere.child" class="btn-group" style="background:url({{door.image}}); background-size:100%">
-            <!--<div class="door-item" ng-click = "ChooseDoor(door.asset); "style="background:url({{door.image}}); background-size:100%"></div> -->
-          </div>
-        </div>
-      </div>
-    </div>
+        <div id="dw-toolbar">
 
-    <div class="interier-section" ng-show="activeMenu.third" ng-controller="interierCtrl">
-      <div id="interier-toolbar" >
-        <div id="buttons">
-            <input type="radio"  id="icategory_1" class="hidden" />
-            <a id="BI5" class="Button btn-my2 radio-i" ng-click = "intDefAction(); set_i('icategory_1')"></a>
+          <input type="radio"  id="dwcategory_1" class="hidden" />
+          <a id="BDW5" class="Button btn-my2 radio-dw" ng-click = "NoOpDW(); set_dw('dwcategory_1'); setMenu(0);"></a>
 
-            <input type="radio"  id="icategory_2" class="hidden" />
-            <a id="BI6" class="Button btn-my radio-i" ng-click = "intRotAction(); set_i('icategory_2')"></a>
+          <input type="radio"  id="dwcategory_2" class="hidden" />
+          <a id="BDW6" class="Button btn-my radio-dw" ng-click = "AddWindow();set_dw('dwcategory_2'); setMenu(1);"></a>
 
-            <input type="radio"  id="icategory_3" class="hidden" />
-            <a id="BI7" class="Button btn-my radio-i" ng-click = "intDelAction(); set_i('icategory_3')"></a>
-        </div>
-      </div>
-      
-      <div class="left-menu">
-        <div id="ProductBox" style="pointer-events: auto;">
-            <div  ng-repeat="prod in productsToShow" class ="btn-group">
-              <div class="prod-image-cont">
-                <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
-              </div>
-              <div class="prod-info">
-                <h3>{{prod.uidisplayname}}</h3>
-                <p> {{prod.description}}</p>
-                <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
-                <a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>
-              </div>
-            </div>
-          </div>
-        <div id="InterierMenu">
-          <div> 
-            <div id="sipka" ng-click="toggleProdMenu()"> </div>
-            <p>VÝROBCA:</p>
-          </div>
-          <div>
-            <h4 style="color: #000000">Drevona</h4>
-          </div>
-          <!--
-          <div class="form-group"style="position:relative; ">
-            <select class="form-control input-sm"
-                ng-model="vyrobca"
-                ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
-            </select>
-          </div>
-          -->
-          <div>
-            <span>
-              <p>TYP IZBY:</p>
-            </span>
-          </div>  
-          <div class="form-group">
-            <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
-          </div>   
-          <div>
-            <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
-                <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
-                    <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.toggled}" ng-click="openTab(TypeProduct); " >{{TypeProduct.uidisplayname}}</a>
-                    <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
-                </div>
-            </div>
-          </div>
-          </div>
+          <input type="radio"  id="dwcategory_3" class="hidden" />
+          <a id="BDW7" class="Button btn-my radio-dw" ng-click = "AddDoor();set_dw('dwcategory_3'); setMenu(2);"></a>
           
+          <input type="radio"  id="dwcategory_5" class="hidden" />
+          <a id="BDW9" class="Button btn-my radio-dw" ng-click = "DeleteDW(); set_dw('dwcategory_5');setMenu(0);"></a>
         </div>
+        <div class="left-menu">
+          <div id="MenuItemWindow">
+            <div class="window-item" ng-click = "ChooseWindow(window.asset);"  ng-repeat = "window in menuData.okna.child" class="btn-group" style="background:url({{window.image}}); background-size: 100%;">
+              <!-- <div class="window-item" style="background:url({{window.image}})"> </div>
+              <a class="WindowButton" ng-click = "ChooseWindow(window.asset);" style="background:url({{window.image}}); background-size:100%"></a>-->
+            </div>
+          </div>
+          <div id="MenuItemDoor" style="left:5px;">
+            <div class="door-item" ng-click = "ChooseDoor(door.asset);" ng-repeat="door in menuData.dvere.child" class="btn-group" style="background:url({{door.image}}); background-size:100%">
+              <!--<div class="door-item" ng-click = "ChooseDoor(door.asset); "style="background:url({{door.image}}); background-size:100%"></div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interier-section" ng-show="activeMenu.third" ng-controller="interierCtrl">
+        <div id="interier-toolbar" >
+          <div id="buttons">
+              <input type="radio"  id="icategory_1" class="hidden" />
+              <a id="BI5" class="Button btn-my2 radio-i" ng-click = "intDefAction(); set_i('icategory_1')"></a>
+
+              <input type="radio"  id="icategory_2" class="hidden" />
+              <a id="BI6" class="Button btn-my radio-i" ng-click = "intRotAction(); set_i('icategory_2')"></a>
+
+              <input type="radio"  id="icategory_3" class="hidden" />
+              <a id="BI7" class="Button btn-my radio-i" ng-click = "intDelAction(); set_i('icategory_3')"></a>
+          </div>
+        </div>
+        
+        <div class="left-menu">
+          <div id="ProductBox" style="pointer-events: auto;">
+              <div  ng-repeat="prod in productsToShow" class ="btn-group">
+                <div class="prod-image-cont">
+                  <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
+                </div>
+                <div class="prod-info">
+                  <h3>{{prod.uidisplayname}}</h3>
+                  <p> {{prod.description}}</p>
+                  <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
+                  <a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>
+                </div>
+              </div>
+            </div>
+          <div id="InterierMenu">
+            <div> 
+              <div id="sipka" ng-click="toggleProdMenu()"> </div>
+              <p>VÝROBCA:</p>
+            </div>
+            <div>
+              <h4 style="color: #000000">Drevona</h4>
+            </div>
+            <!--
+            <div class="form-group"style="position:relative; ">
+              <select class="form-control input-sm"
+                  ng-model="vyrobca"
+                  ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
+              </select>
+            </div>
+            -->
+            <div>
+              <span>
+                <p>TYP IZBY:</p>
+              </span>
+            </div>  
+            <div class="form-group">
+              <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
+            </div>   
+            <div>
+              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
+                  <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
+                      <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.toggled}" ng-click="openTab(TypeProduct); " >{{TypeProduct.uidisplayname}}</a>
+                      <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
+                  </div>
+              </div>
+            </div>
+            </div>
+            
+          </div>
+    </div>
+
+    <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
+      <div class="round-menu">
+        <div id="del" ng-click="destroyObject()">
+        </div>
+        <div id="change-mat" ng-click="changeMat()">
+        </div>
+        <div id="close" ng-click="closeRoundMenu()">
+        </div>
+        <div id="add" ng-click="addObj();">
+        </div>
+        <div id="change-obj" ng-click="changeObj();">
+        </div>
+      </div>
+
+      <div class="btn-menu">
+        <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
+        <button id="objRot" ng-click="rotate(); activeR();" class="fps-btn2 btn">ROTACIA</button>
+        <button id="ok" class="fps-btn-round btn">OK</button>
+        <button id="colorCh" class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
+      </div>
+
+      <div class="right-menu">
+        <div class="input-menu">
+          <input id="wasd" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
+          <label for="wasd"></label>
+          <img src="img/fps_gui/km.png">
+          <input id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
+          <label for="lc"></label>
+          <img src="img/fps_gui/mouse.png">
+        </div>
+        <div class="d23" ng-click="editor()">
+          <h3>2D</h3>
+          <div class="switch"></div>
+          <h3>3D</h3>
+        </div>
+      </div>
+
+      <div id="fpsMaterials" style="right: -250px">
+
+      </div>
+
+      <div id="fpsProducts" style="right: -250px">
+
+      </div>
+
+      <div class="temp">
+        <button id="odstranit" class="Button btn-my" ng-click = "OdstranitObjekt()">Odstranit</button>
+        <button id="pridat" class="Button btn-my" ng-click = "PridaObjekt()">PridatObjekt</button>
+        <button id="zmenaMat" class="Button btn-my" ng-click = "ZmenitMaterial()">ZmenitMaterial</button>
+        <button id="zmenaObj" class="Button btn-my" ng-click = "ZmenitObjekt()">ZmenitObjekt</button>
+        <button id="X" class="Button btn-my" ng-click = "X()">X</button>
+        <button id="pohyb" class="Button btn-my" ng-click = "pohyb()">pohyb</button>
+        <button id="rotacia" class="Button btn-my" ng-click = "rotacia()">rotacia</button>
+        <button id="ok" class="Button btn-my" ng-click = "okTrigger()">ok</button>
+        <button id="colorChooser" class="Button btn-my" ng-click = "colorChooser()">colorChooser</button>
+        <button id="mousectrl" class="Button btn-my" ng-click = "mouse_controll()">mouse_controll</button>
+        <button id="WASD" class="Button btn-my" ng-click = "mouseWASD_controll()">mouseWASD</button>
+        <button id="editor" class="Button btn-my" ng-click = "editor()">editor</button>
+      </div>
+    </div>
   </div>
-
-  <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
-    <div class="round-menu">
-      <div id="del" ng-click="destroyObject()">
-      </div>
-      <div id="change-mat" ng-click="changeMat()">
-      </div>
-      <div id="close" ng-click="closeRoundMenu()">
-      </div>
-      <div id="add" ng-click="addObj();">
-      </div>
-      <div id="change-obj" ng-click="changeObj();">
-      </div>
-    </div>
-
-    <div class="btn-menu">
-      <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
-      <button id="objRot" ng-click="rotate(); activeR();" class="fps-btn2 btn">ROTACIA</button>
-      <button id="ok" class="fps-btn-round btn">OK</button>
-      <button id="colorCh" class="fps-btn btn" ng-click="colorChooser()">VÝBER FARBY</button>  
-    </div>
-
-    <div class="right-menu">
-      <div class="input-menu">
-        <input id="wasd" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
-        <label for="wasd"></label>
-        <img src="img/fps_gui/km.png">
-        <input id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
-        <label for="lc"></label>
-        <img src="img/fps_gui/mouse.png">
-      </div>
-      <div class="d23" ng-click="editor()">
-        <h3>2D</h3>
-        <div class="switch"></div>
-        <h3>3D</h3>
-      </div>
-    </div>
-
-    <div id="fpsMaterials" style="right: -250px">
-
-    </div>
-
-    <div id="fpsProducts" style="right: -250px">
-
-    </div>
-
-    <div class="temp">
-      <button id="odstranit" class="Button btn-my" ng-click = "OdstranitObjekt()">Odstranit</button>
-      <button id="pridat" class="Button btn-my" ng-click = "PridaObjekt()">PridatObjekt</button>
-      <button id="zmenaMat" class="Button btn-my" ng-click = "ZmenitMaterial()">ZmenitMaterial</button>
-      <button id="zmenaObj" class="Button btn-my" ng-click = "ZmenitObjekt()">ZmenitObjekt</button>
-      <button id="X" class="Button btn-my" ng-click = "X()">X</button>
-      <button id="pohyb" class="Button btn-my" ng-click = "pohyb()">pohyb</button>
-      <button id="rotacia" class="Button btn-my" ng-click = "rotacia()">rotacia</button>
-      <button id="ok" class="Button btn-my" ng-click = "okTrigger()">ok</button>
-      <button id="colorChooser" class="Button btn-my" ng-click = "colorChooser()">colorChooser</button>
-      <button id="mousectrl" class="Button btn-my" ng-click = "mouse_controll()">mouse_controll</button>
-      <button id="WASD" class="Button btn-my" ng-click = "mouseWASD_controll()">mouseWASD</button>
-      <button id="editor" class="Button btn-my" ng-click = "editor()">editor</button>
-    </div>
-  </div>
-
   <div id="errMsg">
     <span>
       <p>{{message}}</p>

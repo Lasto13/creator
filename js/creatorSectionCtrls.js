@@ -1,8 +1,6 @@
 //'use strict';
-app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', '$timeout', function ($scope, $modal, $compile, $http, $window, $timeout) {
+app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', function ($scope, $modal, $http, $window, $timeout) {
     console.logError = console.log;
-
-    console.log(isFps);
 
     $scope.bridge = {
         changeSection: function () { $scope.activateMenu(1); }
@@ -25,18 +23,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         }
         isFps = $scope.activeMenu;
     }
-    /*
-    calculateMaxHeight();
-    function calculateMaxHeight() {
-        console.log("volam <");
-        _vwpHeight = window.innerHeight;
-        var _clss = document.getElementsByClassName('left-menu')[0];
-        height = _vwpHeight - 180;
-        console.log(_clss);
-        _clss.style.height = height + 'px';
-        for (var i = 0; i < _clss.length; i++) {_clss[i].style.height = height + 'px';}
-    }
-    */
+    
     login();
     function login() {
         var email = "plastovecky@enli.sk",
@@ -263,18 +250,59 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
     var setInputValue = function () {
         var inpt = document.getElementById('sp'),
             _k = '',
-            _kk = '';
+            _kk = '',
+            _ctrl = false,
+            _shft = false;
+        inpt.focus();
+        inpt.addEventListener('keydown', function(e) {
+            if (e.keyCode === 16 ) {_shft = true;}
+            if (e.keyCode === 17 ) {_ctrl = true;}
+        })
 
         inpt.addEventListener('keyup', function (e) {
-            if (e.keyCode === 8 && _kk.length > 0) {
-                _kk = _kk.substring(0, _kk.length - 1);
-                this.value = _kk;
-            }
-            else if (e.keyCode !== 27 || e.keyCode !== 17 || e.keyCode !== 9 || e.keyCode !== 18 || e.keyCode !== 37 || e.keyCode !== 38 || e.keyCode !== 39 || e.keyCode !== 40) {
+            console.log(this.selectionStart,e.target.selectionEnd,_kk.length);
+
+            if (e.keyCode === 37){
+                if(_shft == true){
+                    this.selectionStart = this.selectionStart -1;
+                }else {
+                this.selectionStart = this.selectionStart -1;
+                this.selectionEnd = this.selectionStart;}
+            } else if (e.keyCode === 39){
+                if(_shft == true){
+                    this.selectionEnd = this.selectionEnd +1;
+                }else {
+                this.selectionStart = this.selectionStart +1;
+                this.selectionEnd = this.selectionStart;}
+            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
+                this.selectionStart = this.selectionEnd = _index - 1;
+            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionStart+1);
+                this.selectionStart = this.selectionEnd = _index;
+            } else if (e.keyCode === 8 && _kk.length == 0){
+                e.preventDefault();
+            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
+                e.preventDefault();
+            } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
                 _k = e.key;
-                _kk = _kk + _k;
-                this.value = _kk;
+                var _index = this.selectionStart;
+                var _val = this.value;
+                console.log(_val);
+                var _val = _val.splice(_index,0,_k);
+                console.log(_val);
+                this.value = _val;
+                this.selectionStart = this.selectionEnd = _index + 1;
+            } if (_ctrl == true && e.keyCode === 65){
+                this.selectionStart = 0;
+                this.selectionEnd = this.value.length;
             }
+
+            if (e.keyCode == 16) {_shft = false;console.log(_shft);}
+            if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
+
         }, false);
     }
 
@@ -689,7 +717,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     menuJson.get().then(function (data) {
         $scope.menuData = data;
-        console.log($scope.menuData);
         $scope.dataToRepeat = null;
     });
 
@@ -838,11 +865,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         if ($scope.productsToShow.length > 0) {
             $scope.isProductBoxDisplayed = true
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
-            sipRot = false;
+            sipRot = true;
         } else {
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
-            sipRot = true;
+            sipRot = false;
         };
     });
 

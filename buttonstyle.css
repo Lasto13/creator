@@ -990,40 +990,6 @@ input[type="radio"]:checked + span {
     margin-top: 12px;
 }
 
-.fps-section #fpsMaterials{
-	background-color: #d3d3d3;
-	position: absolute;
-	width: 250px;
-	/*right: -250px;*/
-	bottom: 0px;
-	height: 85%;
-
-	transition: right 1.5s ease-in-out;
-	-moz-transition: right .5s ease-in-out;
-	-webkit-transition: right 1.5s ease-in-out;
-}
-
-.fps-section #fpsProducts{
-	background-color: #7ca616;
-	position: absolute;
-	width: 250px;
-	/*right: -250px;*/
-	bottom: 0px;
-	height: 85%;
-
-	transition: right 1.5s ease-in-out;
-	-moz-transition: right .5s ease-in-out;
-	-webkit-transition: right 1.5s ease-in-out;
-}
-
-.fps-section .temp{
-	display: none;
-	pointer-events:auto;
-	position: absolute;
-	bottom: 0px;
-	background-color: #ffffff;
-}
-
 #ButtonContainer{
 	position: absolute;
 	float: left;
@@ -1065,7 +1031,7 @@ input[type="radio"]:checked + span {
 	width: 450px;
 	height: 150px;
 	margin-left: auto ;
-  margin-right: auto ;
+  	margin-right: auto ;
 }
 .template .modal-dialog .modal-content p{
 	font-family: Roboto;

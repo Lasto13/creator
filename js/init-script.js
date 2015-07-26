@@ -4,6 +4,10 @@ window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.t
 
 var isFps = false;
 
+String.prototype.splice = function( idx, rem, s ) {
+    return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+};
+
 function browserDimensions() {
     var clientWidth = window.innerWidth,
         clientHeight = window.innerHeight,

@@ -214,16 +214,11 @@
 
     <div ng-show="activeMenu.fourth" class="fps-section" ng-controller="FPSCtrl">
       <div class="round-menu">
-        <div id="del" ng-click="destroyObject()">
-        </div>
-        <div id="change-mat" ng-click="changeMat()">
-        </div>
-        <div id="close" ng-click="closeRoundMenu()">
-        </div>
-        <div id="add" ng-click="addObj();">
-        </div>
-        <div id="change-obj" ng-click="changeObj();">
-        </div>
+        <div id="del" ng-click="destroyObject()"></div>
+        <div id="change-mat" ng-click="changeMat()"></div>
+        <div id="close" ng-click="closeRoundMenu()"></div>
+        <div id="add" ng-click="addObj();"></div>
+        <div id="change-obj" ng-click="changeObj();"></div>
       </div>
 
       <div class="btn-menu">
@@ -247,29 +242,6 @@
           <div class="switch"></div>
           <h3>3D</h3>
         </div>
-      </div>
-
-      <div id="fpsMaterials" style="right: -250px">
-
-      </div>
-
-      <div id="fpsProducts" style="right: -250px">
-
-      </div>
-
-      <div class="temp">
-        <button id="odstranit" class="Button btn-my" ng-click = "OdstranitObjekt()">Odstranit</button>
-        <button id="pridat" class="Button btn-my" ng-click = "PridaObjekt()">PridatObjekt</button>
-        <button id="zmenaMat" class="Button btn-my" ng-click = "ZmenitMaterial()">ZmenitMaterial</button>
-        <button id="zmenaObj" class="Button btn-my" ng-click = "ZmenitObjekt()">ZmenitObjekt</button>
-        <button id="X" class="Button btn-my" ng-click = "X()">X</button>
-        <button id="pohyb" class="Button btn-my" ng-click = "pohyb()">pohyb</button>
-        <button id="rotacia" class="Button btn-my" ng-click = "rotacia()">rotacia</button>
-        <button id="ok" class="Button btn-my" ng-click = "okTrigger()">ok</button>
-        <button id="colorChooser" class="Button btn-my" ng-click = "colorChooser()">colorChooser</button>
-        <button id="mousectrl" class="Button btn-my" ng-click = "mouse_controll()">mouse_controll</button>
-        <button id="WASD" class="Button btn-my" ng-click = "mouseWASD_controll()">mouseWASD</button>
-        <button id="editor" class="Button btn-my" ng-click = "editor()">editor</button>
       </div>
     </div>
   </div>
@@ -299,6 +271,7 @@
                     loc + "js/jquery-ui.js",
                     loc + "js/plugin.jslib",
                     loc + "js/angular.js",
+                    loc + "js/caret.js",
                     loc + "bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js",
                     "maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
                     loc + "js/app.js",

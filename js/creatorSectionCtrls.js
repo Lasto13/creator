@@ -307,7 +307,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
         console.log(jsonstring);
     }
-} ]);
+}]);
 
 app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function ($scope, $modalInstance, bridge) {
 
@@ -327,7 +327,7 @@ app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function
         $("#B0").addClass('btn-my2');
         bridge.changeSection();
     }
-} ]);
+}]);
 
 /*
 app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
@@ -529,7 +529,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         if (!!value) d.style.left = "0px";
         else d.style.left = "750px";
     });
-} ])
+}])
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
@@ -642,7 +642,7 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
     }
-} ]);
+}]);
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
@@ -810,7 +810,15 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         for (var i = 0; i < $scope.activeTT.length; i++) {
             $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products);
         }
-        if ($scope.productsToShow.length > 0) {$scope.isProductBoxDisplayed = true} else {$scope.isProductBoxDisplayed = false};
+        if ($scope.productsToShow.length > 0) {
+            $scope.isProductBoxDisplayed = true
+            document.getElementById('sipka').style.transform = 'rotate(180deg)';
+            sipRot = false;
+        } else {
+            $scope.isProductBoxDisplayed = false;
+            document.getElementById('sipka').style.transform = 'rotate(0deg)';
+            sipRot = true;
+        };
     });
 
     $scope.ClickedTypeType = function (tab) {
@@ -856,7 +864,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
         if (sipRot == true) {
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
-            sipRot = false
+            sipRot = false;
         }
         else {
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
@@ -867,7 +875,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     $scope.CenterInterier = function () {
         SendMessage("Main Camera", "ResetPosition");
     };
-} ]);
+}]);
 
 app.controller('FPSCtrl', ['$scope', function ($scope) {
 
@@ -1024,5 +1032,5 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         $("#objMove").removeClass("selected");
     }
 
-} ])
+}])
 

@@ -4,19 +4,26 @@ window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.t
 
 function browserDimensions() {
     var clientWidth = window.innerWidth,
-          clientHeight = window.innerHeight,
-          leftP = clientWidth / 2 - 20,
-          topP = clientHeight / 2 - 10,
-          leftT = clientWidth / 2 - 200,
-          topT = clientHeight / 2 + 80,
-          perc = document.getElementById("splash-sc").children[1],
-          text = document.getElementById("splash-sc").children[2];
+        clientHeight = window.innerHeight,
+        leftP = clientWidth / 2 - 20,
+        topP = clientHeight / 2 - 10,
+        leftT = clientWidth / 2 - 200,
+        topT = clientHeight / 2 + 80,
+        perc = document.getElementById("splash-sc").children[1],
+        text = document.getElementById("splash-sc").children[2];
 
     perc.style.left = leftP + 'px';
     text.style.left = leftT + 'px';
 
     perc.style.top = topP + 'px';
     text.style.top = topT + 'px';
+
+    var canvasH = document.getElementById('canvasHolder'),
+        c_width = clientWidth - 250,
+        c_height = clientHeight - 180;
+
+    canvasH.style.width = c_width +'px';
+    canvasH.style.height = c_height +'px';
 }
 
 lastoPlugin.showDeleteCursor();

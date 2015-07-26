@@ -934,7 +934,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     //$("#wasd").click();
-    if(typeof SendMessage === 'function') SendMessage("FpsManager", "mouseWASD_controll");
+    //if(typeof SendMessage === 'function') SendMessage("FpsManager", "mouseWASD_controll");
     //\\
     $scope.toggleFpsMats = function () {
         $scope.isFpsMats = !$scope.isFpsMats;

@@ -1,35 +1,16 @@
 ﻿<!doctype html>
 <html ng-app="app" lang="en-us">
   <head>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="enli-client.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Virtual Creator</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="enli-client.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="jquery-ui.css">
     <link rel="stylesheet" href="buttonstyle.css" />
-
-    <!-- VENDOR -->
-    <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="jquery-ui.js"></script>
-    <script type="text/javascript" src="plugin.jslib"></script>
-    <script type="text/javascript" src="angular.js"></script>
-    <script src="bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <!-- CUSTOM -->
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="creatorSectionCtrls.js"></script>
-    
-    <!--- UNITY -->
-    <link rel="stylesheet" href="TemplateData/style.css" />
-    <script type="text/javascript" src="TemplateData/UnityProgress.js"></script>
-  
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
-
     <div id="splash-sc">
       <div id="loader"></div>
       <div class="loader-count"></div>
@@ -303,161 +284,94 @@
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->
+  <script type="text/javascript">
+      (function () {
+          var prot = ("https:" === document.location.protocol ? "https://" : "http://"), location = window.location.href, locationSplit = '', scripts = [];
+          locationSplit = location.split('/');
+          var loc = locationSplit[locationSplit.length - 3] + '/' + locationSplit[locationSplit.length - 2] + '/';
+          scripts = [
+                    loc + "js/jquery-2.1.3.min.js",
+                    loc + "js/jquery-ui.js",
+                    loc + "js/plugin.jslib",
+                    loc + "js/angular.js",
+                    loc + "bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js",
+                    "maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
+                    loc + "js/app.js",
+                    loc + "js/creatorSectionCtrls.js",
+                    loc + "TemplateData/UnityProgress.js",
+                    loc + "js/init-script.js",
+                    loc + "Release/UnityConfig.js",
+                    loc + "Release/fileloader.js",
+                    loc + "Release/VC.js"
+                ],
+                br = get_browser();
 
-  <script type='text/javascript'>
-      browserDimensions();
-      window.addEventListener('resize', browserDimensions, false);
-      window.addEventListener('load', function (e) {
-          document.getElementById('B0').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B1').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B2').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B3').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B4').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B5').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B8').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B9').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B13').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B12').addEventListener('click', btnClassRplc, false);
-          document.getElementById('B24').addEventListener('click', function () { console.log("Funkcia novy projekt"); }, false);
-          document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); }, false);
-          document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); }, false);
-          document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); }, false);
-          //Chlapi zatial nechapem zmysel tejto funkcie a podobnych je viacero
-          //document.querySelector('input:radio[name=view]').addEventListener('click', function (e) { var _id = this.value; }, false);
-          //\\
-          //document.getElementById('lot').addEventListener('click', function () { var _brw = getBrowser(); SendMessage("CameraObject", "setBrowser", browseris); }, false);
-          document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; }, false);
-          document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
+          if (br.name != 'Firefox') {
+              asyncLoadScripts(scripts);
+              /*WebFontConfig = { google: { families: ['Roboto::latin'] } };
 
-          function btnClassRplc(a) {
-              var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
+              var wf = document.createElement('script');
+              wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+              '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+              wf.type = 'text/javascript';
+              wf.async = 'true';
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(wf, s);
 
-              for (var i = 0, iL = _pRa.length; i < iL; i++) _pRa[i].className = 'Button btn-my';
-              a.target.className = 'Button btn-my radio-view btn-my2';
+              console.log('Using ' + br.name + ' instead of Firefox.');*/
           }
-      }, false);
+          else {
+              //document.getElementById('browser-detect-wrap').style.opacity = 0;
+              asyncLoadScripts(scripts);
+          }
 
-      window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
+          function completed() { console.log('completed'); }
+          function checkStateAndCall(path, callback) {
+              var _success = false;
+              return function () {
+                  if (!_success && (!this.readyState || (this.readyState == 'complete'))) {
+                      _success = true;
+                      //console.log(path, 'is ready');
+                      callback();
+                  }
+              };
+          }
 
-      function browserDimensions() {
-          var clientWidth = window.innerWidth,
-          clientHeight = window.innerHeight,
-          leftP = clientWidth / 2 - 10,
-          topP = clientHeight / 2 - 10,
-          leftT = clientWidth / 2 - 200,
-          topT = clientHeight / 2 + 80,
-          perc = document.getElementById("splash-sc").children[1],
-          text = document.getElementById("splash-sc").children[2];
+          function asyncLoadScripts(files) {
+              loadNext(); // start a chain
+              function loadNext() { // chain element
+                  //if (!files.length) completed();
+                  var path = files.shift();
 
-          perc.style.left = leftP + 'px';
-          text.style.left = leftT + 'px';
+                  if (typeof path !== "undefined") {
+                      var scriptElm = document.createElement('script');
+                      scriptElm.type = 'text/javascript';
+                      //scriptElm.async = 'true';
+                      scriptElm.src = prot + path;
+                      scriptElm.onload = scriptElm.onreadystatechange = checkStateAndCall(path, loadNext);
 
-          perc.style.top = topP + 'px';
-          text.style.top = topT + 'px';
-      }
+                      var headElm = document.head || document.getElementsByTagName('head')[0];
+                      headElm.appendChild(scriptElm);
+                  }
+                  //else console.log('Ďalšie scripty nenahrávam.');
+              }
+          }
 
-      lastoPlugin.showDeleteCursor();
-    
-    function getBrowser () {
-    var browser;
-        if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) browser = "firefox";
-        if (navigator.userAgent.toLowerCase().indexOf('trident') > -1) browser = "ie";
-        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) browser = "chrome";
-        if (navigator.userAgent.toLowerCase().indexOf('op') > -1) browser = "opera";
-        if (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.indexOf('Chrome') == -1) browser = "safari";
-
-        return browser;
-    }
-
-    $("#slider").slider();
-    /*function closeLoader () {
-      var width = $(document).width();
-      document.getElementById('loading-box').style.display = "none";
-    }*/
-  </script>
-  
-  <script type='text/javascript'>
-    // Connect to canvas
-    var Module = {
-    doNotCaptureKeyboard: true,
-    //keyboardListeningElement: document.getElementById('spa'),
-    //WebGLInput.captureAllKeyboardInput = false,
-    
-    TOTAL_MEMORY: 285212672, //838860800
-    filePackagePrefixURL: "Release/",
-    memoryInitializerPrefixURL: "Release/",
-    preRun: [],
-    postRun: [],
-    print: (function() {
-      return function(text) { console.log (text); };
-    })(),
-    printErr: function(text) { console.error (text); },
-    canvas: document.getElementById('canvas'),
-    progress: null,
-    setStatus: function(text) {
-      if (this.progress == null) {
-        if (typeof UnityProgress != 'function') return;
-        this.progress = new UnityProgress (canvas);
-      }
-      if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
-      if (text === Module.setStatus.text) return;
-      this.progress.SetMessage (text);
-      var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
-      if (m) this.progress.SetProgress (parseInt(m[2])/parseInt(m[4]));
-      if (text === "") this.progress.Clear()
-    },
-    totalDependencies: 0,
-    monitorRunDependencies: function(left) {
-      this.totalDependencies = Math.max(this.totalDependencies, left);
-      Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
-    }
-  };
-  Module.setStatus('Downloading (0.0/1)');
-
-  Module.canvas.requestPointerLock = Module.canvas.requestPointerLock || Module.canvas.mozRequestPointerLock || Module.canvas.webkitRequestPointerLock;
-  </script>
-
-  <script src="Release/UnityConfig.js"></script>
-  <script src="Release/fileloader.js"></script>
-  <script>if (!(!Math.fround)) {
-    var script = document.createElement('script');
-    script.src = "Release/VC.js";
-    document.body.appendChild(script);
-  } else {
-    var codeXHR = new XMLHttpRequest();
-    codeXHR.open('GET', 'Release/VC.js', true);
-    codeXHR.onload = function() {
-      var code = codeXHR.responseText;
-      if (!Math.fround) { 
-  try {
-    console.log('optimizing out Math.fround calls');
-    var m = /var ([^=]+)=global\.Math\.fround;/.exec(code);
-    var minified = m[1];
-    if (!minified) throw 'fail';
-    var startAsm = code.indexOf('// EMSCRIPTEN_START_FUNCS');
-    var endAsm = code.indexOf('// EMSCRIPTEN_END_FUNCS');
-    var asm = code.substring(startAsm, endAsm);
-    do {
-      var moar = false; // we need to re-do, as x(x( will not be fixed
-      asm = asm.replace(new RegExp('[^a-zA-Z0-9\\$\\_]' + minified + '\\(', 'g'), function(s) { moar = true; return s[0] + '(' });
-    } while (moar);
-    code = code.substring(0, startAsm) + asm + code.substring(endAsm);
-    code = code.replace("'use asm'", "'almost asm'");
-  } catch(e) { console.log('failed to optimize out Math.fround calls ' + e) }
-   }
-
-      var blob = new Blob([code], { type: 'text/javascript' });
-      codeXHR = null;
-      var src = URL.createObjectURL(blob);
-      var script = document.createElement('script');
-      script.src = URL.createObjectURL(blob);
-      script.onload = function() {
-        URL.revokeObjectURL(script.src);
-      };
-      document.body.appendChild(script);
-    };
-    codeXHR.send(null);
-  }
+          function get_browser() {
+              var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+              if (/trident/i.test(M[1])) {
+                  tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                  return { name: 'IE', version: (tem[1] || '') };
+              }
+              if (M[1] === 'Chrome') {
+                  tem = ua.match(/\bOPR\/(\d+)/)
+                  if (tem != null) { return { name: 'Opera', version: tem[1] }; }
+              }
+              M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+              if ((tem = ua.match(/version\/(\d+)/i)) != null) { M.splice(1, 1, tem[1]); }
+              return { name: M[0], version: M[1] };
+          }
+      })();
   </script>
   </body>
 </html>

@@ -148,6 +148,31 @@ input[type="radio"]:checked + span {
 	z-index: 1;
 }
 
+#header #enli-header #mainButtons{
+	position: absolute;
+	float: left;
+	top: 80px;
+	height: 100%;
+	width: 35%;
+	margin-left: 43%;
+	pointer-events: auto;
+	padding-top: 10px;
+}
+
+#header #enli-header #mainButtons #leftBox{
+	float: left;
+}
+
+#header #enli-header #mainButtons #buttSwitch{
+	float: left;
+	margin-left: 4px;
+}
+
+#header #enli-header #mainButtons #rightBox{
+	margin-left: 4px;
+	float: left;
+}
+
 #header #ProjektMenuContainer{
 	float: right;
 	position: relative;
@@ -1007,16 +1032,7 @@ input[type="radio"]:checked + span {
 	margin-top: 10px;
 	margin-left: 39px;
 }
-#ButtonContainer2{
-	position: absolute;
-	float: left;
-	top: 80px;
-	height: 100%;
-	width: 35%;
-	margin-left: 43%;
-	pointer-events: auto;
-	padding-top: 10px;
-}
+
 #ButtonContainer3{
 	width: 10%;
 	height: 100%;

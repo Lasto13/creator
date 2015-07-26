@@ -196,6 +196,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
             for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
             document.getElementById('category_1').checked = true;
             document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
+            document.getElementById('B3').className = 'Button radio-picture btn-my';
         }
     };
 

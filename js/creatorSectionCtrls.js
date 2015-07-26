@@ -278,13 +278,21 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 var _index = this.selectionStart;
                 this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
                 this.selectionStart = this.selectionEnd = _index - 1;
+            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart !== this.selectionEnd ){
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
+                this.selectionStart = this.selectionEnd = _index;
             } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
                 var _index = this.selectionStart;
                 this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionStart+1);
                 this.selectionStart = this.selectionEnd = _index;
+            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart !== this.selectionEnd){
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
+                this.selectionStart = this.selectionEnd = _index;
             } else if (e.keyCode === 8 && _kk.length == 0){
                 e.preventDefault();
-            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
+            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
                 e.preventDefault();
             } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
                 _k = e.key;

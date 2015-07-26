@@ -133,7 +133,6 @@ input[type="radio"]:checked + span {
 
 #header #EnliLogo{
 	position: absolute;
-	margin-left: 18%;
 	background-size: 100% auto;
 	height: 70px;
 	width: 150px;

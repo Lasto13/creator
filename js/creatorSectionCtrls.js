@@ -290,8 +290,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
                 }
             }
         });
-        //projectModal.result;
-        //windowClass: 'detailWindow'
     }
 
     $scope.CleanProject = function () {
@@ -327,12 +325,11 @@ app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function
         $("a.radio-picture").addClass('btn-my');
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
-        //console.log($scope);
-        //$scope.$broadcast('newProjectEvent', 'data');
         bridge.changeSection();
     }
 } ]);
 
+/*
 app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
     $scope.cancel = function () {
@@ -344,10 +341,9 @@ app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope,
         $modalInstance.close(SendMessage("NewProject", "NewProject"));
     }
 } ]);
+*/
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
-
-    //$scope.first =console.log($scope.$parent.activeMenu.first);
 
     matJson.get().then(function (data) {
         $scope.mats = data;
@@ -397,13 +393,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         }
     });
 
-    /*$("input:radio[name=category]").click(function () {
-    var $id = $(this).val();
-    
-    $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
-    $("#results").html(data);
-    });
-    });*/
     $scope.set_radio = function ($inputid) {
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
@@ -414,13 +403,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         //console.log(this.currentTarget);
     }
 
-    /*$("a.radio-picture").click(function () {
-    var $id = $(this).attr('id');
-    $("a.radio-picture").removeClass('btn-my2');
-    $("a.radio-picture").addClass('btn-my');
-    $("a#" + $id).addClass('btn-my2');
-    });*/
-
     $("input:radio[name=view]").click(function () {
         var $id = $(this).val();
 
@@ -428,19 +410,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
             $("#results").html(data);
         });
     });
-    /*
-    $("a.radio-view").click(function(){
-    var $id = $(this).attr('id');
-    $("a.radio-view").removeClass('btn-my2');
-    $("a.radio-view").addClass('btn-my');
-    $("a#" + $id).addClass('btn-my2');
-    });
 
-    $scope.set_view = function($inputid) {
-    console.log($inputid);
-    $("input#" + $inputid).click();
-    }
-    */
     $scope.NoOp = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
     };
@@ -601,13 +571,6 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         }
     }
 
-    /*$("input:radio[name=dwcategory]").click(function(){
-    var $id = $(this).val();
-    $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
-    $("#results").html(data);
-    });
-    });*/
-
     $("a.radio-dw").click(function () {
         var $id = $(this).attr('id');
         $("a.radio-dw").removeClass('btn-my2');
@@ -622,13 +585,6 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById($inputid).checked = true;
     }
-
-    /*$("input:radio[name=dwview]").click(function () {
-    var $id = $(this).val();
-    $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
-    $("#results").html(data);
-    });
-    });*/
 
     $("a.radio-dwview").click(function () {
         var $id = $(this).attr('id');
@@ -712,13 +668,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         $scope.dataToRepeat = null;
     });
 
-    /*$("input:radio[name=icategory]").click(function () {
-    var $id = $(this).val();
-    $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
-    $("#results").html(data);
-    });
-    });*/
-
     $("a.radio-i").click(function () {
         var $id = $(this).attr('id');
         console.log('Do it');
@@ -733,13 +682,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById($inputid).checked = true;
     }
-
-    /*$("input:radio[name=iview]").click(function () {
-    var $id = $(this).val();
-    $.post("includes/determine_next_questions.php", {prodfamily:$id}, function(data){
-    $("#results").html(data);
-    });
-    });*/
 
     $("a.radio-iview").click(function () {
         var $id = $(this).attr('id');
@@ -797,7 +739,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     };
 
     setDefaultFunctionInterier = function () {
-        //$("#B15").click();
         var _pR = document.getElementById('B15').parentNode,
             _pRi = _pR.querySelectorAll('input');
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
@@ -806,10 +747,10 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         document.getElementById('B15').classname = 'Button btn-my2 radio-i';
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     }
-
+    /*
     $scope.example1data = [{ id: 1, label: "Obyvacka" }, { id: 2, label: "Kuchyna" }, { id: 3, label: "Spalna"}];
     $scope.example1model = [];
-
+    */
     $scope.accordionID = function (id) { console.log(id); };
 
     // initiate an array to hold all active tabs
@@ -832,8 +773,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     // function to 'open' a tab
     $scope.openTab = function (tab) {
-        console.log(tab);
-
         // check if tab is already open
         if ($scope.isOpenTab(tab.uidisplayname)) {
             if (!tab.child[0].hasOwnProperty("parentid"))
@@ -1045,7 +984,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     $scope.changeObj = function () {
         SendMessage("FpsManager", "zmenitObjekt");
     }
-    //---------
     $scope.move = function () {
         SendMessage("FpsManager", "move");
     }

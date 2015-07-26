@@ -132,12 +132,13 @@ input[type="radio"]:checked + span {
 }
 
 #header #EnliLogo{
-	position: relative;
+	position: absolute;
 	margin-left: 18%;
 	background-size: 100% auto;
 	height: 70px;
 	width: 150px;
 	top: 8% !important;
+	left: 47%;
 }
 
 #header #enli-header{
@@ -698,7 +699,7 @@ input[type="radio"]:checked + span {
 	pointer-events: auto;
 	width: 20%;
 	padding-top: 10px;
-	padding-left: 31px;
+	padding-left: 30px;
 }
 .interier-section .left-menu{
 	position: relative;
@@ -1010,10 +1011,12 @@ input[type="radio"]:checked + span {
 #ButtonContainer2{
 	position: absolute;
 	float: left;
+	top: 80px;
 	height: 100%;
 	width: 35%;
 	margin-left: 43%;
 	pointer-events: auto;
+	padding-top: 10px;
 }
 #ButtonContainer3{
 	width: 10%;
@@ -1237,33 +1240,27 @@ input[type="radio"]:checked + span {
 #B10{
 	background-image: url("Buttons/2.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #B11{
 	background-image: url("Buttons/14.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #B12{
 	background-image: url("Buttons/7.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 
 #B13{
 	background-image: url("Buttons/8.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #B14{
 	background-image: url("Buttons/6.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #B15{
 	background-image: url("Buttons/9.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 
 #B15b{

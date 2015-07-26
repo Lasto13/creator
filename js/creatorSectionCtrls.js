@@ -130,15 +130,35 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         $scope.activeMenu = {};
         console.log(n);
         switch (n) {
-            case "0": $scope.activeMenu.first = true; break;
-            case "2": $scope.activeMenu.second = true; break;
-            case "5": $scope.activeMenu.third = true; break;
-            case "6": $scope.activeMenu.fourth = true; break;
+            case "0": $scope.activeMenu.first = true; chMin(); break;
+            case "2": $scope.activeMenu.second = true; chMin(); break;
+            case "5": $scope.activeMenu.third = true; chMin(); break;
+            case "6": $scope.activeMenu.fourth = true; chFull(); break;
             default: $scope.activeMenu = {};
         }
 
         if (!$scope.$$phase) $scope.$apply();
         console.log($scope.activeMenu);
+    }
+
+    var chFull = function(){
+        var canvasH = document.getElementById('canvasHolder');
+        canvasH.style.left = 0 + 'px';
+        canvasH.style.top = 0 + 'px';
+        canvasH.style.width = window.innerWidth + 'px';
+        canvasH.style.height = window.innerHeight + 'px';
+    }
+
+    var chMin = function(){
+        var canvasH = document.getElementById('canvasHolder');
+        c_width = window.innerWidth - 250,
+        c_height = window.innerHeight - 180;
+
+        canvasH.style.left = 250 + 'px';
+        canvasH.style.top = 180 + 'px';
+
+        canvasH.style.width = c_width +'px';
+        canvasH.style.height = c_height +'px';
     }
 
     getErrorText = function (string) {
@@ -203,7 +223,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
     $scope.Center = function () { SendMessage("Main Camera", "ResetPosition"); };
     $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); };
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); };
-    $scope.FPS = function () { SendMessage("EventSystem", "FpsPosition"); };
+    $scope.FPS = function () { 
+        SendMessage("EventSystem", "FpsPosition");
+        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+        document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
+        document.getElementById('B3').className = 'Button radio-picture btn-my'; 
+    };
     showUIforFps = function () {
         console.log("zobraz UI pre panaka");
         //var fpsText = document.createElement("div");

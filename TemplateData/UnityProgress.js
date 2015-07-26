@@ -2,7 +2,6 @@ function UnityProgress (dom) {
     this.progress = 0.0;
     this.message = "";
     this.dom = dom;
-
     
     var _talker = document.body.querySelector('.talk-to p'),
         _loadProgress = document.body.querySelector('.loader-count'),

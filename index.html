@@ -305,6 +305,8 @@
   <!--  DIRECTIVE  div rozalia></div-->
 
   <script type='text/javascript'>
+      browserDimensions();
+      window.addEventListener('resize', browserDimensions, false);
       window.addEventListener('load', function (e) {
           document.getElementById('B0').addEventListener('click', btnClassRplc, false);
           document.getElementById('B1').addEventListener('click', btnClassRplc, false);
@@ -320,7 +322,7 @@
           document.getElementById('B25').addEventListener('click', function () { console.log("Nacitat projekt"); }, false);
           document.getElementById('B26').addEventListener('click', function () { console.log("Ulozit projekt"); }, false);
           document.getElementById('B27').addEventListener('click', function () { console.log("Nastavenia"); }, false);
-          //Chlapi zatial nechapem zmysel tejto funkcie, ale prepisal som ju sem
+          //Chlapi zatial nechapem zmysel tejto funkcie a podobnych je viacero
           //document.querySelector('input:radio[name=view]').addEventListener('click', function (e) { var _id = this.value; }, false);
           //\\
           //document.getElementById('lot').addEventListener('click', function () { var _brw = getBrowser(); SendMessage("CameraObject", "setBrowser", browseris); }, false);
@@ -337,7 +339,8 @@
 
       window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 
-      var clientWidth = window.innerWidth,
+      function browserDimensions() {
+          var clientWidth = window.innerWidth,
           clientHeight = window.innerHeight,
           leftP = clientWidth / 2 - 10,
           topP = clientHeight / 2 - 10,
@@ -346,17 +349,15 @@
           perc = document.getElementById("splash-sc").children[1],
           text = document.getElementById("splash-sc").children[2];
 
-      perc.style.left = leftP + 'px';
-      text.style.left = leftT + 'px';
+          perc.style.left = leftP + 'px';
+          text.style.left = leftT + 'px';
 
-      perc.style.top = topP +'px';
-      text.style.top = topT +'px';
+          perc.style.top = topP + 'px';
+          text.style.top = topT + 'px';
+      }
 
-    $( "#slider" ).slider();
-  
-    lastoPlugin.showDeleteCursor();
-    //$("#cursor").click(lastoPlugin.showNormalCursor());
-
+      lastoPlugin.showDeleteCursor();
+    
     function getBrowser () {
     var browser;
         if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) browser = "firefox";
@@ -368,6 +369,7 @@
         return browser;
     }
 
+    $("#slider").slider();
     /*function closeLoader () {
       var width = $(document).width();
       document.getElementById('loading-box').style.display = "none";

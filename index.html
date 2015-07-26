@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="buttonstyle.css" />
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
+    <div id="browser-detect-wrap">
+        <div class="inst-firefox"></div>
+        <p>Virtual Creator nepodporuje prehliadač <span></span><br />
+        Nainštalujte si prosím Firefox.</p>
+    </div>
     <div id="splash-sc">
       <div id="loader"></div>
       <div class="loader-count"></div>
@@ -309,22 +314,15 @@
           if (br.name != 'Firefox') {
               //TO DO: Pripravit "Blank Screen" s informaciou, ze uzivatel nepouziva Firefox
               //Rovnako ako je na http://85.159.111.72/
-              
-              /*WebFontConfig = { google: { families: ['Roboto::latin'] } };
 
-              var wf = document.createElement('script');
-              wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-              '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-              wf.type = 'text/javascript';
-              wf.async = 'true';
-              var s = document.getElementsByTagName('script')[0];
-              s.parentNode.insertBefore(wf, s);
-
-              console.log('Using ' + br.name + ' instead of Firefox.');*/
+              addRobotoFont();
+              document.getElementById('browser-detect-wrap').getElementsByTagName('span')[0].innerHTML = br.name;
           }
           else {
-              //document.getElementById('browser-detect-wrap').style.opacity = 0;
-              asyncLoadScripts(scripts);
+              addRobotoFont();
+              document.getElementById('browser-detect-wrap').style.opacity = 0;
+              document.getElementById('browser-detect-wrap').style.display = 'none';
+              setTimeout(function () { asyncLoadScripts(scripts) }, 1);
           }
 
           function completed() { console.log('completed'); }
@@ -372,6 +370,18 @@
               M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
               if ((tem = ua.match(/version\/(\d+)/i)) != null) { M.splice(1, 1, tem[1]); }
               return { name: M[0], version: M[1] };
+          }
+
+          function addRobotoFont() {
+              WebFontConfig = { google: { families: ['Roboto::latin']} };
+
+              var wf = document.createElement('script');
+              wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+              '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+              wf.type = 'text/javascript';
+              wf.async = 'true';
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(wf, s);
           }
       })();
   </script>

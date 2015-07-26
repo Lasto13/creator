@@ -1,19 +1,19 @@
-@font-face { font-family: Roboto-Regular; src: url('roboto/Roboto-Regular.ttf'); }
+/*@font-face { font-family: Roboto; src: url('roboto/Roboto.ttf'); }*/
 
-a {
-	color: #7ca616;
-}
+a { color: #7ca616; }
 
 #splash-sc{
 	width: 100%;
 	height: 100%;
 	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
-	position: absolute;
+	position: fixed;
+	top: 0;
+	left: 0;
 	z-index: 1001;
 }
 
 .loader-count{
-	font-family: Roboto-Regular;
+	font-family: Roboto;
 	position: absolute;
 	text-align: center;
 	z-index: 1002;
@@ -314,10 +314,10 @@ input[type="radio"]:checked + span {
 }
 
 #Settings label{
-	font-family: Roboto-Regular;
+	font-family: Roboto;
 }
 #Settings p{
-	font-family: Roboto-Regular;
+	font-family: Roboto;
 	color: #7CA616;
 	font-size: 1.2em;
 	margin-left:2px;
@@ -326,14 +326,14 @@ input[type="radio"]:checked + span {
 	margin-left:25px;
 }
 #SaveProject p{
-font-family: Roboto-Regular;
+font-family: Roboto;
 	color: #7CA616;
 	font-size: 1.2em;
 	margin-left:2px;
 }
 #LoadProject p{
 	left:5px; 
-	font-family:Roboto-Regular; 
+	font-family:Roboto; 
 	color:#7CA616;
 }
 .podorys-section{
@@ -397,7 +397,7 @@ font-family: Roboto-Regular;
 .podorys-section .left-menu p{
 	color: #7CA616;
 	font-size: 120%;
-	font-family: 'Roboto-Regular';
+	font-family: 'Roboto';
 	font-weight: bold;
 }
 .podorys-section .left-menu-item{
@@ -1035,7 +1035,7 @@ font-family: Roboto-Regular;
   margin-right: auto ;
 }
 .template .modal-dialog .modal-content p{
-	font-family: Roboto-Regular;
+	font-family: Roboto;
 	color: #7CA616;
 	font-size: 2.5em;
 	margin-left:56px;
@@ -1151,7 +1151,7 @@ font-family: Roboto-Regular;
 	color: #7CA616;
 	padding: 1px 2px;
 	margin-bottom: 0;
-	font-family: 'Roboto-Regular';
+	font-family: 'Roboto';
 	font-size: 16px;
 	font-weight: normal;
 	line-height: 1.42857143;
@@ -1164,7 +1164,7 @@ font-family: Roboto-Regular;
 	color: #000000;
 	padding: 1px 2px;
 	margin-bottom: 0;
-	font-family: 'Roboto-Regular';
+	font-family: 'Roboto';
 	font-size: 16px;
 	font-weight: normal;
 	line-height: 1.42857143;
@@ -1187,7 +1187,7 @@ font-family: Roboto-Regular;
 	color: #000000;
 	padding: 1px 15px;
 	margin-bottom: 0;
-	font-family: 'Roboto-Regular';
+	font-family: 'Roboto';
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 1.42857143;
@@ -1200,7 +1200,7 @@ font-family: Roboto-Regular;
 	color: #7CA616;
 	padding: 1px 15px;
 	margin-bottom: 0;
-	font-family: 'Roboto-Regular';
+	font-family: 'Roboto';
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 1.42857143;

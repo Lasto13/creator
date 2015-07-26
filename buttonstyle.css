@@ -529,6 +529,8 @@ input[type="radio"]:checked + span {
 	width: 100%;
 	pointer-events: auto;
 	background-color: #FFF;
+	padding-top: 10px;
+	padding-left: 39px;
 }
 .dw-section #ButtonContainerDW2{
 	position: absolute;
@@ -694,6 +696,9 @@ input[type="radio"]:checked + span {
 	background-color: #FFF;
 	width: 100%;
 	pointer-events: auto;
+	width: 20%;
+	padding-top: 10px;
+	padding-left: 31px;
 }
 .interier-section .left-menu{
 	position: relative;
@@ -1000,7 +1005,7 @@ input[type="radio"]:checked + span {
 	pointer-events: auto;
 	background-color: #FFFFFF;
 	margin-top: 10px;
-	margin-left: 40px;
+	margin-left: 39px;
 }
 #ButtonContainer2{
 	position: absolute;
@@ -1133,7 +1138,6 @@ input[type="radio"]:checked + span {
     vertical-align: middle;
     width: 50px;
     height: 50px;
-
     margin-left: -2px;
 } 
 
@@ -1261,6 +1265,12 @@ input[type="radio"]:checked + span {
 	background-size: 100%;
 	margin-top: 20px;
 }
+
+#B15b{
+	background-image: url("Buttons/9.png");
+	background-size: 100%;
+}
+
 #B16{
 	display:inline-block;
 	width: 180px;
@@ -1385,20 +1395,16 @@ input[type="radio"]:checked + span {
 	background-image: url("Buttons/1.png");
 	background-size: 100%;
 	background-size: 100%;
-	margin-top: 20px;
-	margin-left: 2%;
 }
 #BDW6{
 	background-image: url("Buttons/3.png");
 	background-size: 100%;
 	background-size: 100%;
-	margin-top: 20px;
 }
 #BDW7{
 	background-image: url("Buttons/4.png");
 	background-size: 100%;
 	background-size: 100%;
-	margin-top: 20px;
 }
 #BDW8{
 	background-image: url("Buttons/5.png");
@@ -1410,7 +1416,6 @@ input[type="radio"]:checked + span {
 	background-image: url("Buttons/20.png");
 	background-size: 100%;
 	background-size: 100%;
-	margin-top: 20px;
 }
 #BDW10{
 	background-image: url("Buttons/2.png");
@@ -1449,18 +1454,15 @@ input[type="radio"]:checked + span {
 #BI5{
 	background-image: url("Buttons/1.png");
 	background-size: 100%;
-	margin-top: 20px;
 	margin-left: 2%;
 }
 #BI6{
 	background-image: url("Buttons/rot.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #BI7{
 	background-image: url("Buttons/20.png");
 	background-size: 100%;
-	margin-top: 20px;
 }
 #BI8{
 	background-image: url("Buttons/2.png");

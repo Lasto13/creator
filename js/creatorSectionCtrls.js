@@ -23,7 +23,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         }
         console.log($scope.activeMenu);
     }
-
+    /*
     calculateMaxHeight();
     function calculateMaxHeight() {
         console.log("volam <");
@@ -34,7 +34,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         _clss.style.height = height + 'px';
         for (var i = 0; i < _clss.length; i++) {_clss[i].style.height = height + 'px';}
     }
-
+    */
     login();
     function login() {
         var email = "plastovecky@enli.sk",
@@ -847,20 +847,16 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             //if it is, remove it from the activeTabs array
             $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
             tab.toggled = !tab.toggled;
-            //$scope.activeTT = [];
         } else {
             // if it's not, add it!
             for (var i = 0; i < tab.child.length; ++i) {
                 if (tab.child[0].hasOwnProperty("parentid") && tab.wasOpened !== true) {
-                    //console.log($scope.activeTT.indexOf(tab.child[i]));
                     $scope.activeTT.push(tab.child[i]);
-                    //tab.child[i].toggled = false;
                     console.log($scope.activeTT);
                     console.log(tab.child[i]);
 
                 }
                 else if (!tab.child[0].hasOwnProperty("parentid")) {
-                    //console.log(tab.child[i]);
                     $scope.activeTT.push(tab.child[i]);
                 }
             }

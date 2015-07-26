@@ -130,7 +130,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
 
     setActiveSection = function (n) {
         $scope.activeMenu = {};
-        console.log(n);
         switch (n) {
             case "0": $scope.activeMenu.first = true; chMin(); break;
             case "2": $scope.activeMenu.second = true; chMin(); break;
@@ -141,7 +140,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$compile', '$http', '$window', 
         isFps = $scope.activeMenu;
 
         if (!$scope.$$phase) $scope.$apply();
-        console.log($scope.activeMenu);
     }
 
     var chFull = function(){

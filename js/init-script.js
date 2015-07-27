@@ -64,7 +64,7 @@ document.getElementById('loading-box').style.display = "none";
 var Module = {
     doNotCaptureKeyboard: true,
     //keyboardListeningElement: document.getElementById('spa'),
-    //WebGLInput.captureAllKeyboardInput = false,
+    //WebGLInput.captureAllKeyboardInput : false,
 
     TOTAL_MEMORY: 285212672, //838860800
     filePackagePrefixURL: "Release/",

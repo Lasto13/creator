@@ -228,8 +228,10 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     $scope.RozmerySet = function (value) { SendMessage("Settings", "ShowTextFromWeb", value); };
 
     $scope.UlozitProjekt = function () {
+        closeOtherDropdowns();
         document.getElementById('sp-holder').style.display = "block";
         setInputValue();
+        SendMessage('FunctionsManager','SetInputEnabled','1');
         /*
         $('#sp').focus();
         console.log(Module);
@@ -254,14 +256,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
             _ctrl = false,
             _shft = false;
         inpt.focus();
-        inpt.addEventListener('keydown', function(e) {
-            if (e.keyCode === 16 ) {_shft = true;}
-            if (e.keyCode === 17 ) {_ctrl = true;}
-        })
 
         inpt.addEventListener('keyup', function (e) {
-            console.log(this.selectionStart,e.target.selectionEnd,_kk.length);
-
             if (e.keyCode === 37 && e.shiftKey){
                 this.selectionStart = this.selectionStart -1;
             }else if(e.keyCode === 37){
@@ -292,22 +288,17 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 e.preventDefault();
             } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
                 e.preventDefault();
-            } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
+            } else if (e.ctrlKey && e.keyCode === 65){
+                this.selectionStart = 0;
+                this.selectionEnd = this.value.length;
+            } else if (this.selectionStart == this.selectionEnd){
                 _k = e.key;
                 var _index = this.selectionStart;
                 var _val = this.value;
                 var _val = _val.splice(_index,0,_k);
                 this.value = _val;
                 this.selectionStart = this.selectionEnd = _index + 1;
-            } if (e.ctrlKey && e.keyCode === 65){
-                this.selectionStart = 0;
-                this.selectionEnd = this.value.length;
             }
-
-            //if (e.keyCode == 16) {_shft = false;console.log(_shft);}
-            //if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
-
-            //if (e.ctrlKey && e.key === 'a') console.log('stisol si CTRL + a');
 
 
         }, false);
@@ -337,6 +328,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     }
 
     $scope.NovyProjekt = function () {
+        closeOtherDropdowns();
+        /*
         $('#Settings').css({ top: -470 + 'px' });
         $('#SaveProject').css({ top: -50 + 'px' });
         $('#LoadProject').css({ top: -300 + 'px' });
@@ -352,6 +345,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 }
             }
         });
+        */  
     }
 
     $scope.CleanProject = function () {
@@ -368,8 +362,17 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     $scope.OtvoritProjekt = function (jsonstring) {
         SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
     }
+
+    var closeOtherDropdowns = function(){
+        $('#Settings').css({ top: -470 + 'px' });
+        $('#SaveProject').css({ top: -50 + 'px' });
+        $('#LoadProject').css({ top: -300 + 'px' });
+    }
+
+
 }]);
 
+/*
 app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function ($scope, $modalInstance, bridge) {
 
     $scope.cancel = function () {
@@ -388,7 +391,7 @@ app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function
         bridge.changeSection();
     }
 }]);
-
+*/
 /*
 app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
@@ -495,13 +498,24 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
     $scope.ZmenaMat = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
     };
+
+    var setDefClass = function(){
+        $("a.radio-picture").removeClass('btn-my2');
+        $("a.radio-picture").addClass('btn-my');
+        $("#B0").removeClass('btn-my');
+        $("#B0").addClass('btn-my2');
+    }
+
     $scope.Undo = function () {
+        console.log("<<<<<<<<<<");
+        console.log($scope.activeMenu);
         SendMessage("UndoRedo", "Undo");
         $scope.NoOp();
         $("a.radio-picture").removeClass('btn-my2');
         $("a.radio-picture").addClass('btn-my');
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
+        console.log(document.getElementsByClassName('#leftBox .btn-my'));
     };
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); };
 

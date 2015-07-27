@@ -37,17 +37,16 @@
 
 </div>
 
-<div>
   <div id="Settings" >
-  <p>
-  Kvalita grafiky
-  </p>
-  <form >
-    <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)" > <label>Nízka </label><br>
-    <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> <label>Stredná </label><br>
-    <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> <label>Vysoká </label>
-  </form>
-  <p>Vyhladzovanie hrán</p>
+    <p>
+    Kvalita grafiky
+    </p>
+    <form >
+      <input type="radio" name="Kvalita" value="Nizka" ng-click = "Kvalita(0)" > <label>Nízka </label><br>
+      <input type="radio" name="Kvalita" value="Stredna" ng-click = "Kvalita(1)"> <label>Stredná </label><br>
+      <input type="radio" name="Kvalita" value="Vysoka" checked="checked" ng-click = "Kvalita(2)"> <label>Vysoká </label>
+    </form>
+    <p>Vyhladzovanie hrán</p>
       <form >
         <input type="radio" name="Hrany" value="Vypnute" ng-click = "HranySet(0)"> <label>Vypnuté </label><br>
         <input type="radio" name="Hrany" value="2x" ng-click = "HranySet(2)"> <label>2X </label><br>
@@ -58,8 +57,7 @@
       <input id = "RozmeryZapnute"type="radio" name="Rozmery" value="Zapnuté" checked="checked" ng-click = "RozmerySet(1)"> <label>Zapnuté </label><br>
       <input id = "RozmeryVypnute"type="radio" name="Rozmery" value="Vypnuté" ng-click = "RozmerySet(0)"> <label>Vypnuté </label><br>
       </form>
-    </div>
-</div>
+  </div>
 
   <div id="SaveProject" style="pointer-events: auto;"><p>Uložiť ako</p>
     <input  type="text" value="MySave1" name="usrname" style="pointer-events: auto"> 

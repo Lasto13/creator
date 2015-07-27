@@ -101,7 +101,7 @@
             <div>
               <span style="position:relative; "><p>ZMEŇ TYP STENY:</p></span>
             </div>
-            <div id="ButtonContainer3">
+            <div id="wall-types">
               <a id="B16" class="Button btn btn-default" ng-click = "Oznacit()">Označiť</a>
               <a id="B17" class="Button btn btn-default" ng-click = "OznacitVsetky()">Označiť všetky</a>
               <a id="B18" class="Button btn btn-default" ng-click = "ZmenitNaObvodove()">Zmeniť na obvodové</a>
@@ -253,6 +253,15 @@
 
   <div id="sp-holder">
     <div id="sp-content">
+      <h4>Uložiť projekt ?</h4>
+      <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
+      <button class="btn enli-btn" ng-click="potvrdit()">Áno</button>
+      <button class="btn enli-btn" ng-click="cancel()">Nie</button>
+    </div>
+  </div>
+
+  <div id="np-holder">
+    <div id="np-content">
       <h4>Uložiť projekt ?</h4>
       <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
       <button class="btn enli-btn" ng-click="potvrdit()">Áno</button>

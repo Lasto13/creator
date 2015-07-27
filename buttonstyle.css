@@ -5,11 +5,11 @@
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
 #wrapper{position:absolute;overflow:hidden}
 #splash-sc{background:#fff;position:fixed;top:0;left:0;z-index:1001}
-#sp-holder,.loader-count,.talk-to{position:absolute}
+#sp-holder,#np-holder,.loader-count,.talk-to{position:absolute}
 .loader-count{font-family:Roboto;text-align:center;z-index:1002}
 .talk-to{width:400px;height:50;text-align:center}
-#sp-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);display:none}
-#sp-content{position:relative;width:300px;height:150px;background:#fff;border-radius:10px;left:44%;top:20%}
+#sp-holder,#np-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);display:none}
+#sp-content,#np-content{position:relative;width:300px;height:150px;background:#fff;border-radius:10px;left:44%;top:20%}
 #errMsg,#fpsText{background-color:#d3d3d3}
 #errMsg,#fpsText,#header,#header #EnliLogo{position:absolute}
 #sp-content input{margin-left:74px}
@@ -126,7 +126,7 @@
 #ButtonContainer,#PodorysMenu,#PodorysMenu2,#header #LoadProject,#header #SaveProject{background-color:#FFF}
 #B10,#B11,#B12,#B13,#B14,#B15,#B15b{background-size:100%}
 #ButtonContainer{position:absolute;float:left;pointer-events:auto;margin-top:10px;margin-left:39px}
-#ButtonContainer3,#ButtonContainer4,#ButtonContainer5{width:10%;height:100%;pointer-events:auto;display:inline-block}
+#wall-types,#ButtonContainer4,#ButtonContainer5{width:10%;height:100%;pointer-events:auto;display:inline-block}
 #ButtonContainerInterier2{position:absolute;float:left;height:100%;width:50%;margin-left:50%;margin-top:70px;pointer-events:auto}
 .template .modal-dialog .modal-content{width:450px;height:150px;margin-left:auto;margin-right:auto}
 .template .modal-dialog .modal-content p{font-family:Roboto;color:#7CA616;font-size:2.5em;margin-left:56px}

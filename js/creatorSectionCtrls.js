@@ -254,14 +254,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
             _ctrl = false,
             _shft = false;
         inpt.focus();
-        inpt.addEventListener('keydown', function(e) {
-            if (e.keyCode === 16 ) {_shft = true;}
-            if (e.keyCode === 17 ) {_ctrl = true;}
-        })
 
         inpt.addEventListener('keyup', function (e) {
-            console.log(this.selectionStart,e.target.selectionEnd,_kk.length);
-
             if (e.keyCode === 37 && e.shiftKey){
                 this.selectionStart = this.selectionStart -1;
             }else if(e.keyCode === 37){
@@ -292,6 +286,9 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 e.preventDefault();
             } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
                 e.preventDefault();
+            } else if (e.ctrlKey && e.keyCode === 65){
+                this.selectionStart = 0;
+                this.selectionEnd = this.value.length;
             } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
                 _k = e.key;
                 var _index = this.selectionStart;
@@ -299,10 +296,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 var _val = _val.splice(_index,0,_k);
                 this.value = _val;
                 this.selectionStart = this.selectionEnd = _index + 1;
-            } if (e.ctrlKey && e.keyCode === 65){
-                this.selectionStart = 0;
-                this.selectionEnd = this.value.length;
-            }
+            } 
 
             //if (e.keyCode == 16) {_shft = false;console.log(_shft);}
             //if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
@@ -336,10 +330,15 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         }
     }
 
-    $scope.NovyProjekt = function () {
+    var closeAll = function(){
         $('#Settings').css({ top: -470 + 'px' });
         $('#SaveProject').css({ top: -50 + 'px' });
         $('#LoadProject').css({ top: -300 + 'px' });
+    }
+
+    $scope.NovyProjekt = function () {
+        document.getElementById('np-holder').style.display = "block";
+        /*
         var projectModal = $modal.open({
             //backdrop: 'static',
             keyboard: false,
@@ -352,6 +351,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 }
             }
         });
+        */
     }
 
     $scope.CleanProject = function () {
@@ -369,7 +369,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
     }
 }]);
-
+/*
 app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function ($scope, $modalInstance, bridge) {
 
     $scope.cancel = function () {
@@ -388,7 +388,7 @@ app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function
         bridge.changeSection();
     }
 }]);
-
+*/
 /*
 app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 

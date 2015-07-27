@@ -262,18 +262,16 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         inpt.addEventListener('keyup', function (e) {
             console.log(this.selectionStart,e.target.selectionEnd,_kk.length);
 
-            if (e.keyCode === 37){
-                if(_shft == true){
-                    this.selectionStart = this.selectionStart -1;
-                }else {
+            if (e.keyCode === 37 && e.shiftKey){
                 this.selectionStart = this.selectionStart -1;
-                this.selectionEnd = this.selectionStart;}
-            } else if (e.keyCode === 39){
-                if(_shft == true){
-                    this.selectionEnd = this.selectionEnd +1;
-                }else {
+            }else if(e.keyCode === 37){
+                this.selectionStart = this.selectionStart -1;
+                this.selectionEnd = this.selectionStart;
+            } else if (e.keyCode === 39 && e.shiftKey){
+                this.selectionEnd = this.selectionEnd +1;
+            } else if (e.keyCode === 39) {
                 this.selectionStart = this.selectionStart +1;
-                this.selectionEnd = this.selectionStart;}
+                this.selectionEnd = this.selectionStart;
             } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
                 var _index = this.selectionStart;
                 this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
@@ -298,18 +296,19 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 _k = e.key;
                 var _index = this.selectionStart;
                 var _val = this.value;
-                console.log(_val);
                 var _val = _val.splice(_index,0,_k);
-                console.log(_val);
                 this.value = _val;
                 this.selectionStart = this.selectionEnd = _index + 1;
-            } if (_ctrl == true && e.keyCode === 65){
+            } if (e.ctrlKey && e.keyCode === 65){
                 this.selectionStart = 0;
                 this.selectionEnd = this.value.length;
             }
 
-            if (e.keyCode == 16) {_shft = false;console.log(_shft);}
-            if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
+            //if (e.keyCode == 16) {_shft = false;console.log(_shft);}
+            //if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
+
+            //if (e.ctrlKey && e.key === 'a') console.log('stisol si CTRL + a');
+
 
         }, false);
     }

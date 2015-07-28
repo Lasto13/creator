@@ -2,7 +2,7 @@
 #sp-content h4,a{color:#7ca616}
 #errMsg span,.Button{vertical-align:middle}
 #header .button.first,#header .button.second,#header .button.third{top:-4px;display:inline-block;font-weight:700}
-#header .button.first,#header .button.second,#header .button.third{}
+#header .button.first:hover,#header .button.second:hover,#header .button.third:hover{background-image:-moz-linear-gradient(center top ,rgba(255,255,255,0) 56%,#638512 149%,#638512 72%)}
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
 #wrapper{position:absolute;overflow:hidden}
 #splash-sc{background:#fff;position:fixed;top:0;left:0;z-index:1001}

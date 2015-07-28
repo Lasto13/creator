@@ -334,6 +334,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     }
 
     $scope.NovyProjekt = function () {
+        closeAll();
         document.getElementById('np-holder').style.display = "block";
         document.getElementById('np-holder').style.opacity = 1;
         /*

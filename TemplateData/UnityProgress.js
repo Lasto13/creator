@@ -28,6 +28,10 @@ function UnityProgress (dom) {
             document.getElementById('np-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0;}, false);
             document.getElementById('np-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
 
+            document.addEventListener('click',function () { $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' }); }, false);
+            $('#Settings').css({ top: -470 + 'px' });
+            $('#LoadProject').css({ top: -300 + 'px' });
+
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
                 if (_pR.id.indexOf('ButtonContainer') > -1 || _pR.id.indexOf('buttons') > -1 || _pR.id.indexOf('buttSwitch') > -1) {

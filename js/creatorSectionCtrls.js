@@ -2,10 +2,11 @@
 app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', function ($scope, $modal, $http, $window, $timeout) {
     console.logError = console.log;
 
+    /*
     $scope.bridge = {
         changeSection: function () { $scope.activateMenu(1); }
     };
-
+    */
     var prepinacSave = 0,
         myStorage;
     $scope.activeMenu = {};
@@ -230,6 +231,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
         setInputValue();
+        SendMessage('FunctionsManager','SetInputEnabled','0');
         /*
         $('#sp').focus();
         console.log(Module);
@@ -693,14 +695,20 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     $scope.AddWindow = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
     };
-
     $scope.ChooseWindow = function (path) {
         SendMessage("GUI OKNA_DVERE", "download_window", path);
         $scope.isWindowDropdownDisplayed = true;
+        setNoDWclass();
     }
     $scope.ChooseDoor = function (path) {
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
+    }
+    var setNoDWclass = function(){
+        var dw = $('#dw-toolbar .btn-my2');
+        console.log(dw);
+        dw.removeClass('btn-my2');
+        $('BDW5').addClass('btn-my2');
     }
 }]);
 

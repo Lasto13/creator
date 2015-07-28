@@ -23,8 +23,10 @@ function UnityProgress (dom) {
             for (var i = 0, iL = document.querySelectorAll('a').length; i < iL; i++)
                 document.querySelectorAll('a')[i].addEventListener('click', btnClassRplc, false);
 
-            document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; }, false);
+            document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0; }, false);
             document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
+            document.getElementById('np-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0;}, false);
+            document.getElementById('np-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
 
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');

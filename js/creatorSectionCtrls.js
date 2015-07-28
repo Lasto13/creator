@@ -228,7 +228,9 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
+        document.getElementById('sp-holder').style.opacity = 1;
         setInputValue();
+        closeAll();
         SendMessage('FunctionsManager','SetInputEnabled','0');
         /*
         $('#sp').focus();
@@ -303,6 +305,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     $scope.cancel = function () {
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
+        document.getElementById('np-holder').style.display = "none";
+        document.getElementById('sp-holder').style.opacity = 0;
     }
 
     $scope.potvrdit = function () {
@@ -310,6 +314,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         SendMessage("Save Game Manager", "SaveFromWeb", saveName);
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
+        document.getElementById('sp-holder').style.opacity = 0;
     }
 
     setShowRozmery = function (show) {
@@ -325,12 +330,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     var closeAll = function(){
         $('#Settings').css({ top: -470 + 'px' });
-        $('#SaveProject').css({ top: -50 + 'px' });
         $('#LoadProject').css({ top: -300 + 'px' });
     }
 
     $scope.NovyProjekt = function () {
         document.getElementById('np-holder').style.display = "block";
+        document.getElementById('np-holder').style.opacity = 1;
         /*
         var projectModal = $modal.open({
             //backdrop: 'static',
@@ -348,6 +353,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     }
 
     $scope.CleanProject = function () {
+        document.getElementById('np-holder').style.display = "none";
+        document.getElementById('np-holder').style.opacity = 0;
         SendMessage("NewProject", "NewProject");
     }
 

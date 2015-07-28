@@ -2,18 +2,20 @@
 #sp-content h4,a{color:#7ca616}
 #errMsg span,.Button{vertical-align:middle}
 #header .button.first,#header .button.second,#header .button.third{top:-4px;display:inline-block;font-weight:700}
+#header .button.first,#header .button.second,#header .button.third{}
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
 #wrapper{position:absolute;overflow:hidden}
 #splash-sc{background:#fff;position:fixed;top:0;left:0;z-index:1001}
 #sp-holder,#np-holder,.loader-count,.talk-to{position:absolute}
 .loader-count{font-family:Roboto;text-align:center;z-index:1002}
 .talk-to{width:400px;height:50;text-align:center}
-#sp-holder,#np-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);display:none}
-#sp-content,#np-content{position:relative;width:300px;height:150px;background:#fff;border-radius:10px;left:44%;top:20%}
+#sp-holder,#np-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);opacity:0;display:none;transition:opacity 1.5s ease-in-out;-moz-transition:opacity 1.5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
+#sp-content,#np-content{position:relative;width:300px;height:150px;background:#fff;border: 1px solid #7ca616;border-radius:10px;left:44%;top:20%}
 #errMsg,#fpsText{background-color:#d3d3d3}
 #errMsg,#fpsText,#header,#header #EnliLogo{position:absolute}
 #sp-content input{margin-left:74px}
 #sp-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
+#np-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
 #header .button.first,#header .button.next:after,#header .button.second,#header .button.third{background-image:-moz-linear-gradient(center top ,rgba(255,255,255,0) 56%,#7ca616 149%,#7ca616 72%)}
 #header .button.first,#header .button.second,#header .button.third{background-image:-ms-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);background-image:-o-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);background-image:-webkit-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%)}
 #fpsText{top:40%;left:40%;width:300px;height:100px}

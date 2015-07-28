@@ -205,25 +205,22 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
             _pRi = _pR.querySelector('input');
             for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
             document.getElementById('category_1').checked = true;
-            document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
-            document.getElementById('B3').className = 'Button radio-picture btn-my';
+            defActionClass();
         }
     };
 
+    var defActionClass = function(){
+        $('#ButtonContainer .btn-my2').removeClass('btn-my2');
+        $('#B0').addClass('btn-my2');
+    }
+
     $scope.Center = function () { SendMessage("Main Camera", "ResetPosition"); };
-    $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); };
-    $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); };
+    $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); defActionClass();};
+    $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); defActionClass();};
     $scope.FPS = function () { 
         SendMessage("EventSystem", "FpsPosition");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-        document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
-        document.getElementById('B3').className = 'Button radio-picture btn-my'; 
-    };
-    showUIforFps = function () {
-        console.log("zobraz UI pre panaka");
-        //var fpsText = document.createElement("div");
-        //fpsText.id = "fpsText";
-        //document.appendChild(fpsText);
+        defActionClass();
     };
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
@@ -300,13 +297,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
                 this.value = _val;
                 this.selectionStart = this.selectionEnd = _index + 1;
             } 
-
-            //if (e.keyCode == 16) {_shft = false;console.log(_shft);}
-            //if (e.keyCode == 17) {_ctrl = false;console.log(_ctrl);}
-
-            //if (e.ctrlKey && e.key === 'a') console.log('stisol si CTRL + a');
-
-
         }, false);
     }
 
@@ -372,39 +362,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
     }
 }]);
-/*
-app.controller('NewProjectCtrl', ['$scope', '$modalInstance', 'bridge', function ($scope, $modalInstance, bridge) {
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    }
-
-    $scope.ok = function () {
-        $modalInstance.close(SendMessage("NewProject", "NewProject"));
-        SendMessage("NewProject", "NewProject");
-        SendMessage("CanvasEditor", "changeArea", 0);
-        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-        $("a.radio-picture").removeClass('btn-my2');
-        $("a.radio-picture").addClass('btn-my');
-        $("#B0").removeClass('btn-my');
-        $("#B0").addClass('btn-my2');
-        bridge.changeSection();
-    }
-}]);
-*/
-/*
-app.controller('SaveProjectCtrl', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-
-    $scope.cancel = function () {
-        console.log("Malo by to vypnut");
-        $modalInstance.dismiss('cancel');
-    }
-
-    $scope.potvrdit = function () {
-        $modalInstance.close(SendMessage("NewProject", "NewProject"));
-    }
-} ]);
-*/
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
 

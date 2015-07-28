@@ -178,6 +178,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         SendMessage("CanvasEditor", "changeArea", 2);
 
         document.getElementById('BDW5').className = 'Button radio-dw btn-my btn-my2';
+        document.getElementById('BDW6').className = 'Button radio-dw btn-my';
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
     };
@@ -497,6 +498,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
     $scope.ZmenaMat = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
     };
+
+    /*
     $scope.Undo = function () {
         SendMessage("UndoRedo", "Undo");
         $scope.NoOp();
@@ -505,8 +508,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
     };
-    $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); };
-
+    $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); console.log("redo"); };
+    */
     SetUndoRedoInteractable = function (IsInteractable) { }
 
     SetWallTypeButtonActive = function (IsInteractable) { }

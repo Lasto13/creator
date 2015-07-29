@@ -69,7 +69,7 @@ function browserDimensions() {
 
     var canvasH = document.getElementById('canvasHolder'),
         c_width = clientWidth - 250,
-        c_height = clientHeight - 180;
+        c_height = clientHeight - 150;
 
     if (isFps){
         canvasH.style.width = clientWidth + 'px';
@@ -80,7 +80,7 @@ function browserDimensions() {
         canvasH.style.width = c_width +'px';
         canvasH.style.height = c_height +'px'; 
         canvasH.style.left = 250 +'px';
-        canvasH.style.top = 180 +'px';
+        canvasH.style.top = 150 +'px';
     }
 }
 

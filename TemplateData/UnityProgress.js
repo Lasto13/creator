@@ -22,12 +22,35 @@ function UnityProgress (dom) {
         setTimeout(function () {
             for (var i = 0, iL = document.querySelectorAll('a').length; i < iL; i++)
                 document.querySelectorAll('a')[i].addEventListener('click', btnClassRplc, false);
+            var sp = document.getElementById('sp-holder');
+            var np = document.getElementById('np-holder');
+            var spc = document.getElementById('sp-content');
+            var npc = document.getElementById('np-content');
 
-            document.getElementById('sp-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0; }, false);
-            document.getElementById('sp-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
-            document.getElementById('np-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0;}, false);
-            document.getElementById('np-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
+            sp.addEventListener('click', function () {SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0; }, false);
+            spc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
+            np.addEventListener('click', function () { SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0;}, false);
+            npc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
+            document.addEventListener('keyup', function (e) { 
+                if(e.keyCode == 27){
+                    //e.preventDefault();
 
+                    sp.style.display = "none";
+                    sp.style.opacity = 0;
+                    np.style.display = "none";
+                    np.style.opacity = 0;
+                    SendMessage('FunctionsManager','SetInputEnabled','1');
+                    
+                    $('#Settings').css({ top: -470 + 'px' });
+                    $('#LoadProject').css({ top: -300 + 'px' });
+
+                    $('#').css({ top: -470 + 'px' });
+                    $('#LoadProject').css({ top: -300 + 'px' });
+
+                    e.preventDefault();
+                }
+            }, false);
+            
             /* 
             document.addEventListener('click',function (e) {
                 var _target = $(e.target);

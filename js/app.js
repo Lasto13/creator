@@ -20,7 +20,7 @@ var app = angular.module('app',[
       get: function(){
       return $http({
         method: "GET",
-        url:'jsonik.json',
+        url:'jsonWEBGL.json',
         async: false,
       success: function(){
       console.log("new");

@@ -16,13 +16,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         $scope.activeMenu = {};
         console.log(n);
         switch (n) {
-            case 1: $scope.activeMenu.first = true; chMin(); break;
-            case 2: $scope.activeMenu.second = true; chMin(); break;
-            case 3: $scope.activeMenu.third = true; chMin(); break;
-            case 4: $scope.activeMenu.fourth = true; chFull(); break;
+            case 1: $scope.activeMenu.first = true; isFps = false; chMin(); break;
+            case 2: $scope.activeMenu.second = true; isFps = false; chMin(); break;
+            case 3: $scope.activeMenu.third = true; isFps = false; chMin(); break;
+            case 4: $scope.activeMenu.fourth = true; isFps = true; chFull(); break;
             default: $scope.activeMenu = {};
         }
-        isFps = $scope.activeMenu;
     }
     
     login();
@@ -119,13 +118,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     setActiveSection = function (n) {
         $scope.activeMenu = {};
         switch (n) {
-            case "0": $scope.activeMenu.first = true; chMin(); break;
-            case "2": $scope.activeMenu.second = true; chMin(); break;
-            case "5": $scope.activeMenu.third = true; chMin(); break;
-            case "6": $scope.activeMenu.fourth = true; chFull(); break;
+            case "0": $scope.activeMenu.first = true; isFps=false; chMin(); break;
+            case "2": $scope.activeMenu.second = true; isFps=false; chMin(); break;
+            case "5": $scope.activeMenu.third = true; isFps=false; chMin(); break;
+            case "6": $scope.activeMenu.fourth = true; isFps=true; chFull(); break;
             default: $scope.activeMenu = {};
         }
-        isFps = $scope.activeMenu;
 
         if (!$scope.$$phase) $scope.$apply();
     }
@@ -170,6 +168,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('category_1').checked = true;
         document.getElementById('B0').className = 'Button radio-picture btn-my2';
         SendMessage("CanvasEditor", "changeArea", 0);
+        browserDimensions();
     };
     $scope.DW = function () {
         var _pR = document.getElementById('BDW5').parentNode,
@@ -181,6 +180,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('BDW6').className = 'Button radio-dw btn-my';
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
+        browserDimensions();
     };
     $scope.Interier = function () {
         var _pR = document.getElementById('BI5').parentNode,
@@ -189,6 +189,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById('icategory_1').checked = true;
         SendMessage("CanvasEditor", "changeArea", 5);
+        browserDimensions();
     };
     $scope.D2D = function () {
         defActionClass();
@@ -238,21 +239,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         setInputValue();
         closeAll();
         SendMessage('FunctionsManager','SetInputEnabled','0');
-        /*
-        $('#sp').focus();
-        console.log(Module);
-        Module.keyboardListeningElement = document.getElementById('sp');
-        console.log(Module);
-        */
-        //console.log(document.activeElement);
-        /*
-        var saveModal = $modal.open({
-        keyboard: false,
-        templateUrl:'partials/saveProject.html',
-        controller: 'SaveProjectCtrl',
-        transclude: true
-        });
-        */
     };
 
     var setInputValue = function () {
@@ -313,6 +299,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('sp').value = "";
         document.getElementById('np-holder').style.display = "none";
         document.getElementById('sp-holder').style.opacity = 0;
+        SendMessage('FunctionsManager','SetInputEnabled','1');
     }
 
     $scope.potvrdit = function () {
@@ -321,6 +308,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
+        SendMessage('FunctionsManager','SetInputEnabled','1');
     }
 
     setShowRozmery = function (show) {
@@ -344,6 +332,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         defActionClass();
         document.getElementById('np-holder').style.display = "block";
         document.getElementById('np-holder').style.opacity = 1;
+        SendMessage('FunctionsManager','SetInputEnabled','0');
         /*
         var projectModal = $modal.open({
             //backdrop: 'static',
@@ -365,6 +354,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('np-holder').style.display = "none";
         document.getElementById('np-holder').style.opacity = 0;
         SendMessage("NewProject", "NewProject");
+        SendMessage('FunctionsManager','SetInputEnabled','1');
     }
 
     savingFinished = function (value) {
@@ -821,16 +811,16 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     }
 
     $scope.setSelectedMan = function(aoManufacturers) {
-        asSelectedMans = [];
+        $scope.asSelectedMans = [];
     
         if (aoManufacturers) {
             for (var i = 0, len = aoManufacturers.length; i < len; i++) {
                 if (aoManufacturers[i].isChecked) {
-                    asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
+                    $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
                 }
             }
         }
-        if ($scope.activeTT.length > 0) filterProducts(asSelectedMans);
+        if ($scope.activeTT.length > 0) filterProducts();
     };
 
     // function to 'open' a tab
@@ -875,6 +865,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     });
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
+        filterProducts();
+    });
+
+    $scope.$watchCollection('asSelectedMans', function (newTT, oldTT) {
+        console.log($scope.asSelectedMans);
         filterProducts();
     });
 
@@ -929,8 +924,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     }
 
-    var filterProducts = function(asSelectedMans){
-        console.log(asSelectedMans);
+    var filterProducts = function(){
+        console.log($scope.asSelectedMans);
         //console.log($scope.activeTT[0].products);
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
@@ -940,7 +935,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
                 console.log(prods[0]);
                 for(var k = 0; k < prods.length; k++){
                     console.log(prods[k]);
-                    if (prods[k].manufacturername.indexOf(asSelectedMans) > -1){
+                    if (prods[k].manufacturername.indexOf($scope.asSelectedMans) > -1){
                         $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
                     }
                 }

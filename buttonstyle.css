@@ -1,6 +1,7 @@
+label{cursor: pointer;}
 #splash-sc,#wrapper{width:100%;height:100%}
 #sp-content h4,a{color:#7ca616}
-#errMsg span,.Button{vertical-align:middle}
+#errMsg span,.Button{vertical-align:middle;cursor: pointer}
 #header .button.first,#header .button.second,#header .button.third{top:-4px;display:inline-block;font-weight:700}
 #header .button.first:hover,#header .button.second:hover,#header .button.third:hover{background-image:-moz-linear-gradient(center top ,rgba(255,255,255,0) 56%,#638512 149%,#638512 72%)}
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
@@ -16,6 +17,7 @@
 #sp-content input{margin-left:74px}
 #sp-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
 #np-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
+#np-content h4 {color: #7CA616; display: inline-block;}
 #header .button.first,#header .button.next:after,#header .button.second,#header .button.third{background-image:-moz-linear-gradient(center top ,rgba(255,255,255,0) 56%,#7ca616 149%,#7ca616 72%)}
 #header .button.first,#header .button.second,#header .button.third{background-image:-ms-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);background-image:-o-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);background-image:-webkit-linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%)}
 #fpsText{top:40%;left:40%;width:300px;height:100px}
@@ -51,11 +53,11 @@
 #SaveProject p,#Settings p{font-family:Roboto;color:#7CA616;font-size:1.2em;margin-left:-20px;margin-top: 15px}
 #LoadProject p{left:5px;color:#7CA616}
 .podorys-section{position:absolute;top:80px;z-index:999;width:100%;height:100%;pointer-events:none}
-.podorys-section #podoris-toolbar{height:100px;width:100%;background-color:#FFF;position:relative;pointer-events:auto;z-index:999}
-.podorys-section #podoris-toolbar #mierka-radio{position:relative;width:320px;float:right;top:55px;left:-24px}
-.podorys-section #podoris-toolbar #mierka-radio input[type=radio]{display:none}
-.podorys-section #podoris-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
-.podorys-section #podoris-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
+.podorys-section #podorys-toolbar{height:70px;width:100%;background-color:#FFF;position:relative;pointer-events:auto;z-index:999}
+.podorys-section #podorys-toolbar #mierka-radio{position:relative;width:320px;float:right;top:55px;left:-24px}
+.podorys-section #podorys-toolbar #mierka-radio input[type=radio]{display:none}
+.podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
+.podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
 .podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:250px;background-color:#FFF;pointer-events:auto}
 .podorys-section .left-menu p{color:#7CA616;font-size:120%;font-family:Roboto;font-weight:700}
 .podorys-section .left-menu-item{width:84%;position:relative;left:40px;margin-bottom:10px}
@@ -78,23 +80,23 @@
 #B9{background-image:url(Buttons/13.png)}
 #loadcontent{position:relative;width:50%;height:100%;float:left}
 .dw-section{position:absolute;z-index:999;height:100%;width:100%;top:80px;pointer-events:none}
-.dw-section #dw-toolbar{position:relative;float:left;height:100px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:39px}
+.dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:39px}
 .dw-section #ButtonContainerDW2{position:absolute;float:left;height:100%;width:50%;margin-left:50%;margin-top:70px;pointer-events:auto}
-.dw-section .left-menu{position:relative;height:100%;width:250px;background-color:#FFF;pointer-events:auto;top:95px}
-.dw-section #MenuItemWindow{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:relative;top:-100px;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section .left-menu{position:relative;height:100%;width:250px;background-color:#FFF;pointer-events:auto;top:70px}
+.dw-section #MenuItemWindow{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
-.dw-section #MenuItemDoor{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:relative;top:-500px;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemDoor{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor .door-item{width:100px;height:100px;display:inline-block}
 .interier-section{position:relative;top:80px;width:100%;height:100%;pointer-events:none;z-index:999}
-.interier-section #sipka{background-image:url(Buttons/sipky.png);position:relative;width:50px;height:28px;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
+.interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section #ProductBox{position:absolute;height:730px;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}
 .interier-section #ProductBox .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
 .interier-section #ProductBox .btn-group .prod-info{width:65%;position:relative;float:left}
-.interier-section #interier-toolbar{position:relative;background-color:#FFF;height:100px;z-index:999;width:100%;pointer-events:auto}
-.interier-section #interier-toolbar #buttons{position:relative;float:left;height:80px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:30px}
+.interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}
+.interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:30px}
 .interier-section .left-menu{position:relative;height:100%;width:250px;z-index:999;background-color:#FFF;pointer-events:auto}
 .interier-section .left-menu #InterierMenu{top:150px;height:100%;width:230px;background-color:#FFF;color:#7CA616;padding-left:40px}
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
@@ -156,9 +158,9 @@
 .DoorButton{vertical-align:left;width:100px;height:100px;margin-left:2px}
 #B16,#B17,#B18,#B19,#B20,#B21,#B23{width:180px;height:30px}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{display:block;vertical-align:middle}
-.btn-my{background-position:left bottom}
+.btn-my{background-position:left bottom;cursor: pointer}
 .btn-my:hover{background-position:left top!important}
-.btn-my2{background-position:left top}
+.btn-my2{background-position:left top; cursor: pointer}
 .TypeProductDesign{color:#7CA616;padding:1px 2px;font-size:16px;line-height:1.42857143;white-space:nowrap}
 .TypeProductDesignClicked{color:#000;padding:1px 2px;font-size:16px;line-height:1.42857143;white-space:nowrap}
 .TypeProductDesign:hover{color:#000;text-decoration:none;cursor:pointer;cursor:hand}

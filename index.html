@@ -33,7 +33,7 @@
       <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
       -->
       <div ng-show="activeMenu.first" class="podorys-section" ng-controller="podorysCtrl">
-        <div id="podoris-toolbar">
+        <div id="podorys-toolbar">
           <div id="ButtonContainer">
             <input type="radio"  id="category_1" class="hidden" />
             <a id="B0" class="Button btn-my radio-picture" ng-click = "NoOp(); set_radio('category_1')"></a>
@@ -121,7 +121,10 @@
         </div>
         <div class="left-menu">
           <div id="MenuItemWindow">
-            <div class="window-item" ng-click = "ChooseWindow(window.asset);"  ng-repeat = "window in menuData.okna.child" class="btn-group" style="background:url({{window.image}}); background-size: 100%;">
+            <div class="window-item" ng-click = "ChooseWindow(window.asset);"  ng-repeat="window in menuData.okna.child" class="btn-group" style="background:url({{window.image}}); background-size: 100%;">
+              <div class='win-image' style="background:url({{window.image}}); background-size: 100%;"></div>
+              <div>
+              </div>
               <!-- <div class="window-item" style="background:url({{window.image}})"> </div>
               <a class="WindowButton" ng-click = "ChooseWindow(window.asset);" style="background:url({{window.image}}); background-size:100%"></a>-->
             </div>
@@ -242,7 +245,7 @@
 
   <div id="sp-holder">
     <div id="sp-content">
-      <h4>Uložiť projekt ?</h4>
+      <div style='text-align:center'><h4>Uložiť projekt ?</h4></div>
       <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
       <button class="btn enli-btn" ng-click="potvrdit()">Áno</button>
       <button class="btn enli-btn" ng-click="cancel()">Nie</button>
@@ -251,9 +254,9 @@
 
   <div id="np-holder">
     <div id="np-content">
-      <h4>Otvoriť nový projekt ?</h4>
-        <button class="btn enli-btn" ng-click="CleanProject()">Áno</button>
-        <button class="btn enli-btn" ng-click="cancel()">Nie</button>
+      <div style='text-align:center'><h4>Otvoriť nový projekt ?</h4></div>
+      <button class="btn enli-btn" ng-click="CleanProject()">Áno</button>
+      <button class="btn enli-btn" ng-click="cancel()">Nie</button>
     </div>
   </div>
 

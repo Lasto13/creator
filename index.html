@@ -165,19 +165,12 @@
           <div id="InterierMenu">
             <div> 
               <div id="sipka" ng-click="toggleProdMenu()"> </div>
-              <p>VÝROBCA:</p>
-              <div>
-                <span ng-repeat='man in mf'>
-                  <input class='chbx' checked="true" id="{{man.id}}" ng-model='selection.ids[man.uidusplayname]' type='checkbox'>
-                  <label class='chbx-label' for="{{man.id}}">
-                      {{man.uidisplayname}}
-                  </label>
-                  <br>
-                </span>
+              <a id='manCol' ng-click = 'isCollapsed = !isCollapsed'>VÝROBCOVIA:</a>
+              <div id='man-cont' collapse='isCollapsed'>
+                <div class='btn-group enli-checkbox-btn' ng-class='{active: man.isChecked}' ng-repeat='man in mf'>
+                  <a class='btn btn-default' ng-click='manClicked(man)'> {{man.uidisplayname}} </a>
+                </div>
               </div>
-            </div>
-            <div>
-              <h4 style="color: #000000">Drevona</h4>
             </div>
             <!--
             <div class="form-group"style="position:relative; ">

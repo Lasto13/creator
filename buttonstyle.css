@@ -100,6 +100,11 @@
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h3{color:#7ca616}
+.interier-section #ProductBox p {font-size: .9em}
+.interier-section .left-menu p {font-size: 1.2em}
+.interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
+.interier-section .left-menu #manCol:hover {color: #638512}
+.interier-section .left-menu #man-cont {margin-top: 20px}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
 .fps-section .round-menu #del{position:relative;width:80px;height:80px;background:url(img/fps_gui/del.png)0 0/100% auto;float:left;left:4px;visibility:hidden}
@@ -218,7 +223,16 @@
 @keyframes spin{0%{-webkit-transform:rotate(0);-ms-transform:rotate(0);transform:rotate(0)}
 100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}
 }
-
+/* portal STYLE duplicate */
+.interier-section .left-menu .enli-checkbox-btn {display: block;width: 100%;margin-bottom: 2px;position: relative}
+.interier-section .left-menu .enli-checkbox-btn .btn{background-image: none; width: 100%;color: #c7c7c7;/*background-color: #ebf4d7;*/font-family: 'Roboto Bold',Helvetica,Arial,sans-serif;text-align: left;}
+.interier-section .left-menu .enli-checkbox-btn .btn:hover,.enli-checkbox-btn .btn:focus {color: #c7c7c7;background-color: white;}
+.interier-section .left-menu .enli-checkbox-btn.active .btn{color: #97ba46;background-color: #ebf4d7;}
+/*
+.interier-section .left-menu .enli-checkbox-btn .enli-cancel-btn-sm {display: inline-block;/*float: right;*//*width: 19px;height: 19px;position: absolute;top: 6px;right: 12px;}
+/*.interier-section .left-menu .enli-checkbox-btn .active .enli-cancel-btn-sm {background: url('../media/img/cancel_btn_sm.png') no-repeat 50% 50%;}
+.interier-section .left-menu .enli-checkbox-btn .enli-cancel-btn-sm:hover {background: url('../media/img/cancel_btn_sm_hover.png') no-repeat 50% 50%;}
+*/
 .chbx-label{
 	padding-left: 25px;
 }

@@ -191,6 +191,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         SendMessage("CanvasEditor", "changeArea", 5);
     };
     $scope.D2D = function () {
+        defActionClass();
         var _pR = document.getElementById('B0').parentNode,
             _pRi = _pR.querySelector('input');
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
@@ -340,6 +341,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     $scope.NovyProjekt = function () {
         closeAll();
+        defActionClass();
         document.getElementById('np-holder').style.display = "block";
         document.getElementById('np-holder').style.opacity = 1;
         /*
@@ -359,6 +361,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     }
 
     $scope.CleanProject = function () {
+        defActionClass();
         document.getElementById('np-holder').style.display = "none";
         document.getElementById('np-holder').style.opacity = 0;
         SendMessage("NewProject", "NewProject");
@@ -377,6 +380,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
+
+    $scope.isCollapsed = true;
 
     matJson.get().then(function (data) {
         $scope.mats = data;
@@ -500,6 +505,9 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         $("#B12").addClass('btn-my2');
         $("#B13").removeClass('btn-my2');
         $("#B13").addClass('btn-my');
+    }
+    Set3D = function(){
+        SendMessage("CanvasEditor", "SetView3D");
     }
     SetDefaultFunctionPodorys = function () {
         $("#B0").removeClass('btn-my');
@@ -694,7 +702,9 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     menuJson.get().then(function (data) {
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
-        console.log($scope.mf);
+        for (var i = 0; i<$scope.mf.length; i++){
+            $scope.mf[i].isChecked = true;
+        }
         $scope.dataToRepeat = null;
     });
 
@@ -805,6 +815,24 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         ids: {}
     };
 
+    $scope.manClicked = function(man){
+        man.isChecked = !man.isChecked;
+        $scope.setSelectedMan($scope.mf);
+    }
+
+    $scope.setSelectedMan = function(aoManufacturers) {
+        asSelectedMans = [];
+    
+        if (aoManufacturers) {
+            for (var i = 0, len = aoManufacturers.length; i < len; i++) {
+                if (aoManufacturers[i].isChecked) {
+                    asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
+                }
+            }
+        }
+        if ($scope.activeTT.length > 0) filterProducts(asSelectedMans);
+    };
+
     // function to 'open' a tab
     $scope.openTab = function (tab) {
         // check if tab is already open
@@ -825,9 +853,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             for (var i = 0; i < tab.child.length; ++i) {
                 if (tab.child[0].hasOwnProperty("parentid") && tab.wasOpened !== true) {
                     $scope.activeTT.push(tab.child[i]);
-                    console.log($scope.activeTT);
-                    console.log(tab.child[i]);
-
+                    //console.log($scope.activeTT);
+                    //console.log(tab.child[i]);
                 }
                 else if (!tab.child[0].hasOwnProperty("parentid")) {
                     $scope.activeTT.push(tab.child[i]);
@@ -848,19 +875,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     });
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
-        $scope.productsToShow = [];
-        for (var i = 0; i < $scope.activeTT.length; i++) {
-            $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products);
-        }
-        if ($scope.productsToShow.length > 0) {
-            $scope.isProductBoxDisplayed = true
-            document.getElementById('sipka').style.transform = 'rotate(180deg)';
-            sipRot = true;
-        } else {
-            $scope.isProductBoxDisplayed = false;
-            document.getElementById('sipka').style.transform = 'rotate(0deg)';
-            sipRot = false;
-        };
+        filterProducts();
     });
 
     $scope.ClickedTypeType = function (tab) {
@@ -912,6 +927,34 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
         }
+    }
+
+    var filterProducts = function(asSelectedMans){
+        console.log(asSelectedMans);
+        //console.log($scope.activeTT[0].products);
+        $scope.productsToShow = [];
+        for (var i = 0; i < $scope.activeTT.length; i++) {
+            for(var j = 0; j < $scope.activeTT[i].products.length; j++){
+                var prods = [];
+                prods.push($scope.activeTT[i].products);
+                console.log(prods[0]);
+                for(var k = 0; k < prods.length; k++){
+                    console.log(prods[k]);
+                    if (prods[k].manufacturername.indexOf(asSelectedMans) > -1){
+                        $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
+                    }
+                }
+            }
+        }
+        if ($scope.productsToShow.length > 0) {
+            $scope.isProductBoxDisplayed = true
+            document.getElementById('sipka').style.transform = 'rotate(180deg)';
+            sipRot = true;
+        } else {
+            $scope.isProductBoxDisplayed = false;
+            document.getElementById('sipka').style.transform = 'rotate(0deg)';
+            sipRot = false;
+        };
     }
 
     $scope.CenterInterier = function () {

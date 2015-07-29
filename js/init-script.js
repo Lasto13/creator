@@ -109,7 +109,7 @@ var Module = {
     //keyboardListeningElement: document.getElementById('spa'),
     //WebGLInput.captureAllKeyboardInput = false,
 
-    TOTAL_MEMORY: 285212672, //838860800
+    TOTAL_MEMORY: 536870912, //285212672, //838860800
     filePackagePrefixURL: "Release/",
     memoryInitializerPrefixURL: "Release/",
     preRun: [],

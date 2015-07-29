@@ -19,7 +19,7 @@ var lastoPlugin = {
 	{
 		//canvas.style.cursor = "move";
 		//canvas.style.cursor = "url(cursors/rubber.png)";
-		$("#canvas").css('cursor','move');
+		//$("#canvas").css('cursor','move');
 	},
 	showNormalCursor: function()
 	{

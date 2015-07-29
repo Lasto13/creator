@@ -28,10 +28,16 @@ function UnityProgress (dom) {
             document.getElementById('np-holder').addEventListener('click', function () { this.style.display = "none"; this.style.opacity = 0;}, false);
             document.getElementById('np-content').addEventListener('click', function (e) { e.stopPropagation(); }, false);
 
-            document.addEventListener('click',function () { $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' }); }, false);
-            $('#Settings').css({ top: -470 + 'px' });
-            $('#LoadProject').css({ top: -300 + 'px' });
-
+            /* 
+            document.addEventListener('click',function (e) {
+                var _target = $(e.target);
+                console.log(e.target.id);
+                if (e.target.id !== 'B27' && e.target.id !== 'B25' && _target.is('form') && _target.is('p') && e.target.id !== 'Settings' && e.target.className !== 'btn-group'){
+                    console.log(e.target);
+                   $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  
+                } }, false);
+            */
+            
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
                 if (_pR.id.indexOf('ButtonContainer') > -1 || _pR.id.indexOf('buttons') > -1 || _pR.id.indexOf('buttSwitch') > -1) {

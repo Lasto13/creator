@@ -59,19 +59,6 @@
             <input type="radio"  id="category_8" class="hidden" />
             <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
           </div>
-          <div id="mierka-radio" class="form-inline">
-            
-            <input class="mierka-input" id='radio1' type="radio" name="Mierka" value="Auto" ng-click = "MierkaAuto()"> 
-            <label for="radio1"></label>Auto
-            <input class="mierka-input" id='radio2' type="radio" name="Mierka" value="10cm" checked="checked" ng-click = "Mierka10()">
-            <label for="radio2"></label>10cm
-            <input class="mierka-input" id='radio3' type="radio" name="Mierka" value="50cm" ng-click = "Mierka50()">
-            <label for="radio3"></label> 50cm
-            <input class="mierka-input" id='radio4' type="radio" name="Mierka" value="100cm" ng-click = "Mierka100()">
-            <label for="radio4"></label> 100cm
-            <input class="mierka-input" id='radio5' type="radio" name="Mierka" value="Vyp" ng-click = "MierkaVyp()">
-            <label for="radio5"></label> Vyp.
-          </div>
         </div>
         <div class="left-menu">
           <div class="left-menu-item">
@@ -179,6 +166,15 @@
             <div> 
               <div id="sipka" ng-click="toggleProdMenu()"> </div>
               <p>VÝROBCA:</p>
+              <div>
+                <span ng-repeat='man in mf'>
+                  <input class='chbx' checked="true" id="{{man.id}}" ng-model='selection.ids[man.uidusplayname]' type='checkbox'>
+                  <label class='chbx-label' for="{{man.id}}">
+                      {{man.uidisplayname}}
+                  </label>
+                  <br>
+                </span>
+              </div>
             </div>
             <div>
               <h4 style="color: #000000">Drevona</h4>

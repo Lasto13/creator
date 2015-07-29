@@ -70,8 +70,9 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     $scope.SetSettings = function () {
         if (prepinacSet == 0) {
+            console.log(prepinacSet);
             $('#Settings').css({ top: 110 + 'px' });
-            $('#SaveProject').css({ top: -50 + 'px' });
+            //$('#SaveProject').css({ top: -50 + 'px' });
             $('#LoadProject').css({ top: -300 + 'px' });
             prepinacSave = 0;
             prepinacLoad = 0;
@@ -102,13 +103,12 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         if (prepinacLoad == 0) {
             $('#LoadProject').css({ top: 110 + 'px' });
             $('#Settings').css({ top: -470 + 'px' });
-            $('#SaveProject').css({ top: -50 + 'px' });
             prepinacLoad = 1;
             prepinacSet = 0;
             prepinacSave = 0;
         }
         else if (prepinacLoad == 1) {
-            $('#LoadProject').css({ top: -300 + 'px' });
+            $('#LoadProject').css({ top: -350 + 'px' });
             prepinacLoad = 0;
         }
     }
@@ -225,6 +225,11 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
     $scope.RozmerySet = function (value) { SendMessage("Settings", "ShowTextFromWeb", value); };
+    $scope.MierkaAuto = function () {SendMessage("Ruler", "SetRuler", 0);}
+    $scope.Mierka10 = function () {SendMessage("Ruler", "SetRuler", 500);}
+    $scope.Mierka50 = function () {SendMessage("Ruler", "SetRuler", 100);}
+    $scope.Mierka100 = function () {SendMessage("Ruler", "SetRuler", 50);}
+    $scope.MierkaVyp = function () {SendMessage("Ruler", "SetRuler", 1000000);}
 
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
@@ -526,24 +531,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         SendMessage("WallTypeToggleGroup", "ConfirmSelectPriecna");
     }
 
-    $scope.MierkaAuto = function () {
-        SendMessage("Ruler", "SetRuler", 0);
-    }
-    $scope.Mierka10 = function () {
-        SendMessage("Ruler", "SetRuler", 500);
-    }
-
-    $scope.Mierka50 = function () {
-        SendMessage("Ruler", "SetRuler", 100);
-    }
-
-    $scope.Mierka100 = function () {
-        SendMessage("Ruler", "SetRuler", 50);
-    }
-    $scope.MierkaVyp = function () {
-        SendMessage("Ruler", "SetRuler", 1000000);
-    }
-
     $scope.IsMaterialsDisplayed = true;
 
     $scope.setMenuMaterial = function (value) {
@@ -682,6 +669,12 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
+    var chbx = $('.chbx-label');
+    console.log(chbx);
+    for (var i = 0; chbx < chbx.length; i++){
+        chbx.checked = true;
+    }
+
     $scope.trieda = "TypeProductDesign";
     var hodnotaBI4 = 0;
 
@@ -700,6 +693,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     menuJson.get().then(function (data) {
         $scope.menuData = data;
+        $scope.mf = data.manufacturers;
+        console.log($scope.mf);
         $scope.dataToRepeat = null;
     });
 
@@ -805,6 +800,10 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     $scope.activeTT = [];
     $scope.productsToShow = [];
+    
+    $scope.selection = {
+        ids: {}
+    };
 
     // function to 'open' a tab
     $scope.openTab = function (tab) {
@@ -839,6 +838,14 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             tab.wasOpened = true;
         }
     }
+
+    $scope.$watchCollection('selection.ids', function (newTT, oldTT) {
+        console.log($scope.selection[Object.keys($scope.selection)[0]]);
+        for (var i = 0; i < $scope.selection.length; i++){
+            if ($scope.selection[Object.keys($scope.selection)[i]] == true){console.log("true")}
+            console.log($scope.selection[i]);
+        }
+    });
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
         $scope.productsToShow = [];

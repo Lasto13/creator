@@ -159,8 +159,8 @@
                                     "room": 0,                                                                     
                                     "typ": 0,                                                                      
                                     "subtyp": -1,                                                                 
-                                    "manufacturerid": 1,
-                                    "manufacturername":"Drevona"                                                            
+                                    "manufacturerid": 0,
+                                    "manufacturername":"Javorina"                                                            
                                 },
                                 {
                                     "category": 5,
@@ -174,8 +174,8 @@
                                     "room": 0,
                                     "typ": 0,
                                     "subtyp": -1,
-                                    "manufacturerid": 1,
-                                    "manufacturername":"Drevona" 
+                                    "manufacturerid": 0,
+                                    "manufacturername":"Javorina" 
                                 },
                                 {
                                     "category": 5,

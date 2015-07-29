@@ -31,12 +31,16 @@
 #header #ProjektMenuContainer{float:right;position:relative;height:inherit;z-index:1000;top:4px;right:4px}
 #header #SekciaContainer{position:relative;float:left;height:100%;z-index:1000;vertical-align:middle;padding:4px}
 #header #enli-header #BackgroundEnli{position:relative;width:100%;background-color:#7CA616;overflow:hidden;z-index:2}
-#header #Settings{position:absolute;z-index:-1;background-color:#FFF;height:350px;width:200px;float:right;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;right:20px;top:-470px;transition:top .5s ease-out 0s;-moz-transition:top .5s ease-in-out;-webkit-transition:top .5s ease-in-out}
+#header #Settings{position:absolute;z-index:-1;background-color:#FFF;height:500px;width:200px;float:right;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;right:20px;top:-470px; padding-left: 25px;transition:top .5s ease-out 0s;-moz-transition:top .5s ease-in-out;-webkit-transition:top .5s ease-in-out}
 #header .button.first,#header .button.second,#header .button.third{position:relative;height:80px;border-radius:4px}
 #header .button.first{color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-image:linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);width:168px}
 #header .button.second{color:#fff;text-decoration:none;text-align:center;padding:5px 25px;font-size:16px;font-family:helvetica,arial,sans-serif;background-image:linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);width:189px;left:6px}
 #header .button.third{color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-image:linear-gradient(top,rgba(255,255,255,1) 0,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);width:148px;left:24px}
 #header .button.next:after,#header .button.next:before{border-right:1px solid #FEFEFE;position:absolute;width:27px}
+#header #Settings #mierka-radio{position:relative;width:100%;float:right}
+#header #Settings input[type=radio]{display:none}
+#header #Settings label{display:inline-block;background:url(img/radio_button_inactive.png) no-repeat;width:21px;height:21px;margin-bottom:-5px;margin-left:4px; padding-left: 25px; font-weight: 300}
+#header #Settings input[type=radio]:checked+label{background:url(img/radio_button_active.png) no-repeat; padding-left: 25px}
 #LoadProject p,#Settings label{font-family:Roboto}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{margin-bottom:0;font-weight:400;text-align:left}
 #header .button:hover{color:#fff;text-decoration:none;cursor:pointer;cursor:hand}
@@ -44,8 +48,7 @@
 #header .button.next{border-right:none}
 #header .button.next:after{content:'';height:40px;right:-13px;bottom:1px;background-image:-webkit-linear-gradient(top,rgba(240,240,240,1) 0,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);background-image:-o-linear-gradient(top,rgba(240,240,240,1) 0,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);background-image:-ms-linear-gradient(top,rgba(240,240,240,1) 0,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);background-image:linear-gradient(top,rgba(240,240,240,1) 0,rgba(239,239,239,1) 10%,rgba(225,223,226,1) 100%);-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}
 #header .button.next:before{content:'';background-image:-webkit-linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);background-image:-moz-linear-gradient(center top ,rgba(255,255,255,0) 0,#7ca616 0,#7ca616 -16%);background-image:-o-linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);background-image:-ms-linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);background-image:linear-gradient(top,rgba(255,255,255,0) 0,rgba(255,255,255,1) 1%,rgba(240,240,240,1) 100%);height:40px;top:0;right:-13px;-webkit-transform:skew(35deg,0);-moz-transform:skew(35deg,0);-o-transform:skew(35deg,0);-ms-transform:skew(35deg,0);transform:skew(35deg,0)}
-#SaveProject p,#Settings p{font-family:Roboto;color:#7CA616;font-size:1.2em;margin-left:2px}
-#Settings form{margin-left:25px}
+#SaveProject p,#Settings p{font-family:Roboto;color:#7CA616;font-size:1.2em;margin-left:-20px;margin-top: 15px}
 #LoadProject p{left:5px;color:#7CA616}
 .podorys-section{position:absolute;top:80px;z-index:999;width:100%;height:100%;pointer-events:none}
 .podorys-section #podoris-toolbar{height:100px;width:100%;background-color:#FFF;position:relative;pointer-events:auto;z-index:999}
@@ -142,7 +145,7 @@
 #header #LoadProject,#header #SaveProject{-webkit-transition:top .5s ease-out;position:absolute}
 #header #SaveProject{display:block;height:100px;width:250px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-70px}
 #header #LoadProject,.Button,.DoorButton{display:inline-block}
-#header #LoadProject{overflow:auto;height:350px;width:300px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-470px}
+#header #LoadProject{overflow:auto;height:350px;width:300px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-350px}
 #loader,#loader:after,#loader:before{border:3px solid transparent}
 .Button{width:50px;height:50px;margin-left:-2px}
 .DoorButton{vertical-align:left;width:100px;height:100px;margin-left:2px}
@@ -215,3 +218,98 @@
 @keyframes spin{0%{-webkit-transform:rotate(0);-ms-transform:rotate(0);transform:rotate(0)}
 100%{-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}
 }
+
+.chbx-label{
+	padding-left: 25px;
+}
+
+.chbx {
+    display:none;
+}
+
+.chbx + label{
+    background:url('img/checkbox_of.png') no-repeat;
+    height: 18px;
+    width: 18px;
+    display:inline-block;
+}
+
+.chbx:checked + label{
+    background:url('img/checkbox_on.png') no-repeat;
+    height: 18px;
+    width: 18px;
+    display:inline-block;
+}
+
+#loader {
+  background-color: #fff;
+  z-index: 1001;
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #7ca616;
+
+    -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+#loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #7ca616;
+
+        -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+
+    #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #7ca616;
+
+        -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+          animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    }
+
+    @-webkit-keyframes spin {
+        0%   { 
+            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(0deg);  /* IE 9 */
+            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+        100% {
+            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(360deg);  /* IE 9 */
+            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+    }
+    @keyframes spin {
+        0%   { 
+            -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(0deg);  /* IE 9 */
+            transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+        100% {
+            -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: rotate(360deg);  /* IE 9 */
+            transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        }
+    }
+

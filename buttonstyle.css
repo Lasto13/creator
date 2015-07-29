@@ -83,13 +83,25 @@ label{cursor: pointer;}
 .dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:39px}
 .dw-section #ButtonContainerDW2{position:absolute;float:left;height:100%;width:50%;margin-left:50%;margin-top:70px;pointer-events:auto}
 .dw-section .left-menu{position:relative;height:100%;width:250px;background-color:#FFF;pointer-events:auto;top:70px}
-.dw-section #MenuItemWindow{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
-.dw-section #MenuItemDoor{background-color:#FFF;height:400px;width:320px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor .door-item{width:100px;height:100px;display:inline-block}
+.dw-section #MenuItemWindow .btn-group .prod-image-cont {position:relative;width:30%;float:left;margin-top:35px}
+.dw-section #MenuItemDoor .btn-group .prod-image-cont{position:relative;width:30%;height:170px;float:left;margin-top:35px}
+.dw-section #MenuItemWindow .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.dw-section #MenuItemDoor .prod-image{display:inline-block;width:100px;height:170px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.dw-section #MenuItemWindow .btn-group .prod-info{width:65%;position:relative;float:left}
+.dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right;}
+.dw-section .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
+.dw-section h3 {color: #7CA616}
+.dw-section .prod-top {position: relative;width: 100%;height: 140px}
+.dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
+.dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
+
 .interier-section{position:relative;top:80px;width:100%;height:100%;pointer-events:none;z-index:999}
 .interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
-.interier-section #ProductBox{position:absolute;height:730px;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}
 .interier-section #ProductBox .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}

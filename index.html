@@ -121,18 +121,38 @@
         </div>
         <div class="left-menu">
           <div id="MenuItemWindow">
-            <div class="window-item" ng-click = "ChooseWindow(window.asset);"  ng-repeat="window in menuData.okna.child" class="btn-group" style="background:url({{window.image}}); background-size: 100%;">
-              <div class='win-image' style="background:url({{window.image}}); background-size: 100%;"></div>
-              <div>
+              <div ng-repeat="window in menuData.okna.child" class ="btn-group">
+                <div class="prod-image-cont">
+                  <a class = "prod-image" style="background-image:url({{window.image}});background-size: 100%;"></a>
+                </div>
+                <div class="prod-info">
+                  <div class='prod-top'>
+                    <h3>{{window.nazov}}</h3>
+                    <p> {{window.description}}</p>
+                  </div>
+                  <div class='prod-bot'>
+                    <button class="enli-btn btn" ng-click="ChooseWindow(window.asset); toggleProdMenu();">Vložiť</button> 
+                    <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>-->
+                  </div>
+                </div>
               </div>
-              <!-- <div class="window-item" style="background:url({{window.image}})"> </div>
-              <a class="WindowButton" ng-click = "ChooseWindow(window.asset);" style="background:url({{window.image}}); background-size:100%"></a>-->
-            </div>
           </div>
           <div id="MenuItemDoor" style="left:5px;">
-            <div class="door-item" ng-click = "ChooseDoor(door.asset);" ng-repeat="door in menuData.dvere.child" class="btn-group" style="background:url({{door.image}}); background-size:100%">
-              <!--<div class="door-item" ng-click = "ChooseDoor(door.asset); "style="background:url({{door.image}}); background-size:100%"></div> -->
-            </div>
+            <div ng-repeat="door in menuData.dvere.child" class ="btn-group">
+                <div class="prod-image-cont">
+                  <a class = "prod-image" style="background-image:url({{door.image}});background-size: 100%;"></a>
+                </div>
+                <div class="prod-info">
+                  <div class='prod-top'>
+                    <h3>{{door.nazov}}</h3>
+                    <p> {{door.description}}</p>
+                  </div>
+                  <div class='prod-bot'>
+                    <button class="enli-btn btn" ng-click="ChooseDoor(door.asset); toggleProdMenu();">Vložiť</button>
+                    <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a> -->
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>

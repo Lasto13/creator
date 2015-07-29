@@ -619,15 +619,15 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     $scope.$watch('isWindowDropdownDisplayed', function (value, oldValue) {
         //if (value === oldValue) { return; }
         var d = document.getElementById('MenuItemWindow');
-        if (!!value) d.style.left = "-320px";
-        else d.style.left = "5px";
+        if (!!value) d.style.left = "-720px";
+        else d.style.left = "10px";
     });
 
     $scope.$watch('isDoorDropdownDisplayed', function (value, oldValue) {
         //if (value === oldValue) { return; }
         var d = document.getElementById('MenuItemDoor');
-        if (!!value) d.style.left = "-320px";
-        else d.style.left = "5px";
+        if (!!value) d.style.left = "-720px";
+        else d.style.left = "10px";
     });
 
     $scope.D2DDW = function () {
@@ -649,6 +649,7 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
     };
     $scope.ChooseWindow = function (path) {
+        console.log(path);
         SendMessage("GUI OKNA_DVERE", "download_window", path);
         $scope.isWindowDropdownDisplayed = true;
         setNoDWclass();
@@ -695,6 +696,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.mf[i].isChecked = true;
         }
+        console.log(data);
         $scope.dataToRepeat = null;
     });
 
@@ -800,10 +802,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     $scope.activeTT = [];
     $scope.productsToShow = [];
-    
-    $scope.selection = {
-        ids: {}
-    };
+    $scope.asSelectedMans = [];
 
     $scope.manClicked = function(man){
         man.isChecked = !man.isChecked;
@@ -855,7 +854,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             tab.wasOpened = true;
         }
     }
-
+    /*
     $scope.$watchCollection('selection.ids', function (newTT, oldTT) {
         console.log($scope.selection[Object.keys($scope.selection)[0]]);
         for (var i = 0; i < $scope.selection.length; i++){
@@ -863,7 +862,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             console.log($scope.selection[i]);
         }
     });
-
+    */
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
         filterProducts();
     });
@@ -925,22 +924,33 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     }
 
     var filterProducts = function(){
+        
         console.log($scope.asSelectedMans);
+        console.log($scope.activeTT);
         //console.log($scope.activeTT[0].products);
         $scope.productsToShow = [];
+        //var prods = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
-            for(var j = 0; j < $scope.activeTT[i].products.length; j++){
-                var prods = [];
-                prods.push($scope.activeTT[i].products);
-                console.log(prods[0]);
-                for(var k = 0; k < prods.length; k++){
-                    console.log(prods[k]);
-                    if (prods[k].manufacturername.indexOf($scope.asSelectedMans) > -1){
+            for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
+                //console.log($scope.activeTT[i].products[j]);
+                //prods.push($scope.activeTT[i].products[j]);
+                console.log($scope.activeTT[i].products[j].manufacturername.indexOf($scope.asSelectedMans));
+                
+                if ($scope.asSelectedMans.length > 0 && $scope.activeTT[i].products[j].manufacturername.indexOf($scope.asSelectedMans) > -1) {
                         $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
                     }
-                }
+                /*
+                for (var k = 0; k < prods.length; k++) {
+                    console.log(prods[k]);
+                    if (prods[k].manufacturername.indexOf($scope.asSelectedMans) > -1) {
+                        $scope.productsToShow = $scope.productsToShow.concat(prods[k]);
+                    }
+                }*/
             }
         }
+
+        console.log($scope.productsToShow);
+
         if ($scope.productsToShow.length > 0) {
             $scope.isProductBoxDisplayed = true
             document.getElementById('sipka').style.transform = 'rotate(180deg)';

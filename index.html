@@ -23,12 +23,12 @@
       </div>
     </div>
 
-    <div  id = "canvasHolder">
+    <div id="canvasHolder">
       <canvas id="canvas" oncontextmenu="event.preventDefault()" ></canvas>
     </div>
 
-    <div id='wrapper'>
-      <div id = "header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
+    <div id="wrapper">
+      <div id="header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
       <!--
       <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
       -->
@@ -36,28 +36,28 @@
         <div id="podorys-toolbar">
           <div id="ButtonContainer">
             <input type="radio"  id="category_1" class="hidden" />
-            <a id="B0" class="Button btn-my radio-picture" ng-click = "NoOp(); set_radio('category_1')"></a>
+            <a id="B0" title="Žiadna akcia" class="Button btn-my radio-picture" ng-click="NoOp(); set_radio('category_1')"></a>
 
             <input type="radio"  id="category_2" class="hidden" />
-            <a id="B1" class="Button btn-my radio-picture" ng-click = "SingleWall(); set_radio('category_2')"></a>
+            <a id="B1" title="Kresliť čiaru" class="Button btn-my radio-picture" ng-click="SingleWall(); set_radio('category_2')"></a>
 
             <input type="radio"  id="category_3" class="hidden" />
-            <a id="B2" class="Button btn-my radio-picture" ng-click = "CurveWall(); set_radio('category_3')"></a>
+            <a id="B2" title="Kresliť oblú čiaru" class="Button btn-my radio-picture" ng-click="CurveWall(); set_radio('category_3')"></a>
 
             <input type="radio"  id="category_4" class="hidden" />
-            <a id="B3" class="Button btn-my radio-picture" ng-click = "FourWall(); set_radio('category_4')"></a>
+            <a id="B3" title="Kresliť štvorec" class="Button btn-my radio-picture" ng-click="FourWall(); set_radio('category_4')"></a>
 
             <input type="radio"  id="category_5" class="hidden" />
-            <a id="B4" class="Button btn-my radio-picture" ng-click = "Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
+            <a id="B4" title="Zmazať" class="Button btn-my radio-picture" ng-click="Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
 
             <input type="radio"  id="category_6" class="hidden" />
-            <a id="B5" class="Button btn-my radio-picture" ng-click = "AddControlPoint(); set_radio('category_6')"></a>
+            <a id="B5" title="Pridať kontrolný bod" class="Button btn-my radio-picture" ng-click="AddControlPoint(); set_radio('category_6')"></a>
 
             <input type="radio"  id="category_7" class="hidden" />
-            <a id="B8" class="Button btn-my radio-picture" ng-click = "PosunSteny(); set_radio('category_7')"></a>
+            <a id="B8" title="Pohybovať stenou" class="Button btn-my radio-picture" ng-click="PosunSteny(); set_radio('category_7')"></a>
 
             <input type="radio"  id="category_8" class="hidden" />
-            <a id="B9" class="Button btn-my radio-picture" ng-click = "ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
+            <a id="B9" title="Výber materiálu steny" class="Button btn-my radio-picture" ng-click="ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
           </div>
         </div>
         <div class="left-menu">

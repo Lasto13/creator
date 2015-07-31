@@ -214,7 +214,7 @@ label{cursor: pointer;}
 #BDW11,#BI9{background-image:url(Buttons/14.png)}
 #BI5{background-image:url(Buttons/1.png);margin-left:2%}
 #BI6{background-image:url(Buttons/rot.svg)}
-.spinner{width:100px}
+.spinner{width:115px}
 .spinner input{text-align:right}
 .input-group-btn-vertical{position:relative;white-space:nowrap;width:1%;vertical-align:middle;display:table-cell}
 .input-group-btn-vertical>.btn{display:block;float:none;width:100%;max-width:100%;padding:8px;margin-left:-1px;position:relative;border-radius:0}

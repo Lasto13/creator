@@ -47,11 +47,23 @@ function UnityProgress (dom) {
                     $('#').css({ top: -470 + 'px' });
                     $('#LoadProject').css({ top: -300 + 'px' });
 
-                    var _bc = document.getElementById('ButtonContainer');
-                    var _dwt = document.getElementById('dw-toolbar');
-                    var _btns = document.getElementById('dw-toolbar');
+                    var _bc1 = document.getElementById('B0').className='Button radio-picture btn-my2',
+                        _bc2 = document.getElementById('B1').className='Button radio-picture btn-my',
+                        _bc3 = document.getElementById('B2').className='Button radio-picture btn-my',
+                        _bc4 = document.getElementById('B3').className='Button radio-picture btn-my',
+                        _bc5 = document.getElementById('B4').className='Button radio-picture btn-my',
+                        _bc6 = document.getElementById('B5').className='Button radio-picture btn-my',
+                        _bc7 = document.getElementById('B8').className='Button radio-picture btn-my',
+                        _bc8 = document.getElementById('B9').className='Button radio-picture btn-my';
+                    
+                    var _dwt1 = document.getElementById('BDW5').className='Button radio-dw btn-my btn-my2',
+                        _dwt2 = document.getElementById('BDW6').className='Button radio-dw btn-my btn-my',
+                        _dwt3 = document.getElementById('BDW7').className='Button radio-dw btn-my btn-my',
+                        _dwt4 = document.getElementById('BDW9').className='Button radio-dw btn-my btn-my';
 
-                    console.log(_bc);
+                    var _btni1 = document.getElementById('BI5').className='Button btn-my2 radio-i',
+                        _btni2 = document.getElementById('BI6').className='Button btn-my radio-i',
+                        _btni3 = document.getElementById('BI7').className='Button btn-my radio-i';
 
                     e.preventDefault();
                 }

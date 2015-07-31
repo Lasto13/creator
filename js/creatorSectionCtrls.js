@@ -618,7 +618,6 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     $scope.ChooseWindow = function (path) {
         SendMessage("GUI OKNA_DVERE", "download_window", path);
         $scope.isWindowDropdownDisplayed = true;
-        setNoDWclass();
     }
     $scope.ChooseDoor = function (path) {
         SendMessage("GUI OKNA_DVERE", "download_door", path);
@@ -831,7 +830,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
         //if (value === oldValue) { return; }
         var d = document.getElementById('ProductBox');
-        if (!!value) d.style.left = "250px";
+        if (!!value) d.style.left = "210px";
         else d.style.left = "-600px";
     });
 
@@ -864,10 +863,13 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             $scope.isProductBoxDisplayed = true
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
+            $scope.sipkaValid = false;
         } else {
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
             sipRot = false;
+            console.log('false');
+            $scope.sipkaValid = true;
         };
     }
 

@@ -178,6 +178,8 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
         document.getElementById('BDW5').className = 'Button radio-dw btn-my btn-my2';
         document.getElementById('BDW6').className = 'Button radio-dw btn-my';
+        document.getElementById('BDW7').className = 'Button radio-dw btn-my';
+        document.getElementById('BDW9').className = 'Button radio-dw btn-my';
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
         browserDimensions();
@@ -190,6 +192,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('icategory_1').checked = true;
         SendMessage("CanvasEditor", "changeArea", 5);
         browserDimensions();
+        //$scope.setSelectedMan($scope.mf);
     };
     $scope.D2D = function () {
         defActionClass();
@@ -498,6 +501,10 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
     }
     Set3D = function(){
         SendMessage("CanvasEditor", "SetView3D");
+        $("#B13").removeClass('btn-my');
+        $("#B13").addClass('btn-my2');
+        $("#B12").removeClass('btn-my2');
+        $("#B12").addClass('btn-my');
     }
     SetDefaultFunctionPodorys = function () {
         $("#B0").removeClass('btn-my');
@@ -696,7 +703,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.mf[i].isChecked = true;
         }
-        console.log(data);
+        console.log($scope.mf);
         $scope.dataToRepeat = null;
     });
 
@@ -824,6 +831,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     // function to 'open' a tab
     $scope.openTab = function (tab) {
+        $scope.setSelectedMan($scope.mf);
         // check if tab is already open
         if ($scope.isOpenTab(tab.uidisplayname)) {
             if (!tab.child[0].hasOwnProperty("parentid"))
@@ -868,7 +876,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     });
 
     $scope.$watchCollection('asSelectedMans', function (newTT, oldTT) {
-        console.log($scope.asSelectedMans);
         filterProducts();
     });
 
@@ -934,9 +941,9 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
                 //console.log($scope.activeTT[i].products[j]);
                 //prods.push($scope.activeTT[i].products[j]);
-                console.log($scope.activeTT[i].products[j].manufacturername.indexOf($scope.asSelectedMans));
-                
-                if ($scope.asSelectedMans.length > 0 && $scope.activeTT[i].products[j].manufacturername.indexOf($scope.asSelectedMans) > -1) {
+                console.log($scope.activeTT[i].products[j].manufacturername);
+
+                if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.activeTT[i].products[j].manufacturername) > -1) {
                         $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
                     }
                 /*

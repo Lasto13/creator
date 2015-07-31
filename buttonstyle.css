@@ -87,15 +87,15 @@ label{cursor: pointer;}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
 .dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor .door-item{width:100px;height:100px;display:inline-block}
-.dw-section #MenuItemWindow .btn-group .prod-image-cont {position:relative;width:30%;float:left;margin-top:35px}
-.dw-section #MenuItemDoor .btn-group .prod-image-cont{position:relative;width:30%;height:170px;float:left;margin-top:35px}
-.dw-section #MenuItemWindow .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
-.dw-section #MenuItemDoor .prod-image{display:inline-block;width:100px;height:170px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.dw-section #MenuItemWindow .btn-group .prod-image-cont {position:relative;width:30%;height:93%;float:left;margin-top:3%}
+.dw-section #MenuItemDoor .btn-group .prod-image-cont{position:relative;width:30%;height:93%;float:left;margin-top:3%}
+.dw-section #MenuItemWindow .prod-image{display:inline-block;width:80%;height:100%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.dw-section #MenuItemDoor .prod-image{display:inline-block;width:80%;height:170%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .dw-section #MenuItemWindow .btn-group .prod-info{width:65%;position:relative;float:left}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right;}
 .dw-section .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
-.dw-section h3 {color: #7CA616}
-.dw-section .prod-top {position: relative;width: 100%;height: 140px}
+.dw-section h4{color: #7CA616;margin-top:5px}
+.dw-section .prod-top {position: relative;width: 100%;height: 80%}
 .dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
 .dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
 
@@ -113,7 +113,7 @@ label{cursor: pointer;}
 .interier-section .left-menu #InterierMenu{top:150px;height:100%;width:230px;background-color:#FFF;color:#7CA616;padding-left:40px}
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
-.interier-section h3{color:#7ca616}
+.interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
@@ -195,8 +195,8 @@ label{cursor: pointer;}
 #BDW1,#BDW10,#BDW11,#BDW2,#BDW3,#BDW4,#BDW8,#BI1,#BI2,#BI3,#BI4,#BI8,#BI9{margin-top:20px}
 #B24{background:url(Buttons/icon_new_document.png)no-repeat;background-size:100%}
 #B25{background:url(Buttons/icon_open_file.png)no-repeat;background-size:100%}
-#B26{background:url(Buttons/icon_save_project.png)no-repeat;background-size:100%}
-#B27{background:url(Buttons/icon_settings_menu.png)no-repeat;background-size:100%}
+#B26{background:url(Buttons/Save.svg)no-repeat;background-size:100%}
+#B27{background:url(Buttons/setings.svg)no-repeat;background-size:100%}
 #B28,#B29,#B30{background:#7CA616;text-align:middle;color:#FFF;width:150px;height:70px}
 #BDW1,#BDW10,#BDW11,#BDW2,#BDW3,#BDW4,#BDW5,#BDW6,#BDW8,#BDW9,#BI1,#BI2,#BI3,#BI4,#BI5,#BI6,#BI7,#BI8,#BI9{background-size:100%}
 #BDW1,#BI1{background-image:url(Buttons/7.png)}
@@ -211,7 +211,7 @@ label{cursor: pointer;}
 #BDW10,#BI8{background-image:url(Buttons/2.png)}
 #BDW11,#BI9{background-image:url(Buttons/14.png)}
 #BI5{background-image:url(Buttons/1.png);margin-left:2%}
-#BI6{background-image:url(Buttons/rot.png)}
+#BI6{background-image:url(Buttons/rot.svg)}
 .spinner{width:100px}
 .spinner input{text-align:right}
 .input-group-btn-vertical{position:relative;white-space:nowrap;width:1%;vertical-align:middle;display:table-cell}

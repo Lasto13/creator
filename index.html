@@ -178,10 +178,14 @@
                   <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
                 </div>
                 <div class="prod-info">
-                  <h4>{{prod.uidisplayname}}</h4>
-                  <p> {{prod.description}}</p>
-                  <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
-                  <a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>
+                  <div class='prod-top'>
+                    <h4>{{prod.uidisplayname}}</h4>
+                    <p> {{prod.description}}</p>
+                  </div>
+                  <div class='prod-bot'>
+                    <button class="enli-btn btn" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
+                    <a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,12 +1,7 @@
 //'use strict';
-app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', function ($scope, $modal, $http, $window, $timeout) {
+app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function ($scope, $http, $window, $timeout) {
     console.logError = console.log;
 
-    /*
-    $scope.bridge = {
-        changeSection: function () { $scope.activateMenu(1); }
-    };
-    */
     var prepinacSave = 0,
         myStorage;
     $scope.activeMenu = {};
@@ -14,7 +9,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     $scope.activateMenu = function (n) {
         $scope.activeMenu = {};
-        console.log(n);
         switch (n) {
             case 1: $scope.activeMenu.first = true; isFps = false; chMin(); break;
             case 2: $scope.activeMenu.second = true; isFps = false; chMin(); break;
@@ -50,17 +44,13 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         var promise = $http({
             method: 'GET',
             url: 'http://dev.enli.sk/api/places/' + placeID + '/save',
-            //transformRequest: angular.identity,
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
         });
         promise.success(function (data, status, headers, conf) {
-            console.log(data, status, headers, conf);
             $scope.LoadSave = data;
             return data;
         });
     };
-    //Neviem preco to nefunguje ale nejako takto by sa malo robit obmedzenie pre radio buttony pomocou sipiek 
-    //$(document).keydown(function(e) { $('#canvasHolder').blur(); return false; });
 
     var prepinacSet = 0,
         prepinacLoad = 0;
@@ -69,9 +59,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     $scope.SetSettings = function () {
         if (prepinacSet == 0) {
-            console.log(prepinacSet);
             $('#Settings').css({ top: 110 + 'px' });
-            //$('#SaveProject').css({ top: -50 + 'px' });
             $('#LoadProject').css({ top: -300 + 'px' });
             prepinacSave = 0;
             prepinacLoad = 0;
@@ -151,7 +139,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
     getErrorText = function (string) {
         $scope.message = "iny message";
         $scope.message = string;
-        console.log($scope.message);
 
         document.getElementById('errMsg').style.opacity = 1;
         setTimeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
@@ -192,7 +179,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('icategory_1').checked = true;
         SendMessage("CanvasEditor", "changeArea", 5);
         browserDimensions();
-        //$scope.setSelectedMan($scope.mf);
     };
     $scope.D2D = function () {
         defActionClass();
@@ -336,20 +322,6 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
         document.getElementById('np-holder').style.display = "block";
         document.getElementById('np-holder').style.opacity = 1;
         SendMessage('FunctionsManager','SetInputEnabled','0');
-        /*
-        var projectModal = $modal.open({
-            //backdrop: 'static',
-            keyboard: false,
-            templateUrl: 'partials/newProject.html',
-            controller: 'NewProjectCtrl',
-            transclude: true,
-            resolve: {
-                bridge: function () {
-                    return $scope.bridge;
-                }
-            }
-        });
-        */
     }
 
     $scope.CleanProject = function () {
@@ -362,7 +334,7 @@ app.controller('mainCtrl', ['$scope', '$modal', '$http', '$window', '$timeout', 
 
     savingFinished = function (value) {
         if (value === "1") console.log("Ukladanie skoncilo dobre");
-        else if (value === "0") console.log("Ukladanie skoncilo zle");
+        else if (value === "0") console.log("Ukladanie neskoncilo dobre");
     }
 
     loadingFinished = function (value) { }
@@ -431,7 +403,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         //for (var j = 0, jL = _pRa.length; j < jL; j++) _pRa[0].className = 'Button btn-my radio-picture';
         document.getElementById($inputid).checked = true;
-        //console.log(this.currentTarget);
     }
 
     $("input:radio[name=view]").click(function () {
@@ -467,17 +438,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
     };
 
-    /*
-    $scope.Undo = function () {
-        SendMessage("UndoRedo", "Undo");
-        $scope.NoOp();
-        $("a.radio-picture").removeClass('btn-my2');
-        $("a.radio-picture").addClass('btn-my');
-        $("#B0").removeClass('btn-my');
-        $("#B0").addClass('btn-my2');
-    };
-    $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); console.log("redo"); };
-    */
     SetUndoRedoInteractable = function (IsInteractable) { }
 
     SetWallTypeButtonActive = function (IsInteractable) { }
@@ -656,7 +616,6 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
     };
     $scope.ChooseWindow = function (path) {
-        console.log(path);
         SendMessage("GUI OKNA_DVERE", "download_window", path);
         $scope.isWindowDropdownDisplayed = true;
         setNoDWclass();
@@ -667,19 +626,12 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     }
     var setNoDWclass = function(){
         var dw = $('#dw-toolbar .btn-my2');
-        console.log(dw);
         dw.removeClass('btn-my2');
         $('BDW5').addClass('btn-my2');
     }
 }]);
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
-
-    var chbx = $('.chbx-label');
-    console.log(chbx);
-    for (var i = 0; chbx < chbx.length; i++){
-        chbx.checked = true;
-    }
 
     $scope.trieda = "TypeProductDesign";
     var hodnotaBI4 = 0;
@@ -703,13 +655,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.mf[i].isChecked = true;
         }
-        console.log($scope.mf);
         $scope.dataToRepeat = null;
     });
 
     $("a.radio-i").click(function () {
         var $id = $(this).attr('id');
-        console.log('Do it');
         $("a.radio-i").removeClass('btn-my2');
         $("a.radio-i").addClass('btn-my');
         $("a#" + $id).addClass('btn-my2');
@@ -786,11 +736,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         document.getElementById('B15').classname = 'Button btn-my2 radio-i';
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     }
-    /*
-    $scope.example1data = [{ id: 1, label: "Obyvacka" }, { id: 2, label: "Kuchyna" }, { id: 3, label: "Spalna"}];
-    $scope.example1model = [];
-    */
-    $scope.accordionID = function (id) { console.log(id); };
+    
+    //$scope.accordionID = function (id) { console.log(id); };
 
     // initiate an array to hold all active tabs
     $scope.activeTabs = [];
@@ -850,8 +797,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             for (var i = 0; i < tab.child.length; ++i) {
                 if (tab.child[0].hasOwnProperty("parentid") && tab.wasOpened !== true) {
                     $scope.activeTT.push(tab.child[i]);
-                    //console.log($scope.activeTT);
-                    //console.log(tab.child[i]);
                 }
                 else if (!tab.child[0].hasOwnProperty("parentid")) {
                     $scope.activeTT.push(tab.child[i]);
@@ -862,15 +807,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             tab.wasOpened = true;
         }
     }
-    /*
-    $scope.$watchCollection('selection.ids', function (newTT, oldTT) {
-        console.log($scope.selection[Object.keys($scope.selection)[0]]);
-        for (var i = 0; i < $scope.selection.length; i++){
-            if ($scope.selection[Object.keys($scope.selection)[i]] == true){console.log("true")}
-            console.log($scope.selection[i]);
-        }
-    });
-    */
+
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
         filterProducts();
     });
@@ -880,7 +817,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     });
 
     $scope.ClickedTypeType = function (tab) {
-        console.log($scope.activeTT);
         tab.toggled = !tab.toggled;
         if (tab.toggled) {
             var index = $scope.activeTT.indexOf(tab);
@@ -889,23 +825,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         else if (!tab.toggled) {
             $scope.activeTT.push(tab);
         }
-        console.log($scope.activeTT);
-
-        /*
-        $scope.activeTypeTypeTabs.push(tab);
-        for (var i = 0; i < $scope.activeTypeTypeTabs.length; i++){
-        if ($scope.activeTypeTypeTabs[i].uidisplayname == tab.uidisplayname)
-        {
-        var index = $scope.activeTypeTypeTabs.indexOf(tab);
-        console.log(index);
-        $scope.activeTypeTypeTabs.splice(index,1);
-        } 
-        }
-        /*
-        $scope.activeTypeTypeTabs = [];
-        $scope.activeTypeTypeTabs.push(tab);
-        */
-        //console.log($scope.activeTypeTypeTabs);
     }
     $scope.isProductBoxDisplayed = false;
 
@@ -931,32 +850,15 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     }
 
     var filterProducts = function(){
-        
-        console.log($scope.asSelectedMans);
-        console.log($scope.activeTT);
-        //console.log($scope.activeTT[0].products);
+
         $scope.productsToShow = [];
-        //var prods = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
             for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
-                //console.log($scope.activeTT[i].products[j]);
-                //prods.push($scope.activeTT[i].products[j]);
-                console.log($scope.activeTT[i].products[j].manufacturername);
-
                 if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.activeTT[i].products[j].manufacturername) > -1) {
-                        $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
-                    }
-                /*
-                for (var k = 0; k < prods.length; k++) {
-                    console.log(prods[k]);
-                    if (prods[k].manufacturername.indexOf($scope.asSelectedMans) > -1) {
-                        $scope.productsToShow = $scope.productsToShow.concat(prods[k]);
-                    }
-                }*/
+                    $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
+                }
             }
         }
-
-        console.log($scope.productsToShow);
 
         if ($scope.productsToShow.length > 0) {
             $scope.isProductBoxDisplayed = true
@@ -976,32 +878,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
 app.controller('FPSCtrl', ['$scope', function ($scope) {
 
-    //$("#wasd").click();
-    //if(typeof SendMessage === 'function') SendMessage("FpsManager", "mouseWASD_controll");
-    //\\
-    /*
-    $scope.toggleFpsMats = function () {
-        $scope.isFpsMats = !$scope.isFpsMats;
-    };
-
-    $scope.toggleFpsProds = function () {
-        $scope.isFpsProds = !$scope.isFpsProds;
-    };
-
-    $scope.$watch('isFpsMats', function (value, oldValue) {
-        //if (value === oldValue) { return; }
-        var d = document.getElementById('fpsMaterials');
-        if (!!value) d.style.right = "0px";
-        else d.style.right = "-250px";
-    });
-
-    $scope.$watch('isFpsProds', function (value, oldValue) {
-        //if (value === oldValue) { return; }
-        var e = document.getElementById('fpsProducts');
-        if (!!value) e.style.right = "0px";
-        else e.style.right = "-250px";
-    });
-    */
     setOkTrigger = function (string) {
         console.log("okstring" + string);
         var okstring = string;
@@ -1012,7 +888,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     };
 
     var showButtonMenu = function(){
-        console.log("showbutmenu");
         document.getElementById('objMove').style.visibility = 'visible';
         document.getElementById('objRot').style.visibility = 'visible';
         document.getElementById('ok').style.visibility = 'visible';
@@ -1027,8 +902,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     }
 
     setGuiInfo = function (string) {
-        console.log("Tomasov string " + string);
-
         var info = string;
         if (info.charAt(0) == "0") {
             document.getElementById('del').style.visibility = 'hidden';
@@ -1140,13 +1013,11 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     }
 
     $scope.activeM = function () {
-        console.log("activeM");
         $("#objMove").addClass("selected");
         $("#objRot").removeClass("selected");
     }
 
     $scope.activeR = function () {
-        console.log("activeR");
         $("#objRot").addClass("selected");
         $("#objMove").removeClass("selected");
     }

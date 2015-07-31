@@ -95,10 +95,9 @@ label{cursor: pointer;}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right;}
 .dw-section .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
 .dw-section h4{color: #7CA616;margin-top:5px}
-.dw-section .prod-top {position: relative;width: 100%;height: 114px; overflow: hidden}
+.dw-section .prod-top {position: relative;width:70%;height: 114px; overflow: hidden}
 .dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
 .dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
-
 .interier-section{position:relative;top:80px;width:100%;height:100%;pointer-events:none;z-index:999}
 .interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
@@ -135,8 +134,8 @@ label{cursor: pointer;}
 .fps-section .btn-menu{position:absolute;width:204px;margin-left:auto;left:19px;top:200px;pointer-events:auto}
 .fps-section .btn-menu .selected{border:2px solid}
 #header #LoadProject,#header #SaveProject{z-index:-1;float:right;border-radius:5px;border:1px solid #7ca616}
-.fps-section .btn-menu .fps-btn2{color:#7CA616;position:relative;width:100px;height:34px}
-.fps-section .btn-menu .fps-btn-round{position:relative;left:38%;margin:7px;color:#7ca616;border-radius:35px;width:35px;height:35px}
+.fps-section .btn-menu .fps-btn2{color:#7CA616;position:relative;width:85px;height:34px}
+.fps-section .btn-menu .fps-btn-round{position:relative;left:30%;margin:7px;color:#7ca616;border-radius:35px;width:35px;height:35px}
 .fps-section .btn-menu #colorCh,.fps-section .btn-menu #objMove,.fps-section .btn-menu #objRot,.fps-section .btn-menu #ok{visibility:hidden}
 .fps-section .btn-menu .fps-btn{color:#7CA616;position:relative;width:147px;height:35px;margin-left:14px}
 .fps-section .right-menu{position:relative;float:right;width:413px;height:42px;pointer-events:auto;margin-top:2px;margin-right:4px}

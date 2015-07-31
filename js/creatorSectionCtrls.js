@@ -1004,7 +1004,27 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     */
     setOkTrigger = function (string) {
         console.log("okstring" + string);
+        var okstring = string;
+        showButtonMenu();
+        if(okstring.charAt(0) == "0"){
+
+        }
     };
+
+    var showButtonMenu = function(){
+        console.log("showbutmenu");
+        document.getElementById('objMove').style.visibility = 'visible';
+        document.getElementById('objRot').style.visibility = 'visible';
+        document.getElementById('ok').style.visibility = 'visible';
+        document.getElementById('colorCh').style.visibility = 'visible';
+    }
+
+    var hideButtonMenu = function(){
+        document.getElementById('objMove').style.visibility = 'hidden';
+        document.getElementById('objRot').style.visibility = 'hidden';
+        document.getElementById('ok').style.visibility = 'hidden';
+        document.getElementById('colorCh').style.visibility = 'hidden';
+    }
 
     setGuiInfo = function (string) {
         console.log("Tomasov string " + string);
@@ -1075,6 +1095,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         document.getElementById("ok").style.visibility = 'hidden';
         document.getElementById("objRot").style.visibility = 'hidden';
         document.getElementById("colorCh").style.visibility = 'hidden';
+        document.getElementById("del").style.visibility = 'hidden';
     }
 
     $scope.closeRoundMenu = function () {
@@ -1099,6 +1120,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     $scope.okTrigger = function () {
         SendMessage("FpsManager", "okTrigger");
+        hideButtonMenu();
     }
 
     $scope.colorChooser = function () {

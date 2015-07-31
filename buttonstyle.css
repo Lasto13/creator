@@ -95,7 +95,7 @@ label{cursor: pointer;}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right;}
 .dw-section .btn-group{width:50%;height:25%;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
 .dw-section h4{color: #7CA616;margin-top:5px}
-.dw-section .prod-top {position: relative;width: 100%;height: 80%}
+.dw-section .prod-top {position: relative;width: 100%;height: 114px; overflow: hidden}
 .dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
 .dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
 

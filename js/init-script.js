@@ -5,7 +5,6 @@ window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.t
 var isFps = false;
 
 function createCORSRequest(method, url) {
-    console.log('???');
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
 
@@ -35,7 +34,6 @@ if (!xhr) {
 }
 
 xhr.onload = function() {
-    console.log('dobre?');
  var responseText = xhr.responseText;
  console.log(responseText, xhr.response);
  // process the response.
@@ -44,8 +42,6 @@ xhr.onload = function() {
 xhr.onerror = function() {
   console.log('There was an error!');
 };
-
-console.log(xhr);
 
 String.prototype.splice = function( idx, rem, s ) {
     return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));

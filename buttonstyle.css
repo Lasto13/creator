@@ -45,6 +45,7 @@ label{cursor: pointer;}
 #header #Settings input[type=radio]:checked+label{background:url(img/radio_button_active.png) no-repeat; padding-left: 25px}
 #LoadProject p,#Settings label{font-family:Roboto}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{margin-bottom:0;font-weight:400;text-align:left}
+#header #ProjektMenuContainer .Button:hover{opacity: 0.8}
 #header .button:hover{color:#fff;text-decoration:none;cursor:pointer;cursor:hand}
 #header .button:focus{outline:0}
 #header .button.next{border-right:none}

@@ -47,6 +47,12 @@ function UnityProgress (dom) {
                     $('#').css({ top: -470 + 'px' });
                     $('#LoadProject').css({ top: -300 + 'px' });
 
+                    var _bc = document.getElementById('ButtonContainer');
+                    var _dwt = document.getElementById('dw-toolbar');
+                    var _btns = document.getElementById('dw-toolbar');
+
+                    console.log(_bc);
+
                     e.preventDefault();
                 }
             }, false);

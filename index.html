@@ -191,7 +191,7 @@
             </div>
           <div id="InterierMenu">
             <div>
-              <div id="sipka" ng-disabled='sipkaValid' ng-click="sipkaValid || toggleProdMenu()"> </div>
+              <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' ng-click="sipkaValid || toggleProdMenu()"> </div>
               <a id='manCol' ng-click = 'isCollapsed = !isCollapsed'>VÝROBCOVIA:</a>
               <div id='man-cont' collapse='isCollapsed'>
                 <div class='btn-group enli-checkbox-btn' ng-class='{active: man.isChecked}' ng-repeat='man in mf'>

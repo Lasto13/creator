@@ -33,8 +33,6 @@ function UnityProgress (dom) {
             npc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
             document.addEventListener('keyup', function (e) { 
                 if(e.keyCode == 27){
-                    //e.preventDefault();
-
                     sp.style.display = "none";
                     sp.style.opacity = 0;
                     np.style.display = "none";
@@ -69,15 +67,18 @@ function UnityProgress (dom) {
                 }
             }, false);
             
-            /* 
             document.addEventListener('click',function (e) {
-                var _target = $(e.target);
-                console.log(e.target.id);
-                if (e.target.id !== 'B27' && e.target.id !== 'B25' && _target.is('form') && _target.is('p') && e.target.id !== 'Settings' && e.target.className !== 'btn-group'){
-                    console.log(e.target);
+                console.log(e.target.parentNode.parentNode);
+                if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject'){
+                    return
+                }  else {
                    $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  
-                } }, false);
-            */
+                    prepinacLoad = 0;
+                    prepinacSet = 0;
+                    prepinacSave = 0;
+                }
+
+            }, false);
             
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');

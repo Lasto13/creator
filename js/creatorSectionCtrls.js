@@ -2,8 +2,7 @@
 app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function ($scope, $http, $window, $timeout) {
     console.logError = console.log;
 
-    var prepinacSave = 0,
-        myStorage;
+    var myStorage;
     $scope.activeMenu = {};
     $scope.activeMenu.first = true;
 
@@ -51,9 +50,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             return data;
         });
     };
-
-    var prepinacSet = 0,
-        prepinacLoad = 0;
 
     $scope.isSettingOpened = false;
 
@@ -225,6 +221,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
         document.getElementById('sp-holder').style.opacity = 1;
+        document.getElementById('sp').value = '';
         setInputValue();
         closeAll();
         SendMessage('FunctionsManager','SetInputEnabled','0');

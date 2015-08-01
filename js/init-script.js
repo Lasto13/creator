@@ -3,6 +3,9 @@ window.addEventListener('resize', browserDimensions, false);
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 
 var isFps = false;
+var prepinacSet = 0,
+    prepinacSave = 0,
+    prepinacLoad = 0;
 
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();

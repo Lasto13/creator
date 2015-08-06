@@ -61,6 +61,9 @@ label{cursor: pointer;}
 .podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
 .podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:210px;background-color:#FFF;pointer-events:auto}
 .podorys-section .left-menu p{color:#7CA616;font-size:120%;font-family:Roboto;font-weight:700}
+.podorys-section .left-menu .ui-spinner-button {text-decoration: none;}
+.podorys-section .left-menu .ui-spinner-up {margin-left: 8px}
+.podorys-section .left-menu .ui-spinner-down {margin-left: -6px}
 .podorys-section .left-menu-item{width:84%;position:relative;left:40px;margin-bottom:10px}
 .podorys-section .left-menu-item .Button{width: 150px;height:30px; line-height: 26px;}
 .podorys-section .left-menu-item input[type=radio]{display:none}

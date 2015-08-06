@@ -136,6 +136,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         $scope.message = "iny message";
         $scope.message = string;
 
+        if (!$scope.$$phase) $scope.$apply();
+
         document.getElementById('errMsg').style.opacity = 1;
         setTimeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
     };
@@ -333,8 +335,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     }
 
     savingFinished = function (value) {
-        if (value === "1") console.log("Ukladanie skoncilo dobre");
-        else if (value === "0") console.log("Ukladanie neskoncilo dobre");
+        if (value === "1") getErrorText('Uloženie prebehlo správne');
+        else if (value === "0") getErrorText("Váš projekt nebol uložený");
     }
 
     loadingFinished = function (value) { }

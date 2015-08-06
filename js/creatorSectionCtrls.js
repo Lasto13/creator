@@ -348,6 +348,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
 
+
+
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
 
     $scope.isCollapsed = true;

@@ -68,7 +68,6 @@ function UnityProgress (dom) {
             }, false);
             
             document.addEventListener('click',function (e) {
-                console.log(e.target.parentNode.parentNode);
                 if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject'){
                     return
                 }  else {
@@ -83,7 +82,6 @@ function UnityProgress (dom) {
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
                 if (_pR.id.indexOf('ButtonContainer') > -1 || _pR.id.indexOf('buttons') > -1 || _pR.id.indexOf('buttSwitch') > -1) {
-                    console.log("par" + _pR);
                     for (var i = 0, iL = _pRa.length; i < iL; i++) _pRa[i].className = 'Button btn-my';
                     a.target.className = 'Button btn-my radio-view btn-my2';
                 }

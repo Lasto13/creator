@@ -152,6 +152,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         document.getElementById('B0').className = 'Button radio-picture btn-my2';
         SendMessage("CanvasEditor", "changeArea", 0);
         browserDimensions();
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.DW = function () {
         var _pR = document.getElementById('BDW5').parentNode,
@@ -166,6 +167,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
         browserDimensions();
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.Interier = function () {
         var _pR = document.getElementById('BI5').parentNode,
@@ -175,6 +177,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         document.getElementById('icategory_1').checked = true;
         SendMessage("CanvasEditor", "changeArea", 5);
         browserDimensions();
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.D2D = function () {
         defActionClass();
@@ -212,11 +215,11 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
     $scope.RozmerySet = function (value) { SendMessage("Settings", "ShowTextFromWeb", value); };
-    $scope.MierkaAuto = function () {SendMessage("Ruler", "SetRuler", 0);}
-    $scope.Mierka10 = function () {SendMessage("Ruler", "SetRuler", 500);}
-    $scope.Mierka50 = function () {SendMessage("Ruler", "SetRuler", 100);}
-    $scope.Mierka100 = function () {SendMessage("Ruler", "SetRuler", 50);}
-    $scope.MierkaVyp = function () {SendMessage("Ruler", "SetRuler", 1000000);}
+    $scope.MierkaAuto = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 0);}
+    $scope.Mierka10 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 500);}
+    $scope.Mierka50 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 100);}
+    $scope.Mierka100 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 50);}
+    $scope.MierkaVyp = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 1000000);}
 
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
@@ -343,6 +346,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
 
+    $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
+
     $scope.isCollapsed = true;
 
     matJson.get().then(function (data) {
@@ -412,24 +417,39 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
 
     $scope.NoOp = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+        document.getElementById('B0').className='Button radio-picture btn-my2';
+        document.getElementById('B1').className='Button radio-picture btn-my';
+        document.getElementById('B2').className='Button radio-picture btn-my';
+        document.getElementById('B3').className='Button radio-picture btn-my';
+        document.getElementById('B4').className='Button radio-picture btn-my';
+        document.getElementById('B5').className='Button radio-picture btn-my';
+        document.getElementById('B8').className='Button radio-picture btn-my';
+        document.getElementById('B9').className='Button radio-picture btn-my';
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.SingleWall = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
     };
     $scope.CurveWall = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_CurveWall");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/3.png), default'});
     };
     $scope.FourWall = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_4Wall");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/4.png), default'});
     };
     $scope.Delete = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DeleteWall");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/5.png) 7 22 , default'});
     };
     $scope.AddControlPoint = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_AddControlPoint");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/6.png), default'});
     };
     $scope.PosunSteny = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_MoveWall");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/7.png), default'});
     };
     $scope.ZmenaMat = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
@@ -876,7 +896,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 }]);
 
 app.controller('FPSCtrl', ['$scope', function ($scope) {
-
     setOkTrigger = function (string) {
         console.log("okstring" + string);
         var okstring = string;
@@ -1020,6 +1039,5 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         $("#objRot").addClass("selected");
         $("#objMove").removeClass("selected");
     }
-
 }])
 

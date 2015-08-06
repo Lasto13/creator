@@ -23,7 +23,7 @@ var lastoPlugin = {
 	},
 	showNormalCursor: function()
 	{
-		$("#canvas").css('cursor','pointer');
+		//("#canvas").css('cursor','pointer');
 	},
 	closeLoader: function()
 	{

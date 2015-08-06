@@ -127,17 +127,17 @@ label{cursor: pointer;}
 .interier-section .left-menu #man-cont {margin-top: 20px}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
-.fps-section .round-menu #del{position:relative;width:80px;height:80px;background:url(img/fps_gui/del.png)0 0/100% auto;float:left;left:4px;visibility:hidden}
-.fps-section .round-menu #del:hover{background:url(img/fps_gui/del_hover.png)0 0/100% auto}
-.fps-section .round-menu #change-mat{position:relative;width:80px;height:80px;background:url(img/fps_gui/chmat.png)0 0/100% auto;left:90px;top:0;visibility:hidden}
-.fps-section .round-menu #change-mat:hover{background:url(img/fps_gui/chmat_hover.png)0 0/100% auto}
-.fps-section .round-menu #close{position:absolute;width:30px;background:url(img/fps_gui/x.png)0 0/100% auto;left:72px;height:30px;top:69px;visibility:hidden}
-.fps-section .round-menu #close:hover{background:url(img/fps_gui/x_hover.png)0 0/100% auto}
-.fps-section .round-menu #add{position:relative;width:80px;height:80px;background:url(img/fps_gui/add_obj.png)0 0/100% auto;left:3px;top:7px;float:left;visibility:hidden}
-.fps-section .round-menu #add:hover{background:url(img/fps_gui/add_obj_hover.png)0 0/100% auto}
-.fps-section .round-menu #change-obj{position:relative;width:80px;height:80px;background:url(img/fps_gui/chobj.png)0 0/100% auto;left:90px;top:8px;visibility:hidden}
-.fps-section .round-menu #change-obj:hover{background:url(img/fps_gui/chobj_hover.png)0 0/100% auto}
-.fps-section .btn-menu .fps-btn-round:hover,.fps-section .btn-menu .fps-btn2:hover,.fps-section .btn-menu .fps-btn:hover{background:#DCDCDC}
+.fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px;visibility:hidden}
+.fps-section .round-menu #del:hover{background-position: left top !important;opacity: 0.95}
+.fps-section .round-menu #change-mat{position:relative;width:80px;height:79px;background:url(img/fps_gui/chmat.png);background-size: 100%;background-position:left bottom;left:91px;top:0;visibility:hidden}
+.fps-section .round-menu #change-mat:hover{background-position:left top!important; opacity: 0.95}
+.fps-section .round-menu #close{position:absolute;width:30px;background:url(img/fps_gui/x.png);background-size: 100%;background-position:left bottom;left:72px;height:30px;top:69px;visibility:hidden}
+.fps-section .round-menu #close:hover{background-position:left top!important;opacity: 0.95}
+.fps-section .round-menu #add{position:relative;width:80px;height:79px;background:url(img/fps_gui/add.png);background-size: 100%;background-position:left bottom;left:3px;top:10px;float:left;visibility:hidden}
+.fps-section .round-menu #add:hover{background-position:left top!important;opacity: 0.95}
+.fps-section .round-menu #change-obj{position:relative;width:80px;height:79px;background:url(img/fps_gui/chobj.png);background-size: 100%;background-position:left bottom;left:91px;top:10px;visibility:hidden}
+.fps-section .round-menu #change-obj:hover{background-position:left top!important;opacity: 0.95}
+.fps-section .btn-menu .fps-btn-round:hover,.fps-section .btn-menu .fps-btn2:hover,.fps-section .btn-menu .fps-btn:hover{border: solid 2px #7CA616;}
 .fps-section .btn-menu{position:absolute;width:204px;margin-left:auto;left:19px;top:200px;pointer-events:auto}
 .fps-section .btn-menu .selected{border:2px solid}
 #header #LoadProject,#header #SaveProject{z-index:-1;float:right;border-radius:5px;border:1px solid #7ca616}

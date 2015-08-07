@@ -616,23 +616,15 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
 
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
     $scope.setMenuMaterial = function (value) {
         if (value == 1) { }
         else { }
     }
     openMaterialMenu = function () {
-<<<<<<< HEAD
         document.getElementById('MaterialChooser').style.left = "220px";
     }
-    
-=======
         document.getElementById('MaterialChooser').style.left = "450px";
     }
->>>>>>> origin/master
 }])
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {

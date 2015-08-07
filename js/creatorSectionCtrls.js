@@ -623,9 +623,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     openMaterialMenu = function () {
         document.getElementById('MaterialChooser').style.left = "220px";
     }
-        document.getElementById('MaterialChooser').style.left = "450px";
-    }
-}])
+}]);
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 

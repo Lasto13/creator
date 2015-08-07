@@ -430,6 +430,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         document.getElementById('B8').className='Button radio-picture btn-my';
         document.getElementById('B9').className='Button radio-picture btn-my';
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
+        document.getElementById('MaterialChooser').style.left = 0 +'px';
     };
     $scope.SingleWall = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
@@ -457,6 +458,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
     };
     $scope.ZmenaMat = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
+        document.getElementById('MaterialChooser').style.left = 0+'px';
     };
 
     SetUndoRedoInteractable = function (IsInteractable) { }
@@ -532,21 +534,13 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         SendMessage();
     }
 
-    $scope.IsMaterialsDisplayed = true;
-
     $scope.setMenuMaterial = function (value) {
         if (value == 1) { }
         else { }
     }
     openMaterialMenu = function () {
-        document.getElementById('MaterialChooser').style.left = "510px";
+        document.getElementById('MaterialChooser').style.left = "450px";
     }
-    $scope.$watch('IsMaterialsDisplayed', function (value, oldValue) {
-        //if (value === oldValue) { return; }
-        var d = document.getElementById('MaterialChooser');
-        if (!!value) d.style.left = "0px";
-        else d.style.left = "750px";
-    });
 }])
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {

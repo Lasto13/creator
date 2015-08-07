@@ -60,7 +60,8 @@ label{cursor: pointer;}
 .podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
 .podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
 .podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:210px;background-color:#FFF;pointer-events:auto}
-.podorys-section .left-menu p{color:#7CA616;font-size:120%;font-family:Roboto;font-weight:700}
+.podorys-section .left-menu p{color:#7CA616;font-size:1.25em;font-family:Roboto;font-weight:700; white-space: nowrap}
+.podorys-section .left-menu #floor-types p{position: relative; top: 25px}
 .podorys-section .left-menu .ui-spinner-button {text-decoration: none;}
 .podorys-section .left-menu .ui-spinner-up {margin-left: 8px}
 .podorys-section .left-menu .ui-spinner-down {margin-left: -6px}
@@ -219,6 +220,7 @@ label{cursor: pointer;}
 #BI5{background-image:url(Buttons/1.png);margin-left:2%}
 #BI6{background-image:url(Buttons/rot.svg)}
 .spinner{width:115px}
+#slider{width: 160px; top: 30px}
 .horizontalslider{width: 115px}
 .spinner input{text-align:right}
 .input-group-btn-vertical{position:relative;white-space:nowrap;width:1%;vertical-align:middle;display:table-cell}

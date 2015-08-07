@@ -517,6 +517,21 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         SendMessage("WallTypeToggleGroup", "ConfirmSelectPriecna");
     }
 
+    $scope.VyberPodlahy = function(){
+        SendMessage();
+    }
+
+    $scope.Strih = function(){
+        SendMessage();
+    }
+
+    $scope.VzorMaterialu = function(){
+        SendMessage();
+    }
+    $scope.HustotaVzoru = function(){
+        SendMessage();
+    }
+
     $scope.IsMaterialsDisplayed = true;
 
     $scope.setMenuMaterial = function (value) {

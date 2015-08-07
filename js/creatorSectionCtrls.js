@@ -348,7 +348,58 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
 app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
 
+    var setInputValue = function () {
+        var inpt = document.getElementById('sp'),
+            _k = '',
+            _kk = '',
+            _ctrl = false,
+            _shft = false;
+        inpt.focus();
 
+        inpt.addEventListener('keyup', function (e) {
+            if (e.keyCode === 37 && e.shiftKey){
+                this.selectionStart = this.selectionStart -1;
+            }else if(e.keyCode === 37){
+                this.selectionStart = this.selectionStart -1;
+                this.selectionEnd = this.selectionStart;
+            } else if (e.keyCode === 39 && e.shiftKey){
+                this.selectionEnd = this.selectionEnd +1;
+            } else if (e.keyCode === 39) {
+                this.selectionStart = this.selectionStart +1;
+                this.selectionEnd = this.selectionStart;
+            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
+                this.selectionStart = this.selectionEnd = _index - 1;
+            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart !== this.selectionEnd ){
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
+                this.selectionStart = this.selectionEnd = _index;
+            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionStart+1);
+                this.selectionStart = this.selectionEnd = _index;
+            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart !== this.selectionEnd){
+                var _index = this.selectionStart;
+                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
+                this.selectionStart = this.selectionEnd = _index;
+            } else if (e.keyCode === 8 && _kk.length == 0){
+                e.preventDefault();
+            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
+                e.preventDefault();
+            } else if (e.ctrlKey && e.keyCode === 65){
+                this.selectionStart = 0;
+                this.selectionEnd = this.value.length;
+            } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
+                _k = e.key;
+                var _index = this.selectionStart;
+                var _val = this.value;
+                var _val = _val.splice(_index,0,_k);
+                this.value = _val;
+                this.selectionStart = this.selectionEnd = _index + 1;
+            } 
+        }, false);
+    }
 
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
 
@@ -457,6 +508,10 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/7.png), default'});
     };
     $scope.ZmenaMat = function () {
+        getErrorText('Zvoľte stenu pre zmenu materiálu');
+        SendMessage("CanvasEditor", "SetView3D");
+        document.getElementById('B12').className = 'Button btn-my radio-view';
+        document.getElementById('B13').className = 'Button btn-my2 radio-view';
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
         document.getElementById('MaterialChooser').style.left = 0+'px';
     };

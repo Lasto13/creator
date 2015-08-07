@@ -31,6 +31,7 @@ function UnityProgress (dom) {
             spc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
             np.addEventListener('click', function () { SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0;}, false);
             npc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
+
             document.addEventListener('keyup', function (e) { 
                 if(e.keyCode == 27){
                     sp.style.display = "none";
@@ -44,6 +45,10 @@ function UnityProgress (dom) {
 
                     $('#').css({ top: -470 + 'px' });
                     $('#LoadProject').css({ top: -300 + 'px' });
+
+                    var mc = document.getElementById('MaterialChooser');
+                    mc.style.left = 0 +'px';
+                    console.log(mc);
 
                     var _bc1 = document.getElementById('B0').className='Button radio-picture btn-my2',
                         _bc2 = document.getElementById('B1').className='Button radio-picture btn-my',

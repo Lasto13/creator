@@ -71,9 +71,11 @@ label{cursor: pointer;}
 .podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px}
 .podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
 #B0,#B1,#B2,#B3,#B4,#B6,#B7,#B8,#B9,.interier-section #sipka{background-size:100%}
-.podorys-section #MaterialChooser{position:relative;z-index:999;background-color:#FFF;height:550px;width:415px;float:left;margin-left:-240px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor,.dw-section #MenuItemWindow{transition:left .5s ease-out 0s;border:1px solid #7CA616}
 .podorys-section #MaterialChooser .material-item{position:relative;width:100px;height:100px;display:inline-block;margin:1px}
+.podorys-section #FloorChooser .material-item{position:relative;width:100px;height:100px;display:inline-block;margin:1px}
 #B0{background-image:url(Buttons/1.png)}
 #B1{background-image:url(Buttons/15.png)}
 #B2{background-image:url(Buttons/18.png)}

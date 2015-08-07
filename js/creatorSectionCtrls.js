@@ -346,7 +346,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     }
 }]);
 
-app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
+app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope, matJson, floorJson) {
 
 
 
@@ -358,21 +358,31 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
         $scope.mats = data;
     });
 
+      floorJson.get().then(function (data) {
+        $scope.floors = data;
+    });
+
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
+    var hodnotaRotacie = 0;
     $(function () {
         $("#slider").slider({
-            step: 0.001,
+            step: 0.01,
             min: 0,
             max: 1,
-            values: [0],
+            values: [0], 
             slide: function (event, ui) {
-                $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
-
-            },
-            change: function (event, ui) {
-                $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
+               hodnotaRotacie = ui.value;
+               console.log("Hodnota Rotacie je " + hodnotaRotacie);
             }
+        });
+        var slideris = document.getElementById("slider");
+        console.log(slideris);
+        slideris.addEventListener('mousedown', function (e) {
+            SendMessage("RotaciaVzoruSlider","WebStartedRotating");
+        });
+        slideris.addEventListener('mouseup', function (e) {
+            SendMessage("RotaciaVzoruSlider","WebEndedRotating");
         });
     });
 
@@ -518,35 +528,46 @@ app.controller('podorysCtrl', ['$scope', 'matJson', function ($scope, matJson) {
     }
 
     $scope.VyberPodlahy = function(){
-        SendMessage();
+        document.getElementById('FloorChooser').style.left = "220px";
+        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
     }
 
     $scope.Strih = function(){
-        SendMessage();
+        SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
     }
 
     $scope.VzorMaterialu = function(){
-        SendMessage();
+        SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
     }
     $scope.HustotaVzoru = function(){
-        SendMessage();
+        SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialTiling");
     }
 
-    $scope.IsMaterialsDisplayed = true;
+    $scope.RotateFloor = function(){
+        SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
+    }
+
+    $scope.ChangeFloor = function(value){
+        SendMessage("VzorButton","WEBMaterialSelected", value);
+    }
+
+    isFloorChoosen = function(value){
+
+    }
+
+    materialTiling = function(value){
+
+    }
+
 
     $scope.setMenuMaterial = function (value) {
         if (value == 1) { }
         else { }
     }
     openMaterialMenu = function () {
-        document.getElementById('MaterialChooser').style.left = "510px";
+        document.getElementById('MaterialChooser').style.left = "220px";
     }
-    $scope.$watch('IsMaterialsDisplayed', function (value, oldValue) {
-        //if (value === oldValue) { return; }
-        var d = document.getElementById('MaterialChooser');
-        if (!!value) d.style.left = "0px";
-        else d.style.left = "750px";
-    });
+    
 }])
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {

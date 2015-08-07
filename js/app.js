@@ -48,6 +48,23 @@ var app = angular.module('app',[
       }
     }
   }])
+
+.factory('floorJson', ['$http', function($http){
+    return {
+      get: function(){
+        return $http({
+          method: "GET",
+          url:'WallMaterialImages/FloorJson.json',
+          async: false,
+        success: function(){
+        console.log("new");
+        }
+      }).then(function(response){
+          return response.data
+        }); 
+      }
+    }
+  }])
 /*
 .controller('mainCtrl',['$scope','$modal','$compile','$http','$window', '$rootScope', function($scope, $modal, $compile,$http,$window, $rootScope){
   var prepinacSave = 0;

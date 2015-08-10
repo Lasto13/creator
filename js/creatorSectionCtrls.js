@@ -481,6 +481,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     });
 
     $scope.NoOp = function () {
+        console.log("nastavit default");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         document.getElementById('B0').className='Button radio-picture btn-my2';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -491,7 +492,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         document.getElementById('B8').className='Button radio-picture btn-my';
         document.getElementById('B9').className='Button radio-picture btn-my';
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-        document.getElementById('MaterialChooser').style.left = 0 +'px';
+        document.getElementById('MaterialChooser').style.left = -230 +'px';
     };
     $scope.SingleWall = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
@@ -585,7 +586,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.VyberPodlahy = function(){
-        document.getElementById('FloorChooser').style.left = "220px";
         SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
     }
 
@@ -594,6 +594,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.VzorMaterialu = function(){
+        document.getElementById('FloorChooser').style.left = "220px";
         SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
     }
     $scope.HustotaVzoru = function(){
@@ -605,15 +606,17 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.ChangeFloor = function(value){
+        console.log("toto je hodnota materialu " + value);
         SendMessage("VzorButton","WEBMaterialSelected", value);
     }
 
     isFloorChoosen = function(value){
+                if(value == 0){
 
-    }
+                }
+                else{
 
-    materialTiling = function(value){
-
+                }
     }
 
     $scope.setMenuMaterial = function (value) {

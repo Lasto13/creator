@@ -428,7 +428,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
             }
         });
         var slideris = document.getElementById("slider");
-        console.log(slideris);
         slideris.addEventListener('mousedown', function (e) {
             SendMessage("RotaciaVzoruSlider","WebStartedRotating");
         });
@@ -525,7 +524,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         document.getElementById('B12').className = 'Button btn-my radio-view';
         document.getElementById('B13').className = 'Button btn-my2 radio-view';
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
-        document.getElementById('MaterialChooser').style.left = 0+'px';
+        //document.getElementById('MaterialChooser').style.left = 0+'px';
     };
 
     SetUndoRedoInteractable = function (IsInteractable) { }
@@ -628,6 +627,14 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
     openMaterialMenu = function () {
         document.getElementById('MaterialChooser').style.left = "220px";
+    }
+    $scope.closeMaterialMenu = function(){
+        $scope.ZmenaMat();
+        document.getElementById('MaterialChooser').style.left = -230 +'px';
+    }
+    $scope.closeFloorMenu = function(){
+        //$scope.ZmenaMat();
+        document.getElementById('FloorChooser').style.left = -230 +'px';
     }
 }]);
 
@@ -741,10 +748,10 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
     }
-    var setNoDWclass = function(){
+    $scope.setNoDWclass = function(){
         var dw = $('#dw-toolbar .btn-my2');
         dw.removeClass('btn-my2');
-        $('BDW5').addClass('btn-my2');
+        $('#BDW5').addClass('btn-my2');
     }
 }]);
 
@@ -1052,14 +1059,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         else {
             document.getElementById('close').style.visibility = 'visible';
         }
-        if (info.charAt(5) == "0") {
-            document.getElementById('objMove').style.visibility = 'hidden';
-            document.getElementById('objRot').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('objMove').style.visibility = 'visible';
-            document.getElementById('objRot').style.visibility = 'visible';
-        }
         if (info.charAt(6) == "0") {
             document.getElementById('colorCh').style.visibility = 'hidden';
         }
@@ -1082,10 +1081,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         document.getElementById('close').style.visibility = 'hidden';
         document.getElementById('add').style.visibility = 'hidden';
         document.getElementById('change-obj').style.visibility = 'hidden';
-        document.getElementById("objMove").style.visibility = 'hidden';
-        document.getElementById("objRot").style.visibility = 'hidden';
-        document.getElementById("ok").style.visibility = 'hidden';
-        document.getElementById("objRot").style.visibility = 'hidden';
         document.getElementById("colorCh").style.visibility = 'hidden';
         document.getElementById("del").style.visibility = 'hidden';
     }

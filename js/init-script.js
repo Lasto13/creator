@@ -83,8 +83,6 @@ function browserDimensions() {
     }
 }
 
-lastoPlugin.showDeleteCursor();
-
 /*function getBrowser() {
     var browser;
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) browser = "firefox";
@@ -96,7 +94,7 @@ lastoPlugin.showDeleteCursor();
     return browser;
 }*/
 
-$("#slider").slider();
+//$("#slider").slider();
 /*function closeLoader () {
 var width = $(document).width();
 document.getElementById('loading-box').style.display = "none";

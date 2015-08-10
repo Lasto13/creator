@@ -11,10 +11,10 @@
   <img id="EnliLogo" src="Buttons/enli_big_png.png">
 
   <div id="ProjektMenuContainer" style ="pointer-events: auto;">
-    <a id="B24" class="Button btn-default" ng-click = "NovyProjekt()"></a>
-    <a id="B25" class="Button btn-default" ng-click = "OtvoritProjekt();SetLoad();"></a>
-    <a id="B26" class="Button btn-default" ng-click = "UlozitProjekt();"></a>
-    <a id="B27" class="Button btn-default" ng-click = "Nastavenia(); SetSettings();"></a>
+    <a id="B24" class="Button btn-default" title="Otvoriť nový projekt" ng-click = "NovyProjekt()"></a>
+    <a id="B25" class="Button btn-default" title="Otvoriť uložený projekt" ng-click = "OtvoritProjekt();SetLoad();"></a>
+    <a id="B26" class="Button btn-default" title="Uložiť tento projekt projekt" ng-click = "UlozitProjekt();"></a>
+    <a id="B27" class="Button btn-default" title="Nastavenia projektu" ng-click = "Nastavenia(); SetSettings();"></a>
   </div>
 
   <div id="mainButtons">
@@ -24,14 +24,14 @@
     </div>
     <div id='buttSwitch'>
       <input type="radio"  id="view_1" class="hidden" />
-      <a id="B12" class="Button btn-my2 radio-view" ng-click = "D2D(); set_view('view_1')"></a>
+      <a id="B12" title="2D pohľad" class="Button btn-my2 radio-view" ng-click = "D2D(); set_view('view_1')"></a>
 
       <input type="radio"  id="view_2" class="hidden" />
-      <a id="B13" class="Button btn-my radio-view" ng-click = "D3D(); set_view('view_2')"></a>
+      <a id="B13" title="3D pohľad" class="Button btn-my radio-view" ng-click = "D3D(); set_view('view_2')"></a>
     </div>
     <div id='rightBox'>
-      <a id="B14" class="Button btn-my" ng-click = "Center()"></a>
-      <a id="B15" class="Button btn-my" ng-click="FPS();"></a>
+      <a id="B14" title="Vycentrovanie pohľadu" class="Button btn-my" ng-click = "Center()"></a>
+      <a id="B15" title="2D pohľad" class="Button btn-my" ng-click="FPS();"></a>
     </div>
   </div>  
 </div>
@@ -75,6 +75,6 @@
   <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;">
     </div>
     <p >{{Loads.name}}</p>
-    <a class = "btn btn-default" ng-click="CleanProject();OtvoritProjekt(Loads.data);" style="left:35px;">Načítať</a>
+    <a class = "btn btn-default" title="" ng-click="CleanProject();OtvoritProjekt(Loads.data);" style="left:35px;">Načítať</a>
   </div>
 </div>

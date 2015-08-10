@@ -46,10 +46,6 @@ function UnityProgress (dom) {
                     $('#').css({ top: -470 + 'px' });
                     $('#LoadProject').css({ top: -300 + 'px' });
 
-                    var mc = document.getElementById('MaterialChooser');
-                    mc.style.left = 0 +'px';
-                    console.log(mc);
-
                     var _bc1 = document.getElementById('B0').className='Button radio-picture btn-my2',
                         _bc2 = document.getElementById('B1').className='Button radio-picture btn-my',
                         _bc3 = document.getElementById('B2').className='Button radio-picture btn-my',

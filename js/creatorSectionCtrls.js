@@ -424,7 +424,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
             values: [0], 
             slide: function (event, ui) {
                hodnotaRotacie = ui.value;
-               console.log("Hodnota Rotacie je " + hodnotaRotacie);
+               SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
             }
         });
         var slideris = document.getElementById("slider");
@@ -495,6 +495,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         document.getElementById('MaterialChooser').style.left = -230 +'px';
     };
     $scope.SingleWall = function () {
+        console.log("SingleWall");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
     };
@@ -556,6 +557,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         $("#B12").addClass('btn-my');
     }
     SetDefaultFunctionPodorys = function () {
+        console.log("DJHFL:JSD:FLJSDL:FJSDL:FJS:LDFJSL:DFJSL:DFJ");
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
         $("#B5").removeClass('btn-my2');
@@ -602,7 +604,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.RotateFloor = function(){
-        SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
+        console.log("Rotujem podlahu "+ hodnotaRotacie );
+        
     }
 
     $scope.ChangeFloor = function(value){

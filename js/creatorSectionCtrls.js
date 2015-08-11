@@ -480,7 +480,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     });
 
     $scope.NoOp = function () {
-        console.log("nastavit default");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         document.getElementById('B0').className='Button radio-picture btn-my2';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -494,7 +493,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         document.getElementById('MaterialChooser').style.left = -230 +'px';
     };
     $scope.SingleWall = function () {
-        console.log("SingleWall");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
     };
@@ -556,7 +554,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         $("#B12").addClass('btn-my');
     }
     SetDefaultFunctionPodorys = function () {
-        console.log("DJHFL:JSD:FLJSDL:FJSDL:FJS:LDFJSL:DFJSL:DFJ");
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
         $("#B5").removeClass('btn-my2');
@@ -603,12 +600,10 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.RotateFloor = function(){
-        console.log("Rotujem podlahu "+ hodnotaRotacie );
         
     }
 
     $scope.ChangeFloor = function(value){
-        console.log("toto je hodnota materialu " + value);
         SendMessage("VzorButton","WEBMaterialSelected", value);
     }
 
@@ -748,7 +743,6 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         $scope.isWindowDropdownDisplayed = true;
     }
     $scope.ChooseDoor = function (path) {
-        console.log("Malo by pridat okno" + path);
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
     }
@@ -914,7 +908,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
                     if (!tab.child[i].hasOwnProperty("parentid")) {
                         var index = $scope.activeTT.indexOf(tab.child[i]);
                         $scope.activeTT.splice(index, 1);
-                        console.log($scope.activeTT);
                     }
                 }
             //if it is, remove it from the activeTabs array
@@ -997,7 +990,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
             sipRot = false;
-            console.log('false');
             $scope.sipkaValid = true;
         };
     }
@@ -1009,7 +1001,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
 app.controller('FPSCtrl', ['$scope', function ($scope) {
     setOkTrigger = function (string) {
-        console.log("okstring" + string);
         var okstring = string;
         showButtonMenu();
         if(okstring.charAt(0) == "0"){

@@ -533,10 +533,12 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         //document.getElementById('MaterialChooser').style.left = 0+'px';
     };
 
-    SetUndoRedoInteractable = function (IsInteractable) { }
+    SetUndoRedoInteractable = function (IsInteractable) { 
+    }
 
-    SetWallTypeButtonActive = function (IsInteractable) { }
 
+    SetWallTypeButtonActive = function (IsInteractable) {
+     }
     $scope.ZmenaVysky = function () {
         SendMessage("Plane0", "ChangeFloorScale", vyskaSteny);
     }
@@ -616,9 +618,14 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     isFloorChoosen = function(value){
+        console.log("Je oznacena podlaha???" + value);
                 if(value == 0){
                 }
                 else{
+                    $("#B33").addClass('disabled');
+                }
+                else{
+                    $("#B33").removeClass('disabled');
                 }
     }
 

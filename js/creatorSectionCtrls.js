@@ -740,13 +740,15 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     $scope.AddWindow = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
     };
+    $scope.AddDoor = function(){
+        SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
+    }
     $scope.ChooseWindow = function (path) {
         SendMessage("GUI OKNA_DVERE", "download_window", path);
         $scope.isWindowDropdownDisplayed = true;
     }
     $scope.ChooseDoor = function (path) {
         console.log("Malo by pridat okno" + path);
-        SendMessage("GUI OKNA_DVERE", "download_window", path);
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
     }

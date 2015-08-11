@@ -152,14 +152,14 @@ label{cursor: pointer;}
 .fps-section .btn-menu .fps-btn-round{position:relative;left:30%;margin:7px;color:#7ca616;border-radius:35px;width:35px;height:35px}
 .fps-section .btn-menu #colorCh,.fps-section .btn-menu #objMove,.fps-section .btn-menu #objRot,.fps-section .btn-menu #ok{visibility:hidden}
 .fps-section .btn-menu .fps-btn{color:#7CA616;position:relative;width:147px;height:35px;margin-left:14px}
-.fps-section .right-menu{position:relative;float:right;width:413px;height:42px;pointer-events:auto;margin-top:2px;margin-right:4px}
-.fps-section .right-menu .input-menu{float:left;width:59%;position:relative;height:50px;background-color:#d3d3d3;padding:5px}
-.fps-section .right-menu .input-menu input{margin-left:20px;display:none}
-.fps-section .right-menu .input-menu label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
-.fps-section .right-menu .input-menu input[type=radio]:checked+label{background:url(img/radio_button_active.png);margin-left:20px}
-.fps-section .right-menu .d23{position:relative;width:38%;float:right;height:50px;background-color:#D3D3D3;padding-left:20px}
-.fps-section .right-menu .d23 h3{color:#7CA616;float:left;margin:10px}
-.fps-section .right-menu .d23 .switch{background:url(img/fps_gui/2d3d.png);background-size:100%;position:relative;width:20px;height:20px;float:left;margin-top:12px}
+.fps-section .right-menu{position: absolute;right: 0px;width: 413px;height: 70px;pointer-events: auto;margin-top: 2px;margin-right: 4px;background: white;padding: 18px;border-radius: 10px}
+.fps-section .right-menu input{margin-left:20px;display:none}
+.fps-section .right-menu label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
+.fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_button_active.png);margin-left:20px}
+.fps-section .right-menu #d23{position: relative;width: 35%;float: right;height: 34px;background-color: #fff;border: solid 2px #7ca616;color: #7ca616;}
+.fps-section .right-menu #d23:hover{color: #fff;background: #7ca616}
+.fps-section #objMenu{display:none;position: absolute;right: 0px;background: rgb(124, 166, 22) none repeat scroll 0% 0%;width: 250px;height: 95%;z-index: 1001;top: 85px;}
+.fps-section #objMenu .closer{float: left;position: relative;height: 100%;width: 15px;background: red;}
 #ButtonContainer,#PodorysMenu,#PodorysMenu2,#header #LoadProject,#header #SaveProject{background-color:#FFF}
 #B10,#B11,#B12,#B13,#B14,#B15,#B15b{background-size:100%}
 #ButtonContainer{position:absolute;float:left;pointer-events:auto;margin-top:10px;margin-left:39px}

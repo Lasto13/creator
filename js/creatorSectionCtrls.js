@@ -347,6 +347,14 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope, matJson, floorJson) {
+    
+    wallCursors = function(cursor){
+        switch(cursor){
+            case '0': console.log('0');break;
+            case '1': console.log('1');break;
+            case '2': console.log('2');break;
+        }
+    }
 
     var setInputValue = function () {
         var inpt = document.getElementById('sp'),
@@ -535,7 +543,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
 
     $scope.ChoosenMaterial = function (id) {
         SendMessage("changeMat", "ChangeMatGL", id);
-        document.getElementById('MaterialChooser').style.left = "0px";
+        document.getElementById('MaterialChooser').style.left = -240+'px';
         $scope.ZmenaMat();
     }
 
@@ -547,7 +555,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         $("#B13").addClass('btn-my');
     }
     Set3D = function(){
-        SendMessage("CanvasEditor", "SetView3D");
+        //SendMessage("CanvasEditor", "SetView3D");
         $("#B13").removeClass('btn-my');
         $("#B13").addClass('btn-my2');
         $("#B12").removeClass('btn-my2');
@@ -609,10 +617,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
 
     isFloorChoosen = function(value){
                 if(value == 0){
-
                 }
                 else{
-
                 }
     }
 
@@ -1119,6 +1125,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     $scope.editor = function () {
         SendMessage("FpsManager", "goToEditor");
+        //browserDimensions();
     }
 
     $scope.activeM = function () {

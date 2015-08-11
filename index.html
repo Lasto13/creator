@@ -278,22 +278,37 @@
       </div>
 
       <div class="right-menu">
-        <div class="input-menu">
           <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
           <img src="img/fps_gui/km.png">
           <input title="Ovládanie myšou" id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
           <label for="lc"></label>
           <img src="img/fps_gui/mouse.png">
+        <button id='d23' class="fps-btn btn" title="Návrat do editora" ng-click="editor()">
+          EDITOR
+        </button>
+      </div>
+    </div>
+
+    <div id='objMenu'>
+      <div class='closer'>
+      </div>
+      <div>
+        <div>
+          zasuvacie divko
         </div>
-        <div class="d23" title="Návrat do editora" ng-click="editor()">
-          <h3>2D</h3>
-          <div class="switch"></div>
-          <h3>3D</h3>
+        <div>
+          dalsie divko
+        </div>
+        <div>
+          main content
         </div>
       </div>
     </div>
-  </div>
+    <div id='matMenu'>
+    </div>
+  </div> <!-- Wrapper end -->
+
   <div id="errMsg">
       <h4>{{message}}</h4>
   </div>

@@ -745,6 +745,8 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         $scope.isWindowDropdownDisplayed = true;
     }
     $scope.ChooseDoor = function (path) {
+        console.log("Malo by pridat okno" + path);
+        SendMessage("GUI OKNA_DVERE", "download_window", path);
         SendMessage("GUI OKNA_DVERE", "download_door", path);
         $scope.isDoorDropdownDisplayed = true;
     }

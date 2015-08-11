@@ -620,8 +620,6 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     isFloorChoosen = function(value){
         console.log("Je oznacena podlaha???" + value);
                 if(value == 0){
-                }
-                else{
                     $("#B33").addClass('disabled');
                 }
                 else{

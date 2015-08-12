@@ -78,6 +78,7 @@ label{cursor: pointer;}
 .activeSectionSecond {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 25px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:207px;left:-4px;z-index: 901}
 .activeSectionThird {top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:173px;left:-9px;z-index: 900}
 .activeSection:before .actiSection:after{background-color: #559734}
+.activeChoose {text-shadow: 0px 1px 0px #FFF;border-color: #CCC;background-repeat: repeat-x;background-color: #7CA616}
 #header .button.nextActive:after,#header .button.nextActive:before{border-right:1px solid #FEFEFE;position:absolute;width:27px}
 #header .button.nextActive{border-right:none}
 #header .button.nextActive:after{content:'';height:40px;right:-13px;bottom:1px;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}

@@ -109,7 +109,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             default: $scope.activeMenu = {};
         }
 
-        if (!$scope.$$phase) $scope.$apply();
+        //if (!$scope.$$phase) $scope.$apply();
     }
 
     var chFull = function(){
@@ -534,10 +534,27 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     };
 
     SetUndoRedoInteractable = function (IsInteractable) { 
+         console.log(IsInteractable);
+        if(IsInteractable == "U0R0"){
+            console.log("Mali by byt oba neaktivne.");
+        }
+        else if(IsInteractable == "U1R0"){
+            $("#B10").removeClass('inActive');
+             $("#B11").addClass('inActive');
+        }
+        else if(IsInteractable == "U0R1"){
+            $("#B10").addClass('inActive');
+            $("#B11").removeClass('inActive');
+        }
+        else if(IsInteractable == "U1R1"){
+            $("#B10").removeClass('inActive');
+            $("#B11").removeClass('inActive');
+        }
     }
 
 
     SetWallTypeButtonActive = function (IsInteractable) {
+
      }
     $scope.ZmenaVysky = function () {
         SendMessage("Plane0", "ChangeFloorScale", vyskaSteny);

@@ -7,7 +7,7 @@ label{cursor: pointer;}
 .closeMenu {position: relative;float: right; width:20px;height:20px;background-image: url(img/cancel_btn_sm.png);background-size:100%;}
 .closeMenu:hover {background-image: url(img/cancel_btn_sm_hover.png);}
 #header .button.first,#header .button.second,#header .button.third{top:-4px;display:inline-block;font-weight:700}
-#header .button.first:hover:before,#header .button.first:hover,#header .button.first:hover:after,#header .button.second:hover,#header .button.second:hover:before,#header .button.second:hover:after,#header .button.third:hover,#header .button.third:hover:before,#header .button.third:hover:after{background-color: #7C9E16}
+#header .button.first:hover:before,#header .button.first:hover,#header .button.first:hover:after,#header .button.second:hover,#header .button.second:hover:before,#header .button.second:hover:after,#header .button.third:hover,#header .button.third:hover:before,#header .button.third:hover:after{background-color: #559734}
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
 #wrapper{position:absolute;overflow:hidden}
 #splash-sc{background:#fff;position:fixed;top:0;left:0;z-index:1001}
@@ -27,12 +27,13 @@ label{cursor: pointer;}
 #fpsText{top:40%;left:40%;width:300px;height:100px}
 #errMsg{bottom:50px;left:40%;width:500px;height:150px;z-index:1001;border:1px solid #7CA616;border-radius:10px;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
 #header{top:0;width:100%;height:80px;z-index:1000}
+#header a:focus{text-decoration: none; color: white}
 #header #EnliLogo{background-size:100% auto;height:70px;width:150px;top:8%!important;left:47%}
 #header #enli-header{background-color:#7ca616;pointer-events:none;height:inherit;position:relative;z-index:1}
-#header #enli-header #mainButtons{position:absolute;float:left;top:80px;height:100%;width:35%;margin-left:43%;pointer-events:auto;padding-top:10px}
+#header #enli-header #mainButtons{position:absolute;float:left;top:80px;height:100%;width:35%;margin-left:35%;pointer-events:auto;padding-top:10px}
 #header #enli-header #mainButtons #leftBox{float:left}
-#header #enli-header #mainButtons #buttSwitch{float:left;margin-left:4px}
-#header #enli-header #mainButtons #rightBox{margin-left:4px;float:left}
+#header #enli-header #mainButtons #buttSwitch{position:relative;left:93px;float:left;margin-left:4px}
+#header #enli-header #mainButtons #rightBox{position:relative;left:93px;margin-left:4px;float:left}
 #header #ProjektMenuContainer{float:right;position:relative;height:inherit;z-index:1000;top:4px;right:4px}
 #header #SekciaContainer{position:relative;float:left;height:100%;z-index:1000;vertical-align:middle;padding:4px}
 #header #enli-header #BackgroundEnli{position:relative;width:100%;background-color:#7CA616;overflow:hidden;z-index:2}
@@ -73,6 +74,14 @@ label{cursor: pointer;}
 .podorys-section .left-menu-item input[type=radio]{display:none}
 .podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px}
 .podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
+.activeSectionFirst {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color: #FFF;text-decoration: none;text-align: center;padding: 5px 18px;font-size: 16px;font-family: helvetica,arial,sans-serif;background-color: #559734;width: 168px;z-index: 902}
+.activeSectionSecond {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 25px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:207px;left:-4px;z-index: 901}
+.activeSectionThird {top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:173px;left:-9px;z-index: 900}
+.activeSection:before .actiSection:after{background-color: #559734}
+#header .button.nextActive:after,#header .button.nextActive:before{border-right:1px solid #FEFEFE;position:absolute;width:27px}
+#header .button.nextActive{border-right:none}
+#header .button.nextActive:after{content:'';height:40px;right:-13px;bottom:1px;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}
+#header .button.nextActive:before{content:'';background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;height:40px;top:0;right:-13px;-webkit-transform:skew(35deg,0);-moz-transform:skew(35deg,0);-o-transform:skew(35deg,0);-ms-transform:skew(35deg,0);transform:skew(35deg,0)}
 #B0,#B1,#B2,#B3,#B4,#B6,#B7,#B8,#B9,.interier-section #sipka{background-size:100%}
 .podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
@@ -238,6 +247,7 @@ label{cursor: pointer;}
 .hidden{left:-10000px;position:absolute;top:-1000px}
 .creator-checkbox-btn{display:block;width:100%;margin-bottom:2px;position:relative}
 .creator-checkbox-btn .btn{width:100%;color:#c7c7c7;font-family:Helvetica,Arial,sans-serif;text-align:left}
+.inActive{opacity: 0.6;pointer-events: none}
 #browser-detect-wrap{width:100%;height:100%;position:fixed;top:0;left:0;z-index:2000;font-family:Roboto,sans-serif;background:#fff}
 #browser-detect-wrap .inst-firefox{background:url(TemplateData/guidelines-ff-logo.png)no-repeat #fff;width:267px;height:272px;position:relative;margin:2em auto 0}
 #loader,#loading-box{background-color:#fff}

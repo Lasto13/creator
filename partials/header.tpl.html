@@ -1,9 +1,9 @@
 <div id="enli-header">
   
   <div id="SekciaContainer" style="pointer-events: auto;">
-    <a href="" class="button next first" title="Sekcia, kde si nakreslíte pôdorys" ng-click="Podorys();" ><br>PÔDORYS</a>
-    <a href="" class="button next second" title="Sekcia venovaná pridávaniu okien a dverí" ng-click="DW();" ><br>&nbsp;&nbsp;OKNÁ A DVERE</a>
-    <a href="" class="button next third" title="Sekcia venovaná zariadzovaniu interéru" ng-click="Interier();"><br>INTERIÉR</a>
+    <a href="" class="button" title="Sekcia, kde si nakreslíte pôdorys" ng-class = "{activeSectionFirst:activeMenu.first, first:!activeMenu.first, nextActive:activeMenu.first, next:!activeMenu.first}"ng-click="Podorys();" ><br>PÔDORYS</a>
+    <a href="" class="button " title="Sekcia venovaná pridávaniu okien a dverí" ng-class = "{activeSectionSecond:activeMenu.second, second:!activeMenu.second, nextActive:activeMenu.second, next:!activeMenu.second}"ng-click="DW();" ><br>&nbsp;&nbsp;OKNÁ A DVERE</a>
+    <a href="" class="button " title="Sekcia venovaná zariadzovaniu interéru" ng-class = "{activeSectionThird:activeMenu.third, third:!activeMenu.third, nextActive:activeMenu.third, next:!activeMenu.third}"ng-click="Interier();"><br>INTERIÉR</a>
   
     <!--<a id="B30" href="" class="Button btn btn-default" ng-click="activateMenu(4); FPS();"><br>FPS</a> -->
   </div>
@@ -19,8 +19,8 @@
 
   <div id="mainButtons">
     <div id='leftBox'>
-      <a id="B10" title="Krok späť" class="Button btn-my" ng-click="Undo()"></a>
-      <a id="B11" title="Krok vpred" class="Button btn-my" ng-click="Redo()"></a>
+      <a id="B10" title="Krok späť" class="Button btn-my inActive" ng-click="Undo()"></a>
+      <a id="B11" title="Krok vpred" class="Button btn-my inActive" ng-click="Redo()"></a>
     </div>
     <div id='buttSwitch'>
       <input type="radio"  id="view_1" class="hidden" />

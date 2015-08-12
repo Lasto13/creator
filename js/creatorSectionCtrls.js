@@ -423,7 +423,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
       floorJson.get().then(function (data) {
         $scope.floors = data;
     });
-
+var prepinac = false;
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
     var hodnotaRotacie = 0;
@@ -442,7 +442,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         slideris.addEventListener('mousedown', function (e) {
             SendMessage("RotaciaVzoruSlider","WebStartedRotating");
         });
-        slideris.addEventListener('mouseup', function (e) {
+        document.addEventListener('mouseup', function (e) {
             SendMessage("RotaciaVzoruSlider","WebEndedRotating");
         });
     });
@@ -612,11 +612,31 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     $scope.ZmenitNaVnutorne = function () {
         SendMessage("WallTypeToggleGroup", "ConfirmSelectPriecna");
     }
-
+     
     $scope.VyberPodlahy = function(){
-      
-        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+        console.log("Prepinac " + prepinac);
+     if(prepinac == false){
+         document.getElementById('B0').className='Button radio-picture btn-my';
+        document.getElementById('B1').className='Button radio-picture btn-my';
+        document.getElementById('B2').className='Button radio-picture btn-my';
+        document.getElementById('B3').className='Button radio-picture btn-my';
+        document.getElementById('B4').className='Button radio-picture btn-my';
+        document.getElementById('B5').className='Button radio-picture btn-my';
+        document.getElementById('B8').className='Button radio-picture btn-my';
+        document.getElementById('B9').className='Button radio-picture btn-my';
+         SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+         document.getElementById('B31').className = 'Button btn activeChoose';
+         prepinac = true;
     }
+    else if(prepinac == true){
+        $scope.NoOp();
+        document.getElementById('B31').className = 'Button btn btn-default';
+        prepinac = false;
+    }
+
+     }
+
+       
 
     $scope.Strih = function(){
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");

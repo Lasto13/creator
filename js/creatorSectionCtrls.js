@@ -491,6 +491,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     });
 
     $scope.NoOp = function () {
+        console.log('asdasd');
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         document.getElementById('B0').className='Button radio-picture btn-my2';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -530,8 +531,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     $scope.ZmenaMat = function () {
         getErrorText('Zvoľte stenu pre zmenu materiálu');
         SendMessage("CanvasEditor", "SetView3D");
-        document.getElementById('B12').className = 'Button btn-my radio-view';
-        document.getElementById('B13').className = 'Button btn-my2 radio-view';
+        //document.getElementById('B12').className = 'Button btn-my radio-view';
+        //document.getElementById('B13').className = 'Button btn-my2 radio-view';
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
         //document.getElementById('MaterialChooser').style.left = 0+'px';
     };

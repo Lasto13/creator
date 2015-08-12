@@ -139,7 +139,7 @@
             <div class='menuHeader'>
               <div class='closeMenu' ng-click='setNoDWclass();NoOpDW();isWindowDropdownDisplayed = !isWindowDropdownDisplayed;'></div>
             </div>
-              <div ng-repeat="window in menuData.okna.child" class ="btn-group">
+              <div ng-repeat="window in menuData.okna.child" class ="btn-group" ng-class="getClass($index, menuData.okna.child)">
                 <div class="prod-image-cont">
                   <a class = "prod-image" style="background-image:url({{window.image}});background-size: 100%;"></a>
                 </div>
@@ -159,7 +159,7 @@
             <div class='menuHeader'>
               <div class='closeMenu' ng-click='setNoDWclass();NoOpDW();isDoorDropdownDisplayed = !isDoorDropdownDisplayed;'></div>
             </div>
-            <div ng-repeat="door in menuData.dvere.child" class ="btn-group">
+            <div ng-repeat="door in menuData.dvere.child" class ="btn-group" ng-class="getClass($index, menuData.dvere.child)">
                 <div class="prod-image-cont">
                   <a class = "prod-image" style="background-image:url({{door.image}});background-size: 100%;"></a>
                 </div>
@@ -194,7 +194,7 @@
         
         <div class="left-menu">
           <div id="ProductBox" style="pointer-events: auto;">
-            <div  ng-repeat="prod in productsToShow" class ="btn-group">
+            <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
               <div class="prod-image-cont">
                 <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
               </div>
@@ -239,8 +239,11 @@
             <div>
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
+                      <div class='name'>
                       <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.toggled}" ng-click="openTab(TypeProduct); " >{{TypeProduct.uidisplayname}}</a>
                       <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
+                      </div>
+                      <div class='fajka' ng-class="{'fajka-active' : TypeProduct.toggled, 'fajka-inActive' : !TypeProduct.toggled }"></div>
                   </div>
               </div>
             </div>
@@ -266,6 +269,8 @@
         <button id="colorCh" class="fps-btn btn" title="Otvoriť menu pre výber farieb" ng-click="colorChooser()">VÝBER FARBY</button>  
       </div>
 
+      <div id='screenShot' ng-click='takeScreenShot()'></div>
+
       <div class="right-menu">
           <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
@@ -277,25 +282,25 @@
           EDITOR
         </button>
       </div>
+      <div id='objMenu'>
+        <div class='closer'>
+        </div>
+        <div>
+          <div>
+            zasuvacie divko
+          </div>
+          <div>
+            dalsie divko
+          </div>
+          <div>
+            main content
+          </div>
+        </div>
+      </div>
+      <div id='matMenu'>
+      </div>
     </div>
 
-    <div id='objMenu'>
-      <div class='closer'>
-      </div>
-      <div>
-        <div>
-          zasuvacie divko
-        </div>
-        <div>
-          dalsie divko
-        </div>
-        <div>
-          main content
-        </div>
-      </div>
-    </div>
-    <div id='matMenu'>
-    </div>
   </div> <!-- Wrapper end -->
 
   <div id="errMsg">

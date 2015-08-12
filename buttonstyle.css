@@ -134,9 +134,9 @@ label{cursor: pointer;}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em}
 .interier-section .left-menu .name{width: 130px;float: left;}
-.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;background-color: #000}
-.interier-section .left-menu .fajka-active {background-color: #7CA616}
-.interier-section .left-menu .fajka-inActive {display: none}
+.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px}
+.interier-section .left-menu .fajka-active {background: url(img/checkbox_on.png); background-size: 100%}
+.interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {margin-top: 20px}

@@ -491,6 +491,7 @@ var prepinac = false;
     });
 
     $scope.NoOp = function () {
+        console.log('asdasd');
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         document.getElementById('B0').className='Button radio-picture btn-my2';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -567,6 +568,9 @@ var prepinac = false;
         SendMessage("changeMat", "ChangeMatGL", id);
         document.getElementById('MaterialChooser').style.left = -240+'px';
         $scope.ZmenaMat();
+        document.getElementById('B0').className = 'Button radio-picture btn-my';
+        document.getElementById('B9').className = 'Button radio-picture btn-my2';
+        
     }
 
     Set2D = function () {
@@ -614,6 +618,7 @@ var prepinac = false;
     }
      
     $scope.VyberPodlahy = function(){
+<<<<<<< HEAD
         console.log("Prepinac " + prepinac);
      if(prepinac == false){
          document.getElementById('B0').className='Button radio-picture btn-my';
@@ -632,6 +637,9 @@ var prepinac = false;
         $scope.NoOp();
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
+=======
+        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+>>>>>>> origin/master
     }
 
      }

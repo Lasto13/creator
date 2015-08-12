@@ -1021,6 +1021,14 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
+            if ($scope.productsToShow.length == 1){
+                document.getElementById('ProductBox').style.width = '400px';
+                $('#ProductBox .btn-group').css('width','100%');
+            }
+            else {
+                document.getElementById('ProductBox').style.width = '800px';
+                $('#ProductBox .btn-group').css('width','50%');
+            }
         } else {
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';

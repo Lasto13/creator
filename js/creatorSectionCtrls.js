@@ -217,7 +217,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     };
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
-    $scope.RozmerySet = function (value) { SendMessage("Settings", "ShowTextFromWeb", value); };
+    $scope.RozmerySet = function (value) {SendMessage("Settings", "ShowTextFromWeb", value); };
     $scope.MierkaAuto = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 0);}
     $scope.Mierka10 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 500);}
     $scope.Mierka50 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 100);}
@@ -304,11 +304,13 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     }
 
     setShowRozmery = function (show) {
-        if (show === 0) {
+       
+        if (show == 0) {
             $('#RozmeryVypnute').prop('checked', true);
             $scope.RozmerySet(0);
         }
         else {
+             console.log("David mi posiela else" + show);
             $('#RozmeryZapnute').prop('checked', true);
             $scope.RozmerySet(1);
         }
@@ -612,6 +614,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.VyberPodlahy = function(){
+      
         SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
     }
 
@@ -658,6 +661,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
     $scope.closeFloorMenu = function(){
         //$scope.ZmenaMat();
+        SendMessage("VzorButton","SelectionWindowClosed");
+        console.log("posielam zatvorenie");
         document.getElementById('FloorChooser').style.left = -230 +'px';
     }
 }]);

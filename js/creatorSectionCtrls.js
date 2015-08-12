@@ -100,6 +100,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.selectedTemplate.path = "partials/podorys.tpl.html";
 
     setActiveSection = function (n) {
+        console.log(n);
         $scope.activeMenu = {};
         switch (n) {
             case "0": $scope.activeMenu.first = true; isFps=false; chMin(); break;
@@ -108,7 +109,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             case "6": $scope.activeMenu.fourth = true; isFps=true; chFull(); break;
             default: $scope.activeMenu = {};
         }
-
         if (!$scope.$$phase) $scope.$apply();
     }
 
@@ -350,9 +350,9 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     
     wallCursors = function(cursor){
         switch(cursor){
-            case '0': console.log('0');break;
-            case '1': console.log('1');break;
-            case '2': console.log('2');break;
+            case '0': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});break;
+            case '1': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/0.png) 0 17, default'});break;
+            case '2': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/90.png) 17 0, default'});break;
         }
     }
 
@@ -762,6 +762,12 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         dw.removeClass('btn-my2');
         $('#BDW5').addClass('btn-my2');
     }
+    $scope.getClass = function(indx, list){
+        return {
+            rightColumn: indx % 2,
+            NotLastOnes: indx < list.length - 2 
+        }
+    }
 }]);
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
@@ -1008,6 +1014,12 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     $scope.CenterInterier = function () {
         SendMessage("Main Camera", "ResetPosition");
     };
+    $scope.getClass = function(indx, list){
+        return {
+            rightColumn: indx % 2,
+            NotLastOnes: indx < list.length - 2 
+        }
+    }
 }]);
 
 app.controller('FPSCtrl', ['$scope', function ($scope) {
@@ -1018,6 +1030,21 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
 
         }
     };
+
+    $scope.takeScreenShot = function(){
+        SendMessage();
+    }
+
+    sendScreenAsBytes = function(byteString){
+        var str = byteString;
+        var bytes = [];
+
+        for (var i = 0; i < str.length; ++i) {
+            bytes.push(str.charCodeAt(i));
+        }
+
+        console.log(bytes);
+    }
 
     var showButtonMenu = function(){
         document.getElementById('objMove').style.visibility = 'visible';

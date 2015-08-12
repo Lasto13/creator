@@ -103,10 +103,12 @@ label{cursor: pointer;}
 .dw-section #MenuItemWindow .prod-image{display:inline-block;width:80%;height:100%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .dw-section #MenuItemDoor .prod-image{display:inline-block;width:80%;height:170%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .dw-section #MenuItemWindow .btn-group .prod-info{width:65%;position:relative;float:left}
-.dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right;}
-.dw-section .btn-group{width:50%;height:157px;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
+.dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right}
+.dw-section .btn-group{width:50%;height:157px}
+.dw-section .rightColumn {border-left: solid 1px; border-color:#7ca616}
+.dw-section .NotLastOnes {border-bottom: solid 1px;border-color:#7ca616}
 .dw-section h4{color: #7CA616;margin-top:5px}
-.dw-section .menuHeader {height:26px;border-bottom: 2px solid #7ca616}
+.dw-section .menuHeader {height:26px}
 .dw-section .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
 .dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
 .dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
@@ -116,8 +118,10 @@ label{cursor: pointer;}
 .interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}
+.interier-section #ProductBox .NotLastOnes {border-bottom: solid 1px; border-color: #7CA616}
+.interier-section #ProductBox .rightColumn {border-left: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .btn-group .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
-.interier-section #ProductBox .btn-group{width:50%;height:157px;border-bottom:solid 2px;border-right:solid 2px;border-color:#7ca616}
+.interier-section #ProductBox .btn-group{width:50%;height:157px}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
 .interier-section #ProductBox .btn-group .prod-info{width:65%;position:relative;float:left}
 .interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}
@@ -129,6 +133,10 @@ label{cursor: pointer;}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em}
+.interier-section .left-menu .name{width: 130px;float: left;}
+.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;background-color: #000}
+.interier-section .left-menu .fajka-active {background-color: #7CA616}
+.interier-section .left-menu .fajka-inActive {display: none}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {margin-top: 20px}
@@ -152,7 +160,8 @@ label{cursor: pointer;}
 .fps-section .btn-menu .fps-btn-round{position:relative;left:30%;margin:7px;color:#7ca616;border-radius:35px;width:35px;height:35px}
 .fps-section .btn-menu #colorCh,.fps-section .btn-menu #objMove,.fps-section .btn-menu #objRot,.fps-section .btn-menu #ok{visibility:hidden}
 .fps-section .btn-menu .fps-btn{color:#7CA616;position:relative;width:147px;height:35px;margin-left:14px}
-.fps-section .right-menu{position: absolute;right: 0px;width: 413px;height: 70px;pointer-events: auto;margin-top: 2px;margin-right: 4px;background: white;padding: 18px;border-radius: 10px}
+.fps-section #screenShot {position: absolute;width: 172px;height: 60px;margin-top: 12px;left: 47%;background:url(img/fps_gui/scrn.svg);background-size: 100%; pointer-events: auto;cursor: pointer;}
+.fps-section .right-menu{position: absolute;right: 0px;width: 443px;height: 69px;pointer-events: auto;margin-top: 15px;margin-right: 16px;background: white;padding: 18px;border-radius: 10px}
 .fps-section .right-menu input{margin-left:20px;display:none}
 .fps-section .right-menu label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
 .fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_button_active.png);margin-left:20px}

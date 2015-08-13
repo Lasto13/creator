@@ -100,7 +100,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.selectedTemplate.path = "partials/podorys.tpl.html";
 
     setActiveSection = function (n) {
-        console.log(n);
         $scope.activeMenu = {};
         switch (n) {
             case "0": $scope.activeMenu.first = true; isFps=false; chMin(); break;
@@ -258,7 +257,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             $scope.RozmerySet(0);
         }
         else {
-             console.log("David mi posiela else" + show);
             $('#RozmeryZapnute').prop('checked', true);
             $scope.RozmerySet(1);
         }
@@ -298,7 +296,12 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope, matJson, floorJson) {
-    
+
+    document.getElementById("ButtonContainer").addEventListener('click', function (e) {
+        document.getElementById('B31').className = 'Button btn btn-default';
+        prepinac = false;
+    });
+
     wallCursors = function(cursor){
         switch(cursor){
             case '0': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});break;
@@ -386,7 +389,6 @@ var prepinac = false;
     });
 
     $scope.NoOp = function () {
-        console.log('asdasd');
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         document.getElementById('B0').className='Button radio-picture btn-my2';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -433,9 +435,7 @@ var prepinac = false;
     };
 
     SetUndoRedoInteractable = function (IsInteractable) { 
-         console.log(IsInteractable);
         if(IsInteractable == "U0R0"){
-            console.log("Mali by byt oba neaktivne.");
         }
         else if(IsInteractable == "U1R0"){
             $("#B10").removeClass('inActive');
@@ -513,27 +513,24 @@ var prepinac = false;
     }
      
     $scope.VyberPodlahy = function(){
-     if(prepinac == false){
-        document.getElementById('B0').className='Button radio-picture btn-my';
-        document.getElementById('B1').className='Button radio-picture btn-my';
-        document.getElementById('B2').className='Button radio-picture btn-my';
-        document.getElementById('B3').className='Button radio-picture btn-my';
-        document.getElementById('B4').className='Button radio-picture btn-my';
-        document.getElementById('B5').className='Button radio-picture btn-my';
-        document.getElementById('B8').className='Button radio-picture btn-my';
-        document.getElementById('B9').className='Button radio-picture btn-my';
-        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
-        document.getElementById('B31').className = 'Button btn activeChoose';
-        prepinac = true;
+        if(prepinac == false){
+            document.getElementById('B0').className='Button radio-picture btn-my';
+            document.getElementById('B1').className='Button radio-picture btn-my';
+            document.getElementById('B2').className='Button radio-picture btn-my';
+            document.getElementById('B3').className='Button radio-picture btn-my';
+            document.getElementById('B4').className='Button radio-picture btn-my';
+            document.getElementById('B5').className='Button radio-picture btn-my';
+            document.getElementById('B8').className='Button radio-picture btn-my';
+            document.getElementById('B9').className='Button radio-picture btn-my';
+            SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+            document.getElementById('B31').className = 'Button btn activeChoose';
+            prepinac = true;
+        } else if(prepinac == true){
+            $scope.NoOp();
+            document.getElementById('B31').className = 'Button btn btn-default';
+            prepinac = false;
+        }
     }
-    else if(prepinac == true){
-        $scope.NoOp();
-        document.getElementById('B31').className = 'Button btn btn-default';
-        prepinac = false;
-        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
-    }
-
-     }
 
        
 
@@ -558,13 +555,12 @@ var prepinac = false;
     }
 
     isFloorChoosen = function(value){
-        console.log("Je oznacena podlaha???" + value);
-                if(value == 0){
-                    $("#B33").addClass('disabled');
-                }
-                else{
-                    $("#B33").removeClass('disabled');
-                }
+        if(value == 0){
+            $("#B33").addClass('disabled');
+        }
+        else{
+            $("#B33").removeClass('disabled');
+        }
     }
 
     $scope.setMenuMaterial = function (value) {
@@ -581,7 +577,6 @@ var prepinac = false;
     $scope.closeFloorMenu = function(){
         //$scope.ZmenaMat();
         SendMessage("VzorButton","SelectionWindowClosed");
-        console.log("posielam zatvorenie");
         document.getElementById('FloorChooser').style.left = -230 +'px';
     }
 }]);
@@ -911,8 +906,14 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
         //if (value === oldValue) { return; }
         var d = document.getElementById('ProductBox');
-        if (!!value) d.style.left = "210px";
-        else d.style.left = "-600px";
+        if (!!value) {
+            //d.style.display = 'block';
+            d.style.left = "210px";
+        }
+        else {
+            d.style.left = "-600px";
+            //d.style.display = 'none';
+        }
     });
 
     var sipRot;
@@ -931,24 +932,27 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
     var calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
-        console.log(maxPBheight);
-        if(($scope.productsToShow.length/2)*157 < maxPBheight){
-            document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157 +'px';
+        var prCount = $scope.productsToShow.length;
+        if((prCount/2)*157 < maxPBheight){
+            if (prCount%2 == 0){
+                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+3 +'px';    
+            } else{
+                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+80 +'px';
+            }
         } else {
             document.getElementById('ProductBox').style.height = maxPBheight +'px';
         }
 
         if ($scope.productsToShow.length == 1){
-                document.getElementById('ProductBox').style.width = '400px';
+            document.getElementById('ProductBox').style.width = '400px';
+            setTimeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 30);
         } else {
             document.getElementById('ProductBox').style.width = '800px';
+            $('#ProductBox .btn-group').css('width','50%');
         }
     }
 
     var filterProducts = function(){
-
-        console.log('filterProducts');
-
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
             for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
@@ -965,8 +969,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
-
-            
            
         } else {
             $scope.isProductBoxDisplayed = false;
@@ -1003,7 +1005,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     sendScreenAsBytes = function(){
 
         for (var i = 0; i < arguments.length; i++) {
-            console.log(arguments[i]);
+            //console.log(arguments[i]);
         }
         //console.log(byteString);
         /*

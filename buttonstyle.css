@@ -129,7 +129,7 @@ label{cursor: pointer;}
 .interier-section #ProductBox .NotLastOnes {border-bottom: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .rightColumn {border-left: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .btn-group .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
-.interier-section #ProductBox .btn-group{width:398px;height:157px}
+.interier-section #ProductBox .btn-group{width:50%;height:157px}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
 .interier-section #ProductBox .btn-group .prod-info{width:65%;position:relative;float:left}
 .interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}
@@ -147,7 +147,8 @@ label{cursor: pointer;}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
 .interier-section .left-menu #manCol:hover {color: #638512}
-.interier-section .left-menu #man-cont {position: relative; height: 100px; margin-top: 20px}
+.interier-section .left-menu #man-cont {position: relative; height: 100px}
+.interier-section .left-menu #man-cont a{margin-bottom: 1px}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
 .fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px;visibility:hidden}

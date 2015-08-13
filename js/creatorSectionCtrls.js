@@ -152,6 +152,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         for (var j = 0, jL = _pRa.length; j < jL; j++) _pRa[j].className = 'Button radio-picture btn-my';
         document.getElementById('category_1').checked = true;
         document.getElementById('B0').className = 'Button radio-picture btn-my2';
+        document.getElementById('B31').className = 'Button btn btn-default';
+        prepinac = false;
         SendMessage("CanvasEditor", "changeArea", 0);
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
@@ -297,6 +299,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
 app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope, matJson, floorJson) {
 
+    $scope.bla = '0';
+
     document.getElementById("ButtonContainer").addEventListener('click', function (e) {
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
@@ -321,28 +325,40 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
       floorJson.get().then(function (data) {
         $scope.floors = data;
     });
-var prepinac = false;
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
     var hodnotaRotacie = 0;
+    var isPressed = false;
     $(function () {
         $("#slider").slider({
-            step: 0.01,
+            step: 15,
             min: 0,
-            max: 1,
+            max: 360,
             values: [0], 
             slide: function (event, ui) {
-               hodnotaRotacie = ui.value;
-               SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
+                hodnotaRotacie = ui.value/360;
+                SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
+                $scope.bla = JSON.stringify(Math.round(ui.value)) + '°';
+                if (!$scope.$$phase) $scope.$apply();
             }
         });
         var slideris = document.getElementById("slider");
         slideris.addEventListener('mousedown', function (e) {
+            document.getElementById('value').style.display = 'block';
+            isPressed = true;
             SendMessage("RotaciaVzoruSlider","WebStartedRotating");
         });
         document.addEventListener('mouseup', function (e) {
+            if(isPressed == true){
+            document.getElementById('value').style.display = 'none';
             SendMessage("RotaciaVzoruSlider","WebEndedRotating");
+            isPressed = false;
+            }
         });
+        
+        var _handle = document.getElementsByClassName('ui-slider-handle')[0];
+        var _value = document.getElementById('value');
+        _handle.appendChild(_value);
     });
 
     $(function () {
@@ -465,7 +481,6 @@ var prepinac = false;
         $scope.ZmenaMat();
         document.getElementById('B0').className = 'Button radio-picture btn-my';
         document.getElementById('B9').className = 'Button radio-picture btn-my2';
-        
     }
 
     Set2D = function () {
@@ -514,6 +529,7 @@ var prepinac = false;
      
     $scope.VyberPodlahy = function(){
         if(prepinac == false){
+            $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
             document.getElementById('B0').className='Button radio-picture btn-my';
             document.getElementById('B1').className='Button radio-picture btn-my';
             document.getElementById('B2').className='Button radio-picture btn-my';
@@ -527,7 +543,9 @@ var prepinac = false;
             prepinac = true;
         } else if(prepinac == true){
             $scope.NoOp();
+            $scope.closeFloorMenu();
             document.getElementById('B31').className = 'Button btn btn-default';
+
             prepinac = false;
         }
     }

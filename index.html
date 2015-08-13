@@ -38,14 +38,14 @@
             <input type="radio"  id="category_1" class="hidden" />
             <a id="B0" title="Žiadna akcia" class="Button btn-my radio-picture" ng-click="NoOp(); set_radio('category_1')"></a>
 
+            <input type="radio"  id="category_4" class="hidden" />
+            <a id="B3" title="Kresliť izbu" class="Button btn-my radio-picture" ng-click="FourWall(); set_radio('category_4')"></a>
+
             <input type="radio"  id="category_2" class="hidden" />
             <a id="B1" title="Kresliť rovnú stenu" class="Button btn-my radio-picture" ng-click="SingleWall(); set_radio('category_2')"></a>
 
             <input type="radio"  id="category_3" class="hidden" />
             <a id="B2" title="Kresliť oblú stenu" class="Button btn-my radio-picture" ng-click="CurveWall(); set_radio('category_3')"></a>
-
-            <input type="radio"  id="category_4" class="hidden" />
-            <a id="B3" title="Kresliť štvorcovú izbu" class="Button btn-my radio-picture" ng-click="FourWall(); set_radio('category_4')"></a>
 
             <input type="radio"  id="category_5" class="hidden" />
             <a id="B4" title="Zmazať" class="Button btn-my radio-picture" ng-click="Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
@@ -90,12 +90,13 @@
             </div>
             <div id="floor-types">
                 <a id="B31" class="Button btn btn-default" title="Výber podlahy pre zmenu materiálu" ng-click = "VyberPodlahy();">Výber podlahy</a>
-                <a id="B32" class="Button btn btn-default" tittle="Nástroj na oddelenie podláh" ng-click = "Strih()">Strih</a>
-                <a id="B33" class="Button btn btn-default disabled" tittle="Nástroj na zmenu vzoru podlahy" ng-click = "VzorMaterialu()">Vzor materiálu</a>
+                <a id="B32" class="Button btn btn-default" title="Nástroj na oddelenie podláh" ng-click = "Strih()">Strih</a>
+                <a id="B33" class="Button btn btn-default disabled" title="Nástroj na zmenu vzoru podlahy" ng-click = "VzorMaterialu()">Vzor materiálu</a>
               <div>
                 <span style="position:relative;"><p>ROTÁCIA PODLAHY:</p></span>
               </div>
-              <div id="slider" tittle="Nástroj na zmenu rotácie vzoru podlahy"></div>
+              <div id="slider"></div>
+              <div id='value'>{{bla}}</div>
             </div> 
           </div>
         </div>
@@ -228,9 +229,7 @@
               </select>
             </div>
             -->
-            <span>
-              <p>TYP IZBY:</p>
-            </span>
+            <p>TYP IZBY:</p>
             <div class="form-group">
               <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
             </div>

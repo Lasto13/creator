@@ -1,6 +1,7 @@
 browserDimensions();
 window.addEventListener('resize', browserDimensions, false);
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
+var prepinac = false;
 
 document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 

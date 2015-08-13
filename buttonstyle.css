@@ -46,6 +46,7 @@ label{cursor: pointer;}
 #header #Settings label{display:inline-block;background:url(img/radio_button_inactive.png) no-repeat;width:21px;height:21px;margin-bottom:-5px;margin-left:4px; padding-left: 25px; font-weight: 300}
 #header #Settings input[type=radio]:checked+label{background:url(img/radio_button_active.png) no-repeat; padding-left: 25px}
 #LoadProject p,#Settings label{font-family:Roboto}
+#LoadProject p {font-size: .9em; margin-bottom: 0px}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{margin-bottom:0;font-weight:400;text-align:left}
 #header #ProjektMenuContainer .Button:hover{opacity: 0.8}
 #header .button:hover{color:#fff;text-decoration:none;cursor:pointer;cursor:hand}
@@ -67,6 +68,7 @@ label{cursor: pointer;}
 .podorys-section .left-menu .ui-spinner-button {text-decoration: none;}
 .podorys-section .left-menu .ui-spinner-up {margin-left: 8px}
 .podorys-section .left-menu .ui-spinner-down {margin-left: -6px}
+.podorys-section .left-menu #value{position:relative;width: 25px;top: 30px;left: -6px;color: #7ca616; display: none}
 .podorys-section .left-menu-item{width:84%;position:relative;left:40px;margin-bottom:10px}
 .podorys-section .left-menu-item .Button{width: 150px;height:30px; line-height: 26px;}
 .podorys-section .left-menu-item input[type=radio]{display:none}
@@ -85,7 +87,7 @@ label{cursor: pointer;}
 .podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor,.dw-section #MenuItemWindow{transition:left .5s ease-out 0s;border:1px solid #7CA616}
-.podorys-section #MaterialChooser .material-item{position:relative;width:100px;height:100px;display:inline-block;margin:1px}
+.podorys-section #MaterialChooser .material-item{position:relative;width:100px;height:87px;display:inline-block;margin:1px}
 .podorys-section #FloorChooser .material-item{position:relative;width:100px;height:100px;display:inline-block;margin:1px}
 #B0{background-image:url(Buttons/1.png)}
 #B1{background-image:url(Buttons/15.png)}
@@ -140,7 +142,7 @@ label{cursor: pointer;}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
-.interier-section .left-menu p {font-size: 1.2em}
+.interier-section .left-menu p {font-size: 1.2em;position: relative;top: 6px;}
 .interier-section .left-menu .name{width: 130px;float: left;}
 .interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px; cursor: pointer}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_on.png); background-size: 100%}

@@ -210,7 +210,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.Center = function () { SendMessage("Main Camera", "ResetPosition"); };
     $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); defActionClass();};
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); defActionClass();};
-    $scope.FPS = function () { 
+    $scope.FPS = function () {
         SendMessage("EventSystem", "FpsPosition");
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         defActionClass();
@@ -634,8 +634,12 @@ var prepinac = false;
      
     $scope.VyberPodlahy = function(){
      if(prepinac == false){
+
          $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
          document.getElementById('B0').className='Button radio-picture btn-my';
+
+        document.getElementById('B0').className='Button radio-picture btn-my';
+
         document.getElementById('B1').className='Button radio-picture btn-my';
         document.getElementById('B2').className='Button radio-picture btn-my';
         document.getElementById('B3').className='Button radio-picture btn-my';
@@ -643,16 +647,14 @@ var prepinac = false;
         document.getElementById('B5').className='Button radio-picture btn-my';
         document.getElementById('B8').className='Button radio-picture btn-my';
         document.getElementById('B9').className='Button radio-picture btn-my';
-         SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
-         document.getElementById('B31').className = 'Button btn activeChoose';
-         prepinac = true;
+        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+        document.getElementById('B31').className = 'Button btn activeChoose';
+        prepinac = true;
     }
     else if(prepinac == true){
         $scope.NoOp();
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
-
-        
 
     }
 
@@ -1104,18 +1106,23 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     };
 
     $scope.takeScreenShot = function(){
-        SendMessage();
+        SendMessage('Screen_and_Save','getScreenByte');
     }
 
-    sendScreenAsBytes = function(byteString){
+    sendScreenAsBytes = function(){
+
+        for (var i = 0; i < arguments.length; i++) {
+            console.log(arguments[i]);
+        }
+        //console.log(byteString);
+        /*
         var str = byteString;
         var bytes = [];
-
+        /*
         for (var i = 0; i < str.length; ++i) {
             bytes.push(str.charCodeAt(i));
         }
-
-        console.log(bytes);
+        */
     }
 
     var showButtonMenu = function(){
@@ -1164,7 +1171,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         else {
             document.getElementById('close').style.visibility = 'visible';
         }
-        if (info.charAt(6) == "0") {
+        if (info.charAt(6) == "0") { //TO DO 
             document.getElementById('colorCh').style.visibility = 'hidden';
         }
         else {

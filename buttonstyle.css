@@ -16,16 +16,14 @@ label{cursor: pointer;}
 .talk-to{width:400px;height:50;text-align:center}
 #sp-holder,#np-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);opacity:0;display:none;transition:opacity 1.5s ease-in-out;-moz-transition:opacity 1.5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
 #sp-content,#np-content{position:relative;width:300px;height:150px;background:#fff;border: 1px solid #7ca616;border-radius:10px;left:44%;top:20%}
-#errMsg,#fpsText{background-color:#d3d3d3}
-#errMsg,#fpsText,#header,#header #EnliLogo{position:absolute}
+#errMsg,#header,#header #EnliLogo{position:absolute}
 #sp-content input{margin-left:74px}
 #sp-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
 #np-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
-#np-content h4 {color: #7CA616; display: inline-block;}
+#np-content h4 {color: #7CA616; display: inline-block}
 #header .button.first,#header .button.next:after,#header .button.second,#header .button.third{background-color:#7CA616}
 #header .button.first,#header .button.second,#header .button.third{background-color:#7CA616;background-color:#7CA616;background-color:#7CA616}
-#fpsText{top:40%;left:40%;width:300px;height:100px}
-#errMsg{bottom:50px;left:40%;width:500px;height:150px;z-index:1001;border:1px solid #7CA616;border-radius:10px;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
+#errMsg{top:47%;left:40%;width:500px;height:40px;z-index:1001;border-radius:10px;background:#fff;text-align:center;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
 #header{top:0;width:100%;height:80px;z-index:1000}
 #header a:focus{text-decoration: none; color: white}
 #header #EnliLogo{background-size:100% auto;height:70px;width:150px;top:8%!important;left:47%}
@@ -144,7 +142,7 @@ label{cursor: pointer;}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em}
 .interier-section .left-menu .name{width: 130px;float: left;}
-.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px}
+.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px; cursor: pointer}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_on.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
@@ -170,8 +168,8 @@ label{cursor: pointer;}
 .fps-section .btn-menu .fps-btn-round{position:relative;left:30%;margin:7px;color:#7ca616;border-radius:35px;width:35px;height:35px}
 .fps-section .btn-menu #colorCh,.fps-section .btn-menu #objMove,.fps-section .btn-menu #objRot,.fps-section .btn-menu #ok{visibility:hidden}
 .fps-section .btn-menu .fps-btn{color:#7CA616;position:relative;width:147px;height:35px;margin-left:14px}
-.fps-section #screenShot {position: absolute;width: 172px;height: 60px;margin-top: 12px;left: 47%;background:url(img/fps_gui/scrn.svg);background-size: 100%; pointer-events: auto;cursor: pointer;}
-.fps-section .right-menu{position: absolute;right: 0px;width: 443px;height: 69px;pointer-events: auto;margin-top: 15px;margin-right: 16px;background: white;padding: 18px;border-radius: 10px}
+.fps-section #screenShot {position: absolute;width: 172px;height: 60px;margin-top: 5px;left: 47%;background:url(img/fps_gui/scrn.svg);background-size: 100%; pointer-events: auto;cursor: pointer;}
+.fps-section .right-menu{position: absolute;right: 0px;width: 443px;height: 69px;pointer-events: auto;margin-top: 5px;margin-right: 16px;background: white;padding: 13px;border-radius: 10px}
 .fps-section .right-menu input{margin-left:20px;display:none}
 .fps-section .right-menu label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
 .fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_button_active.png);margin-left:20px}

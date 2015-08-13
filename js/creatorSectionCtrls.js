@@ -342,6 +342,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         else if (value === "0") getErrorText("Váš projekt nebol uložený");
     }
 
+
+
     loadingFinished = function (value) { }
 
     $scope.OtvoritProjekt = function (jsonstring) {
@@ -427,6 +429,7 @@ var prepinac = false;
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
     var hodnotaRotacie = 0;
+    var isPressed = false;
     $(function () {
         $("#slider").slider({
             step: 0.01,
@@ -440,10 +443,15 @@ var prepinac = false;
         });
         var slideris = document.getElementById("slider");
         slideris.addEventListener('mousedown', function (e) {
+            isPressed = true;
             SendMessage("RotaciaVzoruSlider","WebStartedRotating");
         });
         document.addEventListener('mouseup', function (e) {
+            if(isPressed == true){
+                console.log("odosielam davidovi koniec rotacie");
             SendMessage("RotaciaVzoruSlider","WebEndedRotating");
+            isPressed = false;
+        }
         });
     });
 
@@ -473,6 +481,11 @@ var prepinac = false;
         }
     });
 
+    document.getElementById("ButtonContainer").addEventListener('click', function (e) {
+        document.getElementById('B31').className = 'Button btn btn-default';
+        prepinac = false;
+    });
+
     $scope.set_radio = function ($inputid) {
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
@@ -489,6 +502,8 @@ var prepinac = false;
             $("#results").html(data);
         });
     });
+
+
 
     $scope.NoOp = function () {
         console.log('asdasd');
@@ -618,9 +633,8 @@ var prepinac = false;
     }
      
     $scope.VyberPodlahy = function(){
-<<<<<<< HEAD
-        console.log("Prepinac " + prepinac);
      if(prepinac == false){
+         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
          document.getElementById('B0').className='Button radio-picture btn-my';
         document.getElementById('B1').className='Button radio-picture btn-my';
         document.getElementById('B2').className='Button radio-picture btn-my';
@@ -637,16 +651,15 @@ var prepinac = false;
         $scope.NoOp();
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
-=======
-        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
->>>>>>> origin/master
+
+        
+
     }
 
      }
 
-       
-
     $scope.Strih = function(){
+         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
     }
 

@@ -1152,7 +1152,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         else {
             document.getElementById('close').style.visibility = 'visible';
         }
-        if (info.charAt(6) == "0") {
+        if (info.charAt(6) == "0") { //TO DO 
             document.getElementById('colorCh').style.visibility = 'hidden';
         }
         else {

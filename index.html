@@ -240,10 +240,10 @@
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
                       <div class='name'>
-                      <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.toggled}" ng-click="openTab(TypeProduct); " >{{TypeProduct.uidisplayname}}</a>
+                      <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{TypeProduct.uidisplayname}}</a>
                       <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
                       </div>
-                      <div class='fajka' ng-class="{'fajka-active' : TypeProduct.toggled, 'fajka-inActive' : !TypeProduct.toggled }"></div>
+                      <div class='fajka' ng-click="openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled, 'fajka-inActive' : !TypeProduct.toggled }"></div>
                   </div>
               </div>
             </div>

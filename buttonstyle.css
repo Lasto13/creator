@@ -33,7 +33,7 @@ label{cursor: pointer;}
 #header #enli-header #mainButtons #buttSwitch{position:relative;left:93px;float:left;margin-left:4px}
 #header #enli-header #mainButtons #rightBox{position:relative;left:93px;margin-left:4px;float:left}
 #header #ProjektMenuContainer{float:right;position:relative;height:inherit;z-index:1000;top:4px;right:4px}
-#header #SekciaContainer{position:relative;float:left;height:100%;z-index:1000;vertical-align:middle;padding:4px}
+#header #SekciaContainer{position:relative;float:left;height:100%;z-index:1000;vertical-align:middle;padding-top:4px}
 #header #enli-header #BackgroundEnli{position:relative;width:100%;background-color:#7CA616;overflow:hidden;z-index:2}
 #header #Settings{position:absolute;z-index:-1;background-color:#FFF;height:500px;width:200px;float:right;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;right:20px;top:-470px; padding-left: 25px;transition:top .5s ease-out 0s;-moz-transition:top .5s ease-in-out;-webkit-transition:top .5s ease-in-out}
 #header .button.first,#header .button.second,#header .button.third{position:relative;height:80px;border-radius:4px}

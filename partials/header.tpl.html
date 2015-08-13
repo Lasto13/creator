@@ -71,10 +71,11 @@
 </div>
 
 <div id="LoadProject" style="pointer-events: auto;"><br>
-  <div ng-repeat = "Loads in LoadSave.savePlace.parts" class = "btn-group" >
-  <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;">
+  <div ng-repeat = "loads in LoadSave.savePlace.parts" class = "btn-group" >
+    <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;">
     </div>
-    <p >{{Loads.name}}</p>
+    <p>{{loads.name}}</p>
+    <p>{{loads.created | date:'d.M.yyyy'}}</p>
     <a class = "btn btn-default" title="" ng-click="CleanProject();OtvoritProjekt(Loads.data);" style="left:35px;">Načítať</a>
   </div>
 </div>

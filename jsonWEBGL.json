@@ -279,21 +279,6 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina"
-                },
-                {
-                  "category": 5,
-                  "uidisplayname": "Knihovnička Rea Denisa Up 010",
-                  "path": "http://85.159.111.72/WebGLAssetBundles/knihovnickareadenisaup10.unity3d",
-                  "image": "http://85.159.111.72/Obrazky/knihovnickareadenisaup10.png",
-                  "description": "Moderná knižnica s tromi zásuvkami zo zostavy REA DENISA UP v 7 prevedeniach",
-                  "descriptionfordetail": "Knižnica s tromi šuflíkmi je určená najmä do obývačky, ale uplatnenie nájde kdekoľvek v domácnosti. Knižnica je vyrobená z kvalitnej laminovanej drevotrieskovej dosky. Vrchná doska knižnice má hrúbku 25 mm. Dodávaná je v demonte.",
-                  "pathformanufacturer": "http://www.drevona.sk/skrinka/knihovnicka-rea-denisa-up-010/",
-                  "id": 1,
-                  "room": 0,
-                  "typ": 3,
-                  "subtyp": -1,
-                  "manufacturerid": 0,
-                  "manufacturername": "Drevona"
                 }
               ]
             }
@@ -367,36 +352,6 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina"
-                },
-                {
-                  "category": 5,
-                  "uidisplayname": "TV skrinka Rea Denisa Up 003",
-                  "path": "http://85.159.111.72/WebGLAssetBundles/skrinka_tv_rea_denisa_up_003_drevona.unity3d",
-                  "image": "http://85.159.111.72/Obrazky/skrinka_tv_rea_denisa_up_003_drevona.png",
-                  "description": "Šikovná televízna skrinka zo zostavy REA DENISA UP v siedmich prevedeniach",
-                  "descriptionfordetail": "Televízna skrinky REA DENISA UP 003 do každej obývačky je určená do spodnej časti obývacej steny sektorového nábytku REA DENISA UP. Skrinka pod televízor je vyrábaná vo všetkých REA drevodezénoch: biela, dub bardolíno, wenge, buk, dub canyon a orech rockpile. Korpus TV skrinky je uzatvárateľný šikovnými dvierkami v ľavej časti. V strede je korpus skrinky predelený stredovou poličkou, resp. priečkou. Pravá časti televíznej skrinky je otvorená a rozdelená poličkou na dve časti. Poličku do pravej časti je možné prispôsobiť podľa potrieb. Televízna skrinka do obývačky je vyrobená z laminovanej drevotrieskovej dosky (nie papiera).",
-                  "pathformanufacturer": "http://www.drevona.sk/skrinka/skrinka-pod-tv-rea-denisa-up-003/",
-                  "id": 1,
-                  "room": 0,
-                  "typ": 5,
-                  "subtyp": -1,
-                  "manufacturerid": 0,
-                  "manufacturername": "Drevona"
-                },
-                {
-                  "category": 5,
-                  "uidisplayname": "TV skrinka Rea Denisa Up 004",
-                  "path": "http://85.159.111.72/WebGLAssetBundles/skrinkatvreadenisaup004.unity3d",
-                  "image": "http://85.159.111.72/Obrazky/skrinkatvreadenisaup004.png",
-                  "description": "Elegantná a praktická skrinka pod televízor zo zostavy REA DENISA UP v REA prevedeniach",
-                  "descriptionfordetail": "Televízna skrinka do obývačky REA DENISA UP 004  je určená do spodnej časti obývacej steny sektorového nábytku REA DENISA UP. Skrinka pod televízor je vyrábaná vo všetkých REA drevodezénoch: biela, dub bardolíno, wenge, buk, dub canyon a orech rockpile. Korpus televíznej skrinky je rozdelený na tri časti. Každá časť je predelená stredovou poličkou, resp. priečkou. V ľavej a pravej časti je uzatvárateľný praktickými dvierkami. Stredná časť TV skrinky je otvorená a rozdelená poličkou na dve zvislé poličkové časti. Poličku do strednej časti je možné prispôsobiť podľa potrieb. Televízna skrinka do obývačky je vyrobená z laminovanej drevotrieskovej dosky.",
-                  "pathformanufacturer": "http://www.drevona.sk/skrinka/skrinka-pod-tv-rea-denisa-up-003/",
-                  "id": 2,
-                  "room": 0,
-                  "typ": 5,
-                  "subtyp": -1,
-                  "manufacturerid": 0,
-                  "manufacturername": "Drevona"
                 }
               ]
             }

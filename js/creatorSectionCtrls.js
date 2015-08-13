@@ -3,7 +3,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     console.logError = console.log;
 
     var myStorage;
-    var urlToSaves = ''
     $scope.activeMenu = {};
     $scope.activeMenu.first = true;
 
@@ -51,10 +50,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             return data;
         });
     };
-
-    $scope.getImage = function(){
-
-    }
 
     $scope.isSettingOpened = false;
 
@@ -295,8 +290,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         else if (value === "0") getErrorText("Váš projekt nebol uložený");
     }
 
-
-
     loadingFinished = function (value) { }
 
     $scope.OtvoritProjekt = function (jsonstring) {
@@ -329,7 +322,6 @@ var prepinac = false;
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
     var hodnotaRotacie = 0;
-    var isPressed = false;
     $(function () {
         $("#slider").slider({
             step: 0.01,
@@ -343,15 +335,10 @@ var prepinac = false;
         });
         var slideris = document.getElementById("slider");
         slideris.addEventListener('mousedown', function (e) {
-            isPressed = true;
             SendMessage("RotaciaVzoruSlider","WebStartedRotating");
         });
         document.addEventListener('mouseup', function (e) {
-            if(isPressed == true){
-                console.log("odosielam davidovi koniec rotacie");
             SendMessage("RotaciaVzoruSlider","WebEndedRotating");
-            isPressed = false;
-        }
         });
     });
 
@@ -381,11 +368,6 @@ var prepinac = false;
         }
     });
 
-    document.getElementById("ButtonContainer").addEventListener('click', function (e) {
-        document.getElementById('B31').className = 'Button btn btn-default';
-        prepinac = false;
-    });
-
     $scope.set_radio = function ($inputid) {
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
@@ -402,8 +384,6 @@ var prepinac = false;
             $("#results").html(data);
         });
     });
-
-
 
     $scope.NoOp = function () {
         console.log('asdasd');
@@ -534,12 +514,7 @@ var prepinac = false;
      
     $scope.VyberPodlahy = function(){
      if(prepinac == false){
-
-         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-         document.getElementById('B0').className='Button radio-picture btn-my';
-
         document.getElementById('B0').className='Button radio-picture btn-my';
-
         document.getElementById('B1').className='Button radio-picture btn-my';
         document.getElementById('B2').className='Button radio-picture btn-my';
         document.getElementById('B3').className='Button radio-picture btn-my';
@@ -555,13 +530,14 @@ var prepinac = false;
         $scope.NoOp();
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
-
+        SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
     }
 
      }
 
+       
+
     $scope.Strih = function(){
-         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
     }
 
@@ -758,7 +734,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
         for (var i = 0; i<$scope.mf.length; i++){
-            $scope.mf[i].isChecked = true;
+            $scope.mf[i].isChecked = false;
         }
         $scope.dataToRepeat = null;
     });
@@ -953,7 +929,19 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     }
 
+    var calculateProductBox = function(){
+        var maxPBheight = window.innerHeight - 195;
+        console.log(maxPBheight);
+        if($scope.productsToShow.length > 10){
+
+        }
+
+        //document.getElementById('ProductBox').style.height = 
+    }
+
     var filterProducts = function(){
+
+        console.log('filterProducts');
 
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
@@ -964,19 +952,28 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             }
         }
 
+        calculateProductBox();
+
         if ($scope.productsToShow.length > 0) {
             $scope.isProductBoxDisplayed = true
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
+           
             if ($scope.productsToShow.length == 1){
+                console.log('100%%%%%%%%%%%%%%%%%%%');
                 document.getElementById('ProductBox').style.width = '400px';
+                console.log(document.getElementById('ProductBox').children.HTMLcollection);
+                //document.getElementById('ProductBox').children.style.width = '100%';
+                //document.getElementById('ProductBox').childNodes[2].style.width = '100%';
                 $('#ProductBox .btn-group').css('width','100%');
             }
             else {
+                console.log('HALFFFFFFFFFFFFFFFF');
                 document.getElementById('ProductBox').style.width = '800px';
                 $('#ProductBox .btn-group').css('width','50%');
             }
+           
         } else {
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';

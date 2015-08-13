@@ -2,6 +2,21 @@ browserDimensions();
 window.addEventListener('resize', browserDimensions, false);
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 
+document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
+
+function lockChangeAlert() {
+    console.log('daco');
+  if(document.pointerLockElement === canvas ||
+  document.mozPointerLockElement === canvas ||
+  document.webkitPointerLockElement === canvas) {
+    console.log('The pointer lock status is now locked');
+    //document.addEventListener("mousemove", canvasLoop, false);
+  } else {
+    console.log('The pointer lock status is now unlocked');  
+    //document.removeEventListener("mousemove", canvasLoop, false);
+  }
+}
+
 var isFps = false;
 var prepinacSet = 0,
     prepinacSave = 0,

@@ -3,6 +3,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     console.logError = console.log;
 
     var myStorage;
+    var urlToSaves = ''
     $scope.activeMenu = {};
     $scope.activeMenu.first = true;
 
@@ -50,6 +51,10 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             return data;
         });
     };
+
+    $scope.getImage = function(){
+
+    }
 
     $scope.isSettingOpened = false;
 
@@ -123,11 +128,11 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
     var chMin = function(){
         var canvasH = document.getElementById('canvasHolder');
-        c_width = window.innerWidth - 250,
+        c_width = window.innerWidth - 240,
         c_height = window.innerHeight - 180;
 
-        canvasH.style.left = 250 + 'px';
-        canvasH.style.top = 180 + 'px';
+        canvasH.style.left = 210 + 'px';
+        canvasH.style.top = 150 + 'px';
 
         canvasH.style.width = c_width +'px';
         canvasH.style.height = c_height +'px';
@@ -228,64 +233,12 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         document.getElementById('sp-holder').style.display = "block";
         document.getElementById('sp-holder').style.opacity = 1;
         document.getElementById('sp').value = '';
-        setInputValue();
+        //setInputValue();
+        document.getElementById('sp').focus();
         closeAll();
         SendMessage('FunctionsManager','SetInputEnabled','0');
     };
-
-    var setInputValue = function () {
-        var inpt = document.getElementById('sp'),
-            _k = '',
-            _kk = '',
-            _ctrl = false,
-            _shft = false;
-        inpt.focus();
-
-        inpt.addEventListener('keyup', function (e) {
-            if (e.keyCode === 37 && e.shiftKey){
-                this.selectionStart = this.selectionStart -1;
-            }else if(e.keyCode === 37){
-                this.selectionStart = this.selectionStart -1;
-                this.selectionEnd = this.selectionStart;
-            } else if (e.keyCode === 39 && e.shiftKey){
-                this.selectionEnd = this.selectionEnd +1;
-            } else if (e.keyCode === 39) {
-                this.selectionStart = this.selectionStart +1;
-                this.selectionEnd = this.selectionStart;
-            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
-                this.selectionStart = this.selectionEnd = _index - 1;
-            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart !== this.selectionEnd ){
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionStart+1);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart !== this.selectionEnd){
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 8 && _kk.length == 0){
-                e.preventDefault();
-            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
-                e.preventDefault();
-            } else if (e.ctrlKey && e.keyCode === 65){
-                this.selectionStart = 0;
-                this.selectionEnd = this.value.length;
-            } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
-                _k = e.key;
-                var _index = this.selectionStart;
-                var _val = this.value;
-                var _val = _val.splice(_index,0,_k);
-                this.value = _val;
-                this.selectionStart = this.selectionEnd = _index + 1;
-            } 
-        }, false);
-    }
-
+    
     $scope.cancel = function () {
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
@@ -360,60 +313,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
             case '2': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/90.png) 17 0, default'});break;
         }
     }
-
-    var setInputValue = function () {
-        var inpt = document.getElementById('sp'),
-            _k = '',
-            _kk = '',
-            _ctrl = false,
-            _shft = false;
-        inpt.focus();
-
-        inpt.addEventListener('keyup', function (e) {
-            if (e.keyCode === 37 && e.shiftKey){
-                this.selectionStart = this.selectionStart -1;
-            }else if(e.keyCode === 37){
-                this.selectionStart = this.selectionStart -1;
-                this.selectionEnd = this.selectionStart;
-            } else if (e.keyCode === 39 && e.shiftKey){
-                this.selectionEnd = this.selectionEnd +1;
-            } else if (e.keyCode === 39) {
-                this.selectionStart = this.selectionStart +1;
-                this.selectionEnd = this.selectionStart;
-            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart-1) + this.value.slice(this.selectionStart);
-                this.selectionStart = this.selectionEnd = _index - 1;
-            } else if (e.keyCode === 8 && this.value.length > 0 && this.selectionStart !== this.selectionEnd ){
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart == this.selectionEnd) {
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionStart+1);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 46 && this.value.length > 0 && this.selectionStart !== this.selectionEnd){
-                var _index = this.selectionStart;
-                this.value = this.value.slice(0,this.selectionStart) + this.value.slice(this.selectionEnd, this.value.length);
-                this.selectionStart = this.selectionEnd = _index;
-            } else if (e.keyCode === 8 && _kk.length == 0){
-                e.preventDefault();
-            } else if (e.keyCode === 16 || e.keyCode === 27 || e.keyCode === 17 || e.keyCode === 9 || e.keyCode === 18 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 46) {
-                e.preventDefault();
-            } else if (e.ctrlKey && e.keyCode === 65){
-                this.selectionStart = 0;
-                this.selectionEnd = this.value.length;
-            } else if (this.selectionStart == this.selectionEnd && _ctrl == false){
-                _k = e.key;
-                var _index = this.selectionStart;
-                var _val = this.value;
-                var _val = _val.splice(_index,0,_k);
-                this.value = _val;
-                this.selectionStart = this.selectionEnd = _index + 1;
-            } 
-        }, false);
-    }
-
+    
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
 
     $scope.isCollapsed = true;
@@ -596,7 +496,7 @@ var prepinac = false;
         $("#B13").addClass('btn-my');
     }
     Set3D = function(){
-        //SendMessage("CanvasEditor", "SetView3D");
+        SendMessage("CanvasEditor", "SetView3D");
         $("#B13").removeClass('btn-my');
         $("#B13").addClass('btn-my2');
         $("#B12").removeClass('btn-my2');

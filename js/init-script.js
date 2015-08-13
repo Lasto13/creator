@@ -67,8 +67,8 @@ function browserDimensions() {
     text.style.top = topT + 'px';
 
     var canvasH = document.getElementById('canvasHolder'),
-        c_width = clientWidth - 220,
-        c_height = clientHeight - 160;
+        c_width = clientWidth - 240,
+        c_height = clientHeight - 180;
 
     if (isFps){
         canvasH.style.width = clientWidth + 'px';

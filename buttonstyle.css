@@ -129,7 +129,7 @@ label{cursor: pointer;}
 .interier-section #ProductBox .NotLastOnes {border-bottom: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .rightColumn {border-left: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .btn-group .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
-.interier-section #ProductBox .btn-group{width:50%;height:157px}
+.interier-section #ProductBox .btn-group{width:398px;height:157px}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
 .interier-section #ProductBox .btn-group .prod-info{width:65%;position:relative;float:left}
 .interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}

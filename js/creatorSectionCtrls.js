@@ -932,11 +932,17 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     var calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
         console.log(maxPBheight);
-        if($scope.productsToShow.length > 10){
-
+        if(($scope.productsToShow.length/2)*157 < maxPBheight){
+            document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157 +'px';
+        } else {
+            document.getElementById('ProductBox').style.height = maxPBheight +'px';
         }
 
-        //document.getElementById('ProductBox').style.height = 
+        if ($scope.productsToShow.length == 1){
+                document.getElementById('ProductBox').style.width = '400px';
+        } else {
+            document.getElementById('ProductBox').style.width = '800px';
+        }
     }
 
     var filterProducts = function(){
@@ -959,20 +965,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
-           
-            if ($scope.productsToShow.length == 1){
-                console.log('100%%%%%%%%%%%%%%%%%%%');
-                document.getElementById('ProductBox').style.width = '400px';
-                console.log(document.getElementById('ProductBox').children.HTMLcollection);
-                //document.getElementById('ProductBox').children.style.width = '100%';
-                //document.getElementById('ProductBox').childNodes[2].style.width = '100%';
-                $('#ProductBox .btn-group').css('width','100%');
-            }
-            else {
-                console.log('HALFFFFFFFFFFFFFFFF');
-                document.getElementById('ProductBox').style.width = '800px';
-                $('#ProductBox .btn-group').css('width','50%');
-            }
+
+            
            
         } else {
             $scope.isProductBoxDisplayed = false;

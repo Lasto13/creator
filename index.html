@@ -104,7 +104,7 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeMaterialMenu();'></div>
           </div>
-          <div class="material-item" ng-click="ChoosenMaterial(material.ID);" ng-repeat="material in mats" class="btn-group" style="background:url({{material.Path}}); background-size:100%">
+          <div class="material-item" data-ng-click="ChoosenMaterial(material.ID); toggleFloorMatBorder.item = $index;" data-ng-class="{'activeMat' : toggleFloorMatBorder.item == $index}" ng-repeat="material in mats" class="btn-group" style="background:url({{material.Path}}); background-size:100%">
             <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
           </div>
         </div>
@@ -113,7 +113,7 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeFloorMenu();'></div>
           </div>
-          <div class="material-item" ng-repeat="material in floors" ng-click = "ChangeFloor(material.ID);"class="btn-group" style="background:url({{material.Path}}); background-size:100%">
+          <div class="material-item" ng-repeat="material in floors" data-ng-click="ChangeFloor(material.ID); toggleWallMatBorder.item = $index;" class="btn-group" data-ng-class="{'activeMat' : toggleWallMatBorder.item == $index}" style="background:url({{material.Path}}); background-size:100%">
             <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
           </div>
         </div>
@@ -195,6 +195,9 @@
         
         <div class="left-menu">
           <div id="ProductBox" style="pointer-events: auto;">
+            <div class='menuHeader'>
+              <div class='closeMenu' ng-click='toggleProdMenu()'></div>
+            </div>
             <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
               <div class="prod-image-cont">
                 <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
@@ -266,7 +269,7 @@
         <button id="colorCh" class="fps-btn btn" title="Otvoriť menu pre výber farieb" ng-click="colorChooser()">VÝBER FARBY</button>  
       </div>
 
-      <div id='screenShot' ng-click='takeScreenShot()'></div>
+      <!-- <div id='screenShot' ng-click='takeScreenShot()'></div> -->
 
       <div class="right-menu">
           <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
@@ -308,7 +311,7 @@
     <div id="sp-content">
       <div style='text-align:center'><h4>Uložiť projekt ?</h4></div>
       <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
-      <button class="btn enli-btn" ng-click="potvrdit()">Áno</button>
+      <button class="btn enli-btn" ng-click="saveScene()">Áno</button>
       <button class="btn enli-btn" ng-click="cancel()">Nie</button>
     </div>
   </div>

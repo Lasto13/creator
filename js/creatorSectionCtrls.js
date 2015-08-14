@@ -46,7 +46,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
         });
         promise.success(function (data, status, headers, conf) {
-            $scope.LoadSave = data;
+            $scope.Loads = data;
             return data;
         });
     };
@@ -243,13 +243,14 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         SendMessage('FunctionsManager','SetInputEnabled','1');
     }
 
-    $scope.potvrdit = function () {
+    $scope.saveScene = function () {
         var saveName = document.getElementById('sp').value;
         SendMessage("Save Game Manager", "SaveFromWeb", saveName);
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
         SendMessage('FunctionsManager','SetInputEnabled','1');
+        setTimeout(function(){getSave();}, 3000); 
     }
 
     setShowRozmery = function (show) {
@@ -475,6 +476,9 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         SendMessage("Plane0", "ChangeFloorScale", vyskaSteny);
     }
 
+    $scope.toggleWallMatBorder = {item: 0}
+    $scope.toggleFloorMatBorder = {item: 0}
+
     $scope.ChoosenMaterial = function (id) {
         SendMessage("changeMat", "ChangeMatGL", id);
         document.getElementById('MaterialChooser').style.left = -240+'px';
@@ -557,7 +561,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 
     $scope.VzorMaterialu = function(){
-        document.getElementById('FloorChooser').style.left = "220px";
+        document.getElementById('FloorChooser').style.left = "210px";
         SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
     }
     $scope.HustotaVzoru = function(){
@@ -586,7 +590,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
         else { }
     }
     openMaterialMenu = function () {
-        document.getElementById('MaterialChooser').style.left = "220px";
+        document.getElementById('MaterialChooser').style.left = "210px";
     }
     $scope.closeMaterialMenu = function(){
         $scope.ZmenaMat();
@@ -951,11 +955,12 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     var calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.productsToShow.length;
+        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+3 +'px';    
+                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+3+24+'px';    
             } else{
-                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+80 +'px';
+                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+80+24+'px';
             }
         } else {
             document.getElementById('ProductBox').style.height = maxPBheight +'px';

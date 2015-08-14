@@ -163,11 +163,12 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             _pRIe = _pR.querySelectorAll('input');
 
         SendMessage("CanvasEditor", "changeArea", 2);
-
+        /*
         document.getElementById('BDW5').className = 'Button radio-dw btn-my btn-my2';
         document.getElementById('BDW6').className = 'Button radio-dw btn-my';
         document.getElementById('BDW7').className = 'Button radio-dw btn-my';
         document.getElementById('BDW9').className = 'Button radio-dw btn-my';
+        */
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
         browserDimensions();
@@ -275,6 +276,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         defActionClass();
         document.getElementById('np-holder').style.display = "block";
         document.getElementById('np-holder').style.opacity = 1;
+        document.getElementById('B31').className = 'Button btn btn-default';
         SendMessage('FunctionsManager','SetInputEnabled','0');
     }
 

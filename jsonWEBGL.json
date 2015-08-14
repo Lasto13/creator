@@ -13,61 +13,73 @@
                 "nazov": "Plastové okno vzor 1",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window1.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_ekoma_1.png",
-                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením."
+                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením. Rozmery 90x230 cm."
             },
             {
                 "nazov": "Plastové okno vzor 2",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window2.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_ekoma_1_drevo.png",
-                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením v odtieni drevo."
+                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením v odtieni drevo. Rozmery 90x230 cm."
             },
             {
                 "nazov": "Plastové okno vzor 3",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window3.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_hlinikove_1.png",
-                "description": "Plastové okno s celoobvodovým kovaním pre vysokú bezpečnosť."
+                "description": "Plastové okno s celoobvodovým kovaním pre vysokú bezpečnosť.  Rozmery 100x70 cm."
             },
                         {
                 "nazov": "Plastové okno vzor 4",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window4.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_hlinikove_2.png",
-                "description": "Plastové okno so šesťkomorovým profilom pre vlepované sklá so stredovým tesnením."
+                "description": "Plastové okno so šesťkomorovým profilom pre vlepované sklá so stredovým tesnením. Rozmery 105x70 cm."
             },
             {
                 "nazov": "Plastové okno vzor 5",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window5.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_hlinikove_2_drevo.png",
-                "description": "Plastové okno so šesťkomorovým profilom pre vlepované sklá so stredovým tesnením v drevenom prevedení."
+                "description": "Plastové okno so šesťkomorovým profilom pre vlepované sklá so stredovým tesnením v drevenom prevedení. Rozmery 105x70 cm."
             },
             {
                 "nazov": "Plastové okno vzor 6",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window6.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_hlinikove_1_drevo.png",
-                "description": "Plastové okno s celoobvodovým kovaním pre vysokú bezpečnosť v drevenom prevedení."
+                "description": "Plastové okno s celoobvodovým kovaním pre vysokú bezpečnosť v drevenom prevedení. Rozmery 100x70 cm."
             },
             {
                 "nazov": "Plastové okno vzor 7",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window7.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_plastove_1.png",
-                "description": "Plastové okno vhodné pre nízkoenergetické domy."
+                "description": "Plastové okno vhodné pre nízkoenergetické domy. Rozmery 100x40 cm."
             },
             {
                 "nazov": "Plastové okno vzor 8",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window8.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_plastove_3.png",
-                "description": "Plastové okno s revolučnou technológiou vlepovania skla, moderný dizajn krídla."
+                "description": "Plastové okno s revolučnou technológiou vlepovania skla, moderný dizajn krídla. Rozmery 100x70 cm."
             },
             {
                 "nazov": "Plastové okno vzor 9",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window9.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_plastove_3_drevo.png",
-                "description": "Plastové okno s revolučnou technológiou vlepovania skla, moderný dizajn krídla v drevenom prevedí."
+                "description": "Plastové okno s revolučnou technológiou vlepovania skla, moderný dizajn krídla v drevenom prevedí. Rozmery 100x70 cm."
             },
             {
                 "nazov": "Plastové okno vzor 10",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/window10.unity3d",
                 "image": "http://85.159.111.72/Obrazky/okno_plastove_1_drevo.png",
-                "description": "Plastové okno vhodné pre nízkoenergetické domy v drevenom prevedení."
+                "description": "Plastové okno vhodné pre nízkoenergetické domy v drevenom prevedení. Rozmery 100x40 cm."
+            },
+      {
+                "nazov": "Plastové okno vzor 11",
+                "asset": "http://85.159.111.72/WebGLAssetBundles/window13.unity3d",
+                "image": "http://85.159.111.72/Obrazky/okno_plastove_1000_plast.png",
+                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením. Rozmery 210x100 cm."
+            },
+      {
+                "nazov": "Plastové okno vzor 12",
+                "asset": "http://85.159.111.72/WebGLAssetBundles/window14.unity3d",
+                "image": "http://85.159.111.72/Obrazky/okno_plastove_1000_drevo.png",
+                "description": "Plastové okno s osemkomovým profilom pre vlepované sklá so stredovým vymeniteľným tesnením v drevenom prevedení. Rozmery 210x100 cm."
             }
         ]
     },
@@ -78,25 +90,25 @@
                 "nazov": "Dvere Cacao 60",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/dverecacao60.unity3d",
                 "image": "http://85.159.111.72/Obrazky/DvereCacao.png",
-                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom."
+                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom. Rozmery 215x60 cm."
             },
             {
                 "nazov": "Dvere Cacao 80",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/dverecacao80.unity3d",
                 "image": "http://85.159.111.72/Obrazky/DvereCacao.png",
-                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom."
+                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom. Rozmery 215x80 cm."
             },
             {
                 "nazov": "Dvere Cacao 90",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/dverecacao90.unity3d",
                 "image": "http://85.159.111.72/Obrazky/DvereCacao.png",
-                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom."
+                "description": "Dubové dvere v kakaovom odtieni s farbeným sklom. Rozmery 215x90 cm."
             },
             {
                 "nazov": "Dvere DB711W",
                 "asset": "http://85.159.111.72/WebGLAssetBundles/dveredb711w.unity3d",
                 "image": "http://85.159.111.72/Obrazky/DvereDB711.png",
-                "description": "Kvalitné Mahagónové dvere."
+                "description": "Kvalitné Mahagónové dvere. Rozmery 210x65 cm."
             }
         ]
     },
@@ -146,7 +158,8 @@
                   "typ": 0,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -161,7 +174,8 @@
                   "typ": 0,
                   "subtyp": -1,
                   "manufacturerid": 0,
-                  "manufacturername": "Drevona"
+                  "manufacturername": "Drevona",
+      "placementOptions": 2
                 }
               ]
             }
@@ -190,7 +204,8 @@
                   "typ": 1,
                   "subtyp": -1,
                   "manufacturerid": 1,
-                  "manufacturername": "Javorina"
+                  "manufacturername": "Javorina",
+      "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -205,7 +220,8 @@
                   "typ": 1,
                   "subtyp": -1,
                   "manufacturerid": 1,
-                  "manufacturername": "Javorina"
+                  "manufacturername": "Javorina",
+      "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -220,7 +236,8 @@
                   "typ": 1,
                   "subtyp": -1,
                   "manufacturerid": 1,
-                  "manufacturername": "Javorina"
+                  "manufacturername": "Javorina",
+      "placementOptions": 2 
                 }
               ]
             }
@@ -249,7 +266,8 @@
                   "typ": 2,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 2
                 }
               ]
             }
@@ -278,7 +296,8 @@
                   "typ": 3,
                   "subtyp": -1,
                   "manufacturerid": 1,
-                  "manufacturername": "Javorina"
+                  "manufacturername": "Javorina",
+      "placementOptions": 2
                 }
               ]
             }
@@ -307,7 +326,8 @@
                   "typ": 4,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 8
                 },
                 {
                   "category": 5,
@@ -322,7 +342,8 @@
                   "typ": 4,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 2
                 }
               ]
             }
@@ -351,7 +372,8 @@
                   "typ": 5,
                   "subtyp": -1,
                   "manufacturerid": 1,
-                  "manufacturername": "Javorina"
+                  "manufacturername": "Javorina",
+      "placementOptions": 1
                 }
               ]
             }
@@ -380,7 +402,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -395,7 +418,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 1
                 },
                 {
                   "category": 5,
@@ -410,7 +434,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 1
                 },
                 {
                   "category": 5,
@@ -425,7 +450,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 4
                 },
                 {
                   "category": 5,
@@ -440,7 +466,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 4
                 },
                 {
                   "category": 5,
@@ -455,7 +482,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 6
                 },
                 {
                   "category": 5,
@@ -470,7 +498,8 @@
                   "typ": 6,
                   "subtyp": -1,
                   "manufacturerid": 2,
-                  "manufacturername": "Ostatné"
+                  "manufacturername": "Ostatné",
+      "placementOptions": 4
                 }
               ]
             }

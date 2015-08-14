@@ -1,6 +1,34 @@
 //'use strict';
 app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function ($scope, $http, $window, $timeout) {
     console.logError = console.log;
+    browserDimensions();
+
+    var w = angular.element($window);
+
+    w.bind('resize', function () {
+        browserDimensions()
+        $scope.$broadcast ('calculate');
+    });
+    function browserDimensions() {
+        var clientWidth = window.innerWidth,
+        clientHeight = window.innerHeight;
+
+        var canvasH = document.getElementById('canvasHolder'),
+            c_width = clientWidth - 240,
+            c_height = clientHeight - 180;
+
+        if (isFps){
+            canvasH.style.width = clientWidth + 'px';
+            canvasH.style.height = clientHeight +'px'; 
+            canvasH.style.left = 0 +'px';
+            canvasH.style.top = 0 +'px';
+        } else {
+            canvasH.style.width = c_width +'px';
+            canvasH.style.height = c_height +'px'; 
+            canvasH.style.left = 210 +'px';
+            canvasH.style.top = 150 +'px';
+        }
+    }
 
     var myStorage;
     $scope.activeMenu = {};
@@ -607,9 +635,47 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
 
 app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
+    $scope.$on('calculate', function(e) {  
+        calculateWindowBox(); 
+        calculateDoorBox();
+    });
+
     menuJson.get().then(function (data) {
         $scope.menuData = data;
+        calculateWindowBox();
+        calculateDoorBox();
     });
+
+    var calculateWindowBox = function(){
+        var maxPBheight = window.innerHeight - 195;
+        var prCount = $scope.menuData.okna.child.length;
+        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
+        if((prCount/2)*157 < maxPBheight){
+            if (prCount%2 == 0){
+                document.getElementById('MenuItemWindow').style.height = ($scope.menuData.okna.child.length/2)*157+3+24+'px';  
+            } else{
+                document.getElementById('MenuItemWindow').style.height = ($scope.menuData.okna.child.length/2)*157+80+24+'px';
+            }
+        } else {
+            document.getElementById('MenuItemWindow').style.height = maxPBheight +'px';
+        }
+    }
+
+    var calculateDoorBox = function(){
+        var maxPBheight = window.innerHeight - 195;
+        var prCount = $scope.menuData.dvere.child.length;
+        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
+        if((prCount/2)*157 < maxPBheight){
+            if (prCount%2 == 0){
+                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+3+24+'px';
+                document.getElementById('MenuItemDoor').style.overflow = 'hidden'; 
+            } else{
+                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+80+24+'px';
+            }
+        } else {
+            document.getElementById('MenuItemDoor').style.height = maxPBheight +'px';
+        }
+    }
 
     var hodnotaBDW4 = 0;
     var hodnotaBDW6 = 0;
@@ -732,6 +798,10 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 }]);
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
+
+    $scope.$on('calculate', function(e) {  
+        $scope.calculateProductBox(); 
+    });
 
     $scope.trieda = "TypeProductDesign";
     var hodnotaBI4 = 0;
@@ -954,7 +1024,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     }
 
-    var calculateProductBox = function(){
+    $scope.calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.productsToShow.length;
         var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
@@ -987,7 +1057,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             }
         }
 
-        calculateProductBox();
+        $scope.calculateProductBox();
 
         if ($scope.productsToShow.length > 0) {
             $scope.isProductBoxDisplayed = true

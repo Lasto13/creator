@@ -159,7 +159,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 2
+                  "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -175,7 +175,7 @@
                   "subtyp": -1,
                   "manufacturerid": 0,
                   "manufacturername": "Drevona",
-      "placementOptions": 2
+                  "placementOptions": 2
                 }
               ]
             }
@@ -205,7 +205,7 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina",
-      "placementOptions": 2
+                  "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -221,7 +221,7 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina",
-      "placementOptions": 2
+                  "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -237,7 +237,7 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina",
-      "placementOptions": 2 
+                  "placementOptions": 2 
                 }
               ]
             }
@@ -267,7 +267,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 2
+                  "placementOptions": 2
                 }
               ]
             }
@@ -297,7 +297,7 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina",
-      "placementOptions": 2
+                  "placementOptions": 2
                 }
               ]
             }
@@ -327,7 +327,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 8
+                  "placementOptions": 8
                 },
                 {
                   "category": 5,
@@ -343,7 +343,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 2
+                  "placementOptions": 2
                 }
               ]
             }
@@ -373,7 +373,7 @@
                   "subtyp": -1,
                   "manufacturerid": 1,
                   "manufacturername": "Javorina",
-      "placementOptions": 1
+                  "placementOptions": 1
                 }
               ]
             }
@@ -403,7 +403,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 2
+                  "placementOptions": 2
                 },
                 {
                   "category": 5,
@@ -419,7 +419,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 1
+                  "placementOptions": 1
                 },
                 {
                   "category": 5,
@@ -435,7 +435,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 1
+                  "placementOptions": 1
                 },
                 {
                   "category": 5,
@@ -451,7 +451,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 4
+                  "placementOptions": 4
                 },
                 {
                   "category": 5,
@@ -467,7 +467,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 4
+                  "placementOptions": 4
                 },
                 {
                   "category": 5,
@@ -483,7 +483,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 6
+                  "placementOptions": 6
                 },
                 {
                   "category": 5,
@@ -499,7 +499,7 @@
                   "subtyp": -1,
                   "manufacturerid": 2,
                   "manufacturername": "Ostatné",
-      "placementOptions": 4
+                  "placementOptions": 4
                 }
               ]
             }

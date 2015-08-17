@@ -752,7 +752,7 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
         if (!!value) d.style.left = "-720px";
         else d.style.left = "10px";
     });
-
+    /*
     $scope.D2DDW = function () {
         SendMessage("CanvasEditor", "SetView2D");
     };
@@ -762,6 +762,7 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     $scope.CenterDW = function () {
         SendMessage("Main Camera", "ResetPosition");
     };
+    */
     $scope.NoOpDW = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_DefaultAction");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
@@ -902,6 +903,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     };
 
     $scope.intDelAction = function () {
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/5.png) 7 22 , default'});
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_Delete");
     };
 

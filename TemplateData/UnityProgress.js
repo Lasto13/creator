@@ -34,6 +34,7 @@ function UnityProgress (dom) {
 
             document.addEventListener('keyup', function (e) { 
                 if(e.keyCode == 27){
+                    $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
                     sp.style.display = "none";
                     sp.style.opacity = 0;
                     np.style.display = "none";
@@ -61,7 +62,6 @@ function UnityProgress (dom) {
                         _dwt4 = document.getElementById('BDW9').className='Button radio-dw btn-my btn-my';
 
                     var _btni1 = document.getElementById('BI5').className='Button btn-my2 radio-i',
-                        _btni2 = document.getElementById('BI6').className='Button btn-my radio-i',
                         _btni3 = document.getElementById('BI7').className='Button btn-my radio-i';
 
                     e.preventDefault();

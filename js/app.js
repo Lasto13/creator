@@ -1,5 +1,6 @@
 var app = angular.module('app',[
-      'ui.bootstrap'
+      'ui.bootstrap',
+      'angularjs-dropdown-multiselect'
       ])
 
 .directive('select', function($interpolate) {

@@ -217,6 +217,8 @@ label{cursor: pointer;}
 #B16,#B17,#B18,#B19,#B20,#B21,#B22,#B23{display:inline-block}
 .TypeTypeProductDesign:hover{color:#000;text-decoration:none;cursor:pointer;cursor:hand}
 .TypeTypeProductDesignClicked:hover{color:#7CA616;text-decoration:none;cursor:pointer;cursor:hand}
+.typeInactive{pointer-events:none !important; cursor: url(http://85.159.111.72/cursors/1.png) !important; color: #7CA616 !important}
+.typeInactive:hover{pointer-events:none !important; cursor: url(http://85.159.111.72/cursors/1.png) !important; color: #7CA616 !important}
 #B20,#B21,#B22,#B23{background:#7CA616;color:#FFF}
 #B10{background-image:url(Buttons/2.png)}
 #B11{background-image:url(Buttons/14.png)}

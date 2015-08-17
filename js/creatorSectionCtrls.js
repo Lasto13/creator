@@ -809,7 +809,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         $scope.calculateProductBox(); 
     });
 
-    $scope.trieda = "TypeProductDesign";
     var hodnotaBI4 = 0;
 
     $("#BI4").click(function () {
@@ -825,10 +824,16 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     });
 
+    $scope.example1model = []; //$scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
+
     menuJson.get().then(function (data) {
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
+        $scope.dropdownData = [];
+
         for (var i = 0; i<$scope.mf.length; i++){
+            $scope.dropdownData.push($scope.mf[i]);
+            console.log($scope.dropdownData);
             $scope.mf[i].isChecked = false;
         }
         $scope.dataToRepeat = null;
@@ -1082,10 +1087,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             $scope.sipkaValid = true;
         };
     }
-
+    /*
     $scope.CenterInterier = function () {
         SendMessage("Main Camera", "ResetPosition");
     };
+    */
     $scope.getClass = function(indx, list){
         return {
             rightColumn: indx % 2,

@@ -764,9 +764,11 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     };
     $scope.NoOpDW = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_DefaultAction");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.DeleteDW = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Delete");
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/5.png) 7 22 , default'});
     };
     $scope.AddWindow = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_Adding");
@@ -1048,7 +1050,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         } else {
             document.getElementById('ProductBox').style.width = '800px';
             setTimeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
-            //$('#ProductBox .btn-group').css('width','50%');
         }
     }
 

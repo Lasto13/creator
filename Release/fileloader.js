@@ -26,8 +26,8 @@ Module.expectedDataFileDownloads++;
     var REMOTE_PACKAGE_NAME = typeof Module['locateFile'] === 'function' ?
                               Module['locateFile'](REMOTE_PACKAGE_BASE) :
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
-    var REMOTE_PACKAGE_SIZE = 40111667;
-    var PACKAGE_UUID = '8840dc13-1503-49e0-9a45-af2e25455af0';
+    var REMOTE_PACKAGE_SIZE = 40119539;
+    var PACKAGE_UUID = 'd7ff7411-31bc-4e87-94a6-5701eda4e0df';
   
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
@@ -127,13 +127,13 @@ Module['FS_createPath']('/', 'Resources', true, true);
         this.requests[this.name] = null;
       },
     };
-      new DataRequest(0, 590456, 0, 0).open('GET', '/mainData');
-    new DataRequest(590456, 599835, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
-    new DataRequest(599835, 7274279, 0, 0).open('GET', '/resources.assets');
-    new DataRequest(7274279, 27397231, 0, 0).open('GET', '/sharedassets0.assets');
-    new DataRequest(27397231, 31107015, 0, 0).open('GET', '/Il2CppData/Metadata/global-metadata.dat');
-    new DataRequest(31107015, 32682051, 0, 0).open('GET', '/Resources/unity_default_resources');
-    new DataRequest(32682051, 40111667, 0, 0).open('GET', '/Resources/unity_builtin_extra');
+      new DataRequest(0, 591184, 0, 0).open('GET', '/mainData');
+    new DataRequest(591184, 600563, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
+    new DataRequest(600563, 7275007, 0, 0).open('GET', '/resources.assets');
+    new DataRequest(7275007, 27398479, 0, 0).open('GET', '/sharedassets0.assets');
+    new DataRequest(27398479, 31114887, 0, 0).open('GET', '/Il2CppData/Metadata/global-metadata.dat');
+    new DataRequest(31114887, 32689923, 0, 0).open('GET', '/Resources/unity_default_resources');
+    new DataRequest(32689923, 40119539, 0, 0).open('GET', '/Resources/unity_builtin_extra');
 
     function processPackageData(arrayBuffer) {
       Module.finishedDataFileDownloads++;

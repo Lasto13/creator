@@ -582,9 +582,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
 
             prepinac = false;
         }
-    }
-
-       
+    }     
 
     $scope.Strih = function(){
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
@@ -799,6 +797,11 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
 app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
 
+    $scope.activeTT = [];
+    $scope.productsToShow = [];
+    $scope.asSelectedMans = [];
+    $scope.sipkaValid = true;
+
     $scope.$on('calculate', function(e) {  
         $scope.calculateProductBox(); 
     });
@@ -856,21 +859,24 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         document.getElementById($inputid).checked = true;
     }
 
-    $scope.changedValue = function (element) {
+    var numberOfProds = function(){
+        if ($scope.dataToRepeat){
+            for (var i=0; i < $scope.dataToRepeat.length; i++){
+                $scope.dataToRepeat[i].child[0].prodsIncluded = 0;
+                for (var j=0; j < $scope.dataToRepeat[i].child[0].products.length; j++){
+                    if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[0].products[j].manufacturername) > -1){
+                    $scope.dataToRepeat[i].child[0].prodsIncluded += 1;
+                    }
+                } 
+            }
+        }
+    }
 
+    $scope.changedValue = function (element) {
         var id = element.id;
         $scope.dataToRepeat = $scope.menuData.elements[id].child;
-        $scope.producttypes = $scope.menuData.elements[id].child[0].child;
-        /*
-        $scope.productsToShow = {}
-        console.log($scope.dataToRepeat);
-        for (var i=0; i < $scope.dataToRepeat.length; i++){
-        if ($scope.dataToRepeat[i].child[0].hasOwnProperty("parentid")){
-        console.log("ma prop");
-        }
-        else {console.log("nema prop");}
-        }
-        */
+
+        numberOfProds();
     }
 
     $scope.PridatNabytok = function (value) {
@@ -924,10 +930,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     }
 
-    $scope.activeTT = [];
-    $scope.productsToShow = [];
-    $scope.asSelectedMans = [];
-
     $scope.manClicked = function(man){
         man.isChecked = !man.isChecked;
         $scope.setSelectedMan($scope.mf);
@@ -978,10 +980,12 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     }
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
+        if (newTT == oldTT) return;
         filterProducts();
     });
 
-    $scope.$watchCollection('asSelectedMans', function (newTT, oldTT) {
+    $scope.$watchCollection('asSelectedMans', function (newMans, oldMans) {
+        if (newMans == oldMans) return;
         filterProducts();
     });
 
@@ -1040,10 +1044,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
         if ($scope.productsToShow.length == 1){
             document.getElementById('ProductBox').style.width = '400px';
-            setTimeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 30);
+            setTimeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 10);
         } else {
             document.getElementById('ProductBox').style.width = '800px';
-            $('#ProductBox .btn-group').css('width','50%');
+            setTimeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
+            //$('#ProductBox .btn-group').css('width','50%');
         }
     }
 
@@ -1056,6 +1061,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
                 }
             }
         }
+
+        numberOfProds();
 
         $scope.calculateProductBox();
 

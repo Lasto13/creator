@@ -20,9 +20,9 @@ document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 
 function lockChangeAlert() {
     console.log('daco');
-  if(document.pointerLockElement === canvas ||
-  document.mozPointerLockElement === canvas ||
-  document.webkitPointerLockElement === canvas) {
+    if(document.pointerLockElement === canvas ||
+    document.mozPointerLockElement === canvas ||
+    document.webkitPointerLockElement === canvas) {
     console.log('The pointer lock status is now locked');
     //document.addEventListener("mousemove", canvasLoop, false);
   } else {

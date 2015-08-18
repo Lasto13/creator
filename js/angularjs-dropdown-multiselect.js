@@ -22,10 +22,11 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect">';
                 template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
-                template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }" style="overflow: scroll" >';
-                template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span>  {{texts.checkAll}}</a>';
-                template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
-                template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
+                template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }">';
+                template += '<li><a id={{settings.allID}} data-ng-click="toggleSelection($event)"> {{texts.toggle}} <label ng-class=\'{labelActive: settings.allToggled,labelInactive: !settings.allToggled}\' for="{{settings.chkbxID}}"><input ng-hide=\'true\' id={{settings.chkbxID}} type="checkbox"/></label></a>';
+                template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"> {{texts.checkAll}}</a>';
+                template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"> {{texts.uncheckAll}}</a></li>';
+                template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll && showDivider" class="divider"></li>';
                 template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
                 template += '<li ng-show="settings.enableSearch" class="divider"></li>';
 
@@ -36,10 +37,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     template += '<li role="presentation" ng-repeat="option in options | filter: searchFilter">';
                 }
 
-                template += '<a role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
+                template += '<a role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp));dropClicked(option)">';
 
                 if (checkboxes) {
-                    template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></a>';
+                    template += '<div class="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp));dropClicked(option)">{{getPropertyForObject(option, settings.displayProp)}}<label ng-class=\'{labelActive: option.isChecked,labelInactive: !option.isChecked}\' for="id={{\'ID\'+$index}}"><input ng-hide=\'true\' id={{\'ID\'+$index}} class="checkboxInput" type="checkbox" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /></label></div></a>';
                 } else {
                     template += '<span data-ng-class="{\'glyphicon glyphicon-ok\': isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
                 }
@@ -57,6 +58,21 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             link: function ($scope, $element, $attrs) {
                 var $dropdownTrigger = $element.children()[0];
                 
+                $scope.toggleSelection = function($event){
+                    $scope.settings.allToggled = !$scope.settings.allToggled; 
+                    if ($scope.settings.allToggled == true){
+                        $scope.selectAll();
+                        angular.forEach($scope.options, function(value, key) {
+                            value.isChecked = true;
+                        });
+                    } else {
+                        $scope.deselectAll();
+                        angular.forEach($scope.options, function(value, key) {
+                            value.isChecked = false;
+                        });
+                    }
+                }
+
                 $scope.toggleDropdown = function () {
                     $scope.open = !$scope.open;
                 };
@@ -75,35 +91,44 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     onMaxSelectionReached: angular.noop
                 };
 
+                function someFunction (){
+                    console.log('all');
+                }
+
                 $scope.settings = {
+                    allToggled: false,
+                    allID: '',
+                    chkbxID: '',
+                    showDivider: true,
                     dynamicTitle: true,
                     scrollable: false,
                     scrollableHeight: '300px',
                     closeOnBlur: true,
                     displayProp: 'uidisplayname',
                     idProp: 'id',
-                    externalIdProp: 'id',
+                    externalIdProp: '',
                     enableSearch: false,
                     selectionLimit: 0,
-                    showCheckAll: true,
-                    showUncheckAll: true,
+                    showCheckAll: false,
+                    showUncheckAll: false,
                     closeOnSelect: false,
-                    buttonClasses: 'btn btn-default',
+                    buttonClasses: 'btn btn-default dropdown',
                     closeOnDeselect: false,
                     groupBy: $attrs.groupBy || undefined,
                     groupByTextProvider: null,
-                    smartButtonMaxItems: 0,
+                    smartButtonMaxItems: 2,
                     smartButtonTextConverter: angular.noop
                 };
 
                 $scope.texts = {
+                    toggle: 'Všetky',
                     checkAll: 'Check All',
                     uncheckAll: 'Uncheck All',
-                    selectionCount: 'checked',
+                    selectionCount: 'Vybraný',
                     selectionOf: '/',
                     searchPlaceholder: 'Search...',
-                    buttonDefaultText: 'Select',
-                    dynamicButtonTextSuffix: 'checked'
+                    buttonDefaultText: 'Výrobcovia',
+                    dynamicButtonTextSuffix: 'Vybraný'
                 };
 
                 $scope.searchFilter = $scope.searchFilter || '';
@@ -248,6 +273,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 };
 
                 $scope.setSelectedItem = function (id, dontRemove) {
+
                     var findObj = getFindObj(id);
                     var finalObj = null;
 
@@ -278,7 +304,16 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         $scope.externalEvents.onItemSelect(finalObj);
                     }
                     if ($scope.settings.closeOnSelect) $scope.open = false;
+
+                    if ($scope.selectedModel.length == $scope.options.length){
+                        $scope.settings.allToggled = true;
+                    }   else {$scope.settings.allToggled = false;}
+
                 };
+
+                $scope.dropClicked = function (item) {
+                    item.isChecked = !item.isChecked;
+                }
 
                 $scope.isChecked = function (id) {
                     if ($scope.singleSelection) {

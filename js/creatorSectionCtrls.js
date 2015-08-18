@@ -362,7 +362,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     var isPressed = false;
     $(function () {
         $("#slider").slider({
-            step: 15,
+            step: 5,
             min: 0,
             max: 360,
             values: [0], 
@@ -824,7 +824,19 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
     });
 
-    $scope.example1model = []; //$scope.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
+    $scope.selectedManufacturers = [];
+    $scope.TypIzby = [];
+
+    $scope.izbaTexts = {buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',allID:'roomAll'};
+    $scope.manSettings = {
+        allID:'manAll',
+        chkbxID: 'toggleAllMans',
+        smartButtonMaxItems: 2,
+        smartButtonTextConverter: function(itemText, originalItem) {
+            return itemText;
+        }
+    };
 
     menuJson.get().then(function (data) {
         $scope.menuData = data;
@@ -833,7 +845,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
 
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.dropdownData.push($scope.mf[i]);
-            console.log($scope.dropdownData);
             $scope.mf[i].isChecked = false;
         }
         $scope.dataToRepeat = null;
@@ -879,6 +890,20 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             }
         }
     }
+
+    $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
+        if (newIzba == oldIzba) return;
+        if (newIzba.length !== 0){
+            $scope.dataToRepeat = newIzba[0].child;
+        } else {$scope.dataToRepeat = null}
+
+        numberOfProds();
+    });
+
+    $scope.$watchCollection('selectedManufacturers', function (newMans, oldMans) {
+        if (newMans == oldMans) return;
+        $scope.setSelectedMan(newMans);
+    });
 
     $scope.changedValue = function (element) {
         var id = element.id;
@@ -949,9 +974,9 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
     
         if (aoManufacturers) {
             for (var i = 0, len = aoManufacturers.length; i < len; i++) {
-                if (aoManufacturers[i].isChecked) {
+                //if (aoManufacturers[i].isChecked) {
                     $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
-                }
+                //}
             }
         }
         if ($scope.activeTT.length > 0) filterProducts();

@@ -212,14 +212,20 @@
             </div>
           </div>
           <div id="InterierMenu">
-            <div>
+            <div id='sipkaHolder'>
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
+              <!--
               <a id='manCol' ng-click = 'isCollapsed = !isCollapsed'>VÝROBCOVIA:</a>
               <div id='man-cont'>
                 <div class='btn-group enli-checkbox-btn' ng-class='{active: man.isChecked}' ng-repeat='man in mf'>
                   <a class='btn btn-default' ng-click='manClicked(man)'> {{man.uidisplayname}} </a>
                 </div>
               </div>
+              -->
+            </div>
+            <div>
+              <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
+              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
             </div>
             <!--
             <div class="form-group"style="position:relative; ">
@@ -229,10 +235,12 @@
               </select>
             </div>
             -->
+            <!--
             <p>TYP IZBY:</p>
             <div class="form-group">
               <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
             </div>
+            -->
             <div>
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
@@ -244,9 +252,6 @@
                       <div class='fajka' ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}"></div>
                   </div>
               </div>
-            </div>
-            <div>
-              <div ng-dropdown-multiselect="" options="dropdownData" selected-model="example1model"></div>
             </div>
           </div>
         </div>

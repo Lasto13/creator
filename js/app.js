@@ -79,6 +79,23 @@ var app = angular.module('app',[
     }
   }])
 
+.factory('xRequest', ['$http', function($http){
+    return {
+      get: function(){
+      $http.defaults.useXDomain = true;
+      return $http({
+        method: "GET",
+        url:'http://85.159.111.72/jsonWEBGL.json',
+        async: false,
+      success: function(){
+      console.log("cors");
+      }
+    }).then(function(response){
+        return response.data
+      });
+    }
+  }}])
+
 .directive('creatorDir', [ function(){
   return{
     restrict: 'A',

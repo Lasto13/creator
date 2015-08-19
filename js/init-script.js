@@ -1,8 +1,6 @@
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 var prepinac = false;
 
-document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
-
     var clientWidth = window.innerWidth,
     clientHeight = window.innerHeight,
     leftP = clientWidth / 2 - 20,
@@ -17,19 +15,6 @@ document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 
     perc.style.top = topP + 'px';
     text.style.top = topT + 'px';
-
-function lockChangeAlert() {
-    console.log('daco');
-    if(document.pointerLockElement === canvas ||
-    document.mozPointerLockElement === canvas ||
-    document.webkitPointerLockElement === canvas) {
-    console.log('The pointer lock status is now locked');
-    //document.addEventListener("mousemove", canvasLoop, false);
-  } else {
-    console.log('The pointer lock status is now unlocked');  
-    //document.removeEventListener("mousemove", canvasLoop, false);
-  }
-}
 
 var isFps = false;
 var prepinacSet = 0,

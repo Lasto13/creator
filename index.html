@@ -224,8 +224,8 @@
               -->
             </div>
             <div>
-              <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
               <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
+              <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>
             <!--
             <div class="form-group"style="position:relative; ">
@@ -241,13 +241,12 @@
               <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
             </div>
             -->
-            <div>
+            <div id='Categories'>
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'TypeProductDesign' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}" ng-disabled="TypeProduct.child[0].prodsIncluded == 0" ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" >{{TypeProduct.uidisplayname}}</a>({{TypeProduct.child[0].prodsIncluded}})
-                        <!--
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a> -->
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'TypeProductDesign' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}" ng-disabled="TypeProduct.child[0].prodsIncluded == 0" ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.child[0].prodsIncluded}})</a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
                       </div>
                       <div class='fajka' ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}"></div>
                   </div>
@@ -271,7 +270,7 @@
         <button id="objMove" ng-click="move(); activeM();"class="fps-btn2 btn">POHYB</button>
         <button id="objRot" ng-click="rotate(); activeR();" class="fps-btn2 btn">ROTACIA</button>
         <button id="ok" ng-click='(okTrigger())'; class="fps-btn-round btn">OK</button> 
-      -->
+        -->
         <button id="colorCh" class="fps-btn btn" title="Otvoriť menu pre výber farieb" ng-click="colorChooser()">VÝBER FARBY</button>  
       </div>
 
@@ -353,18 +352,19 @@
                     loc + "Release/fileloader.js",
                     loc + "Release/VC.js",
                 ],
-                br = get_browser();
-
+                //br = get_browser();
+/*
           if (br.name != 'Firefox') {
               addRobotoFont();
               document.getElementById('browser-detect-wrap').getElementsByTagName('span')[0].innerHTML = br.name;
           }
-          else {
+*/
+//          else {
               addRobotoFont();
               document.getElementById('browser-detect-wrap').style.opacity = 0;
               document.getElementById('browser-detect-wrap').style.display = 'none';
               setTimeout(function () { asyncLoadScripts(scripts) }, 1);
-          }
+//          }
 
           function completed() { console.log('completed'); }
           function checkStateAndCall(path, callback) {

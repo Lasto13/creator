@@ -68,16 +68,17 @@ function UnityProgress (dom) {
                 }
             }, false);
             
-            document.addEventListener('click',function (e) {
-                if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject'){
-                    return
-                }  else {
-                   $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  
-                    prepinacLoad = 0;
-                    prepinacSet = 0;
-                    prepinacSave = 0;
+            document.addEventListener('mouseup',function (e) {
+                if (!isFps){
+                    if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject'){
+                        return
+                    }  else {
+                       $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  
+                        prepinacLoad = 0;
+                        prepinacSet = 0;
+                        prepinacSave = 0;
+                    }
                 }
-
             }, false);
             
             function btnClassRplc(a) {

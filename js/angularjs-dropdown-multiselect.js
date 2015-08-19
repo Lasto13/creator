@@ -23,10 +23,11 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect">';
                 template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
                 template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }">';
-                template += '<li><a id={{settings.allID}} data-ng-click="toggleSelection($event)"> {{texts.toggle}} <label ng-class=\'{labelActive: settings.allToggled,labelInactive: !settings.allToggled}\' for="{{settings.chkbxID}}"><input ng-hide=\'true\' id={{settings.chkbxID}} type="checkbox"/></label></a>';
+                template += '<li ng-show="settings.toggler"><a id={{settings.allID}} data-ng-click="toggleSelection($event)"> {{texts.toggle}} <label ng-class=\'{labelActive: settings.allToggled,labelInactive: !settings.allToggled}\' for="{{settings.chkbxID}}"><input ng-hide=\'true\' id={{settings.chkbxID}} type="checkbox"/></label></a>';
                 template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"> {{texts.checkAll}}</a>';
                 template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"> {{texts.uncheckAll}}</a></li>';
-                template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll && showDivider" class="divider"></li>';
+                template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
+                template += '<li ng-show="showDivider" class="divider"></li>';
                 template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
                 template += '<li ng-show="settings.enableSearch" class="divider"></li>';
 
@@ -96,10 +97,11 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 }
 
                 $scope.settings = {
+                    toggler: true,
                     allToggled: false,
                     allID: '',
                     chkbxID: '',
-                    showDivider: true,
+                    showDivider: false,
                     dynamicTitle: true,
                     scrollable: false,
                     scrollableHeight: '300px',

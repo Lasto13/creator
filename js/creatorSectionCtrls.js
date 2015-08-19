@@ -279,7 +279,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
         SendMessage('FunctionsManager','SetInputEnabled','1');
-        setTimeout(function(){getSave();}, 3000); 
+        setTimeout(function(){getSave();}, 3000);
     }
 
     setShowRozmery = function (show) {
@@ -324,11 +324,11 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     loadingFinished = function (value) { }
 
     $scope.OtvoritProjekt = function (jsonstring) {
-        SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);
+        setTimeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
     }
 }]);
 
-app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope, matJson, floorJson) {
+app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', function ($scope, matJson, floorJson,xRequest) {
 
     $scope.bla = '0';
 
@@ -631,14 +631,14 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson', function ($scope
     }
 }]);
 
-app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
+app.controller('dwCtrl', ['$scope', 'xRequest', function ($scope, xRequest) {
 
     $scope.$on('calculate', function(e) {  
         calculateWindowBox(); 
         calculateDoorBox();
     });
 
-    menuJson.get().then(function (data) {
+    xRequest.get().then(function (data) {
         $scope.menuData = data;
         calculateWindowBox();
         calculateDoorBox();
@@ -798,7 +798,19 @@ app.controller('dwCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
     }
 }]);
 
-app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson) {
+app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scope, menuJson,xRequest) {
+
+    xRequest.get().then(function(data){
+        $scope.menuData = data;
+        $scope.mf = data.manufacturers;
+        $scope.dropdownData = [];
+
+        for (var i = 0; i<$scope.mf.length; i++){
+            $scope.dropdownData.push($scope.mf[i]);
+            $scope.mf[i].isChecked = false;
+        }
+        $scope.dataToRepeat = null;
+    });
 
     $scope.activeTT = [];
     $scope.productsToShow = [];
@@ -837,7 +849,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
             return itemText;
         }
     };
-
+    /*
     menuJson.get().then(function (data) {
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
@@ -849,7 +861,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson', function ($scope, menuJson
         }
         $scope.dataToRepeat = null;
     });
-
+    */
     $("a.radio-i").click(function () {
         var $id = $(this).attr('id');
         $("a.radio-i").removeClass('btn-my2');

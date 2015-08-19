@@ -14,7 +14,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         clientHeight = window.innerHeight;
 
         var canvasH = document.getElementById('canvasHolder'),
-            c_width = clientWidth - 240,
+            c_width = clientWidth - 270,
             c_height = clientHeight - 180;
 
         if (isFps){
@@ -25,7 +25,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         } else {
             canvasH.style.width = c_width +'px';
             canvasH.style.height = c_height +'px'; 
-            canvasH.style.left = 210 +'px';
+            canvasH.style.left = 270 +'px';
             canvasH.style.top = 150 +'px';
         }
     }
@@ -137,7 +137,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             default: $scope.activeMenu = {};
         }
         if (!$scope.$$phase) $scope.$apply();
-
     }
 
     var chFull = function(){
@@ -150,10 +149,10 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
     var chMin = function(){
         var canvasH = document.getElementById('canvasHolder');
-        c_width = window.innerWidth - 240,
+        c_width = window.innerWidth - 270,
         c_height = window.innerHeight - 180;
 
-        canvasH.style.left = 210 + 'px';
+        canvasH.style.left = 270 + 'px';
         canvasH.style.top = 150 + 'px';
 
         canvasH.style.width = c_width +'px';
@@ -589,7 +588,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
     }
 
     $scope.VzorMaterialu = function(){
-        document.getElementById('FloorChooser').style.left = "210px";
+        document.getElementById('FloorChooser').style.left = "270px";
         SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
     }
     $scope.HustotaVzoru = function(){
@@ -618,7 +617,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
         else { }
     }
     openMaterialMenu = function () {
-        document.getElementById('MaterialChooser').style.left = "210px";
+        document.getElementById('MaterialChooser').style.left = "270px";
     }
     $scope.closeMaterialMenu = function(){
         $scope.ZmenaMat();
@@ -840,11 +839,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
     $scope.TypIzby = [];
 
     $scope.izbaTexts = {buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
-    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',allID:'roomAll'};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll'};
     $scope.manSettings = {
         allID:'manAll',
         chkbxID: 'toggleAllMans',
-        smartButtonMaxItems: 2,
+        smartButtonMaxItems: 3,
         smartButtonTextConverter: function(itemText, originalItem) {
             return itemText;
         }
@@ -905,8 +904,17 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
 
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
         if (newIzba == oldIzba) return;
+        console.log(newIzba[0]);
         if (newIzba.length !== 0){
+            //$scope.dataToRepeat = null;
             $scope.dataToRepeat = newIzba[0].child;
+            setTimeout(function(){
+                for (var i=0; i < $scope.dataToRepeat.length;i++){
+                $scope.dataToRepeat[i].toggled = false;
+                $scope.productsToShow = null;
+            }
+            }, 3000);
+            
         } else {$scope.dataToRepeat = null}
 
         numberOfProds();
@@ -916,14 +924,14 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         if (newMans == oldMans) return;
         $scope.setSelectedMan(newMans);
     });
-
+    /*
     $scope.changedValue = function (element) {
         var id = element.id;
         $scope.dataToRepeat = $scope.menuData.elements[id].child;
 
         numberOfProds();
     }
-
+    */
     $scope.PridatNabytok = function (value) {
         SendMessage("GUI INTERIOR", "AddObjectFromWeb", JSON.stringify(value));
     };
@@ -1052,7 +1060,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         var d = document.getElementById('ProductBox');
         if (!!value) {
             //d.style.display = 'block';
-            d.style.left = "210px";
+            d.style.left = "270px";
         }
         else {
             d.style.left = "-600px";

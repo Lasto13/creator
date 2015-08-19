@@ -64,7 +64,7 @@ label{cursor: pointer;}
 .podorys-section #podorys-toolbar #mierka-radio input[type=radio]{display:none}
 .podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
 .podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
-.podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:210px;padding-top: 20px;padding-left: 18px;background-color:#FFF;pointer-events:auto}
+.podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:270px;padding-top: 20px;padding-left:48px;background-color:#FFF;pointer-events:auto}
 .podorys-section .left-menu p{color:#7CA616;font-size:1.25em;font-family:Roboto;font-weight:700; white-space: nowrap}
 .podorys-section .left-menu #floor-types p{position: relative; top: 25px}
 .podorys-section .left-menu .ui-spinner {width: 179px}
@@ -105,7 +105,7 @@ label{cursor: pointer;}
 #loadcontent{position:relative;width:50%;height:100%;float:left}
 .dw-section{position:absolute;z-index:999;height:100%;width:100%;top:80px;pointer-events:none}
 .dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:15px}
-.dw-section .left-menu{position:relative;height:100%;width:210px;background-color:#FFF;pointer-events:auto;top:70px}
+.dw-section .left-menu{position:relative;height:100%;width:270px;background-color:#FFF;pointer-events:auto;top:70px}
 .dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
 .dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
@@ -138,9 +138,9 @@ label{cursor: pointer;}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
 .interier-section #ProductBox .btn-group .prod-info{width:65%;position:relative;float:left}
 .interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}
-.interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:10px}
-.interier-section .left-menu{position:relative;height:100%;width:210px;z-index:999;background-color:#FFF;pointer-events:auto}
-.interier-section .left-menu #InterierMenu{top:150px;height:100%;width:200px;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
+.interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:15px}
+.interier-section .left-menu{position:relative;height:100%;width:270px;z-index:999;background-color:#FFF;pointer-events:auto}
+.interier-section .left-menu #InterierMenu{top:150px;height:100%;width:260px;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h4{color:#7ca616}
@@ -156,7 +156,7 @@ label{cursor: pointer;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
-.interier-section .left-menu .dropdown-menu{position:relative;min-width:184px;box-shadow: 0px 1px 4px #7CA616;margin: -1px -4px 10px; padding:12px 0px}
+.interier-section .left-menu .dropdown-menu{position:relative;min-width:243px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px -4px 10px; padding:12px 0px}
 .interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
 .interier-section .left-menu .dropdown-menu .divider {height: 1px; margin:0px; margin-top: 3px}
@@ -263,7 +263,7 @@ label{cursor: pointer;}
 #BDW9,#BI7{background-image:url(Buttons/20.png)}
 #BDW10,#BI8{background-image:url(Buttons/2.png)}
 #BDW11,#BI9{background-image:url(Buttons/14.png)}
-#BI5{background-image:url(Buttons/1.png);margin-left:2%}
+#BI5{background-image:url(Buttons/1.png)}
 #BI6{background-image:url(Buttons/rot.svg)}
 .spinner{width:115px}
 #slider{width: 180px; top: 30px}

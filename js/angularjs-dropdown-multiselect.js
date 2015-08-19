@@ -167,6 +167,17 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     }
                 }
 
+                $scope.safeApply = function(fn) {
+                    var phase = this.$root.$$phase;
+                    if(phase == '$apply' || phase == '$digest') {
+                        if(fn && (typeof(fn) === 'function')) {
+                        fn();
+                        }
+                    } else {
+                        this.$apply(fn);
+                    }
+                };
+
                 if ($scope.singleSelection) {
                     if (angular.isArray($scope.selectedModel) && $scope.selectedModel.length === 0) {
                         clearObject($scope.selectedModel);
@@ -186,12 +197,16 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                             }
                             target = target.parentElement;
                         }
-
+                        
                         if (!parentFound) {
-                            $scope.$apply(function () {
+                            //$scope.$apply(function () {
+                            $scope.safeApply(function(){
                                 $scope.open = false;
                             });
+                            //});
+                            //if (!$scope.$$phase) {$scope.$apply(function(){$scope.open = false;});}
                         }
+                        
                     });
                 }
 
@@ -207,8 +222,12 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     if ($scope.settings.dynamicTitle && ($scope.selectedModel.length > 0 || (angular.isObject($scope.selectedModel) && _.keys($scope.selectedModel).length > 0))) {
                         if ($scope.settings.smartButtonMaxItems > 0) {
                             var itemsText = [];
-
-                            angular.forEach($scope.options, function (optionItem) {
+                            if ($scope.singleSelection){
+                                itemsText = $scope.selectedModel[0].uidisplayname;
+                                return itemsText;
+                            }
+                            else {
+                                angular.forEach($scope.options, function (optionItem) {
                                 if ($scope.isChecked($scope.getPropertyForObject(optionItem, $scope.settings.idProp))) {
                                     var displayText = $scope.getPropertyForObject(optionItem, $scope.settings.displayProp);
                                     var converterResponse = $scope.settings.smartButtonTextConverter(displayText, optionItem);
@@ -221,8 +240,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                                 itemsText = itemsText.slice(0, $scope.settings.smartButtonMaxItems);
                                 itemsText.push('...');
                             }
-
                             return itemsText.join(', ');
+                            }
+                            //console.log($scope.options);
+                            
                         } else {
                             var totalSelected;
 
@@ -286,8 +307,11 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     }
 
                     if ($scope.singleSelection) {
-                        clearObject($scope.selectedModel);
-                        angular.extend($scope.selectedModel, finalObj);
+                        //clearObject($scope.selectedModel);
+                        //angular.extend($scope.selectedModel, finalObj);
+                        $scope.selectedModel = [];
+                        $scope.selectedModel.push(finalObj);
+                        console.log($scope.selectedModel,finalObj);
                         $scope.externalEvents.onItemSelect(finalObj);
                         if ($scope.settings.closeOnSelect) $scope.open = false;
 

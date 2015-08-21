@@ -128,6 +128,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.selectedTemplate.path = "partials/podorys.tpl.html";
 
     setActiveSection = function (n) {
+        console.log(n);
         $scope.activeMenu = {};
         switch (n) {
             case "0": $scope.activeMenu.first = true; isFps=false; chMin(); break;
@@ -802,14 +803,26 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
     xRequest.get().then(function(data){
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
+        for (var i = 0; i < data.elements.length; i++){
+            for (var j = 0; j < data.elements[i].child.length; j++){
+                if (data.elements[i].child[j].child[0].hasOwnProperty('parentid')){
+                    data.elements[i].child[j].hasSubs = true;
+                } else {
+                    data.elements[i].child[j].hasSubs = false;
+                }
+            }
+        }
+        //$scope.types = data.elements.
         $scope.dropdownData = [];
 
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.dropdownData.push($scope.mf[i]);
             $scope.mf[i].isChecked = false;
         }
-        $scope.dataToRepeat = null;
+        $scope.dataToRepeat = [];
     });
+
+    var hodnotaBI4 = 0;
 
     $scope.activeTT = [];
     $scope.productsToShow = [];
@@ -820,26 +833,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         $scope.calculateProductBox(); 
     });
 
-    var hodnotaBI4 = 0;
-
-    $("#BI4").click(function () {
-        if (hodnotaBI4 == 0) {
-            $("#BI4").removeClass('btn-my');
-            $("#BI4").addClass('btn-my2');
-            hodnotaBI4 = 1;
-        }
-        else if (hodnotaBI4 == 1) {
-            $("#BI4").removeClass('btn-my2');
-            $("#BI4").addClass('btn-my');
-            hodnotaBI4 = 0;
-        }
-    });
-
     $scope.selectedManufacturers = [];
     $scope.TypIzby = [];
 
     $scope.izbaTexts = {buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
-    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll'};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll',closeOnSelect:true};
     $scope.manSettings = {
         allID:'manAll',
         chkbxID: 'toggleAllMans',
@@ -848,56 +846,28 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             return itemText;
         }
     };
-    /*
-    menuJson.get().then(function (data) {
-        $scope.menuData = data;
-        $scope.mf = data.manufacturers;
-        $scope.dropdownData = [];
-
-        for (var i = 0; i<$scope.mf.length; i++){
-            $scope.dropdownData.push($scope.mf[i]);
-            $scope.mf[i].isChecked = false;
-        }
-        $scope.dataToRepeat = null;
-    });
-    */
-    $("a.radio-i").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-i").removeClass('btn-my2');
-        $("a.radio-i").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-
-    $scope.set_i = function ($inputid) {
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById($inputid).checked = true;
-    }
-
-    $("a.radio-iview").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-iview").removeClass('btn-my2');
-        $("a.radio-iview").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-
-    $scope.set_iview = function ($inputid) {
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById($inputid).checked = true;
-    }
 
     var numberOfProds = function(){
         if ($scope.dataToRepeat){
             for (var i=0; i < $scope.dataToRepeat.length; i++){
-                $scope.dataToRepeat[i].child[0].prodsIncluded = 0;
-                for (var j=0; j < $scope.dataToRepeat[i].child[0].products.length; j++){
-                    if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[0].products[j].manufacturername) > -1){
-                    $scope.dataToRepeat[i].child[0].prodsIncluded += 1;
+                $scope.dataToRepeat[i].prodsIncluded = 0;
+                if ($scope.dataToRepeat[i].hasSubs == false){
+                        for (var j=0; j < $scope.dataToRepeat[i].child[0].products.length; j++){
+                            if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[0].products[j].manufacturername) > -1){
+                            $scope.dataToRepeat[i].prodsIncluded += 1;
+                        }
                     }
-                } 
+                } else {
+                    for (var k=0; k < $scope.dataToRepeat[i].child.length; k++){
+                            $scope.dataToRepeat[i].child[k].prodsIncluded = 0;
+                            for (var l = 0; l < $scope.dataToRepeat[i].child[k].products.length; l++){
+                                if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[k].products[l].manufacturername) > -1){
+                                $scope.dataToRepeat[i].prodsIncluded += 1;
+                                $scope.dataToRepeat[i].child[k].prodsIncluded += 1;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -905,18 +875,24 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
         if (newIzba == oldIzba) return;
         console.log(newIzba[0]);
+        newIzba[0].isChecked = true;
         if (newIzba.length !== 0){
             //$scope.dataToRepeat = null;
             $scope.dataToRepeat = newIzba[0].child;
-            setTimeout(function(){
+            if ($scope.asSelectedMans.length > 0){
+                $scope.dataToRepeat.show = true;
+            } else {
+                $scope.dataToRepeat.show = false;
+            }
+            console.log($scope.dataToRepeat);
                 for (var i=0; i < $scope.dataToRepeat.length;i++){
                 $scope.dataToRepeat[i].toggled = false;
-                $scope.productsToShow = null;
-            }
-            }, 3000);
-            
-        } else {$scope.dataToRepeat = null}
+                //$scope.productsToShow = [];
+                }
+        } //else {$scope.dataToRepeat = []}
 
+        $scope.activeTT = [];
+        //filterProducts();
         numberOfProds();
     });
 
@@ -945,6 +921,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
     };
 
     $scope.intDefAction = function () {
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     };
 
@@ -967,8 +944,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     }
     
-    //$scope.accordionID = function (id) { console.log(id); };
-
     // initiate an array to hold all active tabs
     $scope.activeTabs = [];
 
@@ -983,12 +958,12 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             return false;
         }
     }
-
+    /*
     $scope.manClicked = function(man){
         man.isChecked = !man.isChecked;
         $scope.setSelectedMan($scope.mf);
     }
-
+    */
     $scope.setSelectedMan = function(aoManufacturers) {
         $scope.asSelectedMans = [];
     
@@ -999,12 +974,19 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
                 //}
             }
         }
+        if ($scope.dataToRepeat && $scope.asSelectedMans.length > 0){
+                $scope.dataToRepeat.show = true;
+                console.log($scope.dataToRepeat.show);
+                //if (!$scope.$$phase) $scope.$apply();
+            } else{
+                $scope.dataToRepeat.show = false;
+            }
         if ($scope.activeTT.length > 0) filterProducts();
     };
 
     // function to 'open' a tab
     $scope.openTab = function (tab) {
-        $scope.setSelectedMan($scope.mf);
+        //$scope.setSelectedMan($scope.mf);
         // check if tab is already open
         if ($scope.isOpenTab(tab.uidisplayname)) {
             if (!tab.child[0].hasOwnProperty("parentid"))
@@ -1132,16 +1114,48 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             $scope.sipkaValid = true;
         };
     }
-    /*
-    $scope.CenterInterier = function () {
-        SendMessage("Main Camera", "ResetPosition");
-    };
-    */
+
+    $("#BI4").click(function () {
+        if (hodnotaBI4 == 0) {
+            $("#BI4").removeClass('btn-my');
+            $("#BI4").addClass('btn-my2');
+            hodnotaBI4 = 1;
+        }
+        else if (hodnotaBI4 == 1) {
+            $("#BI4").removeClass('btn-my2');
+            $("#BI4").addClass('btn-my');
+            hodnotaBI4 = 0;
+        }
+    });
     $scope.getClass = function(indx, list){
         return {
             rightColumn: indx % 2,
             NotLastOnes: indx < list.length - 2 
         }
+    }
+    $("a.radio-i").click(function () {
+        var $id = $(this).attr('id');
+        $("a.radio-i").removeClass('btn-my2');
+        $("a.radio-i").addClass('btn-my');
+        $("a#" + $id).addClass('btn-my2');
+    });
+    $scope.set_i = function ($inputid) {
+        var _pR = document.getElementById($inputid).parentNode,
+            _pRi = _pR.querySelectorAll('input');
+        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
+        document.getElementById($inputid).checked = true;
+    }
+    $("a.radio-iview").click(function () {
+        var $id = $(this).attr('id');
+        $("a.radio-iview").removeClass('btn-my2');
+        $("a.radio-iview").addClass('btn-my');
+        $("a#" + $id).addClass('btn-my2');
+    });
+    $scope.set_iview = function ($inputid) {
+        var _pR = document.getElementById($inputid).parentNode,
+            _pRi = _pR.querySelectorAll('input');
+        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
+        document.getElementById($inputid).checked = true;
     }
 }]);
 

@@ -142,7 +142,7 @@
             </div>
               <div ng-repeat="window in menuData.okna.child" class ="btn-group" ng-class="getClass($index, menuData.okna.child)">
                 <div class="prod-image-cont">
-                  <a class = "prod-image" style="background-image:url({{window.image}});background-size: 100%;"></a>
+                  <a class = "prod-image" ng-click="ChooseWindow(window.asset); toggleProdMenu();" style="background-image:url({{window.image}});background-size: 100%;"></a>
                 </div>
                 <div class="prod-info">
                   <div class='prod-top'>
@@ -162,7 +162,7 @@
             </div>
             <div ng-repeat="door in menuData.dvere.child" class ="btn-group" ng-class="getClass($index, menuData.dvere.child)">
                 <div class="prod-image-cont">
-                  <a class = "prod-image" style="background-image:url({{door.image}});background-size: 100%;"></a>
+                  <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
                 </div>
                 <div class="prod-info">
                   <div class='prod-top'>
@@ -197,7 +197,7 @@
             </div>
             <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
               <div class="prod-image-cont">
-                <a class = "prod-image" style="background-image:url({{prod.image}});"></a>
+                <a class = "prod-image" ng-click="PridatNabytok(prod); toggleProdMenu();" style="background-image:url({{prod.image}});"></a>
               </div>
               <div class="prod-info">
                 <div class='prod-top'>
@@ -224,7 +224,7 @@
               -->
             </div>
             <div>
-              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
+              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" singles="true" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
               <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>
             <!--
@@ -242,13 +242,14 @@
             </div>
             -->
             <div id='Categories'>
-              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
+              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat" ng-show='dataToRepeat.show'>
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
+                      <div class='drop_arrow' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.toggled}"></div>
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'TypeProductDesign' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}" ng-disabled="TypeProduct.child[0].prodsIncluded == 0" ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.child[0].prodsIncluded}})</a>
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname)" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}}</a>
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'TypeProductDesign' : !TypeProduct.toggled || TypeProduct.prodsIncluded == 0, 'typeInactive':TypeProduct.prodsIncluded == 0}" ng-disabled="TypeProduct.prodsIncluded == 0" ng-click="TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.prodsIncluded}})</a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}})</a>
                       </div>
-                      <div class='fajka' ng-click="TypeProduct.child[0].prodsIncluded == 0 || openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled && TypeProduct.child[0].prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled || TypeProduct.child[0].prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}"></div>
+                      <div class='fajka' ng-click="TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled || TypeProduct.prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}"></div>
                   </div>
               </div>
             </div>

@@ -45,8 +45,8 @@ label{cursor: pointer;}
 #header .button.next:after,#header .button.next:before{border-right:1px solid #FEFEFE;position:absolute;width:27px}
 #header #Settings #mierka-radio{position:relative;width:100%;float:right}
 #header #Settings input[type=radio]{display:none}
-#header #Settings label{display:inline-block;background:url(img/radio_button_inactive.png) no-repeat;width:21px;height:21px;margin-bottom:-5px;margin-left:4px; padding-left: 25px; font-weight: 300}
-#header #Settings input[type=radio]:checked+label{background:url(img/radio_button_active.png) no-repeat; padding-left: 25px}
+#header #Settings label{display:inline-block;background:url(img/radio_of.png) no-repeat;width:21px;height:21px;margin-bottom:-5px;margin-left:4px; padding-left: 25px; font-weight: 300}
+#header #Settings input[type=radio]:checked+label{background:url(img/radio_on.png) no-repeat; padding-left: 25px}
 #LoadProject p,#Settings label{font-family:Roboto}
 #LoadProject p {font-size: .9em; margin-bottom: 0px}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{margin-bottom:0;font-weight:400;text-align:left}
@@ -62,8 +62,8 @@ label{cursor: pointer;}
 .podorys-section #podorys-toolbar{height:70px;width:100%;background-color:#FFF;position:relative;pointer-events:auto;z-index:999}
 .podorys-section #podorys-toolbar #mierka-radio{position:relative;width:320px;float:right;top:55px;left:-24px}
 .podorys-section #podorys-toolbar #mierka-radio input[type=radio]{display:none}
-.podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
-.podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
+.podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
+.podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_on.png)}
 .podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:270px;padding-top: 20px;padding-left:48px;background-color:#FFF;pointer-events:auto}
 .podorys-section .left-menu p{color:#7CA616;font-size:1.25em;font-family:Roboto;font-weight:700; white-space: nowrap}
 .podorys-section .left-menu #floor-types p{position: relative; top: 25px}
@@ -75,8 +75,8 @@ label{cursor: pointer;}
 .podorys-section .left-menu-item{width:180px;position:relative;margin-bottom:10px}
 .podorys-section .left-menu-item .Button{width: 180px;height:30px; line-height: 26px;}
 .podorys-section .left-menu-item input[type=radio]{display:none}
-.podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px}
-.podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_button_active.png)}
+.podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px}
+.podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_on.png)}
 .activeSectionFirst {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color: #FFF;text-decoration: none;text-align: center;padding: 5px 18px;font-size: 16px;font-family: helvetica,arial,sans-serif;background-color: #559734;width: 168px;z-index: 902}
 .activeSectionSecond {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 25px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:207px;left:-4px;z-index: 901}
 .activeSectionThird {top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:173px;left:-9px;z-index: 900}
@@ -141,7 +141,7 @@ label{cursor: pointer;}
 .interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:15px}
 .interier-section .left-menu{position:relative;height:100%;width:270px;z-index:999;background-color:#FFF;pointer-events:auto}
 .interier-section .left-menu #InterierMenu{top:150px;height:100%;width:260px;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
-.interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat;cursor:pointer;}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
@@ -151,12 +151,14 @@ label{cursor: pointer;}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_on.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
+.interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);background-size: 100%;float:left;margin-top: 8px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
+.interier-section .left-menu .drop_arrow_rotated{transform: rotate(90deg);}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {position: relative; height: 80px !important;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
-.interier-section .left-menu .dropdown-menu{position:relative;min-width:243px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px -4px 10px; padding:12px 0px}
+.interier-section .left-menu .dropdown-menu{position:relative;min-width:232px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
 .interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
 .interier-section .left-menu .dropdown-menu .divider {height: 1px; margin:0px; margin-top: 3px}
@@ -168,6 +170,8 @@ label{cursor: pointer;}
 .interier-section .left-menu .checkbox input[type="checkbox"] {position: absolute;right: 0px}
 .interier-section .left-menu label {position: absolute;right: 10px;width: 21px;height: 21px}
 .interier-section .left-menu .checkbox label {position: absolute;right: 0px;width: 21px;height: 21px}
+.interier-section .left-menu .labelActiveSingle {background: url(img/radio_on.png) no-repeat scroll 0% 0% / 100% auto;}
+.interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelActive {background: url(img/checkbox_on.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactive {background: url(img/checkbox_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu #Categories {margin-top: 20px}
@@ -194,8 +198,8 @@ label{cursor: pointer;}
 .fps-section #screenShot {position: absolute;width: 172px;height: 60px;margin-top: 5px;left: 47%;background:url(img/fps_gui/scrn.svg);background-size: 100%; pointer-events: auto;cursor: pointer;}
 .fps-section .right-menu{position: absolute;right: 0px;width: 443px;height: 69px;pointer-events: auto;margin-top: 5px;margin-right: 16px;background: white;padding: 13px;border-radius: 10px}
 .fps-section .right-menu input{margin-left:20px;display:none}
-.fps-section .right-menu label{display:inline-block;background:url(img/radio_button_inactive.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
-.fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_button_active.png);margin-left:20px}
+.fps-section .right-menu label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
+.fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_on.png);margin-left:20px}
 .fps-section .right-menu #d23{position: relative;width: 35%;float: right;height: 34px;background-color: #fff;border: solid 2px #7ca616;color: #7ca616;}
 .fps-section .right-menu #d23:hover{color: #fff;background: #7ca616}
 .fps-section #objMenu{display:none;position: absolute;right: 0px;background: rgb(124, 166, 22) none repeat scroll 0% 0%;width: 250px;height: 95%;z-index: 1001;top: 85px;}

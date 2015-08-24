@@ -1040,24 +1040,17 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         if (tab.toggled){
             for (var i = 0; i < tab.child.length; i++){
                 tab.child[i].toggled = true;
-                if (!tab.child[i].toggled) {
-                    var index = $scope.activeTT.indexOf(tab.child[i]);
-                    $scope.activeTT.splice(index, 1);
+                var index = $scope.activeTT.indexOf(tab.child[i]);
+                $scope.activeTT.splice(index, 1);
+                if (tab.child[i].toggled) {
                 }
-                else if (tab.child[i].toggled) {
                     $scope.activeTT.push(tab.child[i]);
-                }
             }
         } else {
            for (var i = 0; i < tab.child.length; i++){
                 tab.child[i].toggled = false;
-                if (!tab.child[i].toggled) {
-                    var index = $scope.activeTT.indexOf(tab.child[i]);
-                    $scope.activeTT.splice(index, 1);
-                }
-                else if (tab.child[i].toggled) {
-                    $scope.activeTT.push(tab.child[i]);
-                }
+                var index = $scope.activeTT.indexOf(tab.child[i]);
+                $scope.activeTT.splice(index, 1);
             } 
         }
         
@@ -1075,11 +1068,11 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
 
     $scope.ClickedTypeType = function (tab, $parent) {
         tab.toggled = !tab.toggled;
-        if (!tab.toggled) {
+        if (tab.toggled == false) {
             var index = $scope.activeTT.indexOf(tab);
             $scope.activeTT.splice(index, 1);
         }
-        if (tab.toggled) {
+        if (tab.toggled == true) {
             $scope.activeTT.push(tab);
         }
         var _isT = 0; 

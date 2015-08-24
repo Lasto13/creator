@@ -146,12 +146,12 @@ label{cursor: pointer;}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em;position: relative;top: 6px; pointer-events: none;}
-.interier-section .left-menu .name{width: 190px;float: left;}
+.interier-section .left-menu .name{width: 198px;float: left;}
 .interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px; cursor: pointer}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_fajka.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu .halfT{background: url(img/checkbox_on.png) !important;background-size: 100% !important}
-.interier-section .left-menu .subFajka {position: relative; width: 15px; height: 15px; background-size: 100%}
+.interier-section .left-menu .subFajka {position: relative; width: 15px; height: 15px; background-size: 100%;float: right;margin-top: -20px; margin-right: -14px}
 /*.interier-section .left-menu .subFajkaActive {background: url(img/checkbox_fajka.png)}
 .interier-section .left-menu .subFajkaInactive {background: url(img/checkbox_of.png)}*/
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
@@ -162,15 +162,15 @@ label{cursor: pointer;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
-.interier-section .left-menu .dropdown-menu{border:none;position:relative;min-width:232px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
-.interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;}
+.interier-section .left-menu .dropdown-menu{border:none;position:relative;min-width:232px;border-radius:0;box-shadow: none;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
+.interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;box-shadow: none;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
 .interier-section .left-menu .dropdown-menu .divider {height: 1px; margin:0px; margin-top: 3px}
 .interier-section .left-menu .dropdown-menu > li > a {height:30px;padding: 3px 10px;outline: 0; color: #7CA616}
 .interier-section .left-menu .dropdown-menu > li > a:hover,
 .interier-section .left-menu .dropdown-menu > li > a:focus {color: #7CA616;text-decoration: none;background-color: #000;outline: 0;background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);background-repeat: repeat-x;}
 .interier-section .left-menu .dropdown{width:100%;padding:5px}
-.interier-section .left-menu .dropdown-toggle{width: 100%}
+.interier-section .left-menu .dropdown-toggle{width: 100%;font-size: 1.2em; cursor: pointer;}
 .interier-section .left-menu .margined {margin-left: 14px}
 .interier-section .left-menu .checkbox input[type="checkbox"] {position: absolute;right: 0px}
 .interier-section .left-menu label {position: absolute;right: 10px;width: 21px;height: 21px}
@@ -237,8 +237,8 @@ label{cursor: pointer;}
 .TypeProductDesignClicked{color:#000;padding:1px 2px;font-size:16px;line-height:1.42857143;white-space:nowrap}
 .TypeProductDesign:hover{color:#000;text-decoration:none;cursor:pointer;cursor:hand}
 .TypeProductDesignClicked:hover{color:#7CA616;text-decoration:none;cursor:pointer;cursor:hand}
-.TypeTypeProductDesign{color:#000;padding:1px 15px;font-size:14px;line-height:1.42857143;white-space:nowrap}
-.TypeTypeProductDesignClicked{color:#7CA616;padding:1px 15px;font-size:14px;line-height:1.42857143;white-space:nowrap}
+.TypeTypeProductDesign{color:#000;padding:1px 10px;font-size:14px;line-height:1.42857143;white-space:nowrap}
+.TypeTypeProductDesignClicked{color:#7CA616;padding:1px 10px;font-size:14px;line-height:1.42857143;white-space:nowrap}
 #B16,#B17,#B18,#B19,#B20,#B21,#B22,#B23{display:inline-block}
 .TypeTypeProductDesign:hover{color:#000;text-decoration:none;cursor:pointer;cursor:hand}
 .TypeTypeProductDesignClicked:hover{color:#7CA616;text-decoration:none;cursor:pointer;cursor:hand}

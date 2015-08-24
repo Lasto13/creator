@@ -26,8 +26,8 @@ Module.expectedDataFileDownloads++;
     var REMOTE_PACKAGE_NAME = typeof Module['locateFile'] === 'function' ?
                               Module['locateFile'](REMOTE_PACKAGE_BASE) :
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
-    var REMOTE_PACKAGE_SIZE = 58874507;
-    var PACKAGE_UUID = '90eab620-51c5-40fc-8267-05754396d7d1';
+    var REMOTE_PACKAGE_SIZE = 59461955;
+    var PACKAGE_UUID = '1bbd9447-f230-4b82-a3a0-a475e0b4dabd';
   
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
@@ -127,13 +127,13 @@ Module['FS_createPath']('/', 'Resources', true, true);
         this.requests[this.name] = null;
       },
     };
-      new DataRequest(0, 586552, 0, 0).open('GET', '/mainData');
-    new DataRequest(586552, 595931, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
-    new DataRequest(595931, 17941223, 0, 0).open('GET', '/resources.assets');
-    new DataRequest(17941223, 46143535, 0, 0).open('GET', '/sharedassets0.assets');
-    new DataRequest(46143535, 49869855, 0, 0).open('GET', '/Il2CppData/Metadata/global-metadata.dat');
-    new DataRequest(49869855, 51444891, 0, 0).open('GET', '/Resources/unity_default_resources');
-    new DataRequest(51444891, 58874507, 0, 0).open('GET', '/Resources/unity_builtin_extra');
+      new DataRequest(0, 586736, 0, 0).open('GET', '/mainData');
+    new DataRequest(586736, 596115, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
+    new DataRequest(596115, 17941439, 0, 0).open('GET', '/resources.assets');
+    new DataRequest(17941439, 46729295, 0, 0).open('GET', '/sharedassets0.assets');
+    new DataRequest(46729295, 50457303, 0, 0).open('GET', '/Il2CppData/Metadata/global-metadata.dat');
+    new DataRequest(50457303, 52032339, 0, 0).open('GET', '/Resources/unity_default_resources');
+    new DataRequest(52032339, 59461955, 0, 0).open('GET', '/Resources/unity_builtin_extra');
 
     function processPackageData(arrayBuffer) {
       Module.finishedDataFileDownloads++;

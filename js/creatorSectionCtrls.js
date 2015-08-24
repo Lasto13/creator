@@ -884,15 +884,17 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             } else {
                 $scope.dataToRepeat.show = false;
             }
-            console.log($scope.dataToRepeat);
                 for (var i=0; i < $scope.dataToRepeat.length;i++){
                 $scope.dataToRepeat[i].toggled = false;
-                //$scope.productsToShow = [];
+                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                        if ($scope.dataToRepeat[i].hasSubs){
+                            $scope.dataToRepeat[i].child[j].toggled = false;
+                        }
+                    }
                 }
-        } //else {$scope.dataToRepeat = []}
+        }
 
         $scope.activeTT = [];
-        //filterProducts();
         numberOfProds();
     });
 
@@ -958,26 +960,17 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             return false;
         }
     }
-    /*
-    $scope.manClicked = function(man){
-        man.isChecked = !man.isChecked;
-        $scope.setSelectedMan($scope.mf);
-    }
-    */
+    
     $scope.setSelectedMan = function(aoManufacturers) {
         $scope.asSelectedMans = [];
     
         if (aoManufacturers) {
             for (var i = 0, len = aoManufacturers.length; i < len; i++) {
-                //if (aoManufacturers[i].isChecked) {
-                    $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
-                //}
+                $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
             }
         }
         if ($scope.dataToRepeat && $scope.asSelectedMans.length > 0){
                 $scope.dataToRepeat.show = true;
-                console.log($scope.dataToRepeat.show);
-                //if (!$scope.$$phase) $scope.$apply();
             } else{
                 $scope.dataToRepeat.show = false;
             }
@@ -986,33 +979,88 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
 
     // function to 'open' a tab
     $scope.openTab = function (tab) {
-        //$scope.setSelectedMan($scope.mf);
         // check if tab is already open
-        if ($scope.isOpenTab(tab.uidisplayname)) {
-            if (!tab.child[0].hasOwnProperty("parentid"))
+        if (tab.hasSubs){
+            if ($scope.isOpenTab(tab.uidisplayname)) {
+                $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
+                tab.isOpen = false;
+            } else {
+            $scope.activeTabs.push(tab.uidisplayname);
+            tab.isOpen = true;
+            }
+        } else if ($scope.isOpenTab(tab.uidisplayname)) {
                 for (var i = 0; i < tab.child.length; i++) {
-                    if (!tab.child[i].hasOwnProperty("parentid")) {
+                        var index = $scope.activeTT.indexOf(tab.child[i]);
+                        $scope.activeTT.splice(index, 1);
+                }
+            //if it is, remove it from the activeTabs array
+            $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
+            tab.toggled = !tab.toggled;
+        } else {
+            for (var i = 0; i < tab.child.length; ++i) {
+                $scope.activeTT.push(tab.child[i]);
+                $scope.activeTabs.push(tab.uidisplayname);
+                tab.toggled = !tab.toggled;
+            }
+        }
+/*
+        if ($scope.isOpenTab(tab.uidisplayname)) {
+                for (var i = 0; i < tab.child.length; i++) {
+                    if (!tab.hasSubs) {
                         var index = $scope.activeTT.indexOf(tab.child[i]);
                         $scope.activeTT.splice(index, 1);
                     }
                 }
             //if it is, remove it from the activeTabs array
             $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
-            tab.toggled = !tab.toggled;
+            //tab.toggled = !tab.toggled;
         } else {
             // if it's not, add it!
+            /*
             for (var i = 0; i < tab.child.length; ++i) {
-                if (tab.child[0].hasOwnProperty("parentid") && tab.wasOpened !== true) {
+                if (tab.hasSubs && tab.wasOpened !== true) {
+                    //tab.child[i].toggled = true;
                     $scope.activeTT.push(tab.child[i]);
                 }
-                else if (!tab.child[0].hasOwnProperty("parentid")) {
+                else if (!tab.hasSubs) {
                     $scope.activeTT.push(tab.child[i]);
                 }
             }
-            $scope.activeTabs.push(tab.uidisplayname);
-            tab.toggled = !tab.toggled;
-            tab.wasOpened = true;
+            */
+            //$scope.activeTabs.push(tab.uidisplayname);
+            //tab.toggled = !tab.toggled;
+            //tab.wasOpened = true;
+        //}
+    }
+
+    $scope.checkAllSubtypes = function(tab){
+        tab.halfToggled = false;
+        tab.toggled = !tab.toggled;
+
+        if (tab.toggled){
+            for (var i = 0; i < tab.child.length; i++){
+                tab.child[i].toggled = true;
+                if (!tab.child[i].toggled) {
+                    var index = $scope.activeTT.indexOf(tab.child[i]);
+                    $scope.activeTT.splice(index, 1);
+                }
+                else if (tab.child[i].toggled) {
+                    $scope.activeTT.push(tab.child[i]);
+                }
+            }
+        } else {
+           for (var i = 0; i < tab.child.length; i++){
+                tab.child[i].toggled = false;
+                if (!tab.child[i].toggled) {
+                    var index = $scope.activeTT.indexOf(tab.child[i]);
+                    $scope.activeTT.splice(index, 1);
+                }
+                else if (tab.child[i].toggled) {
+                    $scope.activeTT.push(tab.child[i]);
+                }
+            } 
         }
+        
     }
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
@@ -1025,28 +1073,39 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         filterProducts();
     });
 
-    $scope.ClickedTypeType = function (tab) {
+    $scope.ClickedTypeType = function (tab, $parent) {
         tab.toggled = !tab.toggled;
-        if (tab.toggled) {
+        if (!tab.toggled) {
             var index = $scope.activeTT.indexOf(tab);
             $scope.activeTT.splice(index, 1);
         }
-        else if (!tab.toggled) {
+        if (tab.toggled) {
             $scope.activeTT.push(tab);
+        }
+        var _isT = 0; 
+        for (var i = 0; i < $parent.TypeProduct.child.length; i++){
+            if ($parent.TypeProduct.child[i].toggled){
+                _isT +=1;
+            }
+        }
+        $parent.TypeProduct.halfToggled = false;
+        if (_isT == $parent.TypeProduct.child.length){
+            $parent.TypeProduct.toggled = true;
+        } else if (_isT == 0){
+            $parent.TypeProduct.toggled = false;
+        } else {
+            $parent.TypeProduct.halfToggled = true;
         }
     }
     $scope.isProductBoxDisplayed = false;
 
     $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
-        //if (value === oldValue) { return; }
         var d = document.getElementById('ProductBox');
         if (!!value) {
-            //d.style.display = 'block';
             d.style.left = "270px";
         }
         else {
             d.style.left = "-600px";
-            //d.style.display = 'none';
         }
     });
 
@@ -1168,6 +1227,13 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         }
     };
 
+    setFpsCursors = function(cursor){
+        switch(cursor){
+            case '0': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});break;
+            case '1': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/8.png), default'});break;
+        }
+    }
+
     $scope.takeScreenShot = function(){
         SendMessage('Screen_and_Save','getScreenByte');
     }
@@ -1203,6 +1269,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     }
 
     setGuiInfo = function (string) {
+        console.log();
         var info = string;
         if (info.charAt(0) == "0") {
             document.getElementById('del').style.visibility = 'hidden';
@@ -1234,7 +1301,7 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         else {
             document.getElementById('close').style.visibility = 'visible';
         }
-        if (info.charAt(6) == "0") { //TO DO 
+        if (info.charAt(5) == "0") { //TO DO 
             document.getElementById('colorCh').style.visibility = 'hidden';
         }
         else {

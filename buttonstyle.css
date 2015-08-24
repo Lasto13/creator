@@ -146,19 +146,23 @@ label{cursor: pointer;}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em;position: relative;top: 6px; pointer-events: none;}
-.interier-section .left-menu .name{width: 130px;float: left;}
+.interier-section .left-menu .name{width: 190px;float: left;}
 .interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px; cursor: pointer}
-.interier-section .left-menu .fajka-active {background: url(img/checkbox_on.png); background-size: 100%}
+.interier-section .left-menu .fajka-active {background: url(img/checkbox_fajka.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
+.interier-section .left-menu .halfT{background: url(img/checkbox_on.png) !important;background-size: 100% !important}
+.interier-section .left-menu .subFajka {position: relative; width: 15px; height: 15px; background-size: 100%}
+/*.interier-section .left-menu .subFajkaActive {background: url(img/checkbox_fajka.png)}
+.interier-section .left-menu .subFajkaInactive {background: url(img/checkbox_of.png)}*/
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
-.interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);background-size: 100%;float:left;margin-top: 8px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
+.interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);cursor:pointer;background-size: 100%;float:left;margin-top: 4px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section .left-menu .drop_arrow_rotated{transform: rotate(90deg);}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {position: relative; height: 80px !important;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
-.interier-section .left-menu .dropdown-menu{position:relative;min-width:232px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
+.interier-section .left-menu .dropdown-menu{border:none;position:relative;min-width:232px;border-radius:0;box-shadow: 0px 1px 4px #7CA616;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
 .interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
 .interier-section .left-menu .dropdown-menu .divider {height: 1px; margin:0px; margin-top: 3px}
@@ -167,12 +171,13 @@ label{cursor: pointer;}
 .interier-section .left-menu .dropdown-menu > li > a:focus {color: #7CA616;text-decoration: none;background-color: #000;outline: 0;background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);background-repeat: repeat-x;}
 .interier-section .left-menu .dropdown{width:100%;padding:5px}
 .interier-section .left-menu .dropdown-toggle{width: 100%}
+.interier-section .left-menu .margined {margin-left: 14px}
 .interier-section .left-menu .checkbox input[type="checkbox"] {position: absolute;right: 0px}
 .interier-section .left-menu label {position: absolute;right: 10px;width: 21px;height: 21px}
 .interier-section .left-menu .checkbox label {position: absolute;right: 0px;width: 21px;height: 21px}
 .interier-section .left-menu .labelActiveSingle {background: url(img/radio_on.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}
-.interier-section .left-menu .labelActive {background: url(img/checkbox_on.png) no-repeat scroll 0% 0% / 100% auto;}
+.interier-section .left-menu .labelActive {background: url(img/checkbox_fajka.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactive {background: url(img/checkbox_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu #Categories {margin-top: 20px}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}

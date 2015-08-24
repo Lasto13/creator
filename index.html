@@ -243,13 +243,13 @@
             -->
             <div id='Categories'>
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat" ng-show='dataToRepeat.show'>
-                  <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active">
-                      <div class='drop_arrow' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.toggled}"></div>
+                  <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
+                      <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{'TypeProductDesignClicked' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'TypeProductDesign' : !TypeProduct.toggled || TypeProduct.prodsIncluded == 0, 'typeInactive':TypeProduct.prodsIncluded == 0}" ng-disabled="TypeProduct.prodsIncluded == 0" ng-click="TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.prodsIncluded}})</a>
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : Typetypeproducts.toggled, 'TypeTypeProductDesign' : !Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs" ng-click = "ClickedTypeType(Typetypeproducts);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}})</a>
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.prodsIncluded}})</a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}}) <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs"></div> </a>
                       </div>
-                      <div class='fajka' ng-click="TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);" ng-class="{'fajka-active' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled || TypeProduct.prodsIncluded == 0, 'typeInactive':TypeProduct.child[0].prodsIncluded == 0}"></div>
+                      <div class='fajka' ng-click="!TypeProduct.hasSubs || checkAllSubtypes(TypeProduct); TypeProduct.hasSubs || openTab(TypeProduct)" ng-class="{'halfT' : TypeProduct.halfToggled, 'fajka-active' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled}"></div>
                   </div>
               </div>
             </div>

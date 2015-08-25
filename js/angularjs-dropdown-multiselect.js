@@ -316,7 +316,6 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         });
                         $scope.selectedModel = [];
                         $scope.selectedModel.push(finalObj);
-                        console.log($scope.selectedModel,finalObj);
                         $scope.externalEvents.onItemSelect(finalObj);
                         if ($scope.settings.closeOnSelect) $scope.open = false;
 

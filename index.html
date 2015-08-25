@@ -104,7 +104,7 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeMaterialMenu();'></div>
           </div>
-          <div class="material-item" data-ng-click="ChoosenMaterial(material.ID); toggleFloorMatBorder.item = $index;" data-ng-class="{'activeMat' : toggleFloorMatBorder.item == $index}" ng-repeat="material in mats" class="btn-group" style="background:url({{material.Path}}); background-size:100%">
+          <div class="material-item" data-ng-click="ChoosenMaterial(material.ID)" ng-repeat="material in mats" style="background:url({{material.Path}}); background-size:100%">
             <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
           </div>
         </div>
@@ -113,7 +113,7 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeFloorMenu();'></div>
           </div>
-          <div class="material-item" ng-repeat="material in floors" data-ng-click="ChangeFloor(material.ID); toggleWallMatBorder.item = $index;" class="btn-group" data-ng-class="{'activeMat' : toggleWallMatBorder.item == $index}" style="background:url({{material.Path}}); background-size:100%">
+          <div class="material-item" ng-repeat="material in floors" data-ng-click="ChangeFloor(material.ID)" style="background:url({{material.Path}}); background-size:100%">
             <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
           </div>
         </div>
@@ -241,7 +241,11 @@
               <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
             </div>
             -->
-            <div id='Categories'>
+            <div id='Categories' ng-show='dataToRepeat.show'>
+              <div id= 'allSelector'>
+                <a ng-click='selectAllProds()'>Označiť všetky <div class='fajka' 
+                  ng-class="{'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div>
+              </div> </a>
               <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat" ng-show='dataToRepeat.show'>
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
                       <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
@@ -281,29 +285,15 @@
           <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
           <img src="img/fps_gui/km.png">
+          <input title="Ovládanie klávesnicou" id="k" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
+          <label for="k"></label>
+          <img src="img/fps_gui/k.png">
           <input title="Ovládanie myšou" id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
           <label for="lc"></label>
           <img src="img/fps_gui/mouse.png">
         <button id='d23' class="fps-btn btn" title="Návrat do editora" ng-click="editor()">
           EDITOR
         </button>
-      </div>
-      <div id='objMenu'>
-        <div class='closer'>
-        </div>
-        <div>
-          <div>
-            zasuvacie divko
-          </div>
-          <div>
-            dalsie divko
-          </div>
-          <div>
-            main content
-          </div>
-        </div>
-      </div>
-      <div id='matMenu'>
       </div>
     </div>
 

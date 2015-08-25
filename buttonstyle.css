@@ -4,7 +4,7 @@ label{cursor: pointer;}
 #errMsg ,.Button{vertical-align:middle;cursor: pointer}
 #errMsg h4{color: #7ca616}
 .menuHeader {position: relative;width: 100%;height: 24px;padding: 2px;}
-.closeMenu {position: relative;float: right; width:20px;height:20px;background-image: url(img/cancel_btn_sm.png);background-size:100%;}
+.closeMenu {position: relative;float: right; width:20px;height:20px;background-image: url(img/cancel_btn_sm.png);background-size:100%;z-index: 1001}
 .closeMenu:hover {background-image: url(img/cancel_btn_sm_hover.png);}
 #header .button.first,#header .button.second,#header .button.third{top:-4px;display:inline-block;font-weight:700}
 #header .button.first:hover:before,#header .button.first:hover,#header .button.first:hover:after,#header .button.second:hover,#header .button.second:hover:before,#header .button.second:hover:after,#header .button.third:hover,#header .button.third:hover:before,#header .button.third:hover:after{background-color: #559734}
@@ -87,11 +87,11 @@ label{cursor: pointer;}
 #header .button.nextActive:after{content:'';height:40px;right:-13px;bottom:1px;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}
 #header .button.nextActive:before{content:'';background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;height:40px;top:0;right:-13px;-webkit-transform:skew(35deg,0);-moz-transform:skew(35deg,0);-o-transform:skew(35deg,0);-ms-transform:skew(35deg,0);transform:skew(35deg,0)}
 #B0,#B1,#B2,#B3,#B4,#B6,#B7,#B8,#B9,.interier-section #sipka{background-size:100%}
-.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .podorys-section .activeMat{border: solid 2px #7CA616;}
-.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:415px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
-.dw-section #MenuItemDoor,.dw-section #MenuItemWindow{transition:left .5s ease-out 0s;border:1px solid #7CA616}
-.podorys-section .material-item{position:relative;width:100px;height:100px;display:inline-block;margin:1px}
+.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemDoor,.dw-section #MenuItemWindowa{transition:left .5s ease-out 0s;border:1px solid #7CA616}
+.podorys-section .material-item{position:relative;width:100px;height:100px;margin:3px}
 #B0{background-image:url(Buttons/1.png)}
 #B1{background-image:url(Buttons/15.png)}
 #B2{background-image:url(Buttons/18.png)}
@@ -147,7 +147,7 @@ label{cursor: pointer;}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em;position: relative;top: 6px; pointer-events: none;}
 .interier-section .left-menu .name{width: 198px;float: left;}
-.interier-section .left-menu .fajka{position: relative;float: right;width: 20px;height: 20px;margin-top: 4px; cursor: pointer}
+.interier-section .left-menu .fajka{position: relative;float: right;width:19px;height:19px;margin-top: 4px; cursor: pointer}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_fajka.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu .halfT{background: url(img/checkbox_on.png) !important;background-size: 100% !important}
@@ -155,11 +155,14 @@ label{cursor: pointer;}
 /*.interier-section .left-menu .subFajkaActive {background: url(img/checkbox_fajka.png)}
 .interier-section .left-menu .subFajkaInactive {background: url(img/checkbox_of.png)}*/
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
+.interier-section .left-menu a:active,.interier-section .left-menu a:hover {color: #000}
 .interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);cursor:pointer;background-size: 100%;float:left;margin-top: 4px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section .left-menu .drop_arrow_rotated{transform: rotate(90deg);}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {position: relative; height: 80px !important;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
+.interier-section .left-menu #allSelector {height: 28px;border-bottom: 1px solid}
+.interier-section .left-menu #allSelector a {width: 100%}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
 .interier-section .left-menu .dropdown-menu{border:none;position:relative;min-width:232px;border-radius:0;box-shadow: none;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
@@ -173,24 +176,24 @@ label{cursor: pointer;}
 .interier-section .left-menu .dropdown-toggle{width: 100%;font-size: 1.2em; cursor: pointer;}
 .interier-section .left-menu .margined {margin-left: 14px}
 .interier-section .left-menu .checkbox input[type="checkbox"] {position: absolute;right: 0px}
-.interier-section .left-menu label {position: absolute;right: 10px;width: 21px;height: 21px}
-.interier-section .left-menu .checkbox label {position: absolute;right: 0px;width: 21px;height: 21px}
+.interier-section .left-menu label {position: absolute;right: 10px;width: 19px;height: 191px}
+.interier-section .left-menu .checkbox label {position: absolute;right: 0px;width: 19px;height: 19px}
 .interier-section .left-menu .labelActiveSingle {background: url(img/radio_on.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelActive {background: url(img/checkbox_fajka.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactive {background: url(img/checkbox_of.png) no-repeat scroll 0% 0% / 100% auto;}
-.interier-section .left-menu #Categories {margin-top: 20px}
+.interier-section .left-menu #Categories {margin-top: 20px;border-top: solid 2px;padding-top: 10px}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
-.fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px;visibility:hidden}
+.fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px}
 .fps-section .round-menu #del:hover{background-position: left top !important;opacity: 0.95}
-.fps-section .round-menu #change-mat{position:relative;width:80px;height:79px;background:url(img/fps_gui/chmat.png);background-size: 100%;background-position:left bottom;left:91px;top:0;visibility:hidden}
+.fps-section .round-menu #change-mat{position:relative;width:80px;height:79px;background:url(img/fps_gui/chmat.png);background-size: 100%;background-position:left bottom;left:91px;top:0}
 .fps-section .round-menu #change-mat:hover{background-position:left top!important; opacity: 0.95}
-.fps-section .round-menu #close{position:absolute;width:30px;background:url(img/fps_gui/x.png);background-size: 100%;background-position:left bottom;left:72px;height:30px;top:69px;visibility:hidden}
+.fps-section .round-menu #close{position:absolute;width:30px;background:url(img/fps_gui/x.png);background-size: 100%;z-index:1001;background-position:left bottom;left:72px;height:30px;top:69px}
 .fps-section .round-menu #close:hover{background-position:left top!important;opacity: 0.95}
-.fps-section .round-menu #add{position:relative;width:80px;height:79px;background:url(img/fps_gui/add.png);background-size: 100%;background-position:left bottom;left:3px;top:10px;float:left;visibility:hidden}
+.fps-section .round-menu #add{position:relative;width:80px;height:79px;background:url(img/fps_gui/add.png);background-size: 100%;background-position:left bottom;left:3px;top:10px;float:left}
 .fps-section .round-menu #add:hover{background-position:left top!important;opacity: 0.95}
-.fps-section .round-menu #change-obj{position:relative;width:80px;height:79px;background:url(img/fps_gui/chobj.png);background-size: 100%;background-position:left bottom;left:91px;top:10px;visibility:hidden}
+.fps-section .round-menu #change-obj{position:relative;width:80px;height:79px;background:url(img/fps_gui/chobj.png);background-size: 100%;background-position:left bottom;left:91px;top:10px;}
 .fps-section .round-menu #change-obj:hover{background-position:left top!important;opacity: 0.95}
 .fps-section .btn-menu .fps-btn-round:hover,.fps-section .btn-menu .fps-btn2:hover,.fps-section .btn-menu .fps-btn:hover{border: solid 2px #7CA616;}
 .fps-section .btn-menu{position:absolute;width:204px;margin-left:auto;left:19px;top:200px;pointer-events:auto}
@@ -201,11 +204,11 @@ label{cursor: pointer;}
 .fps-section .btn-menu #colorCh,.fps-section .btn-menu #objMove,.fps-section .btn-menu #objRot,.fps-section .btn-menu #ok{visibility:hidden}
 .fps-section .btn-menu .fps-btn{color:#7CA616;position:relative;width:147px;height:35px;margin-left:14px}
 .fps-section #screenShot {position: absolute;width: 172px;height: 60px;margin-top: 5px;left: 47%;background:url(img/fps_gui/scrn.svg);background-size: 100%; pointer-events: auto;cursor: pointer;}
-.fps-section .right-menu{position: absolute;right: 0px;width: 443px;height: 69px;pointer-events: auto;margin-top: 5px;margin-right: 16px;background: white;padding: 13px;border-radius: 10px}
+.fps-section .right-menu{position: absolute;right: 0px;width: 480px;height:69px;pointer-events: auto;margin-top: 5px;margin-right: 16px;background: white;padding: 13px;border-radius: 10px}
 .fps-section .right-menu input{margin-left:20px;display:none}
-.fps-section .right-menu label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
+.fps-section .right-menu label{margin-top: 10px;display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px;margin-left:20px}
 .fps-section .right-menu input[type=radio]:checked+label{background:url(img/radio_on.png);margin-left:20px}
-.fps-section .right-menu #d23{position: relative;width: 35%;float: right;height: 34px;background-color: #fff;border: solid 2px #7ca616;color: #7ca616;}
+.fps-section .right-menu #d23{position: relative;width: 33%;float: right;height: 34px;background-color: #fff;border: solid 2px #7ca616;color: #7ca616;}
 .fps-section .right-menu #d23:hover{color: #fff;background: #7ca616}
 .fps-section #objMenu{display:none;position: absolute;right: 0px;background: rgb(124, 166, 22) none repeat scroll 0% 0%;width: 250px;height: 95%;z-index: 1001;top: 85px;}
 .fps-section #objMenu .closer{float: left;position: relative;height: 100%;width: 15px;background: red;}

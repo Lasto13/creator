@@ -46,40 +46,7 @@ var app = angular.module('app',[
     }
 }}])
 
-.factory('matJson', ['$http', function($http){
-    return {
-      get: function(){
-        return $http({
-          method: "GET",
-          url:'WallMaterialImages/InfoJson.json',
-          async: false,
-        success: function(){
-        }
-      }).then(function(response){
-          return response.data
-        }); 
-      }
-    }
-  }])
-
-.factory('floorJson', ['$http', function($http){
-    return {
-      get: function(){
-        return $http({
-          method: "GET",
-          url:'WallMaterialImages/FloorJson.json',
-          async: false,
-        success: function(){
-        console.log("new");
-        }
-      }).then(function(response){
-          return response.data
-        });
-      }
-    }
-  }])
-
-.factory('xRequest', ['$http', function($http){
+.factory('xMenu', ['$http', function($http){
     return {
       get: function(){
       $http.defaults.useXDomain = true;
@@ -95,6 +62,41 @@ var app = angular.module('app',[
       });
     }
   }}])
+
+.factory('XmatJson', ['$http', function($http){
+    return {
+      get: function(){
+        $http.defaults.useXDomain = true;
+        return $http({
+          method: "GET",
+          url:'http://85.159.111.72/WallJson.json',
+          async: false,
+        success: function(){
+        }
+      }).then(function(response){
+          return response.data
+        }); 
+      }
+    }
+  }])
+
+.factory('XfloorJson', ['$http', function($http){
+    return {
+      get: function(){
+        $http.defaults.useXDomain = true;
+        return $http({
+          method: "GET",
+          url:'http://85.159.111.72/FloorJson.json',
+          async: false,
+        success: function(){
+        console.log("new");
+        }
+      }).then(function(response){
+          return response.data
+        });
+      }
+    }
+  }])
 
 .directive('creatorDir', [ function(){
   return{

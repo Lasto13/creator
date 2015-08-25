@@ -328,7 +328,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     }
 }]);
 
-app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', function ($scope, matJson, floorJson,xRequest) {
+app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', function ($scope, XmatJson, XfloorJson,xMenu) {
 
     $scope.bla = '0';
 
@@ -349,11 +349,11 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
 
     $scope.isCollapsed = true;
 
-    matJson.get().then(function (data) {
+    XmatJson.get().then(function (data) {
         $scope.mats = data;
     });
 
-      floorJson.get().then(function (data) {
+      XfloorJson.get().then(function (data) {
         $scope.floors = data;
     });
     var hodnotaB15 = 0;
@@ -447,32 +447,52 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
         document.getElementById('B9').className='Button radio-picture btn-my';
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         document.getElementById('MaterialChooser').style.left = -230 +'px';
+        $scope.closeFloorMenu();
     };
     $scope.SingleWall = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.CurveWall = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_CurveWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/3.png), default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.FourWall = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_4Wall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/4.png), default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.Delete = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DeleteWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/5.png) 7 22 , default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.AddControlPoint = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_AddControlPoint");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/6.png), default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.PosunSteny = function () {
+        $scope.NoOp();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_MoveWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/7.png), default'});
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.ZmenaMat = function () {
+        $scope.NoOp();
         getErrorText('Zvoľte stenu pre zmenu materiálu');
         SendMessage("CanvasEditor", "SetView3D");
         document.getElementById('B12').className = 'Button btn-my radio-view';
@@ -506,18 +526,19 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
         SendMessage("Plane0", "ChangeFloorScale", vyskaSteny);
     }
 
-    $scope.toggleWallMatBorder = {item: 0}
-    $scope.toggleFloorMatBorder = {item: 0}
+    //$scope.toggleWallMatBorder = {item: 0}
+    //$scope.toggleFloorMatBorder = {item: 0}
 
     $scope.ChoosenMaterial = function (id) {
         SendMessage("changeMat", "ChangeMatGL", id);
-        document.getElementById('MaterialChooser').style.left = -240+'px';
-        $scope.ZmenaMat();
+        //document.getElementById('MaterialChooser').style.left = -240+'px';
+        //$scope.ZmenaMat();
         document.getElementById('B0').className = 'Button radio-picture btn-my';
         document.getElementById('B9').className = 'Button radio-picture btn-my2';
     }
 
     Set2D = function () {
+        $scope.NoOp();
         SendMessage("CanvasEditor", "SetView2D");
         $("#B12").removeClass('btn-my');
         $("#B12").addClass('btn-my2');
@@ -525,6 +546,7 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
         $("#B13").addClass('btn-my');
     }
     Set3D = function(){
+        $scope.NoOp();
         SendMessage("CanvasEditor", "SetView3D");
         $("#B13").removeClass('btn-my');
         $("#B13").addClass('btn-my2');
@@ -574,18 +596,29 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
             document.getElementById('B9').className='Button radio-picture btn-my';
             SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
             document.getElementById('B31').className = 'Button btn activeChoose';
+            document.getElementById('B32').className = 'Button btn btn-default';
             prepinac = true;
         } else if(prepinac == true){
             $scope.NoOp();
             $scope.closeFloorMenu();
             document.getElementById('B31').className = 'Button btn btn-default';
-
             prepinac = false;
         }
     }     
 
     $scope.Strih = function(){
+        prepinac = false;
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
+        document.getElementById('B0').className='Button radio-picture btn-my';
+        document.getElementById('B1').className='Button radio-picture btn-my';
+        document.getElementById('B2').className='Button radio-picture btn-my';
+        document.getElementById('B3').className='Button radio-picture btn-my';
+        document.getElementById('B4').className='Button radio-picture btn-my';
+        document.getElementById('B5').className='Button radio-picture btn-my';
+        document.getElementById('B8').className='Button radio-picture btn-my';
+        document.getElementById('B9').className='Button radio-picture btn-my';
+        document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn activeChoose';
     }
 
     $scope.VzorMaterialu = function(){
@@ -621,7 +654,8 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
         document.getElementById('MaterialChooser').style.left = "270px";
     }
     $scope.closeMaterialMenu = function(){
-        $scope.ZmenaMat();
+        //$scope.ZmenaMat();
+        $scope.NoOp();
         document.getElementById('MaterialChooser').style.left = -230 +'px';
     }
     $scope.closeFloorMenu = function(){
@@ -631,14 +665,14 @@ app.controller('podorysCtrl', ['$scope', 'matJson','floorJson','xRequest', funct
     }
 }]);
 
-app.controller('dwCtrl', ['$scope', 'xRequest', function ($scope, xRequest) {
+app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
 
     $scope.$on('calculate', function(e) {  
         calculateWindowBox(); 
         calculateDoorBox();
     });
 
-    xRequest.get().then(function (data) {
+    xMenu.get().then(function (data) {
         $scope.menuData = data;
         calculateWindowBox();
         calculateDoorBox();
@@ -798,9 +832,9 @@ app.controller('dwCtrl', ['$scope', 'xRequest', function ($scope, xRequest) {
     }
 }]);
 
-app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scope, menuJson,xRequest) {
+app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
 
-    xRequest.get().then(function(data){
+    xMenu.get().then(function(data){
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
         for (var i = 0; i < data.elements.length; i++){
@@ -837,7 +871,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
     $scope.TypIzby = [];
 
     $scope.izbaTexts = {buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
-    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll',closeOnSelect:true};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll'};
     $scope.manSettings = {
         allID:'manAll',
         chkbxID: 'toggleAllMans',
@@ -874,11 +908,12 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
 
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
         if (newIzba == oldIzba) return;
-        console.log(newIzba[0]);
         newIzba[0].isChecked = true;
         if (newIzba.length !== 0){
             //$scope.dataToRepeat = null;
             $scope.dataToRepeat = newIzba[0].child;
+            $scope.dataToRepeat.allSelected = false;
+            console.log($scope.dataToRepeat);
             if ($scope.asSelectedMans.length > 0){
                 $scope.dataToRepeat.show = true;
             } else {
@@ -893,7 +928,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
                     }
                 }
         }
-
         $scope.activeTT = [];
         numberOfProds();
     });
@@ -902,14 +936,7 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         if (newMans == oldMans) return;
         $scope.setSelectedMan(newMans);
     });
-    /*
-    $scope.changedValue = function (element) {
-        var id = element.id;
-        $scope.dataToRepeat = $scope.menuData.elements[id].child;
-
-        numberOfProds();
-    }
-    */
+    
     $scope.PridatNabytok = function (value) {
         SendMessage("GUI INTERIOR", "AddObjectFromWeb", JSON.stringify(value));
     };
@@ -960,6 +987,37 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
             return false;
         }
     }
+
+    $scope.selectAllProds = function(){
+        $scope.activeTT = [];
+        $scope.activeTabs = [];
+        if (!$scope.dataToRepeat.allSelected){
+            for (var i = 0; i < $scope.dataToRepeat.length; i++){
+                if ($scope.dataToRepeat[i].hasSubs == true){
+                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                        console.log('childs');
+                        $scope.dataToRepeat[i].child[j].toggled = true;
+                            $scope.activeTT.push($scope.dataToRepeat[i].child[j]);
+                    }
+                } else if ($scope.dataToRepeat[i].hasSubs == false) {
+                        $scope.activeTT.push($scope.dataToRepeat[i].child[0]);
+                }
+                $scope.dataToRepeat[i].toggled = true;
+                $scope.activeTabs.push($scope.dataToRepeat[i]);
+            }
+            $scope.dataToRepeat.allSelected = true;
+        } else {
+            for (var i = 0; i < $scope.dataToRepeat.length; i++){
+                if ($scope.dataToRepeat[i].hasSubs){
+                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                        $scope.dataToRepeat[i].child[j].toggled = false;
+                    }
+                } 
+                $scope.dataToRepeat[i].toggled = false;
+            }
+            $scope.dataToRepeat.allSelected = false;
+        }
+    }
     
     $scope.setSelectedMan = function(aoManufacturers) {
         $scope.asSelectedMans = [];
@@ -1003,34 +1061,6 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
                 tab.toggled = !tab.toggled;
             }
         }
-/*
-        if ($scope.isOpenTab(tab.uidisplayname)) {
-                for (var i = 0; i < tab.child.length; i++) {
-                    if (!tab.hasSubs) {
-                        var index = $scope.activeTT.indexOf(tab.child[i]);
-                        $scope.activeTT.splice(index, 1);
-                    }
-                }
-            //if it is, remove it from the activeTabs array
-            $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
-            //tab.toggled = !tab.toggled;
-        } else {
-            // if it's not, add it!
-            /*
-            for (var i = 0; i < tab.child.length; ++i) {
-                if (tab.hasSubs && tab.wasOpened !== true) {
-                    //tab.child[i].toggled = true;
-                    $scope.activeTT.push(tab.child[i]);
-                }
-                else if (!tab.hasSubs) {
-                    $scope.activeTT.push(tab.child[i]);
-                }
-            }
-            */
-            //$scope.activeTabs.push(tab.uidisplayname);
-            //tab.toggled = !tab.toggled;
-            //tab.wasOpened = true;
-        //}
     }
 
     $scope.checkAllSubtypes = function(tab){
@@ -1040,20 +1070,22 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         if (tab.toggled){
             for (var i = 0; i < tab.child.length; i++){
                 tab.child[i].toggled = true;
-                var index = $scope.activeTT.indexOf(tab.child[i]);
-                $scope.activeTT.splice(index, 1);
-                if (tab.child[i].toggled) {
+                if ($scope.activeTT.indexOf(tab.child[i]) > -1) {
+                    $scope.activeTT.splice($scope.activeTT.indexOf(tab.child[i]), 1);
                 }
-                    $scope.activeTT.push(tab.child[i]);
-            }
-        } else {
-           for (var i = 0; i < tab.child.length; i++){
-                tab.child[i].toggled = false;
                 var index = $scope.activeTT.indexOf(tab.child[i]);
-                $scope.activeTT.splice(index, 1);
+                $scope.activeTT.push(tab.child[i]);
+                console.log($scope.activeTT);
+            }
+        } else if (!tab.toggled){
+            console.log('not');
+            for (var i = 0; i < tab.child.length; i++){
+                tab.child[i].toggled = false;
+                if ($scope.activeTT.indexOf(tab.child[i]) > -1) {
+                    $scope.activeTT.splice($scope.activeTT.indexOf(tab.child[i]), 1);
+                }
             } 
         }
-        
     }
 
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
@@ -1068,16 +1100,19 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
 
     $scope.ClickedTypeType = function (tab, $parent) {
         tab.toggled = !tab.toggled;
+
         if (tab.toggled == false) {
+            console.log($scope.activeTT);
             var index = $scope.activeTT.indexOf(tab);
             $scope.activeTT.splice(index, 1);
+            console.log($scope.activeTT);
         }
         if (tab.toggled == true) {
             $scope.activeTT.push(tab);
         }
-        var _isT = 0; 
+        var _isT = 0;
         for (var i = 0; i < $parent.TypeProduct.child.length; i++){
-            if ($parent.TypeProduct.child[i].toggled){
+            if ($parent.TypeProduct.child[i].toggled == true){
                 _isT +=1;
             }
         }
@@ -1089,6 +1124,8 @@ app.controller('interierCtrl', ['$scope', 'menuJson','xRequest', function ($scop
         } else {
             $parent.TypeProduct.halfToggled = true;
         }
+
+        
     }
     $scope.isProductBoxDisplayed = false;
 
@@ -1262,43 +1299,55 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     }
 
     setGuiInfo = function (string) {
-        console.log();
-        var info = string;
-        if (info.charAt(0) == "0") {
-            document.getElementById('del').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('del').style.visibility = 'visible';
-        }
-        if (info.charAt(1) == "0") {
-            document.getElementById('change-mat').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('change-mat').style.visibility = 'visible';
-        }
-        if (info.charAt(2) == "0") {
-            document.getElementById('change-obj').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('change-obj').style.visibility = 'visible';
-        }
-        if (info.charAt(3) == "0") {
-            document.getElementById('add').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('add').style.visibility = 'visible';
-        }
-        if (info.charAt(4) == "0") {
-            document.getElementById('close').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('close').style.visibility = 'visible';
-        }
-        if (info.charAt(5) == "0") { //TO DO 
-            document.getElementById('colorCh').style.visibility = 'hidden';
-        }
-        else {
-            document.getElementById('colorCh').style.visibility = 'visible';
+        if (string == '0000000'){
+            hideAll();
+        } else {
+            showAll();
+            var info = string;
+            if (info.charAt(0) == "0") {
+                document.getElementById('del').style.opacity = '0.3';
+                document.getElementById('del').style.pointerEvents = 'none';
+            }
+            else {
+                document.getElementById('del').style.opacity = '1';
+                document.getElementById('del').style.pointerEvents = 'auto';
+            }
+            if (info.charAt(1) == "0") {
+                document.getElementById('change-mat').style.opacity = '0.3';
+                document.getElementById('change-mat').style.pointerEvents = 'none'
+            }
+            else {
+                document.getElementById('change-mat').style.opacity = '1';
+                document.getElementById('change-mat').style.pointerEvents = 'auto';
+            }
+            if (info.charAt(2) == "0") {
+                document.getElementById('change-obj').style.opacity = '0.3';
+                document.getElementById('change-obj').style.pointerEvents = 'none';
+            }
+            else {
+                document.getElementById('change-obj').style.opacity = '1';
+                document.getElementById('change-obj').style.pointerEvents = 'auto';
+            }
+            if (info.charAt(3) == "0") {
+                document.getElementById('add').style.opacity = '0.3';
+                document.getElementById('add').style.pointerEvents = 'none';
+            }
+            else {
+                document.getElementById('add').style.opacity = '1';
+                document.getElementById('add').style.pointerEvents = 'auto';
+            }
+            if (info.charAt(4) == "0") {
+                document.getElementById('close').style.visibility = 'hidden';
+            }
+            else {
+                document.getElementById('close').style.visibility = 'visible';
+            }
+            if (info.charAt(5) == "0") {
+                document.getElementById('colorCh').style.visibility = 'hidden';
+            }
+            else {
+                document.getElementById('colorCh').style.visibility = 'visible';
+            }
         }
     }
 
@@ -1318,6 +1367,15 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         document.getElementById('change-obj').style.visibility = 'hidden';
         document.getElementById("colorCh").style.visibility = 'hidden';
         document.getElementById("del").style.visibility = 'hidden';
+    }
+
+    var showAll = function () {
+        document.getElementById('change-mat').style.visibility = 'visible';
+        document.getElementById('close').style.visibility = 'visible';
+        document.getElementById('add').style.visibility = 'visible';
+        document.getElementById('change-obj').style.visibility = 'visible';
+        document.getElementById("colorCh").style.visibility = 'visible';
+        document.getElementById("del").style.visibility = 'visible';
     }
 
     $scope.closeRoundMenu = function () {
@@ -1359,7 +1417,6 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     $scope.editor = function () {
         SendMessage("FpsManager", "goToEditor");
-        //browserDimensions();
     }
 
     $scope.activeM = function () {

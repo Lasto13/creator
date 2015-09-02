@@ -10,11 +10,33 @@
     <link rel="stylesheet" href="buttonstyle.css" />
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
+
+    <div id='loginScreen'>
+      <div id='loginPlaceholder'>
+        <div id='enliLogo'></div>
+        <div id='vcLogo'></div>
+        <h1>ENLI VirtualCreator</h1>
+        <p>beta v. 1.0</p>
+        <div id='formHolder'>
+          <form ng-submit='login()'>
+            <input type='text' ng-model='loginName' placeholder='login@email.com' name="username"> 
+            <input type='password' ng-model='password' placeholder='heslo' name="pswd">
+            <button type='submit' class ='btn-login enli-btn' value=''></button>
+          </form>
+        </div>
+        <div id='linkHolder'>
+          <a href="www.enli.sk">www.enli.sk</a>
+        </div>
+      </div>
+    </div>
+
+    <!--
     <div id="browser-detect-wrap">
         <div class="inst-firefox"></div>
         <p>Virtual Creator nepodporuje prehliadač <span></span><br />
-        Nainštalujte si prosím Firefox.</p>
+        Nainštalujte si prosím Firefox.</p>s
     </div>
+    -->
     <div id="splash-sc">
       <div id="loader"></div>
       <div class="loader-count"></div>
@@ -161,20 +183,20 @@
               <div class='closeMenu' ng-click='setNoDWclass();NoOpDW();isDoorDropdownDisplayed = !isDoorDropdownDisplayed;'></div>
             </div>
             <div ng-repeat="door in menuData.dvere.child" class ="btn-group" ng-class="getClass($index, menuData.dvere.child)">
-                <div class="prod-image-cont">
-                  <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
+              <div class="prod-image-cont">
+                <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
+              </div>
+              <div class="prodInfo">
+                <div class='prod-top'>
+                  <h4>{{door.nazov}}</h4>
+                  <p> {{door.description}}</p>
                 </div>
-                <div class="prod-info">
-                  <div class='prod-top'>
-                    <h4>{{door.nazov}}</h4>
-                    <p> {{door.description}}</p>
-                  </div>
-                  <div class='prod-bot'>
-                    <button class="enli-btn btn" title="Vložiť dvere do scény" ng-click="ChooseDoor(door.asset); toggleProdMenu();">Vložiť</button>
-                    <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a> -->
-                  </div>
+                <div class='prod-bot'>
+                  <button class="enli-btn btn" title="Vložiť dvere do scény" ng-click="ChooseDoor(door.asset); toggleProdMenu();">Vložiť</button>
+                  <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a> -->
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -193,6 +215,7 @@
         <div class="left-menu">
           <div id="ProductBox" style="pointer-events: auto;">
             <div class='menuHeader'>
+              <a> Počet filtrovaných produktov: {{asProdCount}}/{{roomProdCount}}</a>
               <div class='closeMenu' ng-click='toggleProdMenu()'></div>
             </div>
             <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
@@ -214,44 +237,24 @@
           <div id="InterierMenu">
             <div id='sipkaHolder'>
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
-              <!--
-              <a id='manCol' ng-click = 'isCollapsed = !isCollapsed'>VÝROBCOVIA:</a>
-              <div id='man-cont'>
-                <div class='btn-group enli-checkbox-btn' ng-class='{active: man.isChecked}' ng-repeat='man in mf'>
-                  <a class='btn btn-default' ng-click='manClicked(man)'> {{man.uidisplayname}} </a>
-                </div>
-              </div>
-              -->
             </div>
             <div>
-              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" singles="true" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
+              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
               <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>
-            <!--
-            <div class="form-group"style="position:relative; ">
-              <select class="form-control input-sm"
-                  ng-model="vyrobca"
-                  ng-options="manufacturer.uidisplayname for manufacturer in menuData.manufacturers">
-              </select>
-            </div>
-            -->
-            <!--
-            <p>TYP IZBY:</p>
-            <div class="form-group">
-              <select class="form-control input-sm" ng-model="TypIzby" ng-options="element.uidisplayname for element in menuData.elements" ng-change = "changedValue(TypIzby)"></select>
-            </div>
-            -->
             <div id='Categories' ng-show='dataToRepeat.show'>
               <div id= 'allSelector'>
                 <a ng-click='selectAllProds()'>Označiť všetky <div class='fajka' 
-                  ng-class="{'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div>
-              </div> </a>
-              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat" ng-show='dataToRepeat.show'>
+                  ng-class="{'halfT' : dataToRepeat.halfToggled, 'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div> </a>
+              </div> 
+              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
                       <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
                       <div class='name'>
                         <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.prodsIncluded}})</a>
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}}) <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs"></div> </a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="TypeProduct.isOpen || isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}})
+                          <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="TypeProduct.isOpen && TypeProduct.hasSubs"></div> 
+                        </a>
                       </div>
                       <div class='fajka' ng-click="!TypeProduct.hasSubs || checkAllSubtypes(TypeProduct); TypeProduct.hasSubs || openTab(TypeProduct)" ng-class="{'halfT' : TypeProduct.halfToggled, 'fajka-active' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled}"></div>
                   </div>
@@ -285,7 +288,7 @@
           <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
           <img src="img/fps_gui/km.png">
-          <input title="Ovládanie klávesnicou" id="k" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
+          <input title="Ovládanie klávesnicou" id="k" ng-click="keybControll()" class="fps-input" type="radio" name="input">
           <label for="k"></label>
           <img src="img/fps_gui/k.png">
           <input title="Ovládanie myšou" id="lc" ng-click="mouse_controll()" class="fps-input" type="radio" name="input">
@@ -305,7 +308,7 @@
 
   <div id="sp-holder">
     <div id="sp-content">
-      <div style='text-align:center'><h4>Uložiť projekt ?</h4></div>
+      <div style='text-align:center'><h4>Uložiť projekt pod názvom:</h4></div>
       <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
       <button class="btn enli-btn" ng-click="saveScene()">Áno</button>
       <button class="btn enli-btn" ng-click="cancel()">Nie</button>
@@ -321,41 +324,49 @@
   </div>
 
   <!--  DIRECTIVE  div rozalia></div-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.min.js"></script>
+  <script type="text/javascript" src="js/angular.js"></script>
+  <script type="text/javascript" src="bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js"></script>
+  <script type="text/javascript" src="js/angularjs-dropdown-multiselect.js"></script>
+  <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/creatorSectionCtrls.js"></script>
+
+  
   <script type="text/javascript">
-      (function () {
+
+      var clientWidth = window.innerWidth,
+          lft = clientWidth/2 - 125;
+      document.getElementById('loginPlaceholder').style.left = lft + 'px';
+      
+      var isFps = false;
+
+      function initialize() {
+        console.log('initialize');
           var prot = ("https:" === document.location.protocol ? "https://" : "http://"), location = window.location.href, locationSplit = '', scripts = [];
           locationSplit = location.split('/');
           var loc = locationSplit[locationSplit.length - 3] + '/' + locationSplit[locationSplit.length - 2] + '/';
           scripts = [
-                    loc + "js/jquery-2.1.3.min.js",
-                    loc + "js/jquery-ui.js",
+                    //loc + "js/jquery-2.1.3.min.js",
+                    //loc + "js/jquery-ui.js",
                     loc + "js/plugin.jslib",
-                    loc + "js/angular.js",
-                    loc + "bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js",
+                    //loc + "js/angular.js",
+                    //loc + "bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js",
                     "maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
-                    loc + "js/app.js",
-                    loc + "js/creatorSectionCtrls.js",
+                    //loc + "js/app.js",
+                    //loc + "js/creatorSectionCtrls.js",
                     loc + "TemplateData/UnityProgress.js",
                     loc + "js/init-script.js",
-                    loc + "js/angularjs-dropdown-multiselect.js",
+                    //loc + "js/angularjs-dropdown-multiselect.js",
                     loc + "Release/UnityConfig.js",
                     loc + "Release/fileloader.js",
                     loc + "Release/VC.js",
                 ],
-                //br = get_browser();
-/*
-          if (br.name != 'Firefox') {
+
               addRobotoFont();
-              document.getElementById('browser-detect-wrap').getElementsByTagName('span')[0].innerHTML = br.name;
-          }
-*/
-//          else {
-              addRobotoFont();
-              document.getElementById('browser-detect-wrap').style.opacity = 0;
-              document.getElementById('browser-detect-wrap').style.display = 'none';
+              
               setTimeout(function () { asyncLoadScripts(scripts) }, 1);
-//          }
 
           function completed() { console.log('completed'); }
           function checkStateAndCall(path, callback) {
@@ -415,7 +426,8 @@
               var s = document.getElementsByTagName('script')[0];
               s.parentNode.insertBefore(wf, s);
           }
-      })();
+      };
+
   </script>
   </body>
 </html>

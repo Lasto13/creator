@@ -72,6 +72,7 @@ var app = angular.module('app',[
           url:'http://85.159.111.72/WallJson.json',
           async: false,
         success: function(){
+          $scope.calculateMatBoxes();
         }
       }).then(function(response){
           return response.data
@@ -89,7 +90,7 @@ var app = angular.module('app',[
           url:'http://85.159.111.72/FloorJson.json',
           async: false,
         success: function(){
-        console.log("new");
+        $scope.calculateMatBoxes();
         }
       }).then(function(response){
           return response.data

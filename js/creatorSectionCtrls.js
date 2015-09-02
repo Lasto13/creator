@@ -2,6 +2,7 @@
 app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function ($scope, $http, $window, $timeout) {
     console.logError = console.log;
     browserDimensions();
+    //SendMessage('FunctionsManager','SetInputEnabled','1');
 
     var w = angular.element($window);
 
@@ -9,6 +10,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         browserDimensions()
         $scope.$broadcast ('calculate');
     });
+
     function browserDimensions() {
         var clientWidth = window.innerWidth,
         clientHeight = window.innerHeight;
@@ -44,15 +46,36 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             default: $scope.activeMenu = {};
         }
     }
+
+    function userPlaces() {
+      var params = {
+        limit: 100
+      };
+      return $http.get('http://dev.enli.sk/api/places', {headers: {'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token'))}}).then(function(resp){
+        console.log(resp.data.places);
+        return resp.data.places;
+      }, function(err){
+        console.log('server response ERROR');
+        console.dir(err);
+        $q.reject(err);
+      });
+    };
     
-    login();
-    function login() {
-        var email = "plastovecky@enli.sk",
-            password = "enliportal";
+    //login();
+    $scope.login = function() {
+        var email = $scope.loginName,
+            password = $scope.password;
 
         var request = $http.post('http://dev.enli.sk/api/tokens', { username: email, password: password });
-        request.then(function (response) { saveDataToStorage(response.data); },
-        function (err) { console.log('Server Error'); console.dir(err); });
+        request.then(function (response) {
+            saveDataToStorage(response.data);
+            document.getElementById('loginScreen').style.opacity = '0';
+            document.getElementById('loginScreen').style.display = 'none';
+            $timeout(function() {
+                initialize();
+            }, 1500);  
+        },
+        function (err) {getErrorText('Nesprávne meno alebo heslo'); console.log('Server Error'); console.dir(err); });
     }
 
     function saveDataToStorage(data) {
@@ -60,23 +83,30 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             //myStorage = $window.sessionStorage;
             myStorage = $window.localStorage;
             myStorage.setItem('token', JSON.stringify(data.token.value));
-            myStorage.setItem('user', JSON.stringify(data.user));
-            getSave();
+            myStorage.setItem('user', JSON.stringify(data.user));            
+            var place = userPlaces().then(function(resp){
+                console.log(resp);
+                getSave(resp);
+            })
+            
         } else console.log('Storage is not suported');
     };
 
-    var getSave = function () {
-        var placeID = "55802cadd2aa3c3d6240679f";
+    //var placeID = "55802cadd2aa3c3d6240679f";
+    //var placeID = "55e6afbd8c26cc261ce71de4";
 
-        var promise = $http({
+    var getSave = function (place) {
+        console.log(place);
+
+        var promise = {
             method: 'GET',
-            url: 'http://dev.enli.sk/api/places/' + placeID + '/save',
+            url: 'http://dev.enli.sk/api/places/' + place[0].id + '/save',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
-        });
-        promise.success(function (data, status, headers, conf) {
-            $scope.Loads = data;
-            return data;
-        });
+        };
+
+        $http(promise).then(function(resp, status, headers, conf){
+            $scope.saves = resp.data;
+        }) 
     };
 
     $scope.isSettingOpened = false;
@@ -128,7 +158,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.selectedTemplate.path = "partials/podorys.tpl.html";
 
     setActiveSection = function (n) {
-        console.log(n);
         $scope.activeMenu = {};
         switch (n) {
             case "0": $scope.activeMenu.first = true; isFps=false; chMin(); break;
@@ -274,7 +303,12 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
     $scope.saveScene = function () {
         var saveName = document.getElementById('sp').value;
+        var token = myStorage.getItem('token');
+        console.log(token);
+        SendMessage("Save Game Manager", "setTokens", token);
+        SendMessage("Save Game Manager", "setAdvertisement", placeID);
         SendMessage("Save Game Manager", "SaveFromWeb", saveName);
+        //SendMessage("Save Game Manager", "setAdvertisement", '55e6afbd8c26cc261ce71de4');
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
@@ -329,7 +363,6 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', function ($scope, XmatJson, XfloorJson,xMenu) {
-
     $scope.bla = '0';
 
     document.getElementById("ButtonContainer").addEventListener('click', function (e) {
@@ -351,11 +384,38 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
 
     XmatJson.get().then(function (data) {
         $scope.mats = data;
+        calculateMatBox();
     });
 
-      XfloorJson.get().then(function (data) {
+    XfloorJson.get().then(function (data) {
         $scope.floors = data;
+        calculateFloorBox();
     });
+
+    var calculateMatBox = function(){
+        var matCount = $scope.mats.length;
+        var maxPBheight = window.innerHeight - 180;
+
+        if((matCount)*100 < maxPBheight){
+                document.getElementById('MaterialChooser').style.height = matCount*103 + 'px';    
+        } else {
+            document.getElementById('MaterialChooser').style.height = maxPBheight +'px';
+            document.getElementById('MaterialChooser').style.width = 125 +'px';
+        }
+    };
+
+    var calculateFloorBox = function(){
+        var flCount = $scope.floors.length;
+        var maxPBheight = window.innerHeight - 180;
+
+        if((flCount)*100 < maxPBheight){
+                document.getElementById('FloorChooser').style.height = matCount*103 + 'px';    
+        } else {
+            document.getElementById('FloorChooser').style.height = maxPBheight +'px';
+            document.getElementById('FloorChooser').style.width = 125 +'px';
+        }
+    };
+
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
     var hodnotaRotacie = 0;
@@ -584,6 +644,7 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
     }
      
     $scope.VyberPodlahy = function(){
+        $scope.NoOp();
         if(prepinac == false){
             $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
             document.getElementById('B0').className='Button radio-picture btn-my';
@@ -607,7 +668,9 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
     }     
 
     $scope.Strih = function(){
+        $scope.NoOp();
         prepinac = false;
+        $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/9.png), default'});
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
         document.getElementById('B0').className='Button radio-picture btn-my';
         document.getElementById('B1').className='Button radio-picture btn-my';
@@ -668,7 +731,7 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
 app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
 
     $scope.$on('calculate', function(e) {  
-        calculateWindowBox(); 
+        calculateWindowBox();
         calculateDoorBox();
     });
 
@@ -681,7 +744,6 @@ app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
     var calculateWindowBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.menuData.okna.child.length;
-        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
                 document.getElementById('MenuItemWindow').style.height = ($scope.menuData.okna.child.length/2)*157+3+24+'px';  
@@ -696,13 +758,13 @@ app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
     var calculateDoorBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.menuData.dvere.child.length;
-        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+3+24+'px';
+                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+3+30+'px';
                 document.getElementById('MenuItemDoor').style.overflow = 'hidden'; 
             } else{
-                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+80+24+'px';
+                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+80+30+'px';
+                document.getElementById('MenuItemDoor').style.overflow = 'hidden';
             }
         } else {
             document.getElementById('MenuItemDoor').style.height = maxPBheight +'px';
@@ -846,12 +908,11 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 }
             }
         }
-        //$scope.types = data.elements.
         $scope.dropdownData = [];
 
         for (var i = 0; i<$scope.mf.length; i++){
             $scope.dropdownData.push($scope.mf[i]);
-            $scope.mf[i].isChecked = false;
+            //$scope.mf[i].isChecked = false;
         }
         $scope.dataToRepeat = [];
     });
@@ -870,8 +931,8 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
     $scope.selectedManufacturers = [];
     $scope.TypIzby = [];
 
-    $scope.izbaTexts = {buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
-    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false,selectionLimit:1, allID:'roomAll'};
+    $scope.izbaTexts = {toggle: 'Všetky',buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: true, allID:'roomAll'};
     $scope.manSettings = {
         allID:'manAll',
         chkbxID: 'toggleAllMans',
@@ -905,28 +966,58 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
             }
         }
     }
-
+    
+    function conTwoArr(a1, a2) {
+        var unique = a1.concat(a2);
+        for (i = 0; i < unique.length; i++){
+            for (j = i+1 ; j < unique.length; j++){
+                if (unique[i].uidisplayname == unique[j].uidisplayname){
+                    unique.splice(j,1);
+                }
+            }
+        }
+        return unique;
+    };
+    
+    $scope.roomProdCount = 0;
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
-        if (newIzba == oldIzba) return;
-        newIzba[0].isChecked = true;
-        if (newIzba.length !== 0){
-            //$scope.dataToRepeat = null;
+        $scope.dataToRepeat = [];
+        if (newIzba == oldIzba || newIzba.length == 0) return;
+        $scope.roomProdCount = 0;
+        if (newIzba.length == 1){
             $scope.dataToRepeat = newIzba[0].child;
             $scope.dataToRepeat.allSelected = false;
-            console.log($scope.dataToRepeat);
             if ($scope.asSelectedMans.length > 0){
                 $scope.dataToRepeat.show = true;
             } else {
                 $scope.dataToRepeat.show = false;
             }
-                for (var i=0; i < $scope.dataToRepeat.length;i++){
+            for (var i=0; i < $scope.dataToRepeat.length;i++){
                 $scope.dataToRepeat[i].toggled = false;
-                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                        if ($scope.dataToRepeat[i].hasSubs){
-                            $scope.dataToRepeat[i].child[j].toggled = false;
-                        }
+                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                    $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                    if ($scope.dataToRepeat[i].hasSubs){
+                        $scope.dataToRepeat[i].child[j].toggled = false;
                     }
                 }
+            }
+        } else {
+            $scope.dataToRepeat = conTwoArr(newIzba[0].child,newIzba[1].child);
+            $scope.dataToRepeat.allSelected = false;
+            if ($scope.asSelectedMans.length > 0){
+                $scope.dataToRepeat.show = true;
+            } else {
+                $scope.dataToRepeat.show = false;
+            }
+            for (var i=0; i < $scope.dataToRepeat.length;i++){
+                $scope.dataToRepeat[i].toggled = false;
+                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                    $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                    if ($scope.dataToRepeat[i].hasSubs){
+                        $scope.dataToRepeat[i].child[j].toggled = false;
+                    }
+                }
+            }
         }
         $scope.activeTT = [];
         numberOfProds();
@@ -986,21 +1077,23 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
             // if not, return false
             return false;
         }
-    }
+    };
 
     $scope.selectAllProds = function(){
         $scope.activeTT = [];
-        $scope.activeTabs = [];
+        //$scope.activeTabs = [];
         if (!$scope.dataToRepeat.allSelected){
             for (var i = 0; i < $scope.dataToRepeat.length; i++){
                 if ($scope.dataToRepeat[i].hasSubs == true){
+                    $scope.dataToRepeat[i].isOpen = true;
+                    $scope.dataToRepeat[i].toggled = true;
+                    $scope.dataToRepeat[i].halfToggled = false;
                     for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                        console.log('childs');
                         $scope.dataToRepeat[i].child[j].toggled = true;
-                            $scope.activeTT.push($scope.dataToRepeat[i].child[j]);
+                        $scope.activeTT.push($scope.dataToRepeat[i].child[j]);
                     }
                 } else if ($scope.dataToRepeat[i].hasSubs == false) {
-                        $scope.activeTT.push($scope.dataToRepeat[i].child[0]);
+                    $scope.activeTT.push($scope.dataToRepeat[i].child[0]);
                 }
                 $scope.dataToRepeat[i].toggled = true;
                 $scope.activeTabs.push($scope.dataToRepeat[i]);
@@ -1009,6 +1102,9 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
         } else {
             for (var i = 0; i < $scope.dataToRepeat.length; i++){
                 if ($scope.dataToRepeat[i].hasSubs){
+                    $scope.dataToRepeat[i].isOpen = false;
+                    $scope.dataToRepeat[i].toggled = false;
+                    $scope.dataToRepeat[i].halfToggled = false;
                     for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
                         $scope.dataToRepeat[i].child[j].toggled = false;
                     }
@@ -1017,7 +1113,8 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
             }
             $scope.dataToRepeat.allSelected = false;
         }
-    }
+        checkIfAll();
+    };
     
     $scope.setSelectedMan = function(aoManufacturers) {
         $scope.asSelectedMans = [];
@@ -1027,7 +1124,7 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
             }
         }
-        if ($scope.dataToRepeat && $scope.asSelectedMans.length > 0){
+        if ($scope.TypIzby.length > 0 && $scope.asSelectedMans.length > 0){
                 $scope.dataToRepeat.show = true;
             } else{
                 $scope.dataToRepeat.show = false;
@@ -1046,7 +1143,7 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
             $scope.activeTabs.push(tab.uidisplayname);
             tab.isOpen = true;
             }
-        } else if ($scope.isOpenTab(tab.uidisplayname)) {
+        } else if (tab.toggled == true) {
                 for (var i = 0; i < tab.child.length; i++) {
                         var index = $scope.activeTT.indexOf(tab.child[i]);
                         $scope.activeTT.splice(index, 1);
@@ -1061,6 +1158,7 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 tab.toggled = !tab.toggled;
             }
         }
+        checkIfAll();
     }
 
     $scope.checkAllSubtypes = function(tab){
@@ -1075,10 +1173,8 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 }
                 var index = $scope.activeTT.indexOf(tab.child[i]);
                 $scope.activeTT.push(tab.child[i]);
-                console.log($scope.activeTT);
             }
         } else if (!tab.toggled){
-            console.log('not');
             for (var i = 0; i < tab.child.length; i++){
                 tab.child[i].toggled = false;
                 if ($scope.activeTT.indexOf(tab.child[i]) > -1) {
@@ -1086,8 +1182,35 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 }
             } 
         }
+        checkIfAll();
     }
-
+    
+    var checkIfAll = function(){
+        $scope.asProdCount = 0;
+        $scope.dataToRepeat.halfToggled = false;
+        for (var i = 0; i < $scope.dataToRepeat.length; i++ ){
+            if ($scope.dataToRepeat[i].hasSubs){
+                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                    console.log('child');
+                    if ($scope.dataToRepeat[i].child[j].toggled){
+                        $scope.asProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                    }
+                }
+            } else {
+                if ($scope.dataToRepeat[i].toggled){
+                    $scope.asProdCount += $scope.dataToRepeat[i].child[0].products.length;
+                }
+            }
+        }
+        if ($scope.asProdCount == $scope.roomProdCount){
+            $scope.dataToRepeat.allSelected = true;
+        } else if ($scope.asProdCount == 0) {
+            $scope.dataToRepeat.allSelected = false;
+        } else {
+            $scope.dataToRepeat.halfToggled = true;
+        }
+    };
+    
     $scope.$watchCollection('activeTT', function (newTT, oldTT) {
         if (newTT == oldTT) return;
         filterProducts();
@@ -1124,9 +1247,9 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
         } else {
             $parent.TypeProduct.halfToggled = true;
         }
-
-        
+        checkIfAll();
     }
+
     $scope.isProductBoxDisplayed = false;
 
     $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
@@ -1156,7 +1279,6 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
     $scope.calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.productsToShow.length;
-        var headerHeight = document.getElementsByClassName('menuHeader')[0].style;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
                 document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+3+24+'px';    
@@ -1187,7 +1309,6 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
         }
 
         numberOfProds();
-
         $scope.calculateProductBox();
 
         if ($scope.productsToShow.length > 0) {
@@ -1195,7 +1316,6 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
-           
         } else {
             $scope.isProductBoxDisplayed = false;
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
@@ -1409,6 +1529,10 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
 
     $scope.mouseWASD_controll = function () {
         SendMessage("FpsManager", "mouseWASD_controll");
+    }
+
+    $scope.keybControll = function (){
+        SendMessage("FpsManager", "keyboard_controll");
     }
 
     $scope.mouse_controll = function () {

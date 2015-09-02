@@ -1,4 +1,18 @@
 label{cursor: pointer;}
+#loginScreen {position: absolute;width: 100%;height: 100%;z-index: 1003;background: #fff;}
+#loginScreen .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:150px;height:26%;margin-top:20px;outline: none;}
+#loginScreen .btn-login {background: url(img/prihlasit.svg);height: 38px;background-size: 100%;cursor: pointer;border: 0px}
+#loginScreen .btn-login:hover {opacity: 0.9}
+#loginScreen p{color: #d3d3d3}
+#loginScreen #loginPlaceholder {position: absolute;width: 250px;height: 100%;text-align: center;}
+#loginScreen #loginPlaceholder #formHolder{width: 150px; margin-left: 50px}
+#loginScreen #loginPlaceholder #formHolder input{margin-top: 15px;width: 150px}
+#loginScreen #loginPlaceholder h1{font-size: 28px}
+#loginScreen #loginPlaceholder #enliLogo {position: relative;background: transparent url("img/logo_enli.png") no-repeat scroll 0% ;width: 250px;height: 105px;background-size: 100%;margin-top: 50px}
+#loginScreen #loginPlaceholder #vcLogo{position: relative;width: 200px; height: 200px; background: transparent url("img/l_vc.svg") no-repeat scroll 0% 0%;background-size: 100%;margin-left: 25px;margin-top: 50px}
+#loginScreen #loginPlaceholder #linkHolder {position: absolute;bottom: 25px;margin-left: 90px;}
+#loginScreen #loginPlaceholder #linkHolder a:hover{font-family:Roboto;text-decoration: underline;color: #7CA616}
+/*.btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}*/
 #splash-sc,#wrapper{width:100%;height:100%}
 #sp-content h4,a{color:#7ca616}
 #errMsg ,.Button{vertical-align:middle;cursor: pointer}
@@ -23,7 +37,7 @@ label{cursor: pointer;}
 #np-content h4 {color: #7CA616; display: inline-block}
 #header .button.first,#header .button.next:after,#header .button.second,#header .button.third{background-color:#7CA616}
 #header .button.first,#header .button.second,#header .button.third{background-color:#7CA616;background-color:#7CA616;background-color:#7CA616}
-#errMsg{top:47%;left:40%;width:500px;height:40px;z-index:1001;border-radius:10px;background:#fff;text-align:center;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
+#errMsg{top:47%;left:40%;width:500px;height:40px;z-index:1003;border-radius:10px;background:#fff;text-align:center;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
 #header{top:0;width:100%;height:80px;z-index:1000}
 #header a:focus{text-decoration: none; color: white}
 #header #EnliLogo{background-size:100% auto;height:70px;width:150px;top:8%!important;left:47%}
@@ -87,11 +101,12 @@ label{cursor: pointer;}
 #header .button.nextActive:after{content:'';height:40px;right:-13px;bottom:1px;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}
 #header .button.nextActive:before{content:'';background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;height:40px;top:0;right:-13px;-webkit-transform:skew(35deg,0);-moz-transform:skew(35deg,0);-o-transform:skew(35deg,0);-ms-transform:skew(35deg,0);transform:skew(35deg,0)}
 #B0,#B1,#B2,#B3,#B4,#B6,#B7,#B8,#B9,.interier-section #sipka{background-size:100%}
-.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;overflow: hidden;overflow-y: scroll;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .podorys-section .activeMat{border: solid 2px #7CA616;}
-.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;overflow: hidden;overflow-y: scroll;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor,.dw-section #MenuItemWindowa{transition:left .5s ease-out 0s;border:1px solid #7CA616}
 .podorys-section .material-item{position:relative;width:100px;height:100px;margin:3px}
+.podorys-section .material-item:hover{border: 2px solid #7CA616}
 #B0{background-image:url(Buttons/1.png)}
 #B1{background-image:url(Buttons/15.png)}
 #B2{background-image:url(Buttons/18.png)}
@@ -106,15 +121,16 @@ label{cursor: pointer;}
 .dw-section{position:absolute;z-index:999;height:100%;width:100%;top:80px;pointer-events:none}
 .dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:15px}
 .dw-section .left-menu{position:relative;height:100%;width:270px;background-color:#FFF;pointer-events:auto;top:70px}
-.dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border: 1px solid #7CA616;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
 .dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor .door-item{width:100px;height:100px;display:inline-block}
-.dw-section #MenuItemWindow .btn-group .prod-image-cont {position:relative;width:30%;height:93%;float:left;margin-top:3%}
-.dw-section #MenuItemDoor .btn-group .prod-image-cont{position:relative;width:30%;height:93%;float:left;margin-top:3%}
+.dw-section #MenuItemWindow .prod-image-cont {position:relative;width:30%;height:93%;float:left;margin-top:3%}
+.dw-section #MenuItemDoor .prod-image-cont{position:relative;width:30%;height:93%;float:left;margin-top:3%}
 .dw-section #MenuItemWindow .prod-image{display:inline-block;width:80%;height:100%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
-.dw-section #MenuItemDoor .prod-image{display:inline-block;width:80%;height:170%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
-.dw-section #MenuItemWindow .btn-group .prod-info{width:65%;position:relative;float:left}
+.dw-section #MenuItemDoor .prod-image{display:inline-block;width:80%;height:100%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
+.dw-section #MenuItemWindow .prod-info{width:65%;position:relative;float:left}
+.dw-section #MenuItemDoor .prodInfo{width:65%;position:relative;float:left}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right}
 .dw-section .btn-group{width:50%;height:157px}
 .dw-section .rightColumn {border-left: solid 1px; border-color:#7ca616}
@@ -151,7 +167,7 @@ label{cursor: pointer;}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_fajka.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu .halfT{background: url(img/checkbox_on.png) !important;background-size: 100% !important}
-.interier-section .left-menu .subFajka {position: relative; width: 15px; height: 15px; background-size: 100%;float: right;margin-top: -20px; margin-right: -14px}
+.interier-section .left-menu .subFajka {position: relative; width: 15px; height: 15px; background-size: 100%;float: right;margin-top: -20px; margin-right: -14px; -webkit-margin-before: 4px;}
 /*.interier-section .left-menu .subFajkaActive {background: url(img/checkbox_fajka.png)}
 .interier-section .left-menu .subFajkaInactive {background: url(img/checkbox_of.png)}*/
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
@@ -173,10 +189,10 @@ label{cursor: pointer;}
 .interier-section .left-menu .dropdown-menu > li > a:hover,
 .interier-section .left-menu .dropdown-menu > li > a:focus {color: #7CA616;text-decoration: none;background-color: #000;outline: 0;background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);background-repeat: repeat-x;}
 .interier-section .left-menu .dropdown{width:100%;padding:5px}
-.interier-section .left-menu .dropdown-toggle{width: 100%;font-size: 1.2em; cursor: pointer;}
+.interier-section .left-menu .dropdown-toggle{width: 100%;font-size: 1.2em; cursor: pointer;margin-bottom: 10px}
 .interier-section .left-menu .margined {margin-left: 14px}
 .interier-section .left-menu .checkbox input[type="checkbox"] {position: absolute;right: 0px}
-.interier-section .left-menu label {position: absolute;right: 10px;width: 19px;height: 191px}
+.interier-section .left-menu label {position: absolute;right: 10px;width: 19px;height: 19px}
 .interier-section .left-menu .checkbox label {position: absolute;right: 0px;width: 19px;height: 19px}
 .interier-section .left-menu .labelActiveSingle {background: url(img/radio_on.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}

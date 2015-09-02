@@ -16,54 +16,35 @@ var prepinac = false;
     perc.style.top = topP + 'px';
     text.style.top = topT + 'px';
 
-var isFps = false;
 var prepinacSet = 0,
     prepinacSave = 0,
     prepinacLoad = 0;
 
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
+    document.addEventListener('pointerlockchange', lockChange, false);
+    document.addEventListener('mozpointerlockchange', lockChange, false);
+    document.addEventListener('webkitpointerlockchange', lockChange, false);
 
-    // Check if the XMLHttpRequest object has a "withCredentials" property.
-    // "withCredentials" only exists on XMLHTTPRequest2 objects.
-    xhr.open(method, url, true);
-
-  } else if (typeof XDomainRequest != "undefined") {
-
-    // Otherwise, check if XDomainRequest.
-    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-
-  } else {
-
-    // Otherwise, CORS is not supported by the browser.
-    xhr = null;
-
-  }
-  return xhr;
-}
-
-var xhr = createCORSRequest('GET', '85.159.111.72/jsonWEBGL.json');
-if (!xhr) {
-  throw new Error('CORS not supported');
-}
-
-xhr.onload = function() {
- var responseText = xhr.responseText;
- console.log(responseText, xhr.response);
- // process the response.
-};
-
-xhr.onerror = function() {
-  console.log('There was an error!');
-};
+    function lockChange(){
+        console.log('lock');
+        SendMessage("FpsManager", "LockChange", "");
+    }
 
 String.prototype.splice = function( idx, rem, s ) {
     return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
 };
+/*
+Array.prototype.unique = function() {
+    var a = this.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
 
+    return a;
+};
+*/
 /*function getBrowser() {
     var browser;
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) browser = "firefox";
@@ -73,12 +54,6 @@ String.prototype.splice = function( idx, rem, s ) {
     if (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && navigator.userAgent.indexOf('Chrome') == -1) browser = "safari";
 
     return browser;
-}*/
-
-//$("#slider").slider();
-/*function closeLoader () {
-var width = $(document).width();
-document.getElementById('loading-box').style.display = "none";
 }*/
 
 // Connect to canvas

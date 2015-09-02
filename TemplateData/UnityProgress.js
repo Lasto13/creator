@@ -64,6 +64,10 @@ function UnityProgress (dom) {
                     var _btni1 = document.getElementById('BI5').className='Button btn-my2 radio-i',
                         _btni3 = document.getElementById('BI7').className='Button btn-my radio-i';
 
+                    document.getElementById('B31').className = 'Button btn btn-default';
+                    document.getElementById('B32').className = 'Button btn btn-default';
+                    //document.getElementById('B31').style.className = 'Button btn btn-default';
+
                     e.preventDefault();
                 }
             }, false);

@@ -15,6 +15,19 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         var clientWidth = window.innerWidth,
         clientHeight = window.innerHeight;
 
+        var leftP = clientWidth / 2 - 20,
+        topP = clientHeight / 2 - 10,
+        leftT = clientWidth / 2 - 200,
+        topT = clientHeight / 2 + 80,
+        perc = document.getElementById("splash-sc").children[1],
+        text = document.getElementById("splash-sc").children[2];
+
+        perc.style.left = leftP + 'px';
+        text.style.left = leftT + 'px';
+
+        perc.style.top = topP + 'px';
+        text.style.top = topT + 'px';
+
         var canvasH = document.getElementById('canvasHolder'),
             c_width = clientWidth - 270,
             c_height = clientHeight - 180;
@@ -106,7 +119,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
 
         $http(promise).then(function(resp, status, headers, conf){
             $scope.saves = resp.data;
-        }) 
+        })
     };
 
     $scope.isSettingOpened = false;

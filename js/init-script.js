@@ -1,6 +1,7 @@
 window.addEventListener('keydown', function (e) { if (e.keyCode === 8) { if (e.target === document.body) e.preventDefault(); } }, true);
 var prepinac = false;
-
+    
+    /*
     var clientWidth = window.innerWidth,
     clientHeight = window.innerHeight,
     leftP = clientWidth / 2 - 20,
@@ -15,10 +16,11 @@ var prepinac = false;
 
     perc.style.top = topP + 'px';
     text.style.top = topT + 'px';
+    */
 
-var prepinacSet = 0,
-    prepinacSave = 0,
-    prepinacLoad = 0;
+    var prepinacSet = 0,
+        prepinacSave = 0,
+        prepinacLoad = 0;
 
     document.addEventListener('pointerlockchange', lockChange, false);
     document.addEventListener('mozpointerlockchange', lockChange, false);
@@ -32,19 +34,7 @@ var prepinacSet = 0,
 String.prototype.splice = function( idx, rem, s ) {
     return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
 };
-/*
-Array.prototype.unique = function() {
-    var a = this.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
-                a.splice(j--, 1);
-        }
-    }
 
-    return a;
-};
-*/
 /*function getBrowser() {
     var browser;
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) browser = "firefox";

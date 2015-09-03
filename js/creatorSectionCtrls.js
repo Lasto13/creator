@@ -1,5 +1,5 @@
 //'use strict';
-app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function ($scope, $http, $window, $timeout) {
+app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFactory', function ($scope, $http, $window, $timeout, jsonFactory) {
     console.logError = console.log;
     browserDimensions();
     //SendMessage('FunctionsManager','SetInputEnabled','1');
@@ -29,7 +29,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         text.style.top = topT + 'px';
 
         var canvasH = document.getElementById('canvasHolder'),
-            c_width = clientWidth - 270,
+            c_width = clientWidth - 300,
             c_height = clientHeight - 180;
 
         if (isFps){
@@ -65,12 +65,11 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         limit: 100
       };
       return $http.get('http://dev.enli.sk/api/places', {headers: {'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token'))}}).then(function(resp){
-        console.log(resp.data.places);
         return resp.data.places;
       }, function(err){
         console.log('server response ERROR');
         console.dir(err);
-        $q.reject(err);
+        //$q.reject(err);
       });
     };
     
@@ -90,6 +89,9 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         },
         function (err) {getErrorText('Nesprávne meno alebo heslo'); console.log('Server Error'); console.dir(err); });
     }
+    
+    //var placeID = "55802cadd2aa3c3d6240679f";
+    var placeID = '';
 
     function saveDataToStorage(data) {
         if ($window.Storage) {
@@ -98,29 +100,40 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
             myStorage.setItem('token', JSON.stringify(data.token.value));
             myStorage.setItem('user', JSON.stringify(data.user));            
             var place = userPlaces().then(function(resp){
-                console.log(resp);
-                getSave(resp);
+                placeID = resp[0].id;
+                getSave(placeID);
             })
-            
         } else console.log('Storage is not suported');
     };
 
-    //var placeID = "55802cadd2aa3c3d6240679f";
-    //var placeID = "55e6afbd8c26cc261ce71de4";
-
-    var getSave = function (place) {
-        console.log(place);
-
+    var getSave = function (placeID) {
         var promise = {
             method: 'GET',
-            url: 'http://dev.enli.sk/api/places/' + place[0].id + '/save',
+            url: 'http://dev.enli.sk/api/places/' + placeID + '/save',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
+        };
+
+        $http(promise).then(function(resp, status, headers, conf){
+            console.log(resp.data);
+            $scope.saves = resp.data;
+        })
+    };
+
+    $scope.deleteSave = function(saveName){
+        //var placeID = myStorage.getItem('place');
+        var promise = {
+            method: 'DELETE',
+            url: 'http://dev.enli.sk/api/places/' + placeID + '/save/' + saveName,
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
         };
 
         $http(promise).then(function(resp, status, headers, conf){
             $scope.saves = resp.data;
-        })
-    };
+        },function(err){
+            console.log('error');
+            console.dir(err);
+        });
+    }
 
     $scope.isSettingOpened = false;
 
@@ -317,6 +330,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     $scope.saveScene = function () {
         var saveName = document.getElementById('sp').value;
         var token = myStorage.getItem('token');
+        //var placeID = myStorage.getItem('place');
+        console.log(placeID);
         console.log(token);
         SendMessage("Save Game Manager", "setTokens", token);
         SendMessage("Save Game Manager", "setAdvertisement", placeID);
@@ -326,7 +341,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
         SendMessage('FunctionsManager','SetInputEnabled','1');
-        setTimeout(function(){getSave();}, 3000);
+        setTimeout(function(){getSave(placeID);}, 3000);
     }
 
     setShowRozmery = function (show) {
@@ -375,9 +390,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', function (
     }
 }]);
 
-app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', function ($scope, XmatJson, XfloorJson,xMenu) {
-    $scope.bla = '0';
-
+app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
+    $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     document.getElementById("ButtonContainer").addEventListener('click', function (e) {
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
@@ -391,19 +405,17 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
         }
     }
     
-    $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-
-    $scope.isCollapsed = true;
-
-    XmatJson.get().then(function (data) {
+    jsonFactory.loadWalls().then(function(data){
         $scope.mats = data;
         calculateMatBox();
-    });
+    })
 
-    XfloorJson.get().then(function (data) {
+    jsonFactory.loadFloors().then(function(data){
         $scope.floors = data;
         calculateFloorBox();
-    });
+    })
+
+    $scope.isCollapsed = true;
 
     var calculateMatBox = function(){
         var matCount = $scope.mats.length;
@@ -442,7 +454,7 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
             slide: function (event, ui) {
                 hodnotaRotacie = ui.value/360;
                 SendMessage("RotaciaVzoruSlider","WebRotated", hodnotaRotacie);
-                $scope.bla = JSON.stringify(Math.round(ui.value)) + '°';
+                $scope.slValue = JSON.stringify(Math.round(ui.value)) + '°';
                 if (!$scope.$$phase) $scope.$apply();
             }
         });
@@ -714,11 +726,14 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
     }
 
     isFloorChoosen = function(value){
+        console.log(value);
         if(value == 0){
-            $("#B33").addClass('disabled');
+            SendMessage("VzorButton","SelectionWindowClosed");
+            document.getElementById('FloorChooser').style.left = -230 +'px';
         }
         else{
-            $("#B33").removeClass('disabled');
+            document.getElementById('FloorChooser').style.left = "270px";
+            SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
         }
     }
 
@@ -741,14 +756,14 @@ app.controller('podorysCtrl', ['$scope', 'XmatJson','XfloorJson','xMenu', functi
     }
 }]);
 
-app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
+app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
 
     $scope.$on('calculate', function(e) {  
         calculateWindowBox();
         calculateDoorBox();
     });
 
-    xMenu.get().then(function (data) {
+    jsonFactory.loadMenu().then(function (data) {
         $scope.menuData = data;
         calculateWindowBox();
         calculateDoorBox();
@@ -907,9 +922,9 @@ app.controller('dwCtrl', ['$scope', 'xMenu', function ($scope, xMenu) {
     }
 }]);
 
-app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
+app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFactory) {
 
-    xMenu.get().then(function(data){
+    jsonFactory.loadMenu().then(function(data){
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
         for (var i = 0; i < data.elements.length; i++){
@@ -929,7 +944,7 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
         }
         $scope.dataToRepeat = [];
     });
-
+    
     var hodnotaBI4 = 0;
 
     $scope.activeTT = [];
@@ -978,7 +993,7 @@ app.controller('interierCtrl', ['$scope','xMenu', function ($scope,xMenu) {
                 }
             }
         }
-    }
+    };
     
     function conTwoArr(a1, a2) {
         var unique = a1.concat(a2);

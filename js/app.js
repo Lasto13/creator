@@ -30,74 +30,54 @@ var app = angular.module('app',[
     };
   })
 
-.factory('menuJson', ['$http', function($http){
-    return {
-      get: function(){
-      return $http({
-        method: "GET",
-        url:'jsonWEBGL.json',
-        async: false,
-      success: function(){
-      console.log("new");
-      }
-    }).then(function(response){
-        return response.data
-      });
-    }
-}}])
+.factory('communicator', ['$http', function($http){
+  var service = {}
 
-.factory('xMenu', ['$http', function($http){
-    return {
-      get: function(){
-      $http.defaults.useXDomain = true;
-      return $http({
+  //service.
+}])
+
+.factory('jsonFactory', ['$http', function($http){
+  var service = {}
+
+  service.loadMenu = function(){
+    $http.defaults.useXDomain = true;
+    return $http({
         method: "GET",
         url:'http://85.159.111.72/jsonWEBGL.json',
         async: false,
-      success: function(){
-      console.log("cors");
-      }
     }).then(function(response){
         return response.data
+    });
+  }
+
+  service.loadFloors = function(){
+      $http.defaults.useXDomain = true;
+      return $http({
+        method: "GET",
+        url:'http://85.159.111.72/FloorJson.json',
+        async: false,
+      }).then(function(response){
+        return response.data
       });
-    }
-  }}])
+  }
 
-.factory('XmatJson', ['$http', function($http){
-    return {
-      get: function(){
-        $http.defaults.useXDomain = true;
-        return $http({
-          method: "GET",
-          url:'http://85.159.111.72/WallJson.json',
-          async: false,
-        success: function(){
-          $scope.calculateMatBoxes();
-        }
-      }).then(function(response){
-          return response.data
-        }); 
-      }
-    }
-  }])
-
-.factory('XfloorJson', ['$http', function($http){
-    return {
-      get: function(){
-        $http.defaults.useXDomain = true;
-        return $http({
-          method: "GET",
-          url:'http://85.159.111.72/FloorJson.json',
-          async: false,
-        success: function(){
+  service.loadWalls = function(){
+    $http.defaults.useXDomain = true;
+    return $http({
+      method: "GET",
+      url:'http://85.159.111.72/WallJson.json',
+      async: false,
+      success: function(){
         $scope.calculateMatBoxes();
-        }
-      }).then(function(response){
-          return response.data
-        });
       }
-    }
-  }])
+    }).then(function(response){
+      return response.data
+    });
+  }
+
+  return service;
+
+}])
 
 .directive('creatorDir', [ function(){
   return{

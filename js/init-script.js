@@ -27,7 +27,6 @@ var prepinac = false;
     document.addEventListener('webkitpointerlockchange', lockChange, false);
 
     function lockChange(){
-        console.log('lock');
         SendMessage("FpsManager", "LockChange", "");
     }
 

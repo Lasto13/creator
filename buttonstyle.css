@@ -1,17 +1,50 @@
 label{cursor: pointer;}
+::-webkit-scrollbar {
+	background: #DEDEDE;
+	width: 6px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+}
+::-webkit-scrollbar-corner {
+	background: transparent; 
+}
+::-webkit-scrollbar:horizontal {
+	width: 10px;
+	height: 10px; 
+}
+::-webkit-scrollbar-thumb {
+	height: 10px;
+	background-color: #7ca616;
+	/*border: solid whiteSmoke 4px;*/
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #7ca616; 
+}
+body{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 #loginScreen {position: absolute;width: 100%;height: 100%;z-index: 1003;background: #fff;}
 #loginScreen .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:150px;height:26%;margin-top:20px;outline: none;}
 #loginScreen .btn-login {background: url(img/prihlasit.svg);height: 38px;background-size: 100%;cursor: pointer;border: 0px}
 #loginScreen .btn-login:hover {opacity: 0.9}
 #loginScreen p{color: #d3d3d3}
-#loginScreen #loginPlaceholder {position: absolute;width: 250px;height: 100%;text-align: center;}
+#loginScreen #loginPlaceholder {position: relative;width: 250px;height: 100%;text-align: center;margin: auto}
 #loginScreen #loginPlaceholder #formHolder{width: 150px; margin-left: 50px}
 #loginScreen #loginPlaceholder #formHolder input{margin-top: 15px;width: 150px}
 #loginScreen #loginPlaceholder h1{font-size: 28px}
 #loginScreen #loginPlaceholder #enliLogo {position: relative;background: transparent url("img/logo_enli.png") no-repeat scroll 0% ;width: 250px;height: 105px;background-size: 100%;margin-top: 50px}
 #loginScreen #loginPlaceholder #vcLogo{position: relative;width: 200px; height: 200px; background: transparent url("img/l_vc.svg") no-repeat scroll 0% 0%;background-size: 100%;margin-left: 25px;margin-top: 50px}
-#loginScreen #loginPlaceholder #linkHolder {position: absolute;bottom: 25px;margin-left: 90px;}
-#loginScreen #loginPlaceholder #linkHolder a:hover{font-family:Roboto;text-decoration: underline;color: #7CA616}
+#loginScreen #loginPlaceholder #linkHolder {position: fixed;bottom: 25px;margin-left: 90px;}
+#loginScreen #loginPlaceholder #linkHolder a:hover{text-decoration: underline;color: #7CA616}
 /*.btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}*/
 #splash-sc,#wrapper{width:100%;height:100%}
 #sp-content h4,a{color:#7ca616}
@@ -132,23 +165,26 @@ label{cursor: pointer;}
 .dw-section #MenuItemWindow .prod-info{width:65%;position:relative;float:left}
 .dw-section #MenuItemDoor .prodInfo{width:65%;position:relative;float:left}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right}
+.dw-section .prod-info p{font-size: 12px;}
 .dw-section .btn-group{width:50%;height:157px}
-.dw-section .rightColumn {border-left: solid 1px; border-color:#7ca616}
+.dw-section .leftColumn {border-right: solid 1px; border-color:#7ca616}
 .dw-section .NotLastOnes {border-bottom: solid 1px;border-color:#7ca616}
+.dw-section .specialOne {border-bottom: solid 1px;border-color:#7ca616}
 .dw-section h4{color: #7CA616;margin-top:5px}
 .dw-section .menuHeader {height:26px}
 .dw-section .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
-.dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}}
+.dw-section .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%}
 .dw-section .enli-btn:active,.dw-section .enli-btn:focus,.dw-section .enli-btn:hover{color:#fff;background-position:left bottom}
 .interier-section{position:relative;top:80px;width:100%;height:100%;pointer-events:none;z-index:999}
 .interier-section #sipkaHolder {height: 35px}
 .interier-section .sipkaInactive {opacity: 0.2}
 .interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;cursor:pointer;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
-.interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%;padding:8px 12px}
+.interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}
 .interier-section #ProductBox .NotLastOnes {border-bottom: solid 1px; border-color: #7CA616}
-.interier-section #ProductBox .rightColumn {border-left: solid 1px; border-color: #7CA616}
+.interier-section #ProductBox .leftColumn {border-right: solid 1px; border-color: #7CA616}
+.interier-section #ProductBox .specialOne {border-bottom: solid 1px;border-color:#7ca616}
 .interier-section #ProductBox .btn-group .prod-top {position: relative;width:245px;height: 114px; overflow: hidden}
 .interier-section #ProductBox .btn-group{width:50%;height:157px}
 .interier-section #ProductBox .btn-group .prod-image-cont{position:relative;width:30%;float:left;margin-top:35px}
@@ -172,12 +208,12 @@ label{cursor: pointer;}
 .interier-section .left-menu .subFajkaInactive {background: url(img/checkbox_of.png)}*/
 .interier-section .left-menu a {font-size: 1.2em;text-decoration: none; cursor: pointer;}
 .interier-section .left-menu a:active,.interier-section .left-menu a:hover {color: #000}
-.interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);cursor:pointer;background-size: 100%;float:left;margin-top: 4px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
+.interier-section .left-menu .drop_arrow {width:10px; height:16px;background: url(Buttons/dropdown.png);cursor:pointer;background-size: 100%;float:left;margin-left:2px;margin-top: 4px;margin-right: 4px;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
 .interier-section .left-menu .drop_arrow_rotated{transform: rotate(90deg);}
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {position: relative; height: 80px !important;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
-.interier-section .left-menu #allSelector {height: 28px;border-bottom: 1px solid}
+.interier-section .left-menu #allSelector {height: 28px;margin-bottom: 10px;border-bottom: 1px solid}
 .interier-section .left-menu #allSelector a {width: 100%}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
@@ -198,7 +234,7 @@ label{cursor: pointer;}
 .interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelActive {background: url(img/checkbox_fajka.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactive {background: url(img/checkbox_of.png) no-repeat scroll 0% 0% / 100% auto;}
-.interier-section .left-menu #Categories {margin-top: 20px;border-top: solid 2px;padding-top: 10px}
+.interier-section .left-menu #Categories {margin-top: 20px;border-top: solid 2px;padding-top: 10;width: 108%;overflow-y:scroll}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
 .fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px}
@@ -246,7 +282,7 @@ label{cursor: pointer;}
 #header #LoadProject{overflow:auto;height:350px;width:300px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-350px}
 #loader,#loader:after,#loader:before{border:3px solid transparent}
 .Button{width:50px;height:50px;margin-left:-2px}
-.DoorButton{vertical-align:left;width:100px;height:100px;margin-left:2px}
+/*.DoorButton{vertical-align:left;width:100px;height:100px;margin-left:2px}*/
 #B20,#B21,#B23{width:180px;height:30px}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{display:block;vertical-align:middle}
 .btn-my{background-position:left bottom;cursor: pointer}
@@ -330,6 +366,7 @@ label{cursor: pointer;}
 /*.interier-section .left-menu .enli-checkbox-btn .active .enli-cancel-btn-sm {background: url('../media/img/cancel_btn_sm.png') no-repeat 50% 50%;}
 .interier-section .left-menu .enli-checkbox-btn .enli-cancel-btn-sm:hover {background: url('../media/img/cancel_btn_sm_hover.png') no-repeat 50% 50%;}
 */
+/*
 .chbx-label{
 	padding-left: 25px;
 }
@@ -351,7 +388,7 @@ label{cursor: pointer;}
     width: 18px;
     display:inline-block;
 }
-
+*/
 #loader {
   background-color: #fff;
   z-index: 1001;

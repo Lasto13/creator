@@ -19,13 +19,13 @@
         <p>beta v. 1.0</p>
         <div id='formHolder'>
           <form ng-submit='login()'>
-            <input type='text' ng-model='loginName' placeholder='login@email.com' name="username"> 
-            <input type='password' ng-model='password' placeholder='heslo' name="pswd">
-            <button type='submit' class ='btn-login enli-btn' value=''></button>
+            <input type='text' ng-model='user.login' placeholder='login@email.com' name="username"> 
+            <input type='password' ng-model='user.pass' placeholder='heslo' name="pswd">
+            <button type='submit' class ='btn-login enli-btn' ng-class="{}" value=''></button>
           </form>
         </div>
         <div id='linkHolder'>
-          <a href="www.enli.sk">www.enli.sk</a>
+          <a href="http://www.enli.sk" target='_blank'>www.enli.sk</a>
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@
               <div class="prod-image-cont">
                 <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
               </div>
-              <div class="prodInfo">
+              <div class="prod-info">
                 <div class='prod-top'>
                   <h4>{{door.nazov}}</h4>
                   <p> {{door.description}}</p>
@@ -234,7 +234,7 @@
               </div>
             </div>
           </div>
-          <div id="InterierMenu">
+          <div id="InterierMenu" unselectable="on">
             <div id='sipkaHolder'>
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
             </div>
@@ -309,7 +309,7 @@
   <div id="sp-holder">
     <div id="sp-content">
       <div style='text-align:center'><h4>Uložiť projekt pod názvom:</h4></div>
-      <input  id="sp" type="text" value="" name="usrname" style="pointer-events: auto">
+      <input  id="sp" type="text" value="" ng-model='saveName' name="usrname" style="pointer-events: auto">
       <button class="btn enli-btn" ng-click="saveScene()">Áno</button>
       <button class="btn enli-btn" ng-click="cancel()">Nie</button>
     </div>
@@ -323,7 +323,6 @@
     </div>
   </div>
 
-  <!--  DIRECTIVE  div rozalia></div-->
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.min.js"></script>
   <script type="text/javascript" src="js/angular.js"></script>
   <script type="text/javascript" src="bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js"></script>
@@ -338,7 +337,7 @@
 
       var clientWidth = window.innerWidth,
           lft = clientWidth/2 - 125;
-      document.getElementById('loginPlaceholder').style.left = lft + 'px';
+      //document.getElementById('loginPlaceholder').style.left = lft + 'px';
       
       var isFps = false;
 

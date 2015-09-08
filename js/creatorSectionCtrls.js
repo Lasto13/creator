@@ -1,8 +1,8 @@
-//'use strict';
-app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFactory', function ($scope, $http, $window, $timeout, jsonFactory) {
+/*'use strict';*/
+app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'communicator', function ($scope, $window, $timeout, jsonFactory, communicator) {
     console.logError = console.log;
     browserDimensions();
-    //SendMessage('FunctionsManager','SetInputEnabled','1');
+    /*SendMessage('FunctionsManager','SetInputEnabled','1');*/
 
     var w = angular.element($window);
 
@@ -31,6 +31,7 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFacto
         var canvasH = document.getElementById('canvasHolder'),
             c_width = clientWidth - 300,
             c_height = clientHeight - 180;
+        document.getElementById('Categories').style.height = clientHeight - 300 + 'px';
 
         if (isFps){
             canvasH.style.width = clientWidth + 'px';
@@ -46,6 +47,8 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFacto
     }
 
     var myStorage;
+    $scope.user = {};
+    $scope.saveName = '';
     $scope.activeMenu = {};
     $scope.activeMenu.first = true;
 
@@ -60,78 +63,36 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFacto
         }
     }
 
-    function userPlaces() {
-      var params = {
-        limit: 100
-      };
-      return $http.get('http://dev.enli.sk/api/places', {headers: {'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token'))}}).then(function(resp){
-        return resp.data.places;
-      }, function(err){
-        console.log('server response ERROR');
-        console.dir(err);
-        //$q.reject(err);
-      });
-    };
-    
-    //login();
-    $scope.login = function() {
-        var email = $scope.loginName,
-            password = $scope.password;
+    $scope.logButDisabled = false;
 
-        var request = $http.post('http://dev.enli.sk/api/tokens', { username: email, password: password });
-        request.then(function (response) {
-            saveDataToStorage(response.data);
-            document.getElementById('loginScreen').style.opacity = '0';
-            document.getElementById('loginScreen').style.display = 'none';
-            $timeout(function() {
-                initialize();
-            }, 1500);  
-        },
-        function (err) {getErrorText('Nesprávne meno alebo heslo'); console.log('Server Error'); console.dir(err); });
-    }
-    
-    //var placeID = "55802cadd2aa3c3d6240679f";
-    var placeID = '';
-
-    function saveDataToStorage(data) {
-        if ($window.Storage) {
-            //myStorage = $window.sessionStorage;
-            myStorage = $window.localStorage;
-            myStorage.setItem('token', JSON.stringify(data.token.value));
-            myStorage.setItem('user', JSON.stringify(data.user));            
-            var place = userPlaces().then(function(resp){
-                placeID = resp[0].id;
-                getSave(placeID);
+    $scope.login = function(){
+        if ($scope.logButDisabled == false){
+            $scope.logButDisabled = true;
+            var email = $scope.user.login,
+                password = $scope.user.pass;
+            communicator.login(email,password).then(function(resp){
+            if (!resp) {$scope.logButDisabled = false}
+                communicator.saveDataToStorage(resp.data);
+                communicator.userPlaces().then(function(resp){
+                var placeID = resp[0].id;
+                if ($window.localStorage)
+                {
+                    var myStorage = $window.localStorage;
+                    myStorage.setItem('place', JSON.stringify(placeID));    
+                }
+                communicator.getSave().then(function(resp){
+                    $scope.saves = resp.data;
+                })
             })
-        } else console.log('Storage is not suported');
-    };
-
-    var getSave = function (placeID) {
-        var promise = {
-            method: 'GET',
-            url: 'http://dev.enli.sk/api/places/' + placeID + '/save',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
-        };
-
-        $http(promise).then(function(resp, status, headers, conf){
-            console.log(resp.data);
-            $scope.saves = resp.data;
         })
-    };
+        } else {return}
+        
+    }
 
     $scope.deleteSave = function(saveName){
-        //var placeID = myStorage.getItem('place');
-        var promise = {
-            method: 'DELETE',
-            url: 'http://dev.enli.sk/api/places/' + placeID + '/save/' + saveName,
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }
-        };
-
-        $http(promise).then(function(resp, status, headers, conf){
+        communicator.deleteSave(saveName).then(function(resp, status, headers, conf){
             $scope.saves = resp.data;
-        },function(err){
-            console.log('error');
-            console.dir(err);
+            if (!$scope.$$phase) $scope.$apply();
         });
     }
 
@@ -303,17 +264,16 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFacto
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
     $scope.RozmerySet = function (value) {SendMessage("Settings", "ShowTextFromWeb", value); };
-    $scope.MierkaAuto = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 0);}
-    $scope.Mierka10 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 500);}
-    $scope.Mierka50 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 100);}
-    $scope.Mierka100 = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 50);}
-    $scope.MierkaVyp = function () {SendMessage("Mriezka_nastavenie", "SetRuler", 1000000);}
+    $scope.MierkaAuto = function () {SendMessage("Settings", "SetRuler", 0);}
+    $scope.Mierka10 = function () {SendMessage("Settings", "SetRuler", 500);}
+    $scope.Mierka50 = function () {SendMessage("Settings", "SetRuler", 100);}
+    $scope.Mierka100 = function () {SendMessage("Settings", "SetRuler", 50);}
+    $scope.MierkaVyp = function () {SendMessage("Settings", "SetRuler", 1000000);}
 
     $scope.UlozitProjekt = function () {
         document.getElementById('sp-holder').style.display = "block";
         document.getElementById('sp-holder').style.opacity = 1;
         document.getElementById('sp').value = '';
-        //setInputValue();
         document.getElementById('sp').focus();
         closeAll();
         SendMessage('FunctionsManager','SetInputEnabled','0');
@@ -328,24 +288,21 @@ app.controller('mainCtrl', ['$scope', '$http', '$window', '$timeout', 'jsonFacto
     }
 
     $scope.saveScene = function () {
-        var saveName = document.getElementById('sp').value;
-        var token = myStorage.getItem('token');
-        //var placeID = myStorage.getItem('place');
-        console.log(placeID);
-        console.log(token);
-        SendMessage("Save Game Manager", "setTokens", token);
-        SendMessage("Save Game Manager", "setAdvertisement", placeID);
-        SendMessage("Save Game Manager", "SaveFromWeb", saveName);
-        //SendMessage("Save Game Manager", "setAdvertisement", '55e6afbd8c26cc261ce71de4');
+        var saveName = $scope.saveName;
+
+        communicator.saveScene(saveName);
+
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
-        SendMessage('FunctionsManager','SetInputEnabled','1');
-        setTimeout(function(){getSave(placeID);}, 3000);
+        setTimeout(function(){
+            communicator.getSave().then(function(resp){
+                $scope.saves = resp.data;
+            })
+        ;}, 3000);
     }
 
     setShowRozmery = function (show) {
-       
         if (show == 0) {
             $('#RozmeryVypnute').prop('checked', true);
             $scope.RozmerySet(0);
@@ -916,8 +873,9 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
     }
     $scope.getClass = function(indx, list){
         return {
-            rightColumn: indx % 2,
-            NotLastOnes: indx < list.length - 2 
+            leftColumn: Math.abs(indx+1) % 2 == 1,
+            NotLastOnes: indx < list.length - 2,
+            specialOne: indx % 2 && list.length %2
         }
     }
 }]);
@@ -1095,21 +1053,21 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     // initiate an array to hold all active tabs
     $scope.activeTabs = [];
 
-    // check if the tab is active
+    /* check if the tab is active*/
     $scope.isOpenTab = function (tab) {
-        // check if this tab is already in the activeTabs array
+        /* check if this tab is already in the activeTabs array */
         if ($scope.activeTabs.indexOf(tab) > -1) {
-            // if so, return true
+            /* if so, return true*/
             return true;
         } else {
-            // if not, return false
+            /* if not, return false*/
             return false;
         }
     };
 
     $scope.selectAllProds = function(){
         $scope.activeTT = [];
-        //$scope.activeTabs = [];
+        $scope.activeTabs = [];
         if (!$scope.dataToRepeat.allSelected){
             for (var i = 0; i < $scope.dataToRepeat.length; i++){
                 if ($scope.dataToRepeat[i].hasSubs == true){
@@ -1124,7 +1082,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
                     $scope.activeTT.push($scope.dataToRepeat[i].child[0]);
                 }
                 $scope.dataToRepeat[i].toggled = true;
-                $scope.activeTabs.push($scope.dataToRepeat[i]);
+                $scope.activeTabs.push($scope.dataToRepeat[i].uidisplayname);
             }
             $scope.dataToRepeat.allSelected = true;
         } else {
@@ -1160,9 +1118,11 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
         if ($scope.activeTT.length > 0) filterProducts();
     };
 
-    // function to 'open' a tab
+    /* function to 'open' a tab*/
     $scope.openTab = function (tab) {
-        // check if tab is already open
+        console.log(tab);
+        console.log($scope.activeTabs);
+        /* check if tab is already open*/
         if (tab.hasSubs){
             if ($scope.isOpenTab(tab.uidisplayname)) {
                 $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
@@ -1176,7 +1136,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
                         var index = $scope.activeTT.indexOf(tab.child[i]);
                         $scope.activeTT.splice(index, 1);
                 }
-            //if it is, remove it from the activeTabs array
+            /*if it is, remove it from the activeTabs array*/
             $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
             tab.toggled = !tab.toggled;
         } else {
@@ -1219,7 +1179,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
         for (var i = 0; i < $scope.dataToRepeat.length; i++ ){
             if ($scope.dataToRepeat[i].hasSubs){
                 for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    console.log('child');
                     if ($scope.dataToRepeat[i].child[j].toggled){
                         $scope.asProdCount += $scope.dataToRepeat[i].child[j].products.length;
                     }
@@ -1253,10 +1212,8 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
         tab.toggled = !tab.toggled;
 
         if (tab.toggled == false) {
-            console.log($scope.activeTT);
             var index = $scope.activeTT.indexOf(tab);
             $scope.activeTT.splice(index, 1);
-            console.log($scope.activeTT);
         }
         if (tab.toggled == true) {
             $scope.activeTT.push(tab);
@@ -1366,8 +1323,9 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     });
     $scope.getClass = function(indx, list){
         return {
-            rightColumn: indx % 2,
-            NotLastOnes: indx < list.length - 2 
+            leftColumn: Math.abs(indx+1) % 2 == 1,
+            NotLastOnes: indx < list.length - 2,
+            specialOne: indx % 2 && list.length %2
         }
     }
     $("a.radio-i").click(function () {
@@ -1419,13 +1377,11 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
     sendScreenAsBytes = function(){
 
         for (var i = 0; i < arguments.length; i++) {
-            //console.log(arguments[i]);
         }
-        //console.log(byteString);
         /*
         var str = byteString;
         var bytes = [];
-        /*
+        
         for (var i = 0; i < str.length; ++i) {
             bytes.push(str.charCodeAt(i));
         }

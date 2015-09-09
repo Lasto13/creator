@@ -32,6 +32,7 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+a {letter-spacing: -1px}
 #loginScreen {position: absolute;width: 100%;height: 100%;z-index: 1003;background: #fff;}
 #loginScreen .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:150px;height:26%;margin-top:20px;outline: none;}
 #loginScreen .btn-login {background: url(img/prihlasit.svg);height: 38px;background-size: 100%;cursor: pointer;border: 0px}
@@ -134,12 +135,13 @@ body{
 #header .button.nextActive:after{content:'';height:40px;right:-13px;bottom:1px;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;-webkit-transform:skew(-35deg,0);-moz-transform:skew(-35deg,0);-o-transform:skew(-35deg,0);-ms-transform:skew(-35deg,0);transform:skew(-35deg,0);-webkit-box-shadow:2px 1px 2px rgba(100,100,100,.1);box-shadow:2px 1px 2px rgba(100,100,100,.1)}
 #header .button.nextActive:before{content:'';background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;background-color:#559734;height:40px;top:0;right:-13px;-webkit-transform:skew(35deg,0);-moz-transform:skew(35deg,0);-o-transform:skew(35deg,0);-ms-transform:skew(35deg,0);transform:skew(35deg,0)}
 #B0,#B1,#B2,#B3,#B4,#B6,#B7,#B8,#B9,.interier-section #sipka{background-size:100%}
-.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;overflow: hidden;overflow-y: scroll;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #MaterialChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;width:109px;overflow: hidden;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .podorys-section .activeMat{border: solid 2px #7CA616;}
-.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;overflow: hidden;overflow-y: scroll;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.podorys-section #FloorChooser{position:absolute;left: -230px;float:left;z-index:999;background-color:#FFF;height:550px;overflow: hidden;width:109px;border:1px solid #7ca616;border-radius:5px;pointer-events:auto;transition:left .5s ease-out 0s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor,.dw-section #MenuItemWindowa{transition:left .5s ease-out 0s;border:1px solid #7CA616}
 .podorys-section .material-item{position:relative;width:100px;height:100px;margin:3px}
 .podorys-section .material-item:hover{border: 2px solid #7CA616}
+.podorys-section #fHolder, .podorys-section #mHolder {overflow: auto}
 #B0{background-image:url(Buttons/1.png)}
 #B1{background-image:url(Buttons/15.png)}
 #B2{background-image:url(Buttons/18.png)}
@@ -154,9 +156,9 @@ body{
 .dw-section{position:absolute;z-index:999;height:100%;width:100%;top:80px;pointer-events:none}
 .dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:15px}
 .dw-section .left-menu{position:relative;height:100%;width:270px;background-color:#FFF;pointer-events:auto;top:70px}
-.dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border: 1px solid #7CA616;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemWindow{background-color:#FFF;height:84%;width:720px;border: 1px solid #7CA616;border-radius:5px;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemWindow .window-item{width:100px;height:100px;display:inline-block}
-.dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;overflow:auto;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.dw-section #MenuItemDoor{background-color:#FFF;height:84%;width:720px;border-radius:5px;float:left;position:absolute;pointer-events:auto;left:5px;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .dw-section #MenuItemDoor .door-item{width:100px;height:100px;display:inline-block}
 .dw-section #MenuItemWindow .prod-image-cont {position:relative;width:30%;height:93%;float:left;margin-top:3%}
 .dw-section #MenuItemDoor .prod-image-cont{position:relative;width:30%;height:93%;float:left;margin-top:3%}
@@ -164,6 +166,7 @@ body{
 .dw-section #MenuItemDoor .prod-image{display:inline-block;width:80%;height:100%;margin-left:2px;background-size:100% auto;background-repeat:no-repeat}
 .dw-section #MenuItemWindow .prod-info{width:65%;position:relative;float:left}
 .dw-section #MenuItemDoor .prodInfo{width:65%;position:relative;float:left}
+.dw-section #wHolder, .dw-section #dHolder {overflow-y: auto}
 .dw-section .prod-info a{color:#7CA616;cursor:pointer;position: relative;width: 55%;float: right}
 .dw-section .prod-info p{font-size: 12px;}
 .dw-section .btn-group{width:50%;height:157px}
@@ -179,8 +182,9 @@ body{
 .interier-section #sipkaHolder {height: 35px}
 .interier-section .sipkaInactive {opacity: 0.2}
 .interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;cursor:pointer;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
-.interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;overflow:auto;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%}
+.interier-section #ProductBox #product_holder {overflow: auto;}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}
 .interier-section #ProductBox .NotLastOnes {border-bottom: solid 1px; border-color: #7CA616}
 .interier-section #ProductBox .leftColumn {border-right: solid 1px; border-color: #7CA616}
@@ -192,14 +196,14 @@ body{
 .interier-section #interier-toolbar{position:relative;background-color:#FFF;height:70px;z-index:999;width:100%;pointer-events:auto}
 .interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:15px}
 .interier-section .left-menu{position:relative;height:100%;width:270px;z-index:999;background-color:#FFF;pointer-events:auto}
-.interier-section .left-menu #InterierMenu{top:150px;height:100%;width:260px;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
+.interier-section .left-menu #InterierMenu{top:150px;height:100%;width:100%;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat;cursor:pointer;}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h4{color:#7ca616}
 .interier-section #ProductBox p {font-size: .9em}
 .interier-section .left-menu p {font-size: 1.2em;position: relative;top: 6px; pointer-events: none;}
-.interier-section .left-menu .name{width: 198px;float: left;}
-.interier-section .left-menu .fajka{position: relative;float: right;width:19px;height:19px;margin-top: 4px; cursor: pointer}
+.interier-section .left-menu .name{width: 190px;float: left;}
+.interier-section .left-menu .fajka{position: relative;float: right;width:19px;height:19px;margin-top: 4px; margin-right: 9px cursor: pointer}
 .interier-section .left-menu .fajka-active {background: url(img/checkbox_fajka.png); background-size: 100%}
 .interier-section .left-menu .fajka-inActive {background: url(img/checkbox_of.png); background-size: 100%}
 .interier-section .left-menu .halfT{background: url(img/checkbox_on.png) !important;background-size: 100% !important}
@@ -213,7 +217,7 @@ body{
 .interier-section .left-menu #manCol:hover {color: #638512}
 .interier-section .left-menu #man-cont {position: relative; height: 80px !important;}
 .interier-section .left-menu #man-cont a {margin-bottom: 1px}
-.interier-section .left-menu #allSelector {height: 32px;margin-bottom: 10px;border-bottom: 1px solid}
+.interier-section .left-menu #allSelector {height: 32px;width:98%;margin-bottom: 10px;margin-top: 10px;border-bottom: 1px solid}
 .interier-section .left-menu #allSelector a {width: 100%}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
@@ -221,7 +225,7 @@ body{
 .interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;box-shadow: none;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
 .interier-section .left-menu .dropdown-menu .divider {height: 1px; margin:0px; margin-top: 3px}
-.interier-section .left-menu .dropdown-menu > li > a {height:30px;padding: 3px 10px;outline: 0; color: #7CA616}
+.interier-section .left-menu .dropdown-menu > li > a {height:30px;padding: 3px 10px;outline: 0}
 .interier-section .left-menu .dropdown-menu > li > a:hover,
 .interier-section .left-menu .dropdown-menu > li > a:focus {color: #7CA616;text-decoration: none;background-color: #000;outline: 0;background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);background-repeat: repeat-x;}
 .interier-section .left-menu .dropdown{width:100%;padding:5px}
@@ -234,7 +238,8 @@ body{
 .interier-section .left-menu .labelInactiveSingle {background: url(img/radio_of.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelActive {background: url(img/checkbox_fajka.png) no-repeat scroll 0% 0% / 100% auto;}
 .interier-section .left-menu .labelInactive {background: url(img/checkbox_of.png) no-repeat scroll 0% 0% / 100% auto;}
-.interier-section .left-menu #Categories {margin-top: 20px;border-top: solid 2px;padding-top: 10;width: 108%;overflow-y:scroll}
+.interier-section .left-menu #Categories {margin-top: 20px;border-top: solid 2px;padding-top: 10;width: 102%;overflow-y:auto}
+.interier-section .left-menu #Categories .accordion__container {width: 98%}
 .fps-section{z-index:999;position:absolute;width:100%;bottom:0;height:100%;pointer-events:none;overflow:hidden}
 .fps-section .round-menu{pointer-events:auto;position:absolute;width:180px;height:180px;top:9px;left:19px}
 .fps-section .round-menu #del{position:relative;width:80px;height:79px;background:url(img/fps_gui/del.png);background-size: 100%;background-position:left bottom;float:left;left:3px}

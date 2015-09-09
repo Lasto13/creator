@@ -72,7 +72,9 @@
 
 <div id="LoadProject" style="pointer-events: auto;"><br>
   <div ng-repeat = "save in saves.savePlace.parts | orderObjectBy:'created':true" class = "btn-group" >
-    <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;">
+    <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;"> 
+    <!-- <div id="loadcontent">
+      <img ng-src="{{getImgForSave(save)}}">-->
     </div>
     <p>{{save.name}}</p>
     <p>{{save.created | date:'d.M.yyyy'}}</p>

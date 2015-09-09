@@ -90,9 +90,9 @@
           </div>
           <div class="left-menu-item">
             <input title="Kresliť obvodovú stenu" type="radio" id="radio10" name="Type" value="Obvod" ng-click = "Obvodova()">
-            <label title="Kresliť obvodovú stenu" for="radio10"></label> Obvodová<br>
+            <label title="Kresliť obvodovú stenu" for="radio10"></label> Obvodová (40cm)<br>
             <input totle="Kresliť vnútornú priečku" type="radio" id="radio11" name="Type" value="Vnutro" checked="checked" ng-click = "Vnutorna()">
-            <label title="Kresliť vnútornú priečku" for="radio11"></label> Vnútorná
+            <label title="Kresliť vnútornú priečku" for="radio11"></label> Vnútorná (20cm)
           </div>
           <div class="left-menu-item">
             <div>
@@ -126,8 +126,10 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeMaterialMenu();'></div>
           </div>
-          <div class="material-item" data-ng-click="ChoosenMaterial(material.ID)" ng-repeat="material in mats" style="background:url({{material.Path}}); background-size:100%">
-            <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
+          <div id='mHolder'>
+            <div class="material-item" data-ng-click="ChoosenMaterial(material.ID)" ng-repeat="material in mats" style="background:url({{material.Path}}); background-size:100%">
+              <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
+            </div>
           </div>
         </div>
 
@@ -135,8 +137,10 @@
           <div class='menuHeader'>
             <div class='closeMenu' ng-click='closeFloorMenu();'></div>
           </div>
-          <div class="material-item" ng-repeat="material in floors" data-ng-click="ChangeFloor(material.ID)" style="background:url({{material.Path}}); background-size:100%">
-            <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
+          <div id='fHolder'>
+            <div class="material-item" ng-repeat="material in floors" data-ng-click="ChangeFloor(material.ID)" style="background:url({{material.Path}}); background-size:100%">
+              <!-- <div class="material-item" ng-click="ChoosenMaterial(materials.ID);" style="background:url({{materials.Path}}); background-size:100%"></div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -162,6 +166,7 @@
             <div class='menuHeader'>
               <div class='closeMenu' ng-click='setNoDWclass();NoOpDW();isWindowDropdownDisplayed = !isWindowDropdownDisplayed;'></div>
             </div>
+            <div id='wHolder'>
               <div ng-repeat="window in menuData.okna.child" class ="btn-group" ng-class="getClass($index, menuData.okna.child)">
                 <div class="prod-image-cont">
                   <a class = "prod-image" ng-click="ChooseWindow(window.asset); toggleProdMenu();" style="background-image:url({{window.image}});background-size: 100%;"></a>
@@ -177,23 +182,26 @@
                   </div>
                 </div>
               </div>
+            </div>
           </div>
           <div id="MenuItemDoor" style="left:5px;">
             <div class='menuHeader'>
               <div class='closeMenu' ng-click='setNoDWclass();NoOpDW();isDoorDropdownDisplayed = !isDoorDropdownDisplayed;'></div>
             </div>
-            <div ng-repeat="door in menuData.dvere.child" class ="btn-group" ng-class="getClass($index, menuData.dvere.child)">
-              <div class="prod-image-cont">
-                <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
-              </div>
-              <div class="prod-info">
-                <div class='prod-top'>
-                  <h4>{{door.nazov}}</h4>
-                  <p> {{door.description}}</p>
+            <div id='dHolder'>
+              <div ng-repeat="door in menuData.dvere.child" class ="btn-group" ng-class="getClass($index, menuData.dvere.child)">
+                <div class="prod-image-cont">
+                  <a class = "prod-image" ng-click="ChooseDoor(door.asset); toggleProdMenu();" style="background-image:url({{door.image}});background-size: 100%;"></a>
                 </div>
-                <div class='prod-bot'>
-                  <button class="enli-btn btn" title="Vložiť dvere do scény" ng-click="ChooseDoor(door.asset); toggleProdMenu();">Vložiť</button>
-                  <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a> -->
+                <div class="prod-info">
+                  <div class='prod-top'>
+                    <h4>{{door.nazov}}</h4>
+                    <p> {{door.description}}</p>
+                  </div>
+                  <div class='prod-bot'>
+                    <button class="enli-btn btn" title="Vložiť dvere do scény" ng-click="ChooseDoor(door.asset); toggleProdMenu();">Vložiť</button>
+                    <!--<a ng-click="showProdDetails(prod); toggleProdMenu();">Detail výrobku</a> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -218,18 +226,20 @@
               <a> Počet filtrovaných produktov: {{asProdCount}}/{{roomProdCount}}</a>
               <div class='closeMenu' ng-click='toggleProdMenu()'></div>
             </div>
-            <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
-              <div class="prod-image-cont">
-                <a class = "prod-image" ng-click="PridatNabytok(prod); toggleProdMenu();" style="background-image:url({{prod.image}});"></a>
-              </div>
-              <div class="prod-info">
-                <div class='prod-top'>
-                  <h4>{{prod.uidisplayname}}</h4>
-                  <p> {{prod.description}}</p>
+            <div id='product_holder'>
+              <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
+                <div class="prod-image-cont">
+                  <a class = "prod-image" ng-click="PridatNabytok(prod); toggleProdMenu();" style="background-image:url({{prod.image}});"></a>
                 </div>
-                <div class='prod-bot'>
-                  <button class="enli-btn btn" title="Vložiť produkt do scény" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
-                  <a ng-click="showProdDetails(prod); toggleProdMenu();" title="Zobraziť detail produktu">Detail výrobku</a>
+                <div class="prod-info">
+                  <div class='prod-top'>
+                    <h4>{{prod.uidisplayname}}</h4>
+                    <p> {{prod.description}}</p>
+                  </div>
+                  <div class='prod-bot'>
+                    <button class="enli-btn btn" title="Vložiť produkt do scény" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
+                    <a ng-click="showProdDetails(prod); toggleProdMenu();" title="Zobraziť detail produktu">Detail výrobku</a>
+                  </div>
                 </div>
               </div>
             </div>

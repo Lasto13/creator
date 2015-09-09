@@ -86,9 +86,21 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
             })
         })
         } else {return}
-        
     }
+    /*
+    $scope.getImgForSave = function(save){
+        console.log(save.image);
+        if ($window.localStorage)
+        {
+            var myStorage = $window.localStorage;
+        }
+        var _placeID = JSON.parse(myStorage.getItem('place'));
 
+        var url = 'http://dev.enli.sk/public/places/' + _placeID + '/save/' + save.image.key;
+
+        return url
+    }
+    */
     $scope.deleteSave = function(saveName){
         communicator.deleteSave(saveName).then(function(resp, status, headers, conf){
             $scope.saves = resp.data;
@@ -377,24 +389,30 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     var calculateMatBox = function(){
         var matCount = $scope.mats.length;
         var maxPBheight = window.innerHeight - 180;
+        var _hldr = document.getElementById('mHolder');
 
         if((matCount)*100 < maxPBheight){
-                document.getElementById('MaterialChooser').style.height = matCount*103 + 'px';    
+                document.getElementById('MaterialChooser').style.height = matCount*103 + 'px';   
+                _hldr.style.height = matCount*103 +'px';
         } else {
             document.getElementById('MaterialChooser').style.height = maxPBheight +'px';
             document.getElementById('MaterialChooser').style.width = 125 +'px';
+            _hldr.style.height = maxPBheight - 26 + 'px';
         }
     };
 
     var calculateFloorBox = function(){
         var flCount = $scope.floors.length;
         var maxPBheight = window.innerHeight - 180;
+        var _hldr = document.getElementById('fHolder');
 
         if((flCount)*100 < maxPBheight){
-                document.getElementById('FloorChooser').style.height = matCount*103 + 'px';    
+                document.getElementById('FloorChooser').style.height = matCount*103 + 'px';
+                _hldr.style.height = matCount*103 - 26 + 'px';
         } else {
             document.getElementById('FloorChooser').style.height = maxPBheight +'px';
             document.getElementById('FloorChooser').style.width = 125 +'px';
+            _hldr.style.height = maxPBheight - 26 + 'px';
         }
     };
 
@@ -729,30 +747,42 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
     var calculateWindowBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.menuData.okna.child.length;
+        var _hldr = document.getElementById('wHolder');
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                document.getElementById('MenuItemWindow').style.height = ($scope.menuData.okna.child.length/2)*157+3+24+'px';  
+                var _ch = ($scope.menuData.okna.child.length/2)*157+3+24
+                document.getElementById('MenuItemWindow').style.height = _ch +'px';
+                _hldr.style.height = _ch - 28 + 'px';
             } else{
-                document.getElementById('MenuItemWindow').style.height = ($scope.menuData.okna.child.length/2)*157+80+24+'px';
+                var _ch = ($scope.menuData.okna.child.length/2)*157+80+24
+                document.getElementById('MenuItemWindow').style.height = _ch +'px';
+                _hldr.style.height = _ch - 28 + 'px';
             }
         } else {
             document.getElementById('MenuItemWindow').style.height = maxPBheight +'px';
+            _hldr.style.height = maxPBheight -28 + 'px';
         }
     }
 
     var calculateDoorBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.menuData.dvere.child.length;
+        var _hldr = document.getElementById('dHolder');
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+3+30+'px';
-                document.getElementById('MenuItemDoor').style.overflow = 'hidden'; 
-            } else{
-                document.getElementById('MenuItemDoor').style.height = ($scope.menuData.dvere.child.length/2)*157+80+30+'px';
+                var _ch = ($scope.menuData.dvere.child.length/2)*157+3+30;
+                document.getElementById('MenuItemDoor').style.height = _ch +'px';
                 document.getElementById('MenuItemDoor').style.overflow = 'hidden';
+                _hldr.style.height = _ch - 27 + 'px';
+            } else{
+                var _ch = ($scope.menuData.dvere.child.length/2)*157+80+30;
+                document.getElementById('MenuItemDoor').style.height = _ch+'px';
+                document.getElementById('MenuItemDoor').style.overflow = 'hidden';
+                _hldr.style.height = _ch - 27 + 'px';
             }
         } else {
             document.getElementById('MenuItemDoor').style.height = maxPBheight +'px';
+            _hldr.style.height = maxPBheight - 27 + 'px';
         }
     }
 
@@ -1264,14 +1294,20 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     $scope.calculateProductBox = function(){
         var maxPBheight = window.innerHeight - 195;
         var prCount = $scope.productsToShow.length;
+        var hHeight = 27;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+3+24+'px';    
+                var _h = ($scope.productsToShow.length/2)*157+3+24;
+                document.getElementById('ProductBox').style.height = _h + 'px';
+                document.getElementById('product_holder').style.height = _h - hHeight +'px';    
             } else{
-                document.getElementById('ProductBox').style.height = ($scope.productsToShow.length/2)*157+80+24+'px';
+                var _h = ($scope.productsToShow.length/2)*157+80+24;
+                document.getElementById('ProductBox').style.height = _h +'px';
+                document.getElementById('product_holder').style.height = _h - hHeight +'px';
             }
         } else {
             document.getElementById('ProductBox').style.height = maxPBheight +'px';
+            document.getElementById('product_holder').style.height = maxPBheight - hHeight +'px';
         }
 
         if ($scope.productsToShow.length == 1){

@@ -210,7 +210,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                             //});
                             //if (!$scope.$$phase) {$scope.$apply(function(){$scope.open = false;});}
                         }
-                        
+                        document.getElementById('Categories').style.height = window.innerHeight - 150 - 35 - $('#drop_holder').height() - 20 + 'px';
                     });
                 }
 

@@ -40,11 +40,11 @@ a {letter-spacing: -1px}
 #loginScreen p{color: #d3d3d3}
 #loginScreen #loginPlaceholder {position: relative;width: 250px;text-align: center;margin: auto}
 #loginScreen #loginPlaceholder #formHolder{width: 150px; margin-left: 50px}
-#loginScreen #loginPlaceholder #formHolder input{margin-top: 15px;width: 150px}
-#loginScreen #loginPlaceholder h1{font-size: 28px}
-#loginScreen #loginPlaceholder #enliLogo {position: relative;background: transparent url("img/logo_enli.png") no-repeat scroll 0% ;width: 250px;height: 105px;background-size: 100%;margin-top: 50px}
-#loginScreen #loginPlaceholder #vcLogo{position: relative;width: 200px; height: 200px; background: transparent url("img/l_vc.svg") no-repeat scroll 0% 0%;background-size: 100%;margin-left: 25px;margin-top: 50px}
-#loginScreen #loginPlaceholder #linkHolder {position: fixed;bottom: 25px;margin-left: 90px;}
+#loginScreen #loginPlaceholder #formHolder input{margin-top: 10px;width: 150px}
+#loginScreen #loginPlaceholder h1{font-size: 28px; margin-bottom: 0px}
+#loginScreen #loginPlaceholder #enliLogo {position: relative;background: transparent url("img/logo_enli.png") no-repeat scroll 0% ;width: 250px;height: 105px;background-size: 100%;margin-top: 30px}
+#loginScreen #loginPlaceholder #vcLogo{position: relative;width: 200px; height: 200px; background: transparent url("img/l_vc.svg") no-repeat scroll 0% 0%;background-size: 100%;margin-left: 25px;margin-top:30px}
+#loginScreen #loginPlaceholder #linkHolder {position: fixed;bottom: 10px;margin-left: 90px;}
 #loginScreen #loginPlaceholder #linkHolder a:hover{text-decoration: underline;color: #7CA616}
 /*.btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}*/
 #splash-sc,#wrapper{width:100%;height:100%}

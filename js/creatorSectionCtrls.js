@@ -31,7 +31,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         var canvasH = document.getElementById('canvasHolder'),
             c_width = clientWidth - 300,
             c_height = clientHeight - 180;
-        document.getElementById('Categories').style.height = clientHeight - 300 + 'px';
+        document.getElementById('Categories').style.height = clientHeight - 150 - 35 - $('#drop_holder').height() - 20 + 'px';
 
         if (isFps){
             canvasH.style.width = clientWidth + 'px';
@@ -452,17 +452,22 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
         _handle.appendChild(_value);
     });
 
+    function zmenaVysky (height) {
+        SendMessage("Plane0", "ChangeFloorScale", height);
+    }
+
     $(function () {
         $("#spinner").spinner({
             step: 0.1,
             numberFormat: "n",
             spin: function (event, ui) {
                 $(this).change();
-                vyskaSteny = ui.value;
+                zmenaVysky(ui.value);
             }
         });
     });
 
+    /*
     $("#B15").click(function () {
         if (hodnotaB15 === 0) {
             this.className = 'Button btn-my2 radio-i';
@@ -477,8 +482,9 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             document.getElementById('B0').className = 'Button radio-picture btn-my2';
         }
     });
-
+    */
     $scope.set_radio = function ($inputid) {
+        console.log('<<<');
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
 
@@ -488,6 +494,7 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     }
 
     $("input:radio[name=view]").click(function () {
+        console.log('volam ?');
         var $id = $(this).val();
 
         $.post("includes/determine_next_questions.php", { prodfamily: $id }, function (data) {
@@ -581,9 +588,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
 
     SetWallTypeButtonActive = function (IsInteractable) {
 
-     }
-    $scope.ZmenaVysky = function () {
-        SendMessage("Plane0", "ChangeFloorScale", vyskaSteny);
     }
 
     //$scope.toggleWallMatBorder = {item: 0}
@@ -596,7 +600,7 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
         document.getElementById('B0').className = 'Button radio-picture btn-my';
         document.getElementById('B9').className = 'Button radio-picture btn-my2';
     }
-
+    
     Set2D = function () {
         $scope.NoOp();
         SendMessage("CanvasEditor", "SetView2D");
@@ -613,6 +617,7 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
         $("#B12").removeClass('btn-my2');
         $("#B12").addClass('btn-my');
     }
+    
     SetDefaultFunctionPodorys = function () {
         $("#B0").removeClass('btn-my');
         $("#B0").addClass('btn-my2');
@@ -700,15 +705,19 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
         SendMessage("VzorButton","WEBMaterialSelected", value);
     }
 
+    $scope.flMat = {}
+    $scope.flMat.isDisabled = true;
+
     isFloorChoosen = function(value){
-        console.log(value);
         if(value == 0){
             SendMessage("VzorButton","SelectionWindowClosed");
             document.getElementById('FloorChooser').style.left = -230 +'px';
+            $scope.flMat.isDisabled = true;
         }
         else{
             document.getElementById('FloorChooser').style.left = "270px";
             SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialSelection");
+            $scope.flMat.isDisabled = false;
         }
     }
 
@@ -959,6 +968,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     };
 
     var numberOfProds = function(){
+        $scope.allPossible = 0;
         if ($scope.dataToRepeat){
             for (var i=0; i < $scope.dataToRepeat.length; i++){
                 $scope.dataToRepeat[i].prodsIncluded = 0;
@@ -980,6 +990,9 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
                     }
                 }
             }
+            for (var i=0; i < $scope.dataToRepeat.length; i++){
+                $scope.allPossible += $scope.dataToRepeat[i].prodsIncluded;
+            }
         }
     };
     
@@ -995,11 +1008,11 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
         return unique;
     };
     
-    $scope.roomProdCount = 0;
+    //$scope.roomProdCount = 0;
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
         $scope.dataToRepeat = [];
         if (newIzba == oldIzba || newIzba.length == 0) return;
-        $scope.roomProdCount = 0;
+        //$scope.roomProdCount = 0;
         if (newIzba.length == 1){
             $scope.dataToRepeat = newIzba[0].child;
             $scope.dataToRepeat.allSelected = false;
@@ -1011,7 +1024,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
             for (var i=0; i < $scope.dataToRepeat.length;i++){
                 $scope.dataToRepeat[i].toggled = false;
                 for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                    //$scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
                     if ($scope.dataToRepeat[i].hasSubs){
                         $scope.dataToRepeat[i].child[j].toggled = false;
                     }
@@ -1028,7 +1041,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
             for (var i=0; i < $scope.dataToRepeat.length;i++){
                 $scope.dataToRepeat[i].toggled = false;
                 for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                    //$scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
                     if ($scope.dataToRepeat[i].hasSubs){
                         $scope.dataToRepeat[i].child[j].toggled = false;
                     }
@@ -1150,8 +1163,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
 
     /* function to 'open' a tab*/
     $scope.openTab = function (tab) {
-        console.log(tab);
-        console.log($scope.activeTabs);
         /* check if tab is already open*/
         if (tab.hasSubs){
             if ($scope.isOpenTab(tab.uidisplayname)) {
@@ -1204,22 +1215,23 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     }
     
     var checkIfAll = function(){
-        $scope.asProdCount = 0;
+        //$scope.asProdCount = $scope.productsToShow.length;
+        filterProducts();
         $scope.dataToRepeat.halfToggled = false;
         for (var i = 0; i < $scope.dataToRepeat.length; i++ ){
             if ($scope.dataToRepeat[i].hasSubs){
                 for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
                     if ($scope.dataToRepeat[i].child[j].toggled){
-                        $scope.asProdCount += $scope.dataToRepeat[i].child[j].products.length;
+                        //$scope.asProdCount += $scope.dataToRepeat[i].child[j].products.length;
                     }
                 }
             } else {
                 if ($scope.dataToRepeat[i].toggled){
-                    $scope.asProdCount += $scope.dataToRepeat[i].child[0].products.length;
+                    //$scope.asProdCount += $scope.dataToRepeat[i].child[0].products.length;
                 }
             }
         }
-        if ($scope.asProdCount == $scope.roomProdCount){
+        if ($scope.asProdCount == $scope.allPossible){
             $scope.dataToRepeat.allSelected = true;
         } else if ($scope.asProdCount == 0) {
             $scope.dataToRepeat.allSelected = false;
@@ -1297,11 +1309,11 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
         var hHeight = 27;
         if((prCount/2)*157 < maxPBheight){
             if (prCount%2 == 0){
-                var _h = ($scope.productsToShow.length/2)*157+3+24;
+                var _h = ($scope.productsToShow.length/2)*157+3+25;
                 document.getElementById('ProductBox').style.height = _h + 'px';
                 document.getElementById('product_holder').style.height = _h - hHeight +'px';    
             } else{
-                var _h = ($scope.productsToShow.length/2)*157+80+24;
+                var _h = ($scope.productsToShow.length/2)*157+80+25;
                 document.getElementById('ProductBox').style.height = _h +'px';
                 document.getElementById('product_holder').style.height = _h - hHeight +'px';
             }
@@ -1320,15 +1332,28 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     }
 
     var filterProducts = function(){
+        //$scope.allPossible = 0;
+        $scope.asProdCount = 0;
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
             for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
                 if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.activeTT[i].products[j].manufacturername) > -1) {
                     $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
                 }
+                //$scope.allPossible += ;
+            }
+            $scope.asProdCount = $scope.productsToShow.length;
+        }
+        //$scope.roomProdCount = 0;
+        /*
+        for (var i=0; i < $scope.dataToRepeat.length;i++){
+            //$scope.dataToRepeat[i].toggled = false;
+            for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
+                $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
             }
         }
-
+        console.log($scope.roomProdCount);
+        */
         numberOfProds();
         $scope.calculateProductBox();
 

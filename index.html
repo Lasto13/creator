@@ -100,7 +100,7 @@
               <p>VÝŠKA STIEN:</p>
               </span>
             </div>
-            <div ng-click = "ZmenaVysky();">
+            <div>
               <p>
               <input id="spinner" name="spinner" min = "2.4" max = "3.0" value="2.4" class="spinner" style="pointer-events: none;">
               </p>
@@ -115,9 +115,9 @@
                 <a id="B32" class="Button btn btn-default" title="Nástroj na oddelenie podláh" ng-click = "Strih()">Strih</a>
                 <!--<a id="B33" class="Button btn btn-default disabled" title="Nástroj na zmenu vzoru podlahy" ng-click = "VzorMaterialu()">Vzor materiálu</a>-->
               <div>
-                <span style="position:relative;"><p>ROTÁCIA PODLAHY:</p></span>
+                <span style="position:relative;"><p>ROTÁCIA VZORU:</p></span>
               </div>
-              <div id="slider"></div>
+              <div ng-class="{'inActive' : flMat.isDisabled}" id="slider"></div>
               <div id='value'>{{slValue}}</div>
             </div> 
           </div>
@@ -223,7 +223,7 @@
         <div class="left-menu">
           <div id="ProductBox" style="pointer-events: auto;">
             <div class='menuHeader'>
-              <a> Počet filtrovaných produktov: {{asProdCount}}/{{roomProdCount}}</a>
+              <a> Počet filtrovaných produktov: {{asProdCount}}/{{allPossible}}</a>
               <div class='closeMenu' ng-click='toggleProdMenu()'></div>
             </div>
             <div id='product_holder'>
@@ -248,7 +248,7 @@
             <div id='sipkaHolder'>
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
             </div>
-            <div>
+            <div id='drop_holder'>
               <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
               <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>

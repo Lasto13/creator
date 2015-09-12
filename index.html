@@ -16,7 +16,7 @@
         <div id='enliLogo'></div>
         <div id='vcLogo'></div>
         <h1>ENLI VirtualCreator</h1>
-        <p>beta v. 1.0</p>
+        <p>beta v. 0.9</p>
         <div id='formHolder'>
           <form ng-submit='login()'>
             <input type='text' ng-model='user.login' placeholder='login@email.com' name="username"> 
@@ -52,34 +52,19 @@
     <div id="wrapper">
       <div id="header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
       <!--
-      <div data-ng-include="selectedTemplate.path" style="position: absolute;width:100%; height:100%;z-index: 2; pointer-events: none;"></div>
+      <div data-ng-include="selectedTemplate.path" style="position: absolute;wdividth:100%; height:100%;z-index: 2; pointer-events: none;"></div>
       -->
       <div ng-show="activeMenu.first" class="podorys-section" ng-controller="podorysCtrl">
         <div id="podorys-toolbar">
           <div id="ButtonContainer">
-            <input type="radio"  id="category_1" class="hidden" />
-            <a id="B0" title="Žiadna akcia" class="Button btn-my radio-picture" ng-click="NoOp(); set_radio('category_1')"></a>
-
-            <input type="radio"  id="category_4" class="hidden" />
-            <a id="B3" title="Kresliť izbu" class="Button btn-my radio-picture" ng-click="FourWall(); set_radio('category_4')"></a>
-
-            <input type="radio"  id="category_2" class="hidden" />
-            <a id="B1" title="Kresliť rovnú stenu" class="Button btn-my radio-picture" ng-click="SingleWall(); set_radio('category_2')"></a>
-
-            <input type="radio"  id="category_3" class="hidden" />
-            <a id="B2" title="Kresliť oblú stenu" class="Button btn-my radio-picture" ng-click="CurveWall(); set_radio('category_3')"></a>
-
-            <input type="radio"  id="category_5" class="hidden" />
-            <a id="B4" title="Zmazať" class="Button btn-my radio-picture" ng-click="Delete(); set_radio('category_5');SetDefaultFunctionPodorys();"></a>
-
-            <input type="radio"  id="category_6" class="hidden" />
-            <a id="B5" title="Pridať kontrolný bod" class="Button btn-my radio-picture" ng-click="AddControlPoint(); set_radio('category_6')"></a>
-
-            <input type="radio"  id="category_7" class="hidden" />
-            <a id="B8" title="Pohybovať stenou" class="Button btn-my radio-picture" ng-click="PosunSteny(); set_radio('category_7')"></a>
-
-            <input type="radio"  id="category_8" class="hidden" />
-            <a id="B9" title="Výber materiálu steny" class="Button btn-my radio-picture" ng-click="ZmenaMat(); set_radio('category_8'); setMenuMaterial(1);" ></a>
+            <div id="B0" title="Žiadna akcia" class="Button" ng-class="{'btn-my2' : actButtPod.id == 'B0','btn-my': actButtPod.id != 'B0'}" ng-click="NoOp(); podActive($event)"></div>
+            <div id="B3" title="Kresliť izbu" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B3','btn-my': actButtPod.id != 'B3'}" ng-click="FourWall();podActive($event)"></div>
+            <div id="B1" title="Kresliť rovnú stenu" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B1','btn-my': actButtPod.id != 'B1'}" ng-click="SingleWall();podActive($event)"></div>
+            <div id="B2" title="Kresliť oblú stenu" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B2','btn-my': actButtPod.id != 'B2'}" ng-click="CurveWall();podActive($event)"></div>
+            <div id="B4" title="Zmazať" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B4','btn-my': actButtPod.id != 'B4'}" ng-click="Delete();SetDefaultFunctionPodorys();podActive($event)"></div>
+            <div id="B5" title="Pridať kontrolný bod" ng-class="{'btn-my2' : actButtPod.id == 'B5','btn-my': actButtPod.id != 'B5'}" class="Button btn-my" ng-click="AddControlPoint();podActive($event)"></div>
+            <div id="B8" title="Pohybovať stenou" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B8','btn-my': actButtPod.id != 'B8'}" ng-click="PosunSteny();podActive($event)"></div>
+            <div id="B9" title="Výber materiálu steny" class="Button btn-my" ng-class="{'btn-my2' : actButtPod.id == 'B9','btn-my': actButtPod.id != 'B9'}" ng-click="ZmenaMat();podActive($event)" ></div>
           </div>
         </div>
         <div class="left-menu">
@@ -111,8 +96,8 @@
               <span style="position:relative; "><p>PODLAHA:</p></span>
             </div>
             <div id="floor-types">
-                <a id="B31" class="Button btn btn-default" title="Výber podlahy pre zmenu materiálu" ng-click = "VyberPodlahy();">Výber podlahy</a>
-                <a id="B32" class="Button btn btn-default" title="Nástroj na oddelenie podláh" ng-click = "Strih()">Strih</a>
+                <a id="B31" class="Button btn" title="Výber podlahy pre zmenu materiálu" ng-class="{'activeChoose' : actButtPod.id == 'B31', 'btn-default' : actButtPod.id != 'B31'}" ng-click = "podActive($event)">Výber podlahy</a>
+                <a id="B32" class="Button btn" title="Nástroj na oddelenie podláh" ng-class="{'activeChoose' : actButtPod.id == 'B32', 'btn-default' : actButtPod.id != 'B32' }" ng-click = "Strih();podActive($event);">Strih</a>
                 <!--<a id="B33" class="Button btn btn-default disabled" title="Nástroj na zmenu vzoru podlahy" ng-click = "VzorMaterialu()">Vzor materiálu</a>-->
               <div>
                 <span style="position:relative;"><p>ROTÁCIA VZORU:</p></span>
@@ -148,18 +133,10 @@
       <div ng-show="activeMenu.second" class="dw-section" ng-controller="dwCtrl">
         
         <div id="dw-toolbar">
-
-          <input type="radio"  id="dwcategory_1" class="hidden" />
-          <a id="BDW5" class="Button btn-my2 radio-dw" title="Žiadna akcia" ng-click = "NoOpDW(); set_dw('dwcategory_1'); setMenu(0);"></a>
-
-          <input type="radio"  id="dwcategory_2" class="hidden" />
-          <a id="BDW6" class="Button btn-my radio-dw" title="Výber okien" ng-click = "AddWindow();set_dw('dwcategory_2'); setMenu(1);"></a>
-
-          <input type="radio"  id="dwcategory_3" class="hidden" />
-          <a id="BDW7" class="Button btn-my radio-dw" title="Výber dverí" ng-click = "AddDoor();set_dw('dwcategory_3'); setMenu(2);"></a>
-          
-          <input type="radio"  id="dwcategory_5" class="hidden" />
-          <a id="BDW9" class="Button btn-my radio-dw" title="Zmazať" ng-click = "DeleteDW(); set_dw('dwcategory_5');setMenu(0);"></a>
+          <div id="BDW5" class="Button btn-my2" title="Žiadna akcia" ng-class="{'btn-my2' : actButtDw.id == 'BDW5', 'btn-my' : actButtDw.id != 'BDW5'}" ng-click = "NoOpDW();setMenu(0);dwActive($event)"></div>
+          <div id="BDW6" class="Button btn-my" title="Výber okien" ng-class="{'btn-my2' : actButtDw.id == 'BDW6', 'btn-my' : actButtDw.id != 'BDW6'}" ng-click = "AddWindow();setMenu(1);dwActive($event)"></div>
+          <div id="BDW7" class="Button btn-my" title="Výber dverí" ng-class="{'btn-my2' : actButtDw.id == 'BDW7', 'btn-my' : actButtDw.id != 'BDW7'}" ng-click = "AddDoor();setMenu(2);dwActive($event)"></div>
+          <div id="BDW9" class="Button btn-my" title="Zmazať" ng-class="{'btn-my2' : actButtDw.id == 'BDW9', 'btn-my' : actButtDw.id != 'BDW9'}" ng-click = "DeleteDW();setMenu(0);dwActive($event)"></div>
         </div>
         <div class="left-menu">
           <div id="MenuItemWindow">
@@ -212,11 +189,8 @@
       <div class="interier-section" ng-show="activeMenu.third" ng-controller="interierCtrl">
         <div id="interier-toolbar" >
           <div id="buttons">
-              <input type="radio"  id="icategory_1" class="hidden" />
-              <a id="BI5" title="Žiadna akcia" class="Button btn-my2 radio-i" ng-click = "intDefAction(); set_i('icategory_1')"></a>
-
-              <input type="radio"  id="icategory_2" class="hidden" />
-              <a id="BI7" title="Zmaž" class="Button btn-my radio-i" ng-click = "intDelAction(); set_i('icategory_2')"></a>
+              <div id="BI5" title="Žiadna akcia" class="Button btn-my2" ng-class="{'btn-my2' : actButtInt.id == 'BI5', 'btn-my' : actButtInt.id != 'BI5'}" ng-click = "intDefAction();intActive($event)"></div>
+              <div id="BI7" title="Zmaž" class="Button btn-my" ng-class="{'btn-my2' : actButtInt.id == 'BI7', 'btn-my' : actButtInt.id != 'BI7'}" ng-click = "intDelAction();intActive($event)"></div>
           </div>
         </div>
         
@@ -295,7 +269,7 @@
       <!-- <div id='screenShot' ng-click='takeScreenShot()'></div> -->
 
       <div class="right-menu">
-          <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" checked="checked" class="fps-input" type="radio" name="input">
+          <input id="wasd" title="Ovládanie klávesnica + myš" ng-click="mouseWASD_controll()" class="fps-input" type="radio" name="input">
           <label for="wasd"></label>
           <img src="img/fps_gui/km.png">
           <input title="Ovládanie klávesnicou" id="k" ng-click="keybControll()" class="fps-input" type="radio" name="input">

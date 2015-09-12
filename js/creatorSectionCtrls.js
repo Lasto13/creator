@@ -141,6 +141,11 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
     $scope.SetLoad = function () {
         if (prepinacLoad == 0) {
+            if ($window.localStorage) var myStorage = $window.localStorage;
+            var _placeID = JSON.parse(myStorage.getItem('place'));
+            communicator.getSave(_placeID).then(function(resp){
+                $scope.saves = resp.data;
+            })
             $('#LoadProject').css({ top: 110 + 'px' });
             $('#Settings').css({ top: -470 + 'px' });
             prepinacLoad = 1;
@@ -166,6 +171,15 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
             default: $scope.activeMenu = {};
         }
         if (!$scope.$$phase) $scope.$apply();
+    }
+
+    graphicSettings = function(value){
+        console.log(value);
+        switch(value){
+            case 0: document.getElementById('radio01').checked = true; break;
+            case 1: document.getElementById('radio02').checked = true; break;
+            case 2: document.getElementById('radio03').checked = true; break;
+        }
     }
 
     var chFull = function(){
@@ -195,12 +209,13 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         if (!$scope.$$phase) $scope.$apply();
 
         document.getElementById('errMsg').style.opacity = 1;
-        setTimeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
+        $timeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
     };
 
-    $scope.set_view = function ($inputid) { $("input#" + $inputid).click(); };
+    //$scope.set_view = function ($inputid) { $("input#" + $inputid).click(); };
 
     $scope.Podorys = function () {
+        /*
         var _pR = document.getElementById('B0').parentNode,
             _pRi = _pR.querySelectorAll('input'),
             _pRa = _pR.querySelectorAll('a');
@@ -209,58 +224,69 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         document.getElementById('category_1').checked = true;
         document.getElementById('B0').className = 'Button radio-picture btn-my2';
         document.getElementById('B31').className = 'Button btn btn-default';
+        */
+        $scope.$broadcast ('setDefaults');
         prepinac = false;
         SendMessage("CanvasEditor", "changeArea", 0);
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.DW = function () {
+        /*
         var _pR = document.getElementById('BDW5').parentNode,
             _pRIe = _pR.querySelectorAll('input');
-
+        */
         SendMessage("CanvasEditor", "changeArea", 2);
         /*
-        document.getElementById('BDW5').className = 'Button radio-dw btn-my btn-my2';
-        document.getElementById('BDW6').className = 'Button radio-dw btn-my';
-        document.getElementById('BDW7').className = 'Button radio-dw btn-my';
-        document.getElementById('BDW9').className = 'Button radio-dw btn-my';
-        */
         for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
         document.getElementById('dwcategory_1').checked = true;
+        */
+        $scope.$broadcast ('setDefaults');
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.Interier = function () {
+        $scope.$broadcast ('setDefaults');
+        /*
         var _pR = document.getElementById('BI5').parentNode,
             _pRi = _pR.querySelectorAll('input');
 
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById('icategory_1').checked = true;
+        */
         SendMessage("CanvasEditor", "changeArea", 5);
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.D2D = function () {
-        defActionClass();
+        //defActionClass();
+        /*
         var _pR = document.getElementById('B0').parentNode,
             _pRi = _pR.querySelector('input');
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById('category_1').checked = true;
         document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
+        */
+        //poslat event
+        $scope.$broadcast ('defaultPod');
+
         SendMessage("CanvasEditor", "SetView2D");
     };
     $scope.D3D = function () {
         SendMessage("CanvasEditor", "SetView3D");
         if ($scope.activeMenu.first == true) {
-            var _pR = document.getElementById('B0').parentNode,
+            /*var _pR = document.getElementById('B0').parentNode,
             _pRi = _pR.querySelector('input');
             for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
             document.getElementById('category_1').checked = true;
-            defActionClass();
+            defActionClass();*/
+            //poslat event
+            $scope.$broadcast ('defaultPod');
         }
     };
 
     var defActionClass = function(){
+        console.log('>+++');
         $('#ButtonContainer .btn-my2').removeClass('btn-my2');
         $('#B0').addClass('btn-my2');
     }
@@ -270,8 +296,8 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); defActionClass();};
     $scope.FPS = function () {
         SendMessage("EventSystem", "FpsPosition");
-        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-        defActionClass();
+        //SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+        //defActionClass();
     };
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
@@ -307,7 +333,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
-        setTimeout(function(){
+        $timeout(function(){
             communicator.getSave().then(function(resp){
                 $scope.saves = resp.data;
             })
@@ -355,17 +381,29 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     loadingFinished = function (value) { }
 
     $scope.OtvoritProjekt = function (jsonstring) {
-        setTimeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
+        $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
     }
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
+    
+    $scope.$on('defaultPod', function(e) {  
+        $scope.actButtPod = {'id': 'B0'};
+    });
+
+    $scope.$on('setDefaults', function(e) {
+        $scope.actButtPod = {'id': 'B0'};
+        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+    });
+
+    prepinac = false;
+    /*
     document.getElementById("ButtonContainer").addEventListener('click', function (e) {
         document.getElementById('B31').className = 'Button btn btn-default';
         prepinac = false;
     });
-
+    */
     wallCursors = function(cursor){
         switch(cursor){
             case '0': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});break;
@@ -415,6 +453,10 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             _hldr.style.height = maxPBheight - 26 + 'px';
         }
     };
+
+    SetWallTypeButtonActive = function(){
+
+    }
 
     var hodnotaB15 = 0;
     var vyskaSteny = 2.4;
@@ -466,104 +508,54 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             }
         });
     });
-
-    /*
-    $("#B15").click(function () {
-        if (hodnotaB15 === 0) {
-            this.className = 'Button btn-my2 radio-i';
-            hodnotaB15 = 1;
-        }
-        else if (hodnotaB15 === 1) {
-            this.className = 'Button btn-my radio-i';
-            hodnotaB15 = 0;
-            SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-            for (var i = 0, iL = document.querySelectorAll('a.radio-picture').length; i < iL; i++)
-                document.querySelectorAll('a.radio-picture')[i].className = 'Button radio-picture btn-my';
-            document.getElementById('B0').className = 'Button radio-picture btn-my2';
-        }
-    });
-    */
-    $scope.set_radio = function ($inputid) {
-        console.log('<<<');
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        //for (var j = 0, jL = _pRa.length; j < jL; j++) _pRa[0].className = 'Button btn-my radio-picture';
-        document.getElementById($inputid).checked = true;
-    }
-
-    $("input:radio[name=view]").click(function () {
-        console.log('volam ?');
-        var $id = $(this).val();
-
-        $.post("includes/determine_next_questions.php", { prodfamily: $id }, function (data) {
-            $("#results").html(data);
-        });
-    });
-
+    
     $scope.NoOp = function () {
+        console.log('noop');
+        $scope.actButtPod = {'id': 'B0'};
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-        document.getElementById('B0').className='Button radio-picture btn-my2';
-        document.getElementById('B1').className='Button radio-picture btn-my';
-        document.getElementById('B2').className='Button radio-picture btn-my';
-        document.getElementById('B3').className='Button radio-picture btn-my';
-        document.getElementById('B4').className='Button radio-picture btn-my';
-        document.getElementById('B5').className='Button radio-picture btn-my';
-        document.getElementById('B8').className='Button radio-picture btn-my';
-        document.getElementById('B9').className='Button radio-picture btn-my';
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         document.getElementById('MaterialChooser').style.left = -230 +'px';
-        $scope.closeFloorMenu();
+        //$scope.closeFloorMenu();
     };
     $scope.SingleWall = function () {
-        $scope.NoOp();
+        Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
+        /*document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';*/
     };
     $scope.CurveWall = function () {
-        $scope.NoOp();
+        Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_CurveWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/3.png), default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
+        /*document.getElementById('B31').className = 'Button btn btn-default';
+        document.getElementById('B32').className = 'Button btn btn-default';*/
     };
     $scope.FourWall = function () {
-        $scope.NoOp();
-        SendMessage("FunctionsManager", "SetFunctionActive", "G01_4Wall");
+        console.log('four');
+        //$scope.NoOp();
+        Set2D();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/4.png), default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
+        SendMessage("FunctionsManager", "SetFunctionActive", "G01_4Wall");
     };
     $scope.Delete = function () {
-        $scope.NoOp();
+        Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DeleteWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/5.png) 7 22 , default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.AddControlPoint = function () {
-        $scope.NoOp();
+        Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_AddControlPoint");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/6.png), default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.PosunSteny = function () {
-        $scope.NoOp();
+        Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_MoveWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/7.png), default'});
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';
     };
     $scope.ZmenaMat = function () {
-        $scope.NoOp();
         getErrorText('Zvoľte stenu pre zmenu materiálu');
-        SendMessage("CanvasEditor", "SetView3D");
-        document.getElementById('B12').className = 'Button btn-my radio-view';
-        document.getElementById('B13').className = 'Button btn-my2 radio-view';
+        Set3D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
         //document.getElementById('MaterialChooser').style.left = 0+'px';
     };
@@ -583,27 +575,16 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             $("#B10").removeClass('inActive');
             $("#B11").removeClass('inActive');
         }
-    }
-
-
-    SetWallTypeButtonActive = function (IsInteractable) {
-
-    }
-
-    //$scope.toggleWallMatBorder = {item: 0}
-    //$scope.toggleFloorMatBorder = {item: 0}
+    } 
 
     $scope.ChoosenMaterial = function (id) {
         SendMessage("changeMat", "ChangeMatGL", id);
-        //document.getElementById('MaterialChooser').style.left = -240+'px';
-        //$scope.ZmenaMat();
-        document.getElementById('B0').className = 'Button radio-picture btn-my';
-        document.getElementById('B9').className = 'Button radio-picture btn-my2';
     }
     
     Set2D = function () {
         $scope.NoOp();
         SendMessage("CanvasEditor", "SetView2D");
+        
         $("#B12").removeClass('btn-my');
         $("#B12").addClass('btn-my2');
         $("#B13").removeClass('btn-my2');
@@ -619,10 +600,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     }
     
     SetDefaultFunctionPodorys = function () {
-        $("#B0").removeClass('btn-my');
-        $("#B0").addClass('btn-my2');
-        $("#B5").removeClass('btn-my2');
-        $("#B5").addClass('btn-my');
         $scope.NoOp();
     }
 
@@ -647,46 +624,49 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     $scope.ZmenitNaVnutorne = function () {
         SendMessage("WallTypeToggleGroup", "ConfirmSelectPriecna");
     }
+
+    $scope.actButtPod = {'id': 'B0'};
+
+    $scope.podActive = function(event){
+        //$scope.NoOp();
+        //SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+        console.log(event.target.id, $scope.actButtPod);
+        if ($scope.actButtPod.id !== 'B31' && event.target.id == 'B31') {
+            console.log('zap');
+            $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
+            SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
+            $scope.actButtPod = {'id': 'B31'};
+            console.log($scope.actButtPod);
+            } else if($scope.actButtPod.id == 'B31' && event.target.id == 'B31'){
+                console.log('vyp');
+                SetDefaultFunctionPodorys();
+                $scope.closeFloorMenu();
+                //$scope.actButtPod = {'id': 'B0'};
+        } else {
+            $scope.actButtPod = {'id' : event.target.id};
+            console.log($scope.actButtPod.id);
+        }
+    }
      
     $scope.VyberPodlahy = function(){
         $scope.NoOp();
         if(prepinac == false){
             $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-            document.getElementById('B0').className='Button radio-picture btn-my';
-            document.getElementById('B1').className='Button radio-picture btn-my';
-            document.getElementById('B2').className='Button radio-picture btn-my';
-            document.getElementById('B3').className='Button radio-picture btn-my';
-            document.getElementById('B4').className='Button radio-picture btn-my';
-            document.getElementById('B5').className='Button radio-picture btn-my';
-            document.getElementById('B8').className='Button radio-picture btn-my';
-            document.getElementById('B9').className='Button radio-picture btn-my';
             SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
-            document.getElementById('B31').className = 'Button btn activeChoose';
-            document.getElementById('B32').className = 'Button btn btn-default';
             prepinac = true;
         } else if(prepinac == true){
-            $scope.NoOp();
+            //$scope.NoOp();
             $scope.closeFloorMenu();
-            document.getElementById('B31').className = 'Button btn btn-default';
             prepinac = false;
+            $scope.actButtPod = {'id': 'B0'};
         }
     }     
 
     $scope.Strih = function(){
         $scope.NoOp();
-        prepinac = false;
+        //prepinac = false;
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/9.png), default'});
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
-        document.getElementById('B0').className='Button radio-picture btn-my';
-        document.getElementById('B1').className='Button radio-picture btn-my';
-        document.getElementById('B2').className='Button radio-picture btn-my';
-        document.getElementById('B3').className='Button radio-picture btn-my';
-        document.getElementById('B4').className='Button radio-picture btn-my';
-        document.getElementById('B5').className='Button radio-picture btn-my';
-        document.getElementById('B8').className='Button radio-picture btn-my';
-        document.getElementById('B9').className='Button radio-picture btn-my';
-        document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn activeChoose';
     }
 
     $scope.VzorMaterialu = function(){
@@ -720,21 +700,14 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             $scope.flMat.isDisabled = false;
         }
     }
-
-    $scope.setMenuMaterial = function (value) {
-        if (value == 1) { }
-        else { }
-    }
+    
     openMaterialMenu = function () {
         document.getElementById('MaterialChooser').style.left = "270px";
     }
     $scope.closeMaterialMenu = function(){
-        //$scope.ZmenaMat();
-        $scope.NoOp();
         document.getElementById('MaterialChooser').style.left = -230 +'px';
     }
     $scope.closeFloorMenu = function(){
-        //$scope.ZmenaMat();
         SendMessage("VzorButton","SelectionWindowClosed");
         document.getElementById('FloorChooser').style.left = -230 +'px';
     }
@@ -742,10 +715,22 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
 
 app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
 
-    $scope.$on('calculate', function(e) {  
+    $scope.$on('setDefaults', function(e) {
+        $scope.actButtDw = {'id': 'BDW5'};
+        $scope.setMenu(0);
+        SendMessage("FunctionsManager", "SetFunctionActive", "G02_DefaultAction");
+    });
+
+    $scope.$on('calculate', function(e) {
         calculateWindowBox();
         calculateDoorBox();
     });
+
+    $scope.actButtDw = {'id' : 'BDW5'}
+    $scope.dwActive = function(event){
+        $scope.actButtDw = {'id' : event.target.id}
+        console.log($scope.actButtDw.id);
+    }
 
     jsonFactory.loadMenu().then(function (data) {
         $scope.menuData = data;
@@ -828,7 +813,7 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
             $scope.isDoorDropdownDisplayed = true;
         }
     }
-
+    /*
     $("a.radio-dw").click(function () {
         var $id = $(this).attr('id');
         $("a.radio-dw").removeClass('btn-my2');
@@ -850,7 +835,7 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
         $("a.radio-dwview").addClass('btn-my');
         $("a#" + $id).addClass('btn-my2');
     });
-
+    */
     $scope.set_dwview = function ($inputid) {
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
@@ -920,6 +905,17 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
 }]);
 
 app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFactory) {
+
+    $scope.$on('setDefaults', function(e) {
+        $scope.actButtInt = {'id': 'BI5'};
+        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
+    });
+
+    $scope.actButtInt = {'id' : 'BI5'}
+    $scope.intActive = function(event){
+        $scope.actButtInt = {'id' : event.target.id}
+        console.log($scope.actButtInt.id);
+    }
 
     jsonFactory.loadMenu().then(function(data){
         $scope.menuData = data;
@@ -1084,12 +1080,14 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     };
 
     setDefaultFunctionInterier = function () {
+        /*
         var _pR = document.getElementById('B15').parentNode,
             _pRi = _pR.querySelectorAll('input');
         for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
         document.getElementById('B15').checked = true;
 
         document.getElementById('B15').classname = 'Button btn-my2 radio-i';
+        */
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     }
     
@@ -1324,10 +1322,10 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
 
         if ($scope.productsToShow.length == 1){
             document.getElementById('ProductBox').style.width = '400px';
-            setTimeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 10);
+            $timeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 10);
         } else {
             document.getElementById('ProductBox').style.width = '800px';
-            setTimeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
+            $timeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
         }
     }
 
@@ -1389,33 +1387,9 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
             specialOne: indx % 2 && list.length %2
         }
     }
-    $("a.radio-i").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-i").removeClass('btn-my2');
-        $("a.radio-i").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-    $scope.set_i = function ($inputid) {
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById($inputid).checked = true;
-    }
-    $("a.radio-iview").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-iview").removeClass('btn-my2');
-        $("a.radio-iview").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-    $scope.set_iview = function ($inputid) {
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById($inputid).checked = true;
-    }
 }]);
 
-app.controller('FPSCtrl', ['$scope', function ($scope) {
+app.controller('FPSCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
     setOkTrigger = function (string) {
         var okstring = string;
         showButtonMenu();
@@ -1461,6 +1435,16 @@ app.controller('FPSCtrl', ['$scope', function ($scope) {
         document.getElementById('objRot').style.visibility = 'hidden';
         document.getElementById('ok').style.visibility = 'hidden';
         document.getElementById('colorCh').style.visibility = 'hidden';
+    }
+
+    setFpsControlls = function (input){
+        console.log(input);
+        switch (input){
+            case 0 : document.getElementById('lc').checked = true; $timeout(function () {SendMessage("FpsManager", "mouse_controll");}, 1000);  break;
+            case 1 : document.getElementById('wasd').checked = true; $timeout(function () { SendMessage("FpsManager", "mouseWASD_controll");}, 1000);  break;
+            case 2 : console.log('key'); document.getElementById('k').checked = true; $timeout(function () { SendMessage("FpsManager", "keyboard_controll");}, 1000);  break;
+            default: document.getElementById('k').checked = true; SendMessage("FpsManager", "keyboard_controll");
+        }
     }
 
     setGuiInfo = function (string) {

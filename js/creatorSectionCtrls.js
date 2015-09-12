@@ -212,19 +212,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         $timeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
     };
 
-    //$scope.set_view = function ($inputid) { $("input#" + $inputid).click(); };
-
     $scope.Podorys = function () {
-        /*
-        var _pR = document.getElementById('B0').parentNode,
-            _pRi = _pR.querySelectorAll('input'),
-            _pRa = _pR.querySelectorAll('a');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        for (var j = 0, jL = _pRa.length; j < jL; j++) _pRa[j].className = 'Button radio-picture btn-my';
-        document.getElementById('category_1').checked = true;
-        document.getElementById('B0').className = 'Button radio-picture btn-my2';
-        document.getElementById('B31').className = 'Button btn btn-default';
-        */
         $scope.$broadcast ('setDefaults');
         prepinac = false;
         SendMessage("CanvasEditor", "changeArea", 0);
@@ -232,42 +220,18 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.DW = function () {
-        /*
-        var _pR = document.getElementById('BDW5').parentNode,
-            _pRIe = _pR.querySelectorAll('input');
-        */
         SendMessage("CanvasEditor", "changeArea", 2);
-        /*
-        for (var i = 0, iL = _pRIe.length; i < iL; i++) _pRIe[i].checked = false;
-        document.getElementById('dwcategory_1').checked = true;
-        */
         $scope.$broadcast ('setDefaults');
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.Interier = function () {
         $scope.$broadcast ('setDefaults');
-        /*
-        var _pR = document.getElementById('BI5').parentNode,
-            _pRi = _pR.querySelectorAll('input');
-
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById('icategory_1').checked = true;
-        */
         SendMessage("CanvasEditor", "changeArea", 5);
         browserDimensions();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.D2D = function () {
-        //defActionClass();
-        /*
-        var _pR = document.getElementById('B0').parentNode,
-            _pRi = _pR.querySelector('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById('category_1').checked = true;
-        document.getElementById('B0').className = 'Button radio-picture btn-my btn-my2';
-        */
-        //poslat event
         $scope.$broadcast ('defaultPod');
 
         SendMessage("CanvasEditor", "SetView2D");
@@ -275,18 +239,11 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     $scope.D3D = function () {
         SendMessage("CanvasEditor", "SetView3D");
         if ($scope.activeMenu.first == true) {
-            /*var _pR = document.getElementById('B0').parentNode,
-            _pRi = _pR.querySelector('input');
-            for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-            document.getElementById('category_1').checked = true;
-            defActionClass();*/
-            //poslat event
             $scope.$broadcast ('defaultPod');
         }
     };
 
     var defActionClass = function(){
-        console.log('>+++');
         $('#ButtonContainer .btn-my2').removeClass('btn-my2');
         $('#B0').addClass('btn-my2');
     }
@@ -294,11 +251,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     $scope.Center = function () { SendMessage("Main Camera", "ResetPosition"); };
     $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); defActionClass();};
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); defActionClass();};
-    $scope.FPS = function () {
-        SendMessage("EventSystem", "FpsPosition");
-        //SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-        //defActionClass();
-    };
+    $scope.FPS = function () {SendMessage("EventSystem", "FpsPosition");};
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
     $scope.RozmerySet = function (value) {SendMessage("Settings", "ShowTextFromWeb", value); };
@@ -398,12 +351,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     });
 
     prepinac = false;
-    /*
-    document.getElementById("ButtonContainer").addEventListener('click', function (e) {
-        document.getElementById('B31').className = 'Button btn btn-default';
-        prepinac = false;
-    });
-    */
     wallCursors = function(cursor){
         switch(cursor){
             case '0': $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});break;
@@ -510,30 +457,22 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     });
     
     $scope.NoOp = function () {
-        console.log('noop');
         $scope.actButtPod = {'id': 'B0'};
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
         document.getElementById('MaterialChooser').style.left = -230 +'px';
-        //$scope.closeFloorMenu();
     };
     $scope.SingleWall = function () {
         Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_SingleWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/2.png), default'});
-        /*document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';*/
     };
     $scope.CurveWall = function () {
         Set2D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_CurveWall");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/3.png), default'});
-        /*document.getElementById('B31').className = 'Button btn btn-default';
-        document.getElementById('B32').className = 'Button btn btn-default';*/
     };
     $scope.FourWall = function () {
-        console.log('four');
-        //$scope.NoOp();
         Set2D();
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/4.png), default'});
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_4Wall");
@@ -557,7 +496,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
         getErrorText('Zvoľte stenu pre zmenu materiálu');
         Set3D();
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_ChangeMatWall");
-        //document.getElementById('MaterialChooser').style.left = 0+'px';
     };
 
     SetUndoRedoInteractable = function (IsInteractable) { 
@@ -628,8 +566,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     $scope.actButtPod = {'id': 'B0'};
 
     $scope.podActive = function(event){
-        //$scope.NoOp();
-        //SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
         console.log(event.target.id, $scope.actButtPod);
         if ($scope.actButtPod.id !== 'B31' && event.target.id == 'B31') {
             console.log('zap');
@@ -641,7 +577,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
                 console.log('vyp');
                 SetDefaultFunctionPodorys();
                 $scope.closeFloorMenu();
-                //$scope.actButtPod = {'id': 'B0'};
         } else {
             $scope.actButtPod = {'id' : event.target.id};
             console.log($scope.actButtPod.id);
@@ -655,7 +590,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
             SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
             prepinac = true;
         } else if(prepinac == true){
-            //$scope.NoOp();
             $scope.closeFloorMenu();
             prepinac = false;
             $scope.actButtPod = {'id': 'B0'};
@@ -664,7 +598,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
 
     $scope.Strih = function(){
         $scope.NoOp();
-        //prepinac = false;
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/9.png), default'});
         SendMessage("FunctionsManager","SetFunctionActive","G01_CutFlooring");
     }
@@ -813,29 +746,7 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
             $scope.isDoorDropdownDisplayed = true;
         }
     }
-    /*
-    $("a.radio-dw").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-dw").removeClass('btn-my2');
-        $("a.radio-dw").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-
-    $scope.set_dw = function ($inputid) {
-        var _pR = document.getElementById($inputid).parentNode,
-            _pRi = _pR.querySelectorAll('input');
-
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById($inputid).checked = true;
-    }
-
-    $("a.radio-dwview").click(function () {
-        var $id = $(this).attr('id');
-        $("a.radio-dwview").removeClass('btn-my2');
-        $("a.radio-dwview").addClass('btn-my');
-        $("a#" + $id).addClass('btn-my2');
-    });
-    */
+    
     $scope.set_dwview = function ($inputid) {
         var _pR = document.getElementById($inputid).parentNode,
             _pRi = _pR.querySelectorAll('input');
@@ -857,17 +768,7 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
         if (!!value) d.style.left = "-720px";
         else d.style.left = "10px";
     });
-    /*
-    $scope.D2DDW = function () {
-        SendMessage("CanvasEditor", "SetView2D");
-    };
-    $scope.D3DDW = function () {
-        SendMessage("CanvasEditor", "SetView3D");
-    };
-    $scope.CenterDW = function () {
-        SendMessage("Main Camera", "ResetPosition");
-    };
-    */
+    
     $scope.NoOpDW = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G02_DefaultAction");
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
@@ -904,7 +805,7 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
     }
 }]);
 
-app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFactory) {
+app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($scope,jsonFactory,$timeout) {
 
     $scope.$on('setDefaults', function(e) {
         $scope.actButtInt = {'id': 'BI5'};
@@ -1080,14 +981,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     };
 
     setDefaultFunctionInterier = function () {
-        /*
-        var _pR = document.getElementById('B15').parentNode,
-            _pRi = _pR.querySelectorAll('input');
-        for (var i = 0, iL = _pRi.length; i < iL; i++) _pRi[i].checked = false;
-        document.getElementById('B15').checked = true;
-
-        document.getElementById('B15').classname = 'Button btn-my2 radio-i';
-        */
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
     }
     
@@ -1213,22 +1106,8 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     }
     
     var checkIfAll = function(){
-        //$scope.asProdCount = $scope.productsToShow.length;
         filterProducts();
         $scope.dataToRepeat.halfToggled = false;
-        for (var i = 0; i < $scope.dataToRepeat.length; i++ ){
-            if ($scope.dataToRepeat[i].hasSubs){
-                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    if ($scope.dataToRepeat[i].child[j].toggled){
-                        //$scope.asProdCount += $scope.dataToRepeat[i].child[j].products.length;
-                    }
-                }
-            } else {
-                if ($scope.dataToRepeat[i].toggled){
-                    //$scope.asProdCount += $scope.dataToRepeat[i].child[0].products.length;
-                }
-            }
-        }
         if ($scope.asProdCount == $scope.allPossible){
             $scope.dataToRepeat.allSelected = true;
         } else if ($scope.asProdCount == 0) {
@@ -1330,7 +1209,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
     }
 
     var filterProducts = function(){
-        //$scope.allPossible = 0;
         $scope.asProdCount = 0;
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
@@ -1338,20 +1216,9 @@ app.controller('interierCtrl', ['$scope','jsonFactory', function ($scope,jsonFac
                 if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.activeTT[i].products[j].manufacturername) > -1) {
                     $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
                 }
-                //$scope.allPossible += ;
             }
             $scope.asProdCount = $scope.productsToShow.length;
         }
-        //$scope.roomProdCount = 0;
-        /*
-        for (var i=0; i < $scope.dataToRepeat.length;i++){
-            //$scope.dataToRepeat[i].toggled = false;
-            for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                $scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
-            }
-        }
-        console.log($scope.roomProdCount);
-        */
         numberOfProds();
         $scope.calculateProductBox();
 

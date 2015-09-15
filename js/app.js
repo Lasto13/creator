@@ -57,26 +57,37 @@ var app = angular.module('app',[
   var service = {}
 
   service.login = function(login, pass){
-
     return $http.post('http://dev.enli.sk/api/tokens', { username: login, password: pass })
     
     .then(function (response) {
         document.getElementById('loginScreen').style.opacity = '0';
         document.getElementById('loginScreen').style.display = 'none';
-
-        $timeout(function() {
-            initialize();
-        }, 1500);
       return response
     },
     function (err) {getErrorText('Nesprávne meno alebo heslo'); console.log('Server Error'); console.dir(err); });
   };
+
+  service.getCurrentUser = function(){
+    if ($window.Storage) {
+      myStorage = $window.localStorage;
+      return $http.get('http://dev.enli.sk/api/users/me', { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token'))}}).then(function(response) {
+        return response.data.user
+      }, function(err){
+        console.dir(err);
+      });
+    }
+  }
 
   service.saveDataToStorage = function(data) {
     if ($window.Storage) {
       myStorage = $window.localStorage;
       myStorage.setItem('token', JSON.stringify(data.token.value));
       myStorage.setItem('user', JSON.stringify(data.user));
+      var today = new Date();
+      var day = today.getDate();
+      var hour = today.getHours();
+      myStorage.setItem('day', day);
+      myStorage.setItem('time', hour);
     } else {console.log('Storage is not suported');}
   };
 

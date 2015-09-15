@@ -17,6 +17,12 @@
     <div id="B27" class='buttonMenu' title="Nastavenia projektu" ng-click = "SetSettings();"></div>
   </div>
 
+  <div id='logToolbar'>
+    <div id='loginIcon'> </div>
+    <p>{{currentUser.email}}</p>
+    <div id ='logOut' ng-click = 'logOut()'></div>
+  </div>
+
   <div id="mainButtons">
     <div id='leftBox'>
       <a id="B10" title="Krok späť" class="Button btn-my inActive" ng-click="Undo()"></a>

@@ -65,32 +65,95 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
     $scope.logButDisabled = false;
 
+    $scope.currentUser = {}
+
+    if ($window.Storage){
+        var myStorage = $window.localStorage;
+        var today = new Date();
+        if (( myStorage.getItem('day') == today.getDate() ) && ((today.getHours() - myStorage.getItem('time')) < 3)) {
+            var _token = myStorage.getItem('token');
+            if (_token){
+                communicator.getCurrentUser().then(function(resp){
+                    $scope.currentUser.email = resp.email;
+                });
+                document.getElementById('loginScreen').style.opacity = '0';
+                document.getElementById('loginScreen').style.display = 'none';
+                $timeout(function() {
+                    initialize();
+                    wasLoaded = true;
+                }, 1500);
+            }
+        } else {
+            deleteDataFromStorage();
+        }
+        
+    }
+
+    $scope.logOut = function(){
+        deleteDataFromStorage();
+        //$scope.$broadcast ('setDefaults');
+        SendMessage('FunctionsManager','SetInputEnabled','0');
+        document.getElementById('loginScreen').style.opacity = '1';
+        document.getElementById('loginScreen').style.display = 'block';
+        //getErrorText('Odhlasenie');
+        location.reload();
+    }
+
+    function deleteDataFromStorage() {
+        $scope.currentUser.email = null;
+        var myStorage;
+        if ($window.Storage) {
+            myStorage = $window.localStorage;
+            delete myStorage.token;
+            delete myStorage.user;
+            delete myStorage.place;
+            delete myStorage.day;
+            delete myStorage.time;
+            $scope.logButDisabled = false;
+        } else {
+          console.log('Storage is not suported');
+        }
+    }
+
+    var wasLoaded = false;
+
     $scope.login = function(){
         if ($scope.logButDisabled == false){
             $scope.logButDisabled = true;
             var email = $scope.user.login,
                 password = $scope.user.pass;
             communicator.login(email,password).then(function(resp){
-            if (!resp) {$scope.logButDisabled = false}
+            if (resp == null) {$scope.logButDisabled = false; return}
                 communicator.saveDataToStorage(resp.data);
                 communicator.userPlaces().then(function(resp){
-                var placeID = resp[0].id;
-                if ($window.localStorage)
-                {
-                    var myStorage = $window.localStorage;
-                    myStorage.setItem('place', JSON.stringify(placeID));    
+                    var placeID = resp[0].id;
+                    if ($window.Storage){
+                        var myStorage = $window.localStorage;
+                        myStorage.setItem('place', JSON.stringify(placeID));    
                 }
+                communicator.getCurrentUser().then(function(resp){
+                    $scope.currentUser.email = resp.email;
+                });
                 communicator.getSave().then(function(resp){
                     $scope.saves = resp.data;
+                    if (wasLoaded == true) {
+                        SendMessage("NewProject", "NewProject");
+                        SendMessage('FunctionsManager','SetInputEnabled','1');
+                    } else {
+                        $timeout(function() {
+                            initialize();
+                            wasLoaded = true;
+                            }, 1500);
+                        }
+                    })
                 })
             })
-        })
         } else {return}
     }
     /*
     $scope.getImgForSave = function(save){
         console.log(save.image);
-        if ($window.localStorage)
+        if ($window.Storage)
         {
             var myStorage = $window.localStorage;
         }
@@ -113,7 +176,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     $scope.SetSettings = function () {
         if (prepinacSet == 0) {
             $('#Settings').css({ top: 110 + 'px' });
-            $('#LoadProject').css({ top: -300 + 'px' });
+            $('#LoadProject').css({ top: -470 + 'px' });
             prepinacSave = 0;
             prepinacLoad = 0;
             prepinacSet = 1;
@@ -141,7 +204,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
     $scope.SetLoad = function () {
         if (prepinacLoad == 0) {
-            if ($window.localStorage) var myStorage = $window.localStorage;
+            if ($window.Storage) var myStorage = $window.localStorage;
             var _placeID = JSON.parse(myStorage.getItem('place'));
             communicator.getSave(_placeID).then(function(resp){
                 $scope.saves = resp.data;
@@ -174,7 +237,6 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     }
 
     graphicSettings = function(value){
-        console.log(value);
         switch(value){
             case 0: document.getElementById('radio01').checked = true; break;
             case 1: document.getElementById('radio02').checked = true; break;
@@ -232,14 +294,15 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.D2D = function () {
-        $scope.$broadcast ('defaultPod');
-
+        if ($scope.activeMenu.first == true) {
+            $scope.$broadcast ('setDefaults');
+        }
         SendMessage("CanvasEditor", "SetView2D");
     };
     $scope.D3D = function () {
         SendMessage("CanvasEditor", "SetView3D");
         if ($scope.activeMenu.first == true) {
-            $scope.$broadcast ('defaultPod');
+            $scope.$broadcast ('setDefaults');
         }
     };
 
@@ -340,13 +403,18 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
 app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-    
-    $scope.$on('defaultPod', function(e) {  
+    /*
+    $scope.$on('defaultPod', function(e) {
         $scope.actButtPod = {'id': 'B0'};
+        document.getElementById('MaterialChooser').style.left = -230 +'px';
+        document.getElementById('FloorChooser').style.left = -230 +'px';
+        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
     });
-
+    */
     $scope.$on('setDefaults', function(e) {
         $scope.actButtPod = {'id': 'B0'};
+        document.getElementById('MaterialChooser').style.left = -230 +'px';
+        document.getElementById('FloorChooser').style.left = -230 +'px';
         SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
     });
 
@@ -566,20 +634,15 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     $scope.actButtPod = {'id': 'B0'};
 
     $scope.podActive = function(event){
-        console.log(event.target.id, $scope.actButtPod);
         if ($scope.actButtPod.id !== 'B31' && event.target.id == 'B31') {
-            console.log('zap');
             $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
             SendMessage("FunctionsManager","SetFunctionActive","G01_SelectFlooring");
             $scope.actButtPod = {'id': 'B31'};
-            console.log($scope.actButtPod);
             } else if($scope.actButtPod.id == 'B31' && event.target.id == 'B31'){
-                console.log('vyp');
                 SetDefaultFunctionPodorys();
                 $scope.closeFloorMenu();
         } else {
             $scope.actButtPod = {'id' : event.target.id};
-            console.log($scope.actButtPod.id);
         }
     }
      
@@ -662,7 +725,6 @@ app.controller('dwCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory
     $scope.actButtDw = {'id' : 'BDW5'}
     $scope.dwActive = function(event){
         $scope.actButtDw = {'id' : event.target.id}
-        console.log($scope.actButtDw.id);
     }
 
     jsonFactory.loadMenu().then(function (data) {
@@ -815,7 +877,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     $scope.actButtInt = {'id' : 'BI5'}
     $scope.intActive = function(event){
         $scope.actButtInt = {'id' : event.target.id}
-        console.log($scope.actButtInt.id);
     }
 
     jsonFactory.loadMenu().then(function(data){
@@ -1305,11 +1366,10 @@ app.controller('FPSCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
     }
 
     setFpsControlls = function (input){
-        console.log(input);
         switch (input){
             case 0 : document.getElementById('lc').checked = true; $timeout(function () {SendMessage("FpsManager", "mouse_controll");}, 1000);  break;
             case 1 : document.getElementById('wasd').checked = true; $timeout(function () { SendMessage("FpsManager", "mouseWASD_controll");}, 1000);  break;
-            case 2 : console.log('key'); document.getElementById('k').checked = true; $timeout(function () { SendMessage("FpsManager", "keyboard_controll");}, 1000);  break;
+            case 2 : document.getElementById('k').checked = true; $timeout(function () { SendMessage("FpsManager", "keyboard_controll");}, 1000);  break;
             default: document.getElementById('k').checked = true; SendMessage("FpsManager", "keyboard_controll");
         }
     }

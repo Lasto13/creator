@@ -25,6 +25,7 @@ label{cursor: pointer;}
 	background-color: #7ca616; 
 }
 body{
+	outline: 0;
 	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -75,11 +76,15 @@ a {letter-spacing: -1px}
 #header{top:0;width:100%;height:80px;z-index:1000}
 #header a:focus{text-decoration: none; color: white}
 #header #EnliLogo{background-size:100% auto;height:70px;width:150px;top:8%!important;left:47%}
-#header #enli-header{background-color:#7ca616;pointer-events:none;height:inherit;position:relative;z-index:1}
-#header #enli-header #mainButtons{position:absolute;float:left;top:80px;height:100%;width:35%;margin-left:35%;pointer-events:auto;padding-top:10px}
+#header #enli-header{background-color:#7ca616;pointer-events:none;height:inherit;position:relative}
+#header #enli-header #mainButtons{position:absolute;float:left;top:80px;height:70px;width:35%;margin-left:35%;pointer-events:auto;padding-top:10px}
 #header #enli-header #mainButtons #leftBox{float:left}
 #header #enli-header #mainButtons #buttSwitch{position:relative;left:93px;float:left;margin-left:4px}
 #header #enli-header #mainButtons #rightBox{position:relative;left:93px;margin-left:4px;float:left}
+#header #enli-header #logToolbar {position: absolute;right: 30px;top: 112px;height: 30px;pointer-events: auto;z-index: -1}
+#header #enli-header #logToolbar #loginIcon{float:left;background: transparent url(img/icon_logged.png) no-repeat scroll 50% 50%;position: relative;width: 20px;height: 20px;}
+#header #enli-header #logToolbar p {color:#7ca616;float:left;font-size: 1.2em;margin-left: 5px}
+#header #enli-header #logToolbar #logOut {background-image:url(img/logout.svg);background-size: 100%;float:right;width: 26px;height: 25px;margin-left: 10px;cursor: pointer;}
 #header #ProjektMenuContainer{float:right;position:relative;width:250px;height:inherit;z-index:1000;right:4px;padding:5px}
 #header #ProjektMenuContainer .buttonMenu {width: 50px;float: left;margin: 5px;cursor: pointer;}
 #header #ProjektMenuContainer .buttonMenu:hover{opacity: 0.8}
@@ -108,10 +113,6 @@ a {letter-spacing: -1px}
 #LoadProject p{left:5px;color:#7CA616}
 .podorys-section{position:absolute;top:80px;z-index:999;width:100%;height:100%;pointer-events:none}
 .podorys-section #podorys-toolbar{height:70px;width:100%;background-color:#FFF;position:relative;pointer-events:auto;z-index:999}
-.podorys-section #podorys-toolbar #mierka-radio{position:relative;width:320px;float:right;top:55px;left:-24px}
-.podorys-section #podorys-toolbar #mierka-radio input[type=radio]{display:none}
-.podorys-section #podorys-toolbar #mierka-radio label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-5px;margin-left:4px}
-.podorys-section #podorys-toolbar #mierka-radio input[type=radio]:checked+label{background:url(img/radio_on.png)}
 .podorys-section .left-menu{z-index:1000;position:absolute;height:100%;width:270px;padding-top: 20px;padding-left:48px;background-color:#FFF;pointer-events:auto}
 .podorys-section .left-menu p{color:#7CA616;font-size:1.25em;font-family:Roboto;font-weight:700; white-space: nowrap}
 .podorys-section .left-menu #floor-types p{position: relative; top: 25px}
@@ -123,8 +124,8 @@ a {letter-spacing: -1px}
 .podorys-section .left-menu-item{width:180px;position:relative;margin-bottom:10px}
 .podorys-section .left-menu-item .Button{width: 180px;height:30px; line-height: 26px;}
 .podorys-section .left-menu-item input[type=radio]{display:none}
-.podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px}
-.podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_on.png)}
+.podorys-section .left-menu-item label{display:inline-block;background:url(img/radio_of.png);width:21px;height:21px;margin-bottom:-4px;padding-left: 29px;background-repeat: no-repeat;font-weight: 300;}
+.podorys-section .left-menu-item input[type=radio]:checked+label{background:url(img/radio_on.png);background-repeat: no-repeat; color: #7f7f7f}
 .activeSectionFirst {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color: #FFF;text-decoration: none;text-align: center;padding: 5px 18px;font-size: 16px;font-family: helvetica,arial,sans-serif;background-color: #559734;width: 168px;z-index: 902}
 .activeSectionSecond {  top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 25px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:207px;left:-4px;z-index: 901}
 .activeSectionThird {top: -4px;display: inline-block;font-weight: 700;  position: relative;height: 80px;border-radius: 4px;color:#fff;text-decoration:none;text-align:center;padding:5px 18px;font-size:16px;font-family:helvetica,arial,sans-serif;background-color:#559734;width:173px;left:-9px;z-index: 900}
@@ -287,7 +288,6 @@ a {letter-spacing: -1px}
 #header #LoadProject{overflow:auto;height:350px;width:300px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-350px}
 #loader,#loader:after,#loader:before{border:3px solid transparent}
 .Button{width:50px;height:50px;margin-left:-2px}
-/*.DoorButton{vertical-align:left;width:100px;height:100px;margin-left:2px}*/
 #B20,#B21,#B23{width:180px;height:30px}
 .TypeProductDesign,.TypeProductDesignClicked,.TypeTypeProductDesign,.TypeTypeProductDesignClicked{display:block;vertical-align:middle}
 .btn-my{background-position:left bottom;cursor: pointer}
@@ -363,7 +363,7 @@ a {letter-spacing: -1px}
 }
 /* portal STYLE duplicate */
 .interier-section .left-menu .enli-checkbox-btn {display: block;width: 100%;margin-bottom: 2px;position: relative}
-.interier-section .left-menu .enli-checkbox-btn .btn{background-image: none; width: 100%;color: #c7c7c7;/*background-color: #ebf4d7;*/font-family: 'Roboto Bold',Helvetica,Arial,sans-serif;text-align: left;}
+.interier-section .left-menu .enli-checkbox-btn .btn{background-image: none; width: 100%;color: #c7c7c7;font-family: 'Roboto Bold',Helvetica,Arial,sans-serif;text-align: left;}
 .interier-section .left-menu .enli-checkbox-btn .btn:hover,.enli-checkbox-btn .btn:focus {color: #c7c7c7;background-color: white;}
 .interier-section .left-menu .enli-checkbox-btn.active .btn{color: #97ba46;background-color: #ebf4d7;}
 /*

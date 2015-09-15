@@ -24,7 +24,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect">';
                 template += '<div class="dropdown-toggle" ng-click="toggleDropdown()"> <span class="caret"></span> {{getButtonText()}}&nbsp;</div>';
                 template += '<ul class="dropdown-menu dropdown-menu-form" ng-style="{display: open ? \'block\' : \'none\', height : settings.scrollable ? settings.scrollableHeight : \'auto\' }">';
-                template += '<li ng-show="settings.toggler"><a id={{settings.allID}} data-ng-click="toggleSelection($event)"> {{texts.toggle}} <label ng-class=\'{labelActive: settings.allToggled,labelInactive: !settings.allToggled}\' for="{{settings.chkbxID}}"><input ng-hide=\'true\' id={{settings.chkbxID}} type="checkbox"/></label></a>';
+                template += '<li ng-show="settings.toggler"><a id={{settings.allID}} data-ng-click="toggleSelection($event)"> {{texts.toggle}} <label ng-class=\'{labelActive: settings.allToggled,labelInactive: !settings.allToggled,halfT: settings.halfToggled}\' for="{{settings.chkbxID}}"><input ng-hide=\'true\' id={{settings.chkbxID}} type="checkbox"/></label></a>';
                 template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"> {{texts.checkAll}}</a>';
                 template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"> {{texts.uncheckAll}}</a></li>';
                 template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
@@ -335,10 +335,14 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     }
                     if ($scope.settings.closeOnSelect) $scope.open = false;
 
+                    $scope.settings.halfToggled = false;
                     if ($scope.selectedModel.length == $scope.options.length){
                         $scope.settings.allToggled = true;
-                    }   else {$scope.settings.allToggled = false;}
-
+                    }   else if ($scope.selectedModel.length == 0) {
+                        $scope.settings.allToggled = false;
+                    } else {
+                        $scope.settings.halfToggled = true;
+                    }
                 };
 
                 $scope.dropClicked = function (item) {

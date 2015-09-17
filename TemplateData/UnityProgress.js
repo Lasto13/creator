@@ -18,18 +18,23 @@ function UnityProgress (dom) {
     this.SetMessage = function (message) { _talker.innerHTML = message; }
 
     this.Clear = function () {
-        _splashSc.className = 'hide';
+        /*
         setTimeout(function () {
-            for (var i = 0, iL = document.querySelectorAll('a').length; i < iL; i++)
+                _splashSc.style.display = 'none';
+            }, 3000);
+        */
+        setTimeout(function () {
+            /*for (var i = 0, iL = document.querySelectorAll('a').length; i < iL; i++)
                 document.querySelectorAll('a')[i].addEventListener('click', btnClassRplc, false);
+            */
             var sp = document.getElementById('sp-holder');
-            var np = document.getElementById('np-holder');
+            var really = document.getElementById('really-holder');
             var spc = document.getElementById('sp-content');
-            var npc = document.getElementById('np-content');
+            var npc = document.getElementById('really-content');
 
             sp.addEventListener('click', function () {SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0; }, false);
             spc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
-            np.addEventListener('click', function () { SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0;}, false);
+            really.addEventListener('click', function () { SendMessage('FunctionsManager','SetInputEnabled','1'); this.style.display = "none"; this.style.opacity = 0;}, false);
             npc.addEventListener('click', function (e) { e.stopPropagation(); }, false);
 
             document.addEventListener('keyup', function (e) { 
@@ -37,8 +42,8 @@ function UnityProgress (dom) {
                     $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
                     sp.style.display = "none";
                     sp.style.opacity = 0;
-                    np.style.display = "none";
-                    np.style.opacity = 0;
+                    really.style.display = "none";
+                    really.style.opacity = 0;
                     SendMessage('FunctionsManager','SetInputEnabled','1');
                     
                     $('#Settings').css({ top: -470 + 'px' });
@@ -84,7 +89,7 @@ function UnityProgress (dom) {
                     }
                 }
             }, false);
-            
+            /*
             function btnClassRplc(a) {
                 var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
                 if (_pR.id.indexOf('ButtonContainer') > -1 || _pR.id.indexOf('buttons') > -1 || _pR.id.indexOf('buttSwitch') > -1) {
@@ -92,6 +97,7 @@ function UnityProgress (dom) {
                     a.target.className = 'Button btn-my radio-view btn-my2';
                 }
             }
+            */
         }, 1);
     }
 }

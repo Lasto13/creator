@@ -224,7 +224,7 @@
             </div>
             <div id='drop_holder'>
               <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
-              <div ng-dropdown-multiselect=""  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
+              <div ng-dropdown-multiselect="" ng-class="{manDis : manDisabled}"  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>
             <div id='Categories' ng-show='dataToRepeat.show'>
               <div id= 'allSelector'>
@@ -299,11 +299,13 @@
     </div>
   </div>
 
-  <div id="np-holder">
-    <div id="np-content">
-      <div style='text-align:center'><h4>Otvoriť nový projekt ?</h4></div>
-      <button class="btn enli-btn" ng-click="CleanProject()">Áno</button>
-      <button class="btn enli-btn" ng-click="cancel()">Nie</button>
+  <div id="really-holder">
+    <div id="really-content">
+      <div style='text-align:center'><h4>{{ask.text}}</h4></div>
+      <span> <h5>Uložiť zmeny ?</h5> </span>
+      <button class="btn enli-btn" ng-click="openSaveDialog()">Áno</button>
+      <button class="btn enli-btn" ng-click="CleanProject()">Nie</button>
+      <button class="btn enli-btn" ng-click="cancel()">Zrušiť</button>
     </div>
   </div>
 
@@ -333,7 +335,7 @@
           scripts = [
                     //loc + "js/jquery-2.1.3.min.js",
                     //loc + "js/jquery-ui.js",
-                    loc + "js/plugin.jslib",
+                    //loc + "js/plugin.jslib",
                     //loc + "js/angular.js",
                     //loc + "bootstrap/ui-bootstrap-tpls-0.11.0-SNAPSHOT.js",
                     "maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",

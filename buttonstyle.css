@@ -33,7 +33,6 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
-a {letter-spacing: -1px}
 #loginScreen {position: absolute;width: 100%;height: 100%;z-index: 1003;background: #fff;}
 #loginScreen .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:150px;height:26%;margin-top:20px;outline: none;}
 #loginScreen .btn-login {background: url(img/prihlasit.svg);height: 38px;background-size: 100%;cursor: pointer;border: 0px}
@@ -60,16 +59,17 @@ a {letter-spacing: -1px}
 #loader,#loader:after,#loader:before{border-top-color:#7ca616}
 #wrapper{position:absolute;overflow:hidden}
 #splash-sc{background:#fff;position:fixed;top:0;left:0;z-index:1001}
-#sp-holder,#np-holder,.loader-count,.talk-to{position:absolute}
+#sp-holder,#really-holder,.loader-count,.talk-to{position:absolute}
 .loader-count{font-family:Roboto;text-align:center;z-index:1002}
 .talk-to{width:400px;height:50;text-align:center}
-#sp-holder,#np-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);opacity:0;display:none;transition:opacity 1.5s ease-in-out;-moz-transition:opacity 1.5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
-#sp-content,#np-content{position:relative;width:300px;height:150px;background:#fff;border: 1px solid #7ca616;border-radius:10px;left:44%;top:20%}
+#sp-holder,#really-holder{width:100%;height:100%;z-index:10001;background:rgba(211,211,211,.5);opacity:0;display:none;transition:opacity 1.5s ease-in-out;-moz-transition:opacity 1.5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
+#sp-content,#really-content{position:absolute;width:300px;margin: auto;height:150px;background:#fff;border: 1px solid #7ca616;border-radius:10px;left:44%;top:20%}
+#really-content {width: 308px !important}
 #errMsg,#header,#header #EnliLogo{position:absolute}
 #sp-content input{margin-left:74px}
 #sp-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
-#np-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:30%;height:26%;margin-left:41px;margin-top:20px}
-#np-content h4 {color: #7CA616; display: inline-block}
+#really-content .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:50px;height:26%;margin-left:36px;margin-top:20px}
+#really-content h4 {color: #7CA616; display: inline-block}
 #header .button.first,#header .button.next:after,#header .button.second,#header .button.third{background-color:#7CA616}
 #header .button.first,#header .button.second,#header .button.third{background-color:#7CA616;background-color:#7CA616;background-color:#7CA616}
 #errMsg{top:47%;left:40%;width:500px;height:40px;z-index:1003;border-radius:10px;background:#fff;text-align:center;pointer-events:none;opacity:0;transition:opacity 1.5s ease-in-out;-moz-transition:opacity .5s ease-in-out;-webkit-transition:opacity 1.5s ease-in-out}
@@ -84,7 +84,9 @@ a {letter-spacing: -1px}
 #header #enli-header #logToolbar {position: absolute;right: 30px;top: 112px;height: 30px;pointer-events: auto;z-index: -1}
 #header #enli-header #logToolbar #loginIcon{float:left;background: transparent url(img/icon_logged.png) no-repeat scroll 50% 50%;position: relative;width: 20px;height: 20px;}
 #header #enli-header #logToolbar p {color:#7ca616;float:left;font-size: 1.2em;margin-left: 5px}
-#header #enli-header #logToolbar #logOut {background-image:url(img/logout.svg);background-size: 100%;float:right;width: 26px;height: 25px;margin-left: 10px;cursor: pointer;}
+#header #enli-header #logToolbar #logHolder {cursor: pointer;}
+#header #enli-header #logToolbar #logOut {background-image:url(img/logout.svg);background-size: 100%;float:left;width: 26px;height: 25px;margin-left: 10px}
+#header #enli-header #logToolbar #logOutt {font-size: 1em;float: right}
 #header #ProjektMenuContainer{float:right;position:relative;width:250px;height:inherit;z-index:1000;right:4px;padding:5px}
 #header #ProjektMenuContainer .buttonMenu {width: 50px;float: left;margin: 5px;cursor: pointer;}
 #header #ProjektMenuContainer .buttonMenu:hover{opacity: 0.8}
@@ -198,6 +200,7 @@ a {letter-spacing: -1px}
 .interier-section #interier-toolbar #buttons{position:relative;float:left;height:70px;background-color:#FFF;pointer-events:auto;width:20%;padding-top:10px;padding-left:15px}
 .interier-section .left-menu{position:relative;height:100%;width:270px;z-index:999;background-color:#FFF;pointer-events:auto}
 .interier-section .left-menu #InterierMenu{top:150px;height:100%;width:100%;background-color:#FFF;color:#7CA616;padding-left:18px;padding-right: 10px}
+.interier-section .left-menu #InterierMenu a {letter-spacing: -1px}
 .interier-section .left-menu .prod-image{display:inline-block;width:100px;height:100px;margin-left:2px;background-size:100% auto;background-repeat:no-repeat;cursor:pointer;}
 .interier-section #ProductBox .prod-info a{color:#7CA616;margin-left:35px;cursor:pointer}
 .interier-section h4{color:#7ca616}
@@ -222,6 +225,7 @@ a {letter-spacing: -1px}
 .interier-section .left-menu #allSelector a {width: 100%}
 .interier-section .left-menu .btn-default{margin-bottom: 3px;background: #fff;color:#7CA616; border-color: #7CA616}
 .interier-section .left-menu .multiselect-parent {width: 100%}
+.interier-section .left-menu .manDis{pointer-events:none;color:#7a7a7a}
 .interier-section .left-menu .dropdown-menu{border:none;position:relative;min-width:232px;border-radius:0;box-shadow: none;margin: -1px 0px 10px; padding:12px 0px;padding-top: 0px}
 .interier-section .left-menu .dropdown-menu > ul {min-width: 183px;padding-bottom: 20;margin-bottom: 10px;box-shadow: none;}
 .interier-section .left-menu .dropdown-menu > li {height: 30px}
@@ -280,7 +284,7 @@ a {letter-spacing: -1px}
 #PodorysMenu{position:relative;height:100px;width:35%;float:left}
 #canvasHolder{position:absolute;left:250px;top:180px;z-index:1}
 #canvas{position:absolute;height:100%;width:100%}
-#LoadProject .btn-group{width:100%;height:20%;border-bottom:solid 1px;border-color:#7ca616}
+#LoadProject .btn-group{width:100%;height:69px;border-bottom:solid 1px;border-color:#7ca616}
 #PodorysMenu2{position:relative;height:100%;width:35%;margin-left:38%}
 #header #LoadProject,#header #SaveProject{-webkit-transition:top .5s ease-out;position:absolute}
 #header #SaveProject{display:block;height:100px;width:250px;pointer-events:auto;transition:top .5s ease-out;right:20px;top:-70px}

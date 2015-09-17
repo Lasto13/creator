@@ -46,6 +46,10 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         }
     }
 
+    closeLoder = function(){
+        document.getElementById('splash-sc').style.display = 'none';
+    }
+
     var myStorage;
     $scope.user = {};
     $scope.saveName = '';
@@ -95,7 +99,6 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         SendMessage('FunctionsManager','SetInputEnabled','0');
         document.getElementById('loginScreen').style.opacity = '1';
         document.getElementById('loginScreen').style.display = 'block';
-        //getErrorText('Odhlasenie');
         location.reload();
     }
 
@@ -164,8 +167,9 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         return url
     }
     */
-    $scope.deleteSave = function(saveName){
-        communicator.deleteSave(saveName).then(function(resp, status, headers, conf){
+    $scope.deleteSave = function(save){
+        calculateSaveBox();
+        communicator.deleteSave(save.id).then(function(resp, status, headers, conf){
             $scope.saves = resp.data;
             if (!$scope.$$phase) $scope.$apply();
         });
@@ -202,13 +206,23 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         }
     }
 
+    function calculateSaveBox(){
+        var _sl = $scope.saves.savePlace.parts.length;
+        if (_sl < 5){
+            document.getElementById('LoadProject').style.height = 69 * _sl + 2 + 'px';
+        } else {
+            document.getElementById('LoadProject').style.height = 350 + 'px';
+        }
+    }
+
     $scope.SetLoad = function () {
         if (prepinacLoad == 0) {
             if ($window.Storage) var myStorage = $window.localStorage;
             var _placeID = JSON.parse(myStorage.getItem('place'));
             communicator.getSave(_placeID).then(function(resp){
-                $scope.saves = resp.data;
-            })
+                    $scope.saves = resp.data;
+                    calculateSaveBox();
+                })
             $('#LoadProject').css({ top: 110 + 'px' });
             $('#Settings').css({ top: -470 + 'px' });
             prepinacLoad = 1;
@@ -336,7 +350,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     $scope.cancel = function () {
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
-        document.getElementById('np-holder').style.display = "none";
+        document.getElementById('really-holder').style.display = "none";
         document.getElementById('sp-holder').style.opacity = 0;
         SendMessage('FunctionsManager','SetInputEnabled','1');
     }
@@ -349,11 +363,23 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         document.getElementById('sp-holder').style.display = "none";
         document.getElementById('sp').value = "";
         document.getElementById('sp-holder').style.opacity = 0;
+        if ($scope.ask.option == 'new'){
+            $scope.CleanProject();
+        } else if ($scope.ask.option == 'open'){
+            getErrorText('Načítavam');
+            closeAll();
+            $scope.CleanProject();
+            $scope.$broadcast ('setDefaults');
+            var jsonstring = $scope.ask.toLoad;
+            $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
+        }
+        $scope.ask = {};
         $timeout(function(){
             communicator.getSave().then(function(resp){
                 $scope.saves = resp.data;
             })
         ;}, 3000);
+
     }
 
     setShowRozmery = function (show) {
@@ -373,18 +399,50 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     }
 
     $scope.NovyProjekt = function () {
-        closeAll();
-        defActionClass();
-        document.getElementById('np-holder').style.display = "block";
-        document.getElementById('np-holder').style.opacity = 1;
-        document.getElementById('B31').className = 'Button btn btn-default';
-        SendMessage('FunctionsManager','SetInputEnabled','0');
+        
+        SendMessage('EventSystem','askActionsBeforeOpenNewProject');
+        $timeout(function(){
+            if (noChangesMade == true){
+                //SendMessage('FunctionsManager','SetInputEnabled','0');
+                closeAll();
+                $scope.CleanProject();
+                $scope.$broadcast ('setDefaults');
+            } else {
+                $scope.ask.text = 'Otvoriť nový projekt';
+                $scope.ask.option = 'new';
+                SendMessage('FunctionsManager','SetInputEnabled','0');
+                closeAll();
+                document.getElementById('really-holder').style.display = "block";
+                document.getElementById('really-holder').style.opacity = 1;
+                $scope.$broadcast ('setDefaults');
+            }
+        }, 100)
+    }
+
+    $scope.openSaveDialog = function(){
+        document.getElementById('sp').value = '';
+        document.getElementById('really-holder').style.display = "none";
+        document.getElementById('really-holder').style.opacity = 0;
+        document.getElementById('sp-holder').style.display = "block";
+        document.getElementById('sp-holder').style.opacity = 1;
+        document.getElementById('sp').focus();
+    }
+
+    var noChangesMade = true 
+
+    askActionsBeforeOpenNewProject = function(canLoad){
+        if (canLoad == 1){
+            noChangesMade = true;
+        } else {
+            noChangesMade = false;
+        }
+        console.log(canLoad);
     }
 
     $scope.CleanProject = function () {
         defActionClass();
-        document.getElementById('np-holder').style.display = "none";
-        document.getElementById('np-holder').style.opacity = 0;
+        document.getElementById('really-holder').style.display = "none";
+        document.getElementById('really-holder').style.opacity = 0;
         SendMessage("NewProject", "NewProject");
         SendMessage('FunctionsManager','SetInputEnabled','1');
     }
@@ -394,23 +452,39 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         else if (value === "0") getErrorText("Váš projekt nebol uložený");
     }
 
-    loadingFinished = function (value) { }
+    loadingFinished = function (value) {
+        document.getElementById('LoadProject').style.pointerEvents = 'auto';
+    }
+
+    $scope.ask = {};
 
     $scope.OtvoritProjekt = function (jsonstring) {
-        $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
+        SendMessage('EventSystem','askActionsBeforeOpenNewProject');
+        $timeout(function(){
+            if (noChangesMade == true){
+                //SendMessage('FunctionsManager','SetInputEnabled','0');
+                closeAll();
+                $scope.CleanProject();
+                $scope.$broadcast ('setDefaults');
+                $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000);
+            } else {
+                $scope.ask.text = 'Otvoriť projekt';
+                $scope.ask.option = 'open';
+                $scope.ask.toLoad = jsonstring;
+                SendMessage('FunctionsManager','SetInputEnabled','0');
+                closeAll();
+                document.getElementById('really-holder').style.display = "block";
+                document.getElementById('really-holder').style.opacity = 1;
+                $scope.$broadcast ('setDefaults');
+            }
+        }, 100)
+        document.getElementById('LoadProject').style.pointerEvents = 'none';
     }
 }]);
 
 app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFactory) {
     $(document.documentElement).css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
-    /*
-    $scope.$on('defaultPod', function(e) {
-        $scope.actButtPod = {'id': 'B0'};
-        document.getElementById('MaterialChooser').style.left = -230 +'px';
-        document.getElementById('FloorChooser').style.left = -230 +'px';
-        SendMessage("FunctionsManager", "SetFunctionActive", "G01_DefaultAction");
-    });
-    */
+
     $scope.$on('setDefaults', function(e) {
         $scope.actButtPod = {'id': 'B0'};
         document.getElementById('MaterialChooser').style.left = -230 +'px';
@@ -966,8 +1040,13 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         return unique;
     };
     
-    //$scope.roomProdCount = 0;
+    $scope.manDisabled = false;
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
+        console.log(newIzba);
+        if (newIzba.length == 0){
+            $scope.manDisabled = true;
+        } else $scope.manDisabled = false;
+
         $scope.dataToRepeat = [];
         if (newIzba == oldIzba || newIzba.length == 0) return;
         //$scope.roomProdCount = 0;
@@ -1221,6 +1300,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         var d = document.getElementById('ProductBox');
         if (!!value) {
             d.style.left = "270px";
+            SendMessage("GUI INTERIOR", "HideProductDetailPanel");
         }
         else {
             d.style.left = "-600px";
@@ -1229,15 +1309,29 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
 
     var sipRot;
 
+    openPB = function (){ // openPB
+        //$timeout(function(){$scope.toggleProdMenu();}, 500);
+        document.getElementById('sipka').style.transform = 'rotate(180deg)';
+        sipRot = true;
+        var d = document.getElementById('ProductBox');
+        d.style.left = "270px";
+    }
+
     $scope.toggleProdMenu = function () {
-        $scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+        console.log('called ?');
+        //$scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
         if (sipRot == true) {
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
             sipRot = false;
+            var d = document.getElementById('ProductBox');
+            d.style.left = "-600px";
         }
         else {
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
+            var d = document.getElementById('ProductBox');
+            d.style.left = "270px";
+            SendMessage("GUI INTERIOR", "HideProductDetailPanel");
         }
     }
 

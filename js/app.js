@@ -126,10 +126,10 @@ var app = angular.module('app',[
     SendMessage('FunctionsManager','SetInputEnabled','1');
   };
 
-  service.deleteSave = function(saveName){
+  service.deleteSave = function(saveId){
     var _placeID = JSON.parse(myStorage.getItem('place'));
       
-    return $http.delete('http://dev.enli.sk/api/places/' + _placeID + '/save/' + saveName, { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }})
+    return $http.delete('http://dev.enli.sk/api/places/' + _placeID + '/save/' + saveId, { headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(myStorage.getItem('token')) }})
       .then(function(resp, status, headers, conf){
           return resp
       })

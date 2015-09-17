@@ -447,6 +447,23 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         SendMessage('FunctionsManager','SetInputEnabled','1');
     }
 
+    $scope.cleanOrOpen = function(){
+        if ($scope.ask.option == 'new'){
+            defActionClass();
+            document.getElementById('really-holder').style.display = "none";
+            document.getElementById('really-holder').style.opacity = 0;
+            SendMessage("NewProject", "NewProject");
+            SendMessage('FunctionsManager','SetInputEnabled','1');
+        } else if ($scope.ask.option == 'open'){
+            getErrorText('Načítavam');
+            closeAll();
+            $scope.CleanProject();
+            $scope.$broadcast ('setDefaults');
+            var jsonstring = $scope.ask.toLoad;
+            $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000); 
+        }
+    }
+
     savingFinished = function (value) {
         if (value === "1") getErrorText('Uloženie prebehlo správne');
         else if (value === "0") getErrorText("Váš projekt nebol uložený");

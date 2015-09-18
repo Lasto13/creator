@@ -1050,6 +1050,17 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         for (i = 0; i < unique.length; i++){
             for (j = i+1 ; j < unique.length; j++){
                 if (unique[i].uidisplayname == unique[j].uidisplayname){
+                    if (unique[i].hasSubs && unique[j].hasSubs){
+                        var subtypes = unique[i].child.concat(unique[j].child);
+                        for (var k=0; k < subtypes.length; k++){
+                            for (var l=k+1; l < subtypes.length; l++){
+                                if (subtypes[k].uidisplayname == subtypes[l].uidisplayname){
+                                    subtypes.splice(l,1);
+                                }
+                            }
+                        }
+                        unique[i].child = subtypes;
+                    }
                     unique.splice(j,1);
                 }
             }
@@ -1059,7 +1070,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     
     $scope.manDisabled = false;
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
-        console.log(newIzba);
         if (newIzba.length == 0){
             $scope.manDisabled = true;
         } else $scope.manDisabled = false;
@@ -1310,7 +1320,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         }
         checkIfAll();
     }
-
+/*
     $scope.isProductBoxDisplayed = false;
 
     $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
@@ -1323,7 +1333,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
             d.style.left = "-600px";
         }
     });
-
+*/
     var sipRot;
 
     openPB = function (){ // openPB
@@ -1335,7 +1345,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     }
 
     $scope.toggleProdMenu = function () {
-        console.log('called ?');
         //$scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
         if (sipRot == true) {
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
@@ -1381,6 +1390,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     }
 
     var filterProducts = function(){
+        console.log('filter');
         $scope.asProdCount = 0;
         $scope.productsToShow = [];
         for (var i = 0; i < $scope.activeTT.length; i++) {
@@ -1395,12 +1405,14 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         $scope.calculateProductBox();
 
         if ($scope.productsToShow.length > 0) {
-            $scope.isProductBoxDisplayed = true
+            console.log('VYSUN');
+            document.getElementById('ProductBox').style.left = "270px";
             document.getElementById('sipka').style.transform = 'rotate(180deg)';
             sipRot = true;
             $scope.sipkaValid = false;
         } else {
-            $scope.isProductBoxDisplayed = false;
+            console.log('ZASUN');
+            document.getElementById('ProductBox').style.left = "-600px";
             document.getElementById('sipka').style.transform = 'rotate(0deg)';
             sipRot = false;
             $scope.sipkaValid = true;

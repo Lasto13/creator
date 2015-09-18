@@ -185,7 +185,7 @@ body{
 .interier-section #sipkaHolder {height: 35px}
 .interier-section .sipkaInactive {opacity: 0.2}
 .interier-section #sipka{background-image:url(Buttons/sipky.png);background-size: 30px 20px;position:relative;width:30px;height:20px;cursor:pointer;float:right;transition:all .5s ease-out 0s;-moz-transition:all .5s ease-in-out;-webkit-transition:all .5s ease-in-out}
-.interier-section #ProductBox{position:absolute;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
+.interier-section #ProductBox{position:absolute;left:-600px;height:83%;width:800px;background-color:#FFF;border:1px solid #7CA616;border-radius:5px;float:left;pointer-events:auto;z-index:-1;transition:left .5s ease-out .1s;-moz-transition:left .5s ease-in-out;-webkit-transition:left .5s ease-in-out}
 .interier-section #ProductBox .enli-btn{color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:40%}
 .interier-section #ProductBox #product_holder {overflow: auto;}
 .enli-btn:active,.enli-btn:focus,.interier-section #ProductBox .enli-btn:hover{color:#fff;background-position:left bottom}

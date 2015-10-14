@@ -33,6 +33,10 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+#tMouse {position: absolute; width: 21px;height: 30px; z-index: 1001}
+#tMouse #tlc {background: url(img/tut/lb.svg); background-size: 100%; position: relative;width: 10px;height: 10px; float: left;}
+#tMouse #trc {background: url(img/tut/rb.svg); background-size: 100%; position: relative;width: 10px;height: 10px;margin-left: 11px}
+#tMouse #tbot {background: url(img/tut/tbot.svg) no-repeat scroll 0% 0% / 100%; position: relative;width: 21px;height: 32px;margin-top: -13px}
 #loginScreen {position: absolute;width: 100%;height: 100%;z-index: 1003;background: #fff;}
 #loginScreen .enli-btn {color:#fff;background-image:url(img/button_bg.png);background-repeat:repeat-x;background-position:left top;width:150px;height:26%;margin-top:20px;outline: none;}
 #loginScreen .btn-login {background: url(img/prihlasit.svg);height: 38px;background-size: 100%;cursor: pointer;border: 0px}
@@ -76,6 +80,7 @@ body{
 #header{top:0;width:100%;height:80px;z-index:1000}
 #header a:focus{text-decoration: none; color: white}
 #header #EnliLogo{background-size:100% auto;height:70px;width:150px;top:8%!important;left:47%}
+#header .fpsActive {background-position: left top !important;}
 #header #enli-header{background-color:#7ca616;pointer-events:none;height:inherit;position:relative}
 #header #enli-header #mainButtons{position:absolute;float:left;top:80px;height:70px;width:35%;margin-left:35%;pointer-events:auto;padding-top:10px}
 #header #enli-header #mainButtons #leftBox{float:left}
@@ -155,7 +160,8 @@ body{
 #B7{background-image:url(Buttons/12.png)}
 #B8{background-image:url(Buttons/11.png)}
 #B9{background-image:url(Buttons/13.png)}
-#loadcontent{position:relative;width:50%;height:100%;float:left}
+.imageOfSave{position:relative;width:45%;height:100%;float:left;padding: 5px;}
+.imageOfSave img{width: 110px; height: 60px;}
 .dw-section{position:absolute;z-index:999;height:100%;width:100%;top:80px;pointer-events:none}
 .dw-section #dw-toolbar{position:relative;float:left;height:70px;width:100%;pointer-events:auto;background-color:#FFF;padding-top:10px;padding-left:15px}
 .dw-section .left-menu{position:relative;height:100%;width:270px;background-color:#FFF;pointer-events:auto;top:70px}
@@ -319,7 +325,7 @@ body{
 #B22{margin-top:5px;width:180px;height:30px}
 #B24,#B25,#B26,#B27{height:70px}
 #BDW1,#BDW10,#BDW11,#BDW2,#BDW3,#BDW4,#BDW8,#BI1,#BI2,#BI3,#BI4,#BI8,#BI9{margin-top:20px}
-#B24{background:url(Buttons/new.svg)no-repeat;background-size:90%}
+#B24{background: transparent url("Buttons/new.svg") no-repeat scroll 45% 20% / 70% auto;}
 #B25{background:url(Buttons/open.svg)no-repeat;background-size:100%}
 #B26{background:url(Buttons/save.svg)no-repeat;background-size:100%}
 #B27{background:url(Buttons/sett.svg)no-repeat;background-size:100%}

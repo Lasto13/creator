@@ -11,6 +11,8 @@
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
 
+    
+
     <div id='loginScreen'>
       <div id='loginPlaceholder'>
         <div id='enliLogo'></div>
@@ -50,6 +52,16 @@
     </div>
 
     <div id="wrapper">
+      <!--
+      <div id = 'tMouse'>
+        <div id='tlc'>
+        </div>
+        <div id='trc'>
+        </div>
+        <div id='tbot'>
+        </div>
+      </div>
+      -->
       <div id="header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
       <!--
       <div data-ng-include="selectedTemplate.path" style="position: absolute;wdividth:100%; height:100%;z-index: 2; pointer-events: none;"></div>
@@ -317,7 +329,6 @@
   <script type="text/javascript" src="js/jquery-ui.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/creatorSectionCtrls.js"></script>
-
   
   <script type="text/javascript">
 

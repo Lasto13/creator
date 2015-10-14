@@ -78,8 +78,10 @@ function UnityProgress (dom) {
             }, false);
             
             document.addEventListener('mouseup',function (e) {
+                //document.getElementById('tlc').style.background = 'url(img/tut/lb.svg) no-repeat scroll 0% 0% / 100% auto';
+                //document.getElementById('trc').style.background = 'url(img/tut/rb.svg) no-repeat scroll 0% 0% / 100% auto';
                 if (!isFps){
-                    if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject'){
+                    if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject' || e.target.parentNode.className == 'imageOfSave' ){
                         return
                     }  else {
                        $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  
@@ -90,13 +92,18 @@ function UnityProgress (dom) {
                 }
             }, false);
             /*
-            function btnClassRplc(a) {
-                var _pR = a.target.parentNode, _pRa = _pR.querySelectorAll('a');
-                if (_pR.id.indexOf('ButtonContainer') > -1 || _pR.id.indexOf('buttons') > -1 || _pR.id.indexOf('buttSwitch') > -1) {
-                    for (var i = 0, iL = _pRa.length; i < iL; i++) _pRa[i].className = 'Button btn-my';
-                    a.target.className = 'Button btn-my radio-view btn-my2';
+            document.addEventListener('mousedown',function (e) {
+                switch(e.which){
+                    case 1: document.getElementById('tlc').style.background = 'url(img/tut/lg.svg) no-repeat scroll 0% 0% / 100% auto'; break;
+                    case 3: document.getElementById('trc').style.background = 'url(img/tut/rg.svg) no-repeat scroll 0% 0% / 100% auto'; break;
+                    default: break;
                 }
-            }
+            }, false);
+
+            document.addEventListener('mousemove',function (e) {
+                document.getElementById('tMouse').style.left = e.clientX + 23 +'px';
+                document.getElementById('tMouse').style.top = e.clientY + 30 +'px';
+            }, false);
             */
         }, 1);
     }

@@ -33,14 +33,14 @@
     </div>
     <div id='buttSwitch'>
       <input type="radio"  id="view_1" class="hidden" />
-      <a id="B12" title="2D pohľad" class="Button btn-my2 radio-view" ng-click = "D2D(); set_view('view_1')"></a>
+      <a id="B12" title="2D pohľad" class="Button btn-my2" ng-click = "D2D(); set_view('view_1')"></a>
 
       <input type="radio"  id="view_2" class="hidden" />
-      <a id="B13" title="3D pohľad" class="Button btn-my radio-view" ng-click = "D3D(); set_view('view_2')"></a>
+      <a id="B13" title="3D pohľad" class="Button btn-my" ng-click = "D3D(); set_view('view_2')"></a>
     </div>
     <div id='rightBox'>
       <a id="B14" title="Vycentrovanie pohľadu" class="Button btn-my" ng-click = "Center()"></a>
-      <a id="B15" title="Prechod do pohľadu prvej osoby" class="Button btn-my" ng-click="FPS();"></a>
+      <a id="B15" title="Prechod do pohľadu prvej osoby" ng-class="{fpsActive : readyToFps}" class="Button btn-my" ng-click="FPS();"></a>
     </div>
   </div>
 </div>
@@ -81,9 +81,9 @@
 
 <div id="LoadProject" style="pointer-events: auto;">
   <div ng-repeat = "save in saves.savePlace.parts | orderObjectBy:'created':true" class = "btn-group" >
-    <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;"> 
-    <!-- <div id="loadcontent">
-      <img ng-src="{{getImgForSave(save)}}">-->
+    <!-- <div id="loadcontent" style="background-image:url(http://www.a-mont.sk/images/rekreacnedomy/jednopodlazne/1_obrazok_podorys_1.jpg); background-size:100%;"> -->
+    <div class="imageOfSave">
+      <img ng-src="{{getImgForSave(save)}}">
     </div>
     <p>{{save.name}}</p>
     <p>{{save.created | date:'d.M.yyyy'}}</p>

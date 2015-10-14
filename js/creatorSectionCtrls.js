@@ -153,20 +153,12 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
             })
         } else {return}
     }
-    /*
+    
     $scope.getImgForSave = function(save){
-        console.log(save.image);
-        if ($window.Storage)
-        {
-            var myStorage = $window.localStorage;
-        }
-        var _placeID = JSON.parse(myStorage.getItem('place'));
-
-        var url = 'http://dev.enli.sk/public/places/' + _placeID + '/save/' + save.image.key;
-
+        var url = 'http://dev.enli.sk/public/save-place/image/' + save.image.key;
         return url
     }
-    */
+    
     $scope.deleteSave = function(save){
         calculateSaveBox();
         communicator.deleteSave(save.id).then(function(resp, status, headers, conf){
@@ -276,16 +268,23 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
         canvasH.style.width = c_width +'px';
         canvasH.style.height = c_height +'px';
+        $scope.readyToFps = false;
     }
 
     getErrorText = function (string) {
         $scope.message = "iny message";
         $scope.message = string;
-
+        
         if (!$scope.$$phase) $scope.$apply();
 
         document.getElementById('errMsg').style.opacity = 1;
-        $timeout(function () { document.getElementById('errMsg').style.opacity = 0; }, 3000);
+        $timeout(function () { 
+            document.getElementById('errMsg').style.opacity = 0; 
+            if (fpsFailed){
+                $scope.readyToFps = false;
+                fpsFailed = false;
+            }
+        }, 3000);
     };
 
     $scope.Podorys = function () {
@@ -308,12 +307,16 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         $('#canvasHolder').css({'cursor': 'url(http://85.159.111.72/cursors/1.png), default'});
     };
     $scope.D2D = function () {
+        document.getElementById('B13').className = 'Button btn-my';
+        document.getElementById('B12').className = 'Button btn-my2';
         if ($scope.activeMenu.first == true) {
             $scope.$broadcast ('setDefaults');
         }
         SendMessage("CanvasEditor", "SetView2D");
     };
     $scope.D3D = function () {
+        document.getElementById('B13').className = 'Button btn-my2';
+        document.getElementById('B12').className = 'Button btn-my';
         SendMessage("CanvasEditor", "SetView3D");
         if ($scope.activeMenu.first == true) {
             $scope.$broadcast ('setDefaults');
@@ -325,10 +328,15 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         $('#B0').addClass('btn-my2');
     }
 
+    var fpsFailed; 
     $scope.Center = function () { SendMessage("Main Camera", "ResetPosition"); };
     $scope.Undo = function () { SendMessage("UndoRedo", "Undo"); defActionClass();};
     $scope.Redo = function () { SendMessage("UndoRedo", "Redo"); defActionClass();};
-    $scope.FPS = function () {SendMessage("EventSystem", "FpsPosition");};
+    $scope.FPS = function () {
+        SendMessage("EventSystem", "FpsPosition"); 
+        $scope.readyToFps = true; 
+        fpsFailed = true
+    };
     $scope.Kvalita = function (value) { SendMessage("Settings", "setLevel", value); };
     $scope.HranySet = function (value) { SendMessage("Settings", "setAA", value); };
     $scope.RozmerySet = function (value) {SendMessage("Settings", "ShowTextFromWeb", value); };
@@ -353,6 +361,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         document.getElementById('really-holder').style.display = "none";
         document.getElementById('sp-holder').style.opacity = 0;
         SendMessage('FunctionsManager','SetInputEnabled','1');
+        document.getElementById('LoadProject').style.pointerEvents = 'auto';
     }
 
     $scope.saveScene = function () {
@@ -462,6 +471,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
             var jsonstring = $scope.ask.toLoad;
             $timeout(function(){SendMessage("Save Game Manager", "LoadAndDeserializeFromWeb", jsonstring);}, 3000); 
         }
+        $scope.ask = {};
     }
 
     savingFinished = function (value) {
@@ -470,6 +480,8 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
     }
 
     loadingFinished = function (value) {
+        document.getElementById('B13').className = 'Button btn-my';
+        document.getElementById('B12').className = 'Button btn-my2';
         document.getElementById('LoadProject').style.pointerEvents = 'auto';
     }
 
@@ -762,10 +774,6 @@ app.controller('podorysCtrl', ['$scope', 'jsonFactory', function ($scope, jsonFa
     }
     $scope.HustotaVzoru = function(){
         SendMessage("FunctionsManager","SetFunctionActive","G04_MaterialTiling");
-    }
-
-    $scope.RotateFloor = function(){
-        
     }
 
     $scope.ChangeFloor = function(value){

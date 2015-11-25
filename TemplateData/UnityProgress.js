@@ -48,10 +48,7 @@ function UnityProgress (dom) {
                     
                     $('#Settings').css({ top: -470 + 'px' });
                     $('#LoadProject').css({ top: -300 + 'px' });
-
-                    $('#').css({ top: -470 + 'px' });
-                    $('#LoadProject').css({ top: -300 + 'px' });
-
+/*
                     var _bc1 = document.getElementById('B0').className='Button radio-picture btn-my2',
                         _bc2 = document.getElementById('B1').className='Button radio-picture btn-my',
                         _bc3 = document.getElementById('B2').className='Button radio-picture btn-my',
@@ -72,7 +69,7 @@ function UnityProgress (dom) {
                     document.getElementById('B31').className = 'Button btn btn-default';
                     document.getElementById('B32').className = 'Button btn btn-default';
                     //document.getElementById('B31').style.className = 'Button btn btn-default';
-
+*/
                     e.preventDefault();
                 }
             }, false);
@@ -81,7 +78,7 @@ function UnityProgress (dom) {
                 //document.getElementById('tlc').style.background = 'url(img/tut/lb.svg) no-repeat scroll 0% 0% / 100% auto';
                 //document.getElementById('trc').style.background = 'url(img/tut/rb.svg) no-repeat scroll 0% 0% / 100% auto';
                 if (!isFps){
-                    if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject' || e.target.parentNode.className == 'imageOfSave' ){
+                    if (e.target.id == 'B27' || e.target.id == 'B25' || e.target.id == 'Settings' || e.target.className == 'btn-group' || e.target.parentNode.id == 'Settings' || e.target.parentNode.parentNode.id == 'Settings'|| e.target.id == 'LoadProject' || e.target.parentNode.id == 'LoadProject' || e.target.parentNode.parentNode.id == 'LoadProject' || e.target.parentNode.className == 'imageOfSave'){
                         return
                     }  else {
                        $('#Settings').css({ top: -470 + 'px' }); $('#LoadProject').css({ top: -300 + 'px' });  

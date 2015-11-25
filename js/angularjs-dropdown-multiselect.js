@@ -19,7 +19,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             template: function (element, attrs) {
                 var checkboxes = attrs.checkboxes ? true : false;
                 var groups = attrs.groupBy ? true : false;
-                //var singleS = attrs.singles ? true : false;
+                var singleS = attrs.singles ? true : false;
 
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect">';
                 template += '<div class="dropdown-toggle" ng-click="toggleDropdown()"> <span class="caret"></span> {{getButtonText()}}&nbsp;</div>';
@@ -41,10 +41,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 
                 template += '<a role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp));dropClicked(option)">';
 
-                if (checkboxes) {
+                if (checkboxes && !singleS) {
                     template += '<div class="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp));dropClicked(option)">{{getPropertyForObject(option, settings.displayProp)}}<label ng-class=\'{labelActive: option.isChecked,labelInactive: !option.isChecked}\' for="id={{\'ID\'+$index}}"><input ng-hide=\'true\' id={{\'ID\'+$index}} class="checkboxInput" type="checkbox" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /></label></div></a>';
                     //template += '<div ng-show="!singleSelection" class="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp));dropClicked(option)">{{getPropertyForObject(option, settings.displayProp)}}<label ng-class=\'{labelActive: option.isChecked,labelInactive: !option.isChecked}\' for="id={{\'ID\'+$index}}"><input ng-hide=\'true\' id={{\'ID\'+$index}} class="checkboxInput" type="checkbox" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /></label></div></a>';
-                } else if (checkboxes){
+                } else if (checkboxes && singleS){
                     template += '<div class="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp));dropClicked(option)">{{getPropertyForObject(option, settings.displayProp)}}<label ng-class=\'{labelActiveSingle: option.isChecked,labelInactiveSingle: !option.isChecked}\' for="id={{\'ID\'+$index}}"><input ng-hide=\'true\' id={{\'ID\'+$index}} class="checkboxInput" type="checkbox" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /></label></div></a>';
                 } else {
                     template += '<span data-ng-class="{\'glyphicon glyphicon-ok\': isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
@@ -62,7 +62,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             },
             link: function ($scope, $element, $attrs) {
                 var $dropdownTrigger = $element.children()[0];
-                
+
                 $scope.toggleSelection = function($event){
                     $scope.settings.allToggled = !$scope.settings.allToggled; 
                     if ($scope.settings.allToggled == true){
@@ -96,12 +96,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     onMaxSelectionReached: angular.noop
                 };
 
-                function someFunction (){
-                    console.log('all');
-                }
-
                 $scope.settings = {
-                    toggler: true,
+                    toggler: false,
                     allToggled: false,
                     allID: '',
                     chkbxID: '',

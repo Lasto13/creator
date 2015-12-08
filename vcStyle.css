@@ -33,6 +33,7 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+
 #tMouse {position: absolute; width: 21px;height: 30px; z-index: 1001}
 #tMouse #tlc {background: url(img/tut/lb.svg); background-size: 100%; position: relative;width: 10px;height: 10px; float: left;}
 #tMouse #trc {background: url(img/tut/rb.svg); background-size: 100%; position: relative;width: 10px;height: 10px;margin-left: 11px}

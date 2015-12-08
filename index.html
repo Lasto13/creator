@@ -52,7 +52,7 @@
     </div>
 
     <div id="wrapper">
-      <!--
+      
       <div id = 'tMouse'>
         <div id='tlc'>
         </div>
@@ -61,7 +61,7 @@
         <div id='tbot'>
         </div>
       </div>
-      -->
+
       <div id="header" ng-show="!activeMenu.fourth" ng-include="'partials/header.tpl.html'"></div>
       <!--
       <div data-ng-include="selectedTemplate.path" style="position: absolute;wdividth:100%; height:100%;z-index: 2; pointer-events: none;"></div>
@@ -235,19 +235,19 @@
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
             </div>
             <div id='drop_holder'>
-              <div ng-dropdown-multiselect="" options="menuData.elements" selected-model="TypIzby" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="false" singles='true'></div>
-              <div ng-dropdown-multiselect="" ng-class="{manDis : manDisabled}"  options="dropdownData" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
+              <div ng-dropdown-multiselect="" options="rooms" selected-model="selectedRooms" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="false" singles='true'></div>
+              <div ng-dropdown-multiselect="" options="mf" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
             </div>
-            <div id='Categories' ng-show='dataToRepeat.show'>
+            <div id='Categories'>
               <div id= 'allSelector'>
                 <a ng-click='selectAllProds()'>Označiť všetky <div class='fajka' 
                   ng-class="{'halfT' : dataToRepeat.halfToggled, 'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div> </a>
-              </div> 
-              <div class="accordion__container" ng-repeat = "TypeProduct in dataToRepeat">
+              </div>
+              <div class="accordion__container" ng-repeat = "cat in categories">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
                       <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{TypeProduct.uidisplayname}} ({{TypeProduct.prodsIncluded}})</a>
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{cat.Name}} ({{TypeProduct.prodsIncluded}})</a>
                         <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="TypeProduct.isOpen && Typetypeproducts.prodsIncluded > 0|| isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs && Typetypeproducts.prodsIncluded > 0" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}})
                           <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="TypeProduct.isOpen && TypeProduct.hasSubs"></div> 
                         </a>

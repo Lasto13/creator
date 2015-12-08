@@ -106,8 +106,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     scrollable: false,
                     scrollableHeight: '300px',
                     closeOnBlur: true,
-                    displayProp: 'uidisplayname',
-                    idProp: 'id',
+                    displayProp: 'Name',
+                    idProp: 'ID',
                     externalIdProp: '',
                     enableSearch: false,
                     selectionLimit: 0,
@@ -223,7 +223,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         if ($scope.settings.smartButtonMaxItems > 0) {
                             var itemsText = [];
                             if ($scope.singleSelection){
-                                itemsText = $scope.selectedModel[0].uidisplayname;
+                                itemsText = $scope.selectedModel.Name;
                                 return itemsText;
                             }
                             else {

@@ -17,6 +17,29 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
         }
     });
 
+    w.bind('mousemove', function(e){
+        document.getElementById('tMouse').style.left = e.clientX + 20 + 'px';
+        document.getElementById('tMouse').style.top = e.clientY + 30 + 'px';
+    });
+
+    w.bind('mousedown', function(e){
+        if (e.buttons == 1) {
+            document.getElementById('tlc').style.background = 'url(img/tut/lg.svg)';
+        } else if (e.buttons == 2){
+            document.getElementById('trc').style.background = 'url(img/tut/rg.svg)';
+        }
+        document.getElementById('tlc').style.backgroundSize = '100%';
+        document.getElementById('trc').style.backgroundSize = '100%';
+    });
+
+    w.bind('mouseup', function(e){
+        document.getElementById('tlc').style.background = 'url(img/tut/lb.svg)';
+        document.getElementById('trc').style.background = 'url(img/tut/rb.svg)';
+
+        document.getElementById('tlc').style.backgroundSize = '100%';
+        document.getElementById('trc').style.backgroundSize = '100%';
+    })
+
     $scope.safeApply = function(fn) {
         var phase = this.$root.$$phase;
         if(phase == '$apply' || phase == '$digest') {
@@ -65,6 +88,9 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
 
     closeLoder = function(){
         document.getElementById('splash-sc').style.display = 'none';
+        if($window.Storage){
+            SendMessage('Save Game Manager', 'ReceiveLogin', $scope.currentUser.email);
+        }
     }
 
     var myStorage;
@@ -97,6 +123,12 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
                 communicator.getCurrentUser().then(function(resp){
                     $scope.currentUser.email = resp.email;
                 });
+                /*
+                console.log('asdasdasd');
+                jsonFactory.loadBundles().then(function(resp){
+                    console.log(resp);
+                })
+                */
                 document.getElementById('loginScreen').style.opacity = '0';
                 document.getElementById('loginScreen').style.display = 'none';
                 $timeout(function() {
@@ -164,7 +196,16 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
                             wasLoaded = true;
                             }, 1500);
                         }
+                    });
+                    /*
+                    console.log('gettttt');
+                    communicator.getBundles().then(function(resp){
+                        console.log(resp);
                     })
+                    jsonFactory.loadBundles().then(function(resp){
+                        console.log(resp);
+                    })
+                    */
                 })
             })
         } else {return}
@@ -228,6 +269,7 @@ app.controller('mainCtrl', ['$scope', '$window', '$timeout', 'jsonFactory', 'com
             if ($window.Storage) var myStorage = $window.localStorage;
             var _placeID = JSON.parse(myStorage.getItem('place'));
             communicator.getSave(_placeID).then(function(resp){
+                    console.log(resp.data);
                     $scope.saves = resp.data;
                     calculateSaveBox();
                 })
@@ -981,6 +1023,40 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         $scope.actButtInt = {'id' : event.target.id}
     }
 
+    jsonFactory.loadBundles().then(function(resp){
+        console.log(resp);
+        $scope.mf = resp.Manufacturers;
+        $scope.rooms = resp.Rooms
+        $scope.categories = resp.Types;
+        $scope.prods = resp.Products;
+        createTree();
+    });
+
+    function createTree(){
+        var nodes = [];
+        for (var i = 0; i < $scope.prods.length; i++){
+            var pr = $scope.prods[i].Rooms;
+            for (var j = 0; j < pr.length; j++){
+                if (nodes.indexOf(pr[j]) == -1) {
+                    
+                    nodes.push(pr[j]);
+                    var roomObj = $scope.rooms.map(function(obj){
+                        var rObj = {}
+                        if (obj.ID == pr[j]){
+                            rObj = obj;
+                            return rObj;
+                        }
+                    })
+                    if (roomObj){
+                        console.log(roomObj);
+                    }
+                }
+            }
+        }
+        console.log(nodes);
+    }
+
+    /*
     jsonFactory.loadMenu().then(function(data){
         $scope.menuData = data;
         $scope.mf = data.manufacturers;
@@ -1003,8 +1079,12 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         }
         $scope.dataToRepeat = $scope.menuData.elements[0];
     });
+    */
     
-    var hodnotaBI4 = 0;
+    //var hodnotaBI4 = 0;
+
+    $scope.selectedRooms = [];
+    $scope.selectedManufacturers = [];
 
     $scope.activeTT = [];
     $scope.productsToShow = [];
@@ -1015,11 +1095,11 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         $scope.calculateProductBox(); 
     });
 
-    $scope.selectedManufacturers = [];
+    
     $scope.TypIzby = [];
 
     $scope.izbaTexts = {toggle: 'Všetky',buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
-    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: false, allID:'roomAll', selectionLimit:1};
+    $scope.izbaSettings = {showCheckAll: false,showUncheckAll: false,chkbxID: 'toggleAllRooms',toggler: true, allID:'roomAll', selectionLimit:0};
     $scope.manSettings = {
         allID:'manAll',
         chkbxID: 'toggleAllMans',
@@ -1274,6 +1354,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     });
 
     $scope.$watchCollection('selectedManufacturers', function (newMans, oldMans) {
+        console.log(newMans);
         if (newMans == oldMans) return;
         $scope.setSelectedMan(newMans);
     });

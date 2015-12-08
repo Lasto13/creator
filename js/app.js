@@ -133,6 +133,17 @@ var app = angular.module('app',[
       .then(function(resp, status, headers, conf){
           return resp
       })
+  };
+
+  service.getBundles = function(){
+    console.log('getujem');
+    $http.defaults.useXDomain = true;
+    return $http.get('http://85.159.111.72/vcapi/getproductsoptimized?platform=webgl').then(function(resp, status, headers, conf){
+      console.log(resp, status, headers, conf);
+      return resp
+    }, function(err){
+      console.log(err);
+    })
   }
 
   return service
@@ -140,6 +151,21 @@ var app = angular.module('app',[
 
 .factory('jsonFactory', ['$http', function($http){
   var service = {};
+
+  service.loadBundles = function(){
+    console.log('klsdafkhfdsddf');
+    $http.defaults.useXDomain = true;
+    delete $http.defaults.headers.common['X-Requested-With'];
+
+    return $http({
+        method: "GET",
+        url:'http://85.159.111.72/vcapi/getproductsoptimized?platform=webgl',
+        //async: true,
+    }).then(function(response){
+        console.log(response);
+        return response.data
+    });
+  }
 
   service.loadMenu = function(){
     $http.defaults.useXDomain = true;
@@ -170,7 +196,6 @@ var app = angular.module('app',[
       url:'http://85.159.111.72/WallJson.json',
       async: false,
       success: function(){
-        $scope.calculateMatBoxes();
       }
     }).then(function(response){
       return response.data

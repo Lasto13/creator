@@ -243,12 +243,12 @@
                 <a ng-click='selectAllProds()'>Označiť všetky <div class='fajka' 
                   ng-class="{'halfT' : dataToRepeat.halfToggled, 'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div> </a>
               </div>
-              <div class="accordion__container" ng-repeat = "cat in categories">
+              <div class="accordion__container" ng-repeat = "type in categories">
                   <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
                       <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{cat.Name}} ({{TypeProduct.prodsIncluded}})</a>
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "Typetypeproducts in TypeProduct.child" ng-show="TypeProduct.isOpen && Typetypeproducts.prodsIncluded > 0|| isOpenTab(TypeProduct.uidisplayname) && TypeProduct.hasSubs && Typetypeproducts.prodsIncluded > 0" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{Typetypeproducts.uidisplayname}} ({{Typetypeproducts.prodsIncluded}})
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{type.Name}} ({{TypeProduct.prodsIncluded}})</a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "subTypes in type.subtypes" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{subTypes.Name}} ({{Typetypeproducts.prodsIncluded}})
                           <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="TypeProduct.isOpen && TypeProduct.hasSubs"></div> 
                         </a>
                       </div>
@@ -354,10 +354,11 @@
                     //loc + "js/creatorSectionCtrls.js",
                     loc + "TemplateData/UnityProgress.js",
                     loc + "js/init-script.js",
+                    loc + "Release/UnityLoader.js",
                     //loc + "js/angularjs-dropdown-multiselect.js",
-                    loc + "Release/UnityConfig.js",
-                    loc + "Release/fileloader.js",
-                    loc + "Release/VC.js",
+                    //loc + "Release/UnityConfig.js",
+                    //loc + "Release/fileloader.js",
+                    //loc + "Release/VC.js",
                 ],
 
               addRobotoFont();

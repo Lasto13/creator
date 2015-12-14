@@ -46,6 +46,18 @@ String.prototype.splice = function( idx, rem, s ) {
 }*/
 
 // Connect to canvas
+
+// 5.3 implementation
+  var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,         // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    dataUrl: "Release/VC.data",
+    codeUrl: "Release/VC.js",
+    memUrl: "Release/VC.mem",
+  };
+
+/*
 var Module = {
     doNotCaptureKeyboard: true,
     //keyboardListeningElement: document.getElementById('spa'),
@@ -82,3 +94,4 @@ var Module = {
 };
 Module.setStatus('Downloading (0.0/1)');
 Module.canvas.requestPointerLock = Module.canvas.requestPointerLock || Module.canvas.mozRequestPointerLock || Module.canvas.webkitRequestPointerLock;
+*/

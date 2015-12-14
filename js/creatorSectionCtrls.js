@@ -1024,36 +1024,104 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     }
 
     jsonFactory.loadBundles().then(function(resp){
-        console.log(resp);
+        
         $scope.mf = resp.Manufacturers;
         $scope.rooms = resp.Rooms
         $scope.categories = resp.Types;
+        $scope.subCats = resp.Subtypes;
         $scope.prods = resp.Products;
+        console.log(resp);
+        for (var i = 0; i < $scope.rooms.length; i++){
+            $scope.rooms[i].types = [];
+        }
+
         createTree();
+        for (var a = 0; a < $scope.rooms.length; a++){
+            for (var b = 0; b < $scope.rooms[a].types.length; b++){
+                $scope.rooms[a].types[b].subtypes = [];
+            }
+        }
+        createSubTree();
+
+        console.log($scope.rooms);
+
     });
 
+    function createSubTree(){
+        console.log('subbbb');
+        for (var i = 0; i < $scope.prods.length; i++){
+            for (var j = 0; j < $scope.rooms.length; j++){
+                for (var k = 0; k < $scope.rooms[j].types.length; k++){
+                    $scope.subCats.map(function(sObj, index){
+                        if (sObj.ID == $scope.prods[i].SubtypeID && $scope.prods[i].SubtypeID > 0){
+                            var canAdd = true;
+                            for (var l = 0; l < $scope.rooms[j].types[k].subtypes.length; l++){
+                                if (sObj.ID == $scope.rooms[j].types[k].subtypes[l].ID){
+                                    canAdd = false;
+                                }
+                            }
+                            if (canAdd && $scope.prods[i].TypeID == $scope.rooms[j].types[k].ID){
+                                $scope.rooms[j].types[k].subtypes.push(sObj);
+                            }
+                        }
+                    });
+                    //leave out DUPS
+                    /*
+                    for (var l = 0 ; l < $scope.rooms[j].types[k].subtypes.length - 1; l++){
+                        $timeout(function(){
+                            for (var m = l + 1; m < $scope.rooms[j].types[k].subtypes.length; m++){
+                                if ($scope.rooms[j].types[k].subtypes[l].ID == $scope.rooms[j].types[k].subtypes[m].ID){
+                                    $scope.rooms[j].types[k].subtypes.splice(l,1);
+                                }
+                            }
+                        }, 20)
+                    }
+                    */
+                }
+            }
+            //console.log($scope.rooms);
+        }
+    }
+
     function createTree(){
-        var nodes = [];
+        console.log('treeee');
         for (var i = 0; i < $scope.prods.length; i++){
             var pr = $scope.prods[i].Rooms;
             for (var j = 0; j < pr.length; j++){
-                if (nodes.indexOf(pr[j]) == -1) {
-                    
-                    nodes.push(pr[j]);
-                    var roomObj = $scope.rooms.map(function(obj){
-                        var rObj = {}
-                        if (obj.ID == pr[j]){
-                            rObj = obj;
-                            return rObj;
-                        }
-                    })
-                    if (roomObj){
-                        console.log(roomObj);
+                $scope.rooms.map(function(obj, index1){
+                    if(pr == obj.ID){
+                        $scope.categories.map(function(obj2, index2){ 
+                            if ($scope.prods[i].TypeID == obj2.ID){
+                                $scope.rooms[index1].types.push(obj2); // ADD TYPES
+                                $scope.subCats.map(function(obj3, index3){ // add subtypes
+                                    /*
+                                    if ($scope.prods[i].SubtypeID > 0 && $scope.prods[i].SubtypeID == obj3.ID){
+                                        console.log($scope.rooms[index1].types);
+                                        for (var m = 0 ; m < $scope.rooms[index1].types.length; m++){
+                                            if (){
+
+                                            }
+                                        }
+                                        //$scope.rooms[index1].types.subtypes.push(obj3); 
+                                    }
+                                    */
+                                });
+                            }
+                           
+                        });
                     }
-                }
+                    //leave out dups in TYPES
+                    for (var k = 0; k < obj.types.length -1 ; k++){
+                        for (var l = k+1; l < obj.types.length ; l++){
+                            if (obj.types[k].ID == obj.types[l].ID){
+                                obj.types.splice(l,1);
+                            }
+                        }
+                    }
+                    //console.log($scope.rooms);
+                });
             }
         }
-        console.log(nodes);
     }
 
     /*
@@ -1095,7 +1163,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         $scope.calculateProductBox(); 
     });
 
-    
     $scope.TypIzby = [];
 
     $scope.izbaTexts = {toggle: 'Všetky',buttonDefaultText: 'Typ izby',dynamicButtonTextSuffix: 'Vybraná'};
@@ -1299,6 +1366,15 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     
     $scope.manDisabled = false;
 
+    $scope.$watchCollection('selectedRooms', function (newValue, oldValue){
+        console.log(newValue, $scope.categories);
+        for (var i = 0; i < newValue.length; i++){
+            for (var j = 0; j < $scope.categories.length; j++){
+
+            }
+        }
+    });
+
     $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
         if (newIzba.length == 0){
             $scope.manDisabled = true;
@@ -1354,7 +1430,6 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
     });
 
     $scope.$watchCollection('selectedManufacturers', function (newMans, oldMans) {
-        console.log(newMans);
         if (newMans == oldMans) return;
         $scope.setSelectedMan(newMans);
     });

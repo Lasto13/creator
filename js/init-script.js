@@ -49,7 +49,7 @@ String.prototype.splice = function( idx, rem, s ) {
 
 // 5.3 implementation
   var Module = {
-    TOTAL_MEMORY: 268435456,
+    TOTAL_MEMORY: 536870912,
     errorhandler: null,         // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
     compatibilitycheck: null,
     dataUrl: "Release/VC.data",
@@ -63,7 +63,7 @@ var Module = {
     //keyboardListeningElement: document.getElementById('spa'),
     //WebGLInput.captureAllKeyboardInput = false,
 
-    TOTAL_MEMORY: 536870912, //285212672, //838860800
+    TOTAL_MEMORY: 536870912, //285212672, //838860800 //268435456
     filePackagePrefixURL: "Release/",
     memoryInitializerPrefixURL: "Release/",
     preRun: [],

@@ -1037,6 +1037,7 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
 
         createTree();
         for (var a = 0; a < $scope.rooms.length; a++){
+            $scope.rooms[a].types.push($scope.categories[2]); // ADD DOPLNKY
             for (var b = 0; b < $scope.rooms[a].types.length; b++){
                 $scope.rooms[a].types[b].subtypes = [];
             }
@@ -1044,11 +1045,9 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         createSubTree();
 
         console.log($scope.rooms);
-
     });
 
     function createSubTree(){
-        console.log('subbbb');
         for (var i = 0; i < $scope.prods.length; i++){
             for (var j = 0; j < $scope.rooms.length; j++){
                 for (var k = 0; k < $scope.rooms[j].types.length; k++){
@@ -1065,47 +1064,20 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
                             }
                         }
                     });
-                    //leave out DUPS
-                    /*
-                    for (var l = 0 ; l < $scope.rooms[j].types[k].subtypes.length - 1; l++){
-                        $timeout(function(){
-                            for (var m = l + 1; m < $scope.rooms[j].types[k].subtypes.length; m++){
-                                if ($scope.rooms[j].types[k].subtypes[l].ID == $scope.rooms[j].types[k].subtypes[m].ID){
-                                    $scope.rooms[j].types[k].subtypes.splice(l,1);
-                                }
-                            }
-                        }, 20)
-                    }
-                    */
                 }
             }
-            //console.log($scope.rooms);
         }
     }
 
     function createTree(){
-        console.log('treeee');
         for (var i = 0; i < $scope.prods.length; i++){
             var pr = $scope.prods[i].Rooms;
             for (var j = 0; j < pr.length; j++){
-                $scope.rooms.map(function(obj, index1){
+                $scope.rooms.map(function(obj, index){
                     if(pr == obj.ID){
-                        $scope.categories.map(function(obj2, index2){ 
+                        $scope.categories.map(function(obj2){ 
                             if ($scope.prods[i].TypeID == obj2.ID){
-                                $scope.rooms[index1].types.push(obj2); // ADD TYPES
-                                $scope.subCats.map(function(obj3, index3){ // add subtypes
-                                    /*
-                                    if ($scope.prods[i].SubtypeID > 0 && $scope.prods[i].SubtypeID == obj3.ID){
-                                        console.log($scope.rooms[index1].types);
-                                        for (var m = 0 ; m < $scope.rooms[index1].types.length; m++){
-                                            if (){
-
-                                            }
-                                        }
-                                        //$scope.rooms[index1].types.subtypes.push(obj3); 
-                                    }
-                                    */
-                                });
+                                $scope.rooms[index].types.push(obj2); // ADD TYPES
                             }
                            
                         });
@@ -1118,49 +1090,20 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
                             }
                         }
                     }
-                    //console.log($scope.rooms);
                 });
             }
         }
     }
 
-    /*
-    jsonFactory.loadMenu().then(function(data){
-        $scope.menuData = data;
-        $scope.mf = data.manufacturers;
-        for (var i = 0; i < data.elements.length; i++){
-            for (var j = 0; j < data.elements[i].child.length; j++){
-                if (data.elements[i].child[j].child[0].hasOwnProperty('parentid')){
-                    data.elements[i].child[j].hasSubs = true;
-                } else {
-                    data.elements[i].child[j].hasSubs = false;
-                }
-            }
-        }
-        $scope.dropdownData = [];
-
-        //console.log($scope.menuData);
-
-        for (var i = 0; i<$scope.mf.length; i++){
-            $scope.dropdownData.push($scope.mf[i]);
-            //$scope.mf[i].isChecked = false;
-        }
-        $scope.dataToRepeat = $scope.menuData.elements[0];
-    });
-    */
-    
-    //var hodnotaBI4 = 0;
-
+    //DROPDOWN MODELS
     $scope.selectedRooms = [];
-    $scope.selectedManufacturers = [];
+    $scope.selectedMans = [];
 
-    $scope.activeTT = [];
     $scope.productsToShow = [];
-    $scope.asSelectedMans = [];
     $scope.sipkaValid = true;
 
     $scope.$on('calculate', function(e) {
-        $scope.calculateProductBox(); 
+        calculateProductBox(); 
     });
 
     $scope.TypIzby = [];
@@ -1177,263 +1120,273 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
         }
     };
 
-    var numberOfProds = function(){
-        $scope.allPossible = 0;
-        if ($scope.dataToRepeat){
-            for (var i=0; i < $scope.dataToRepeat.length; i++){
-                $scope.dataToRepeat[i].prodsIncluded = 0;
-                if ($scope.dataToRepeat[i].hasSubs == false){
-                        for (var j=0; j < $scope.dataToRepeat[i].child[0].products.length; j++){
-                            if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[0].products[j].manufacturername) > -1){
-                            $scope.dataToRepeat[i].prodsIncluded += 1;
-                        }
-                    }
-                } else {
-                    for (var k=0; k < $scope.dataToRepeat[i].child.length; k++){
-                            $scope.dataToRepeat[i].child[k].prodsIncluded = 0;
-                            for (var l = 0; l < $scope.dataToRepeat[i].child[k].products.length; l++){
-                                if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.dataToRepeat[i].child[k].products[l].manufacturername) > -1){
-                                $scope.dataToRepeat[i].prodsIncluded += 1;
-                                $scope.dataToRepeat[i].child[k].prodsIncluded += 1;
-                            }
-                        }
-                    }
-                }
-            }
-            for (var i=0; i < $scope.dataToRepeat.length; i++){
-                $scope.allPossible += $scope.dataToRepeat[i].prodsIncluded;
-            }
-        }
-    };
-    
-    function conTwoArr(a1, a2) {
-        console.log('spajam izby');
-        var unique = [];// = a1.concat(a2);
-        //var bla = angular.merge(a1,a2);
-        //console.log(bla);
+    $scope.typesFiltered = [];
+    var tFiltered = [];
 
-        function leaveOutDups(_products){
-            for (var i = 0; i<_products.length -1; i++){
-                (function(i){
-                $timeout(function(){
-                for (var j = i+1; j < _products.length; j++){
-                    if (_products[i].uidisplayname == _products[j].uidisplayname){
-                        _products.splice(j,1);
-                    }
-                }
-                },i*100);
-                })(i);
-            }
-            return _products;
-        }
-
-        for (var p = 0; p < a1.length; p++){
-            (function(p){
-            $timeout(function(){
-            
-            for(var r = 0 ; r < a2.length; r++){
-                (function(r){
-                $timeout(function(){
-                if (a1[p].uidisplayname == a2[r].uidisplayname){
-                    if (a1[p].hasSubs == true || a2[r].hasSubs == true){
-                        console.log('aspon jeden ma deti');
-                        if (a1[p].hasSubs == true && a2[r].hasSubs == true){
-                            for (var sub1 = 0; sub1 < a1[p].child.length; sub1++){
-                                (function(sub1){
-                                $timeout(function(){
-                                for(var sub2 = 0 ; sub2 < a2[r].child.length; sub2++){
-                                    (function(sub2){
-                                    $timeout(function(){
-                                    if(a1[p].child[sub1].uidisplayname == a2[r].child[sub2].uidisplayname){
-                                        a1[p].child[sub1].products = a1[p].child[sub1].products.concat(a2[r].child[sub2].products);
-                                        a1[p].child[sub1].products = leaveOutDups(a1[p].child[sub1].products);
-                                        var newbie = a1[p];
-                                        var found = unique.indexOf(a1[p]);
-                                        if(newbie.child.length > unique[found].child.length)
-                                        {
-                                            unique.splice(found,1);
-                                            unique.push(newbie);
-                                            console.log(a1[p]);
-                                        }
-                                    } else {
-                                        a1[p].child.push(a2[r].child[sub2]);
-                                        var newbie = a1[p];
-                                        var found = unique.indexOf(a1[p]);
-                                        if(newbie.child.length > unique[found].child.length)
-                                        {
-                                            unique.splice(found,1);
-                                            unique.push(newbie);
-                                            console.log(a1[p]);
-                                        }
-                                        
-                                    }
-                                    },sub2*100);
-                                    })(sub2);
-                                }
-                            },sub1*100);
-                            })(sub1);
-                            }
-                        }
-                    } else {
-                        console.log('nemaju deti');
-                        a1[p].child[0].products = a1[p].child[0].products.concat(a2[r].child[0].products);
-                        //console.log(a1[p].child[0].products); // nor unique
-                        a1[p].child[0].products = leaveOutDups(a1[p].child[0].products);
-                        //console.log(a1[p].child.products);
-
-                        var newbie = unique.indexOf(a1[p]);
-                        if(newbie !== -1){
-                            if (unique[newbie].uidisplayname !== a1[p].uidisplayname){
-                                unique.push(a1[p]);
-                                console.log(a1[p]);
-                            }
-                            else {
-                                var newbie = a1[p];
-                                var found = unique.indexOf(a1[p]);
-                                if(newbie.child.length > unique[found].child.length){
-                                    unique.splice(found,1);
-                                    unique.push(newbie);
-                                }
-                            }
-                        }
-                    }
-                }
-                else {
-                    console.log('nevornasa');
-                    var novy = unique.indexOf(a1[p]);
-                    if(novy !== -1){
-                        if (unique[novy].uidisplayname !== a1[p].uidisplayname){
-                            unique.push(a1[p]);
-                            console.log(unique.indexOf(a1[p]), a1[p].uidisplayname);
-                        }
-                        else
-                        {
-                            var newbie = a1[p];
-                            var found = unique.indexOf(a1[p]);
-                            if(newbie.child.length > unique[found].child.length){
-                                unique.splice(found,1);
-                                unique.push(newbie);
-                            }
-                        }
-                    }
-                    else{
-                        unique.push(a1[p]);
-                        console.log(a1[p].uidisplayname);
-                    }
-                    
-                    var nieco = unique.indexOf(a2[r]);
-                    if(nieco !== -1){
-                        if (unique[nieco].uidisplayname !== a2[r].uidisplayname){
-                            unique.push(a2[r]);
-                            console.log(unique.indexOf(a2[r]), a2[r].uidisplayname);
-                        }
-                    } else {
-                        unique.push(a2[r]);
-                    }
-                }
-                },r*100);
-            })(r);
-            }
-             },p*100);
-            })(p);
-        }
-        console.log(unique);
-        //unique
-
-        for (var i = 0; i < unique.length; i++){
-            for (var j = i+1 ;j < unique.length; j++){
-                if (unique[i].uidisplayname == unique[j].uidisplayname){
-                    if (unique[i].hasSubs && unique[j].hasSubs){
-                        var subtypes = unique[i].child.concat(unique[j].child);
-                        for (var k=0; k < subtypes.length; k++){
-                            for (var l=k+1; l < subtypes.length; l++){
-                                if (subtypes[k].uidisplayname == subtypes[l].uidisplayname){
-                                    subtypes.splice(l,1);
-                                }
-                            }
-                        }
-                        unique[i].child = subtypes;
-                    }                 
-                    unique.splice(j,1);
-                }
-            }
-        }
-
-        console.log(unique);
-        
-        return unique;
-    };
-    
-    $scope.manDisabled = false;
-
+    $scope.asRoomsIDs = [];
     $scope.$watchCollection('selectedRooms', function (newValue, oldValue){
-        console.log(newValue, $scope.categories);
+        console.log(newValue);
+        tFiltered = [];
+        $scope.typesFiltered = [];
+        if (newValue == oldValue) return;
+        $scope.asRoomsIDs = [];
+        
         for (var i = 0; i < newValue.length; i++){
-            for (var j = 0; j < $scope.categories.length; j++){
-
+            $scope.asRoomsIDs.push(newValue[i].ID);
+            tFiltered = tFiltered.concat(newValue[i].types);
+        }
+        for (var k = 0; k < tFiltered.length -1; k++){
+            for (var l = k+1; l < tFiltered.length; l++){
+                if (tFiltered[k].ID == tFiltered[l].ID){
+                    tFiltered.splice(l,1);
+                }
+            }
+        } // another loop just to be sure
+        for (var k = 0; k < tFiltered.length -1; k++){
+            for (var l = k+1; l < tFiltered.length; l++){
+                if (tFiltered[k].ID == tFiltered[l].ID){
+                    tFiltered.splice(l,1);
+                }
             }
         }
+        $scope.typesFiltered = tFiltered;
+        countProds();
+        filterProducts();
     });
 
-    $scope.$watchCollection('TypIzby', function (newIzba, oldIzba) {
-        if (newIzba.length == 0){
-            $scope.manDisabled = true;
-        } else $scope.manDisabled = false;
+    $scope.asMansIDs = [];
+    $scope.$watchCollection('selectedMans', function (newMans, oldMans) {
+        if (newMans == oldMans) return;
+        $scope.asMansIDs = [];
+        for (var i = 0; i < newMans.length; i++){
+            $scope.asMansIDs.push(newMans[i].ID);
+        }
+        countProds();
+        filterProducts();
+    });
 
-        $scope.dataToRepeat = [];
-        if (newIzba == oldIzba || newIzba.length == 0) return;
-        //$scope.roomProdCount = 0;
-        if (newIzba.length == 1){
-            $scope.dataToRepeat = newIzba[0].child;
-            $scope.dataToRepeat.allSelected = false;
-            if ($scope.asSelectedMans.length > 0){
-                $scope.dataToRepeat.show = true;
-            } else {
-                $scope.dataToRepeat.show = false;
+    function countProds(){
+        var allPossible = getAllPossible();
+        // count types
+        $scope.typesFiltered.prodsNo = 0;
+        for (var i = 0; i < $scope.typesFiltered.length; i++){
+            $scope.typesFiltered.isOpen = false;
+            $scope.typesFiltered[i].prodsIncluded = 0;
+            for (var j = 0; j < allPossible.length; j++){
+                if ($scope.typesFiltered[i].ID == allPossible[j].TypeID){
+                    $scope.typesFiltered[i].prodsIncluded += 1;
+                } 
             }
-            for (var i=0; i < $scope.dataToRepeat.length;i++){
-                $scope.dataToRepeat[i].toggled = false;
-                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    //$scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
-                    if ($scope.dataToRepeat[i].hasSubs){
-                        $scope.dataToRepeat[i].child[j].toggled = false;
+            $scope.typesFiltered.prodsNo += $scope.typesFiltered[i].prodsIncluded;
+            //count subtypes
+            for (var k = 0; k < $scope.typesFiltered[i].subtypes.length; k++){
+                $scope.typesFiltered[i].subtypes[k].prodsIncluded = 0;
+                for (var l = 0; l < allPossible.length; l++){
+                    if ($scope.typesFiltered[i].subtypes[k].ID == allPossible[l].SubtypeID){
+                        $scope.typesFiltered[i].subtypes[k].prodsIncluded += 1;
+                    }    
+                }
+            }  
+        }
+    }
+
+    function getAllPossible(){
+        var all = [];
+        for (var i = 0; i < $scope.prods.length; i++){
+            if ($scope.asMansIDs.indexOf($scope.prods[i].ManufacturerID) > -1){
+                for (var j = 0; j < $scope.prods[i].Rooms.length; j++){
+                    if ($scope.asRoomsIDs.indexOf($scope.prods[i].Rooms[j]) > -1){
+                        all.push($scope.prods[i]);
+                        break
                     }
                 }
+            }
+        }
+        return all
+    }
+
+    $scope.selectAllProds = function(){
+        $scope.typesFiltered.allSelected = !$scope.typesFiltered.allSelected;
+        for (var i = 0; i < $scope.typesFiltered.length; i++){
+            $scope.typesFiltered[i].toggled = $scope.typesFiltered.allSelected;
+            $scope.typesFiltered[i].halfToggled = false;
+            for (var j = 0; j < $scope.typesFiltered[i].subtypes.length; j++){
+                $scope.typesFiltered[i].subtypes[j].toggled = $scope.typesFiltered.allSelected;
+            }
+        }
+        filterProducts();
+    };
+
+    $scope.toggleTypeOpen = function(type){
+        type.isOpen = !type.isOpen;
+        filterProducts();
+    }
+
+    $scope.checkType = function(type){
+        type.toggled = !type.toggled;
+        type.isOpen = !type.isOpen;
+        filterProducts();
+    }
+
+    $scope.checkAllST = function(type){
+        type.halfToggled = false;
+        type.toggled = !type.toggled;
+        for (var i = 0; i < type.subtypes.length; i++){
+            type.subtypes[i].toggled = type.toggled;
+        }
+
+        if (type.toggled){
+            type.isOpen = true;
+        } else if (!type.toggled){
+            type.isOpen = false;
+        }
+        filterProducts();
+    }
+
+    $scope.toggleSubtype = function(subtype, type){
+        subtype.toggled = !subtype.toggled;
+        var _isT = 0;
+        for (var i = 0; i < type.subtypes.length; i++){
+            if (type.subtypes[i].toggled == true){
+                _isT +=1;
+            }
+        }
+        type.halfToggled = false;
+        if (_isT == type.subtypes.length){
+            type.toggled = true;
+        } else if (_isT == 0){
+            type.toggled = false;
+        } else {
+            type.halfToggled = true;
+        }
+        filterProducts();
+    }
+
+    var checkIfAll = function(){
+        $scope.typesFiltered.halfToggled = false;
+        if ($scope.typesFiltered.prodsNo == $scope.productsToShow.length && $scope.typesFiltered.prodsNo !== 0){
+            $scope.typesFiltered.allSelected = true;
+        } else if ($scope.productsToShow.length == 0) {
+            $scope.typesFiltered.allSelected = false;
+        } else {
+            $scope.typesFiltered.halfToggled = true;
+        }
+    };
+
+    var filterProducts = function(){
+        console.log('fiulter');
+        $scope.asProdCount = 0;
+        $scope.productsToShow = [];
+        for (var i = 0; i < $scope.prods.length; i++){
+            for (var j = 0; j < $scope.typesFiltered.length; j++){
+                
+                    if (!$scope.typesFiltered[j].subtypes.length && $scope.prods[i].TypeID == $scope.typesFiltered[j].ID && $scope.asMansIDs.indexOf($scope.prods[i].ManufacturerID) > -1) {
+                        if ($scope.typesFiltered[j].toggled){
+                            $scope.productsToShow.push($scope.prods[i]);
+                        }
+                    } else if ($scope.typesFiltered[j].subtypes.length > 0){
+                        for (var k = 0; k < $scope.typesFiltered[j].subtypes.length; k++){
+                            if ($scope.prods[i].SubtypeID == $scope.typesFiltered[j].subtypes[k].ID && $scope.asMansIDs.indexOf($scope.prods[i].ManufacturerID) > -1){
+                                if ($scope.typesFiltered[j].subtypes[k].toggled){
+                                    $scope.productsToShow.push($scope.prods[i]);
+                                }
+                            }
+                        }
+                    }  
+                
+            }
+        }
+        checkIfAll();
+        calculateProductBox();
+
+        if ($scope.productsToShow.length > 0) {
+            document.getElementById('ProductBox').style.left = "270px";
+            document.getElementById('sipka').style.transform = 'rotate(180deg)';
+            sipRot = true;
+            $scope.sipkaValid = false;
+        } else {
+            document.getElementById('ProductBox').style.left = "-600px";
+            document.getElementById('sipka').style.transform = 'rotate(0deg)';
+            sipRot = false;
+            $scope.sipkaValid = true;
+        };
+    };
+
+    var sipRot;
+
+    openPB = function (){ // openPB
+        //$timeout(function(){$scope.toggleProdMenu();}, 500);
+        document.getElementById('sipka').style.transform = 'rotate(180deg)';
+        sipRot = true;
+        var d = document.getElementById('ProductBox');
+        d.style.left = "270px";
+    }
+
+    $scope.toggleProdMenu = function () {
+        //$scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
+        if (sipRot == true) {
+            document.getElementById('sipka').style.transform = 'rotate(0deg)';
+            sipRot = false;
+            var d = document.getElementById('ProductBox');
+            d.style.left = "-600px";
+        }
+        else {
+            document.getElementById('sipka').style.transform = 'rotate(180deg)';
+            sipRot = true;
+            var d = document.getElementById('ProductBox');
+            d.style.left = "270px";
+            SendMessage("GUI INTERIOR", "HideProductDetailPanel");
+        }
+    };
+
+    var calculateProductBox = function(){
+        var maxPBheight = window.innerHeight - 195;
+        var prCount = $scope.productsToShow.length;
+        var hHeight = 27;
+        if((prCount/2)*157 < maxPBheight){
+            if (prCount%2 == 0){
+                var _h = ($scope.productsToShow.length/2)*157+3+25;
+                document.getElementById('ProductBox').style.height = _h + 'px';
+                document.getElementById('product_holder').style.height = _h - hHeight +'px';    
+            } else{
+                var _h = ($scope.productsToShow.length/2)*157+80+25;
+                document.getElementById('ProductBox').style.height = _h +'px';
+                document.getElementById('product_holder').style.height = _h - hHeight +'px';
             }
         } else {
-            $scope.dataToRepeat = newIzba[0].child;
-            for (var i = 0; i < newIzba.length -1; i++){
-                $scope.dataToRepeat = conTwoArr($scope.dataToRepeat, newIzba[i+1].child);    
-            }
-            //console.log($scope.dataToRepeat);
-            //$scope.dataToRepeat = conTwoArr(newIzba[0].child,newIzba[1].child);
-            $scope.dataToRepeat.allSelected = false;
-            
-            if ($scope.asSelectedMans.length > 0){
-                $scope.dataToRepeat.show = true;
-            } else {
-                $scope.dataToRepeat.show = false;
-            }
-
-            for (var i=0; i < $scope.dataToRepeat.length;i++){
-                $scope.dataToRepeat[i].toggled = false;
-                for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                    //$scope.roomProdCount += $scope.dataToRepeat[i].child[j].products.length;
-                    if ($scope.dataToRepeat[i].hasSubs){
-                        $scope.dataToRepeat[i].child[j].toggled = false;
-                    }
-                }
-            }
+            document.getElementById('ProductBox').style.height = maxPBheight +'px';
+            document.getElementById('product_holder').style.height = maxPBheight - hHeight +'px';
         }
-        $scope.activeTT = [];
-        numberOfProds();
-    });
 
-    $scope.$watchCollection('selectedManufacturers', function (newMans, oldMans) {
-        if (newMans == oldMans) return;
-        $scope.setSelectedMan(newMans);
+        if ($scope.productsToShow.length == 1){
+            document.getElementById('ProductBox').style.width = '400px';
+            $timeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 10);
+        } else {
+            document.getElementById('ProductBox').style.width = '800px';
+            $timeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
+        }
+    }
+
+    $("#BI4").click(function () {
+        if (hodnotaBI4 == 0) {
+            $("#BI4").removeClass('btn-my');
+            $("#BI4").addClass('btn-my2');
+            hodnotaBI4 = 1;
+        }
+        else if (hodnotaBI4 == 1) {
+            $("#BI4").removeClass('btn-my2');
+            $("#BI4").addClass('btn-my');
+            hodnotaBI4 = 0;
+        }
     });
-    
+    $scope.getClass = function(indx, list){
+        return {
+            leftColumn: Math.abs(indx+1) % 2 == 1,
+            NotLastOnes: indx < list.length - 2,
+            specialOne: indx % 2 && list.length %2
+        }
+    };
+
     $scope.PridatNabytok = function (value) {
         SendMessage("GUI INTERIOR", "AddObjectFromWeb", JSON.stringify(value));
     };
@@ -1462,293 +1415,8 @@ app.controller('interierCtrl', ['$scope','jsonFactory', '$timeout', function ($s
 
     setDefaultFunctionInterier = function () {
         SendMessage("FunctionsManager", "SetFunctionActive", "G03_DefaultAction");
-    }
-    
-    // initiate an array to hold all active tabs
-    $scope.activeTabs = [];
-
-    /* check if the tab is active*/
-    $scope.isOpenTab = function (tab) {
-        /* check if this tab is already in the activeTabs array */
-        if ($scope.activeTabs.indexOf(tab) > -1) {
-            /* if so, return true*/
-            return true;
-        } else {
-            /* if not, return false*/
-            return false;
-        }
     };
 
-    $scope.selectAllProds = function(){
-        $scope.activeTT = [];
-        $scope.activeTabs = [];
-        if (!$scope.dataToRepeat.allSelected){
-            for (var i = 0; i < $scope.dataToRepeat.length; i++){
-                if ($scope.dataToRepeat[i].hasSubs == true){
-                    $scope.dataToRepeat[i].isOpen = true;
-                    $scope.dataToRepeat[i].toggled = true;
-                    $scope.dataToRepeat[i].halfToggled = false;
-                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                        $scope.dataToRepeat[i].child[j].toggled = true;
-                        $scope.activeTT.push($scope.dataToRepeat[i].child[j]);
-                    }
-                } else if ($scope.dataToRepeat[i].hasSubs == false) {
-                    $scope.activeTT.push($scope.dataToRepeat[i].child[0]);
-                }
-                $scope.dataToRepeat[i].toggled = true;
-                $scope.activeTabs.push($scope.dataToRepeat[i].uidisplayname);
-            }
-            $scope.dataToRepeat.allSelected = true;
-        } else {
-            for (var i = 0; i < $scope.dataToRepeat.length; i++){
-                if ($scope.dataToRepeat[i].hasSubs){
-                    $scope.dataToRepeat[i].isOpen = false;
-                    $scope.dataToRepeat[i].toggled = false;
-                    $scope.dataToRepeat[i].halfToggled = false;
-                    for (var j = 0; j < $scope.dataToRepeat[i].child.length; j++){
-                        $scope.dataToRepeat[i].child[j].toggled = false;
-                    }
-                } 
-                $scope.dataToRepeat[i].toggled = false;
-            }
-            $scope.dataToRepeat.allSelected = false;
-        }
-        checkIfAll();
-    };
-    
-    $scope.setSelectedMan = function(aoManufacturers) {
-        $scope.asSelectedMans = [];
-    
-        if (aoManufacturers) {
-            for (var i = 0, len = aoManufacturers.length; i < len; i++) {
-                $scope.asSelectedMans.push(aoManufacturers[i].uidisplayname);                         
-            }
-        }
-        if ($scope.TypIzby.length > 0 && $scope.asSelectedMans.length > 0){
-                $scope.dataToRepeat.show = true;
-            } else{
-                $scope.dataToRepeat.show = false;
-            }
-        if ($scope.activeTT.length > 0) filterProducts();
-    };
-
-    /* function to 'open' a tab*/
-    $scope.openTab = function (tab) {
-        /* check if tab is already open*/
-        if (tab.hasSubs){
-            if ($scope.isOpenTab(tab.uidisplayname)) {
-                $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
-                tab.isOpen = false;
-            } else {
-            $scope.activeTabs.push(tab.uidisplayname);
-            tab.isOpen = true;
-            }
-        } else if (tab.toggled == true) {
-                for (var i = 0; i < tab.child.length; i++) {
-                        var index = $scope.activeTT.indexOf(tab.child[i]);
-                        $scope.activeTT.splice(index, 1);
-                }
-            /*if it is, remove it from the activeTabs array*/
-            $scope.activeTabs.splice($scope.activeTabs.indexOf(tab.uidisplayname), 1);
-            tab.toggled = !tab.toggled;
-        } else {
-            for (var i = 0; i < tab.child.length; ++i) {
-                $scope.activeTT.push(tab.child[i]);
-                $scope.activeTabs.push(tab.uidisplayname);
-                tab.toggled = !tab.toggled;
-            }
-        }
-        checkIfAll();
-    }
-
-    $scope.checkAllSubtypes = function(tab){
-        tab.halfToggled = false;
-        tab.toggled = !tab.toggled;
-
-        if (tab.toggled){
-            for (var i = 0; i < tab.child.length; i++){
-                tab.child[i].toggled = true;
-                if ($scope.activeTT.indexOf(tab.child[i]) > -1) {
-                    $scope.activeTT.splice($scope.activeTT.indexOf(tab.child[i]), 1);
-                }
-                var index = $scope.activeTT.indexOf(tab.child[i]);
-                $scope.activeTT.push(tab.child[i]);
-            }
-        } else if (!tab.toggled){
-            for (var i = 0; i < tab.child.length; i++){
-                tab.child[i].toggled = false;
-                if ($scope.activeTT.indexOf(tab.child[i]) > -1) {
-                    $scope.activeTT.splice($scope.activeTT.indexOf(tab.child[i]), 1);
-                }
-            } 
-        }
-        checkIfAll();
-    }
-    
-    var checkIfAll = function(){
-        filterProducts();
-        $scope.dataToRepeat.halfToggled = false;
-        if ($scope.asProdCount == $scope.allPossible){
-            $scope.dataToRepeat.allSelected = true;
-        } else if ($scope.asProdCount == 0) {
-            $scope.dataToRepeat.allSelected = false;
-        } else {
-            $scope.dataToRepeat.halfToggled = true;
-        }
-    };
-    
-    $scope.$watchCollection('activeTT', function (newTT, oldTT) {
-        if (newTT == oldTT) return;
-        filterProducts();
-    });
-
-    $scope.$watchCollection('asSelectedMans', function (newMans, oldMans) {
-        if (newMans == oldMans) return;
-        filterProducts();
-    });
-
-    $scope.ClickedTypeType = function (tab, $parent) {
-        tab.toggled = !tab.toggled;
-
-        if (tab.toggled == false) {
-            var index = $scope.activeTT.indexOf(tab);
-            $scope.activeTT.splice(index, 1);
-        }
-        if (tab.toggled == true) {
-            $scope.activeTT.push(tab);
-        }
-        var _isT = 0;
-        for (var i = 0; i < $parent.TypeProduct.child.length; i++){
-            if ($parent.TypeProduct.child[i].toggled == true){
-                _isT +=1;
-            }
-        }
-        $parent.TypeProduct.halfToggled = false;
-        if (_isT == $parent.TypeProduct.child.length){
-            $parent.TypeProduct.toggled = true;
-        } else if (_isT == 0){
-            $parent.TypeProduct.toggled = false;
-        } else {
-            $parent.TypeProduct.halfToggled = true;
-        }
-        checkIfAll();
-    }
-/*
-    $scope.isProductBoxDisplayed = false;
-
-    $scope.$watch('isProductBoxDisplayed', function (value, oldValue) {
-        var d = document.getElementById('ProductBox');
-        if (!!value) {
-            d.style.left = "270px";
-            SendMessage("GUI INTERIOR", "HideProductDetailPanel");
-        }
-        else {
-            d.style.left = "-600px";
-        }
-    });
-*/
-    var sipRot;
-
-    openPB = function (){ // openPB
-        //$timeout(function(){$scope.toggleProdMenu();}, 500);
-        document.getElementById('sipka').style.transform = 'rotate(180deg)';
-        sipRot = true;
-        var d = document.getElementById('ProductBox');
-        d.style.left = "270px";
-    }
-
-    $scope.toggleProdMenu = function () {
-        //$scope.isProductBoxDisplayed = !$scope.isProductBoxDisplayed;
-        if (sipRot == true) {
-            document.getElementById('sipka').style.transform = 'rotate(0deg)';
-            sipRot = false;
-            var d = document.getElementById('ProductBox');
-            d.style.left = "-600px";
-        }
-        else {
-            document.getElementById('sipka').style.transform = 'rotate(180deg)';
-            sipRot = true;
-            var d = document.getElementById('ProductBox');
-            d.style.left = "270px";
-            SendMessage("GUI INTERIOR", "HideProductDetailPanel");
-        }
-    }
-
-    $scope.calculateProductBox = function(){
-        var maxPBheight = window.innerHeight - 195;
-        var prCount = $scope.productsToShow.length;
-        var hHeight = 27;
-        if((prCount/2)*157 < maxPBheight){
-            if (prCount%2 == 0){
-                var _h = ($scope.productsToShow.length/2)*157+3+25;
-                document.getElementById('ProductBox').style.height = _h + 'px';
-                document.getElementById('product_holder').style.height = _h - hHeight +'px';    
-            } else{
-                var _h = ($scope.productsToShow.length/2)*157+80+25;
-                document.getElementById('ProductBox').style.height = _h +'px';
-                document.getElementById('product_holder').style.height = _h - hHeight +'px';
-            }
-        } else {
-            document.getElementById('ProductBox').style.height = maxPBheight +'px';
-            document.getElementById('product_holder').style.height = maxPBheight - hHeight +'px';
-        }
-
-        if ($scope.productsToShow.length == 1){
-            document.getElementById('ProductBox').style.width = '400px';
-            $timeout(function(){$('#ProductBox .btn-group').css('width','100%');}, 10);
-        } else {
-            document.getElementById('ProductBox').style.width = '800px';
-            $timeout(function(){$('#ProductBox .btn-group').css('width','50%');}, 10);
-        }
-    }
-
-    var filterProducts = function(){
-        console.log('filter');
-        $scope.asProdCount = 0;
-        $scope.productsToShow = [];
-        for (var i = 0; i < $scope.activeTT.length; i++) {
-            for (var j = 0; j < $scope.activeTT[i].products.length; j++) {
-                if ($scope.asSelectedMans.length > 0 && $scope.asSelectedMans.indexOf($scope.activeTT[i].products[j].manufacturername) > -1) {
-                    $scope.productsToShow = $scope.productsToShow.concat($scope.activeTT[i].products[j]);
-                }
-            }
-            $scope.asProdCount = $scope.productsToShow.length;
-        }
-        numberOfProds();
-        $scope.calculateProductBox();
-
-        if ($scope.productsToShow.length > 0) {
-            document.getElementById('ProductBox').style.left = "270px";
-            document.getElementById('sipka').style.transform = 'rotate(180deg)';
-            sipRot = true;
-            $scope.sipkaValid = false;
-        } else {
-            document.getElementById('ProductBox').style.left = "-600px";
-            document.getElementById('sipka').style.transform = 'rotate(0deg)';
-            sipRot = false;
-            $scope.sipkaValid = true;
-        };
-    }
-
-    $("#BI4").click(function () {
-        if (hodnotaBI4 == 0) {
-            $("#BI4").removeClass('btn-my');
-            $("#BI4").addClass('btn-my2');
-            hodnotaBI4 = 1;
-        }
-        else if (hodnotaBI4 == 1) {
-            $("#BI4").removeClass('btn-my2');
-            $("#BI4").addClass('btn-my');
-            hodnotaBI4 = 0;
-        }
-    });
-    $scope.getClass = function(indx, list){
-        return {
-            leftColumn: Math.abs(indx+1) % 2 == 1,
-            NotLastOnes: indx < list.length - 2,
-            specialOne: indx % 2 && list.length %2
-        }
-    }
 }]);
 
 app.controller('FPSCtrl', ['$scope', '$timeout', function ($scope, $timeout) {

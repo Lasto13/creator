@@ -4,21 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Virtual Creator</title>
-    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="jquery-ui.css">
-    <link rel="stylesheet" href="vcStyle.css" />
+    <link rel="stylesheet" href="styles/jquery-ui.css">
+    <link rel="stylesheet" href="styles/temp.css" />
   </head>
   <body ng-app="app" ng-controller="mainCtrl" class="template">
-
-    
 
     <div id='loginScreen'>
       <div id='loginPlaceholder'>
         <div id='enliLogo'></div>
         <div id='vcLogo'></div>
         <h1>ENLI VirtualCreator</h1>
-        <p>beta v. 0.9</p>
+        <p>beta v. 0.9.3a</p>
         <div id='formHolder'>
           <form ng-submit='login()'>
             <input type='text' ng-model='user.login' placeholder='login@email.com' name="username"> 
@@ -36,7 +34,7 @@
     <div id="browser-detect-wrap">
         <div class="inst-firefox"></div>
         <p>Virtual Creator nepodporuje prehliadač <span></span><br />
-        Nainštalujte si prosím Firefox.</p>s
+        Nainštalujte si prosím Firefox.</p>
     </div>
     -->
     <div id="splash-sc">
@@ -209,18 +207,18 @@
         <div class="left-menu">
           <div id="ProductBox" style="pointer-events: auto;">
             <div class='menuHeader'>
-              <a> Počet filtrovaných produktov: {{asProdCount}}/{{allPossible}}</a>
+              <a> Počet filtrovaných produktov: {{productsToShow.length}}/{{prods.length}}</a>
               <div class='closeMenu' ng-click='toggleProdMenu()'></div>
             </div>
             <div id='product_holder'>
-              <div  ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
+              <div ng-repeat="prod in productsToShow" class ="btn-group" ng-class="getClass($index, productsToShow)">
                 <div class="prod-image-cont">
-                  <a class = "prod-image" ng-click="PridatNabytok(prod); toggleProdMenu();" style="background-image:url({{prod.image}});"></a>
+                  <a class = "prod-image" ng-click="PridatNabytok(prod); toggleProdMenu();" style="background-image:url({{prod.ImageLink}});"></a>
                 </div>
                 <div class="prod-info">
                   <div class='prod-top'>
-                    <h4>{{prod.uidisplayname}}</h4>
-                    <p> {{prod.description}}</p>
+                    <h4>{{prod.Name}}</h4>
+                    <p> {{prod.Description}}</p>
                   </div>
                   <div class='prod-bot'>
                     <button class="enli-btn btn" title="Vložiť produkt do scény" ng-click="PridatNabytok(prod); toggleProdMenu();">Vložiť</button>
@@ -235,24 +233,24 @@
               <div id="sipka" ng-class="{sipkaInactive:sipkaValid}" ng-disabled='sipkaValid' title="Vysunúť menu s výrobkami" ng-click="sipkaValid || toggleProdMenu()"> </div>
             </div>
             <div id='drop_holder'>
-              <div ng-dropdown-multiselect="" options="rooms" selected-model="selectedRooms" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="false" singles='true'></div>
-              <div ng-dropdown-multiselect="" options="mf" selected-model="selectedManufacturers" checkboxes="true" extra-settings="manSettings"></div>
+              <div ng-dropdown-multiselect="" options="rooms" selected-model="selectedRooms" extra-settings="izbaSettings" translation-texts="izbaTexts" checkboxes="true"></div>
+              <div ng-dropdown-multiselect="" options="mf" selected-model="selectedMans" checkboxes="true" extra-settings="manSettings"></div>
             </div>
             <div id='Categories'>
               <div id= 'allSelector'>
                 <a ng-click='selectAllProds()'>Označiť všetky <div class='fajka' 
-                  ng-class="{'halfT' : dataToRepeat.halfToggled, 'fajka-active' : dataToRepeat.allSelected, 'fajka-inActive' : !dataToRepeat.allSelected}"> </div> </a>
+                  ng-class="{'halfT' : typesFiltered.halfToggled, 'fajka-active' : typesFiltered.allSelected, 'fajka-inActive' : !typesFiltered.allSelected}"> </div> </a>
               </div>
-              <div class="accordion__container" ng-repeat = "type in categories">
-                  <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-class="{hide : TypeProduct.prodsIncluded == 0}">
-                      <div class='drop_arrow' ng-click='TypeProduct.prodsIncluded == 0 || openTab(TypeProduct);' ng-show="TypeProduct.hasSubs" ng-class="{drop_arrow_rotated : TypeProduct.isOpen}"></div>
+              <div class="accordion__container" ng-repeat = "type in typesFiltered | orderBy: 'Name' " ng-model='typesFiltered' >
+                  <div class="accordion__tab btn-group enli-checkbox-btn clearfix ng-scope active" ng-show="type.prodsIncluded > 0">
+                      <div class='drop_arrow' ng-click="toggleTypeOpen(type);" ng-show="type.subtypes.length > 0" ng-class="{drop_arrow_rotated : type.isOpen}"></div>
                       <div class='name'>
-                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !TypeProduct.hasSubs,'TypeProductDesignClicked' : TypeProduct.isOpen || TypeProduct.toggled, 'TypeProductDesign' : !TypeProduct.isOpen || !TypeProduct.toggled}" ng-click="openTab(TypeProduct);" >{{type.Name}} ({{TypeProduct.prodsIncluded}})</a>
-                        <a class="accordion__tab-content TypeTypeProductDesign" ng-class="{'TypeTypeProductDesignClicked' : !Typetypeproducts.toggled, 'TypeTypeProductDesign' : Typetypeproducts.toggled}" ng-repeat = "subTypes in type.subtypes" ng-click = "ClickedTypeType(Typetypeproducts,$parent);">{{subTypes.Name}} ({{Typetypeproducts.prodsIncluded}})
-                          <div class='subFajka' ng-class="{'fajka-active': Typetypeproducts.toggled, 'fajka-inActive': !Typetypeproducts.toggled}" ng-show="TypeProduct.isOpen && TypeProduct.hasSubs"></div> 
+                        <a class="accordion__tab-title TypeProductDesign" ng-class="{margined : !type.subtypes.length,'TypeProductDesignClicked' : type.isOpen || type.toggled, 'TypeProductDesign' : !TypeProduct.isOpen}" ng-click="type.subtypes.length > 0 || checkType(type); !type.subtypes.length|| toggleTypeOpen(type);" >{{type.Name}} ({{type.prodsIncluded}})</a>
+                        <a class="accordion__tab-content TypeTypeProductDesign" ng-show="type.isOpen && type.subtypes.length > 0" ng-class="{'TypeTypeProductDesignClicked' : !subType.toggled, 'TypeTypeProductDesign' : subType.toggled}" ng-repeat = "subType in type.subtypes" ng-click = "toggleSubtype(subType, type);">{{subType.Name}} ({{subType.prodsIncluded}})
+                          <div class='subFajka' ng-class="{'fajka-active': subType.toggled, 'fajka-inActive': !subType.toggled}" ng-show="type.isOpen && type.subtypes.length > 0"></div>
                         </a>
                       </div>
-                      <div class='fajka' ng-click="!TypeProduct.hasSubs || checkAllSubtypes(TypeProduct); TypeProduct.hasSubs || openTab(TypeProduct)" ng-class="{'halfT' : TypeProduct.halfToggled, 'fajka-active' : TypeProduct.toggled && TypeProduct.prodsIncluded != 0, 'fajka-inActive' : !TypeProduct.toggled}"></div>
+                      <div class='fajka' ng-click=" type.subtypes.length > 0 || checkType(type);  !type.subtypes.length|| checkAllST(type); " ng-class="{'halfT' : type.halfToggled, 'fajka-active' : type.toggled, 'fajka-inActive' : !type.toggled}"></div>
                   </div>
               </div>
             </div>

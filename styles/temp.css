@@ -17,8 +17,7 @@ label {
 
 ::-webkit-scrollbar-thumb {
   height: 10px;
-  background-color: #7ca616;
-  /*border: solid whiteSmoke 4px;*/
+  background-color: #7ca616dw  /*border: solid whiteSmoke 4px;*/
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-border-radius: 10px;
   border-radius: 10px; }
@@ -835,9 +834,10 @@ body{
   z-index: 999;
   height: 100%;
   width: 100%;
-  top: 80px; }
-  .dw-section pointer-events:none
-  #dw-toolbar {
+  top: 80px;
+  pointer-events: none; }
+  .dw-section #dw-toolbar {
+    pointer-events: all;
     position: relative;
     float: left;
     height: 70px;

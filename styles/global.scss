@@ -254,8 +254,9 @@ body{
 	height:100%;
 	width:100%;
 	top:80px;
-	pointer-events:none
+	pointer-events:none;
 		#dw-toolbar{
+			pointer-events:all;
 			position:relative;
 			float:left;
 			height:70px;
